@@ -452,7 +452,7 @@ $(function () {
             success: function (result) {
                 if(result.resultCode==200){
                     $(".jb2").attr("src", "/Public/img/alert/jiaoyi/os.png");
-                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/15.png");
+                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/14.png");
                     $(".Three").find(".three_box").empty();
                     $(".TWO").fadeIn(50);
                     $(".one").fadeOut(50);
@@ -486,7 +486,7 @@ $(function () {
             success: function (result) {
                 if(result.resultCode==200){
                     $(".jb2").attr("src", "/Public/img/alert/jiaoyi/os.png");
-                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/14.png");
+                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/15.png");
                     $(".TWO").find(".three_box").empty();
                     $(".TWO").fadeOut(50);
                     $(".one").fadeOut(50);

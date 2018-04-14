@@ -707,6 +707,11 @@ public function fruitlist(){
                         $list[$key]['content']='你设置支付密码成功';
                         $list[$key]['time']=$val['time'];
                         break;
+                    case '11':
+                        $num=$val['num'];
+                        $list[$key]['content']='你成功兑换'.$num.'个券';
+                        $list[$key]['time']=$val['time'];
+                        break;
                 }
                 $list[$key]['id']=$val['id'];
             }
