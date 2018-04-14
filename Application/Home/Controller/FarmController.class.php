@@ -422,19 +422,19 @@ class FarmController extends AllowController {
                     $yourfruit=$f_mygoods->where("uid='$tuid'")->find();
                     $data['fruit']=$myfruit['fruit']-$num*(1+$transaction_fee+$trade_exchange);
                     $data['voucher']=$myfruit['voucher']+$num*$trade_exchange;
-                    $datas['fruit']=$yourfruit['fruit']+$num;
-                    $res1=$f_mygoods->where("uid='$uid'")->data($data)->save();
-                    $res2=$f_mygoods->where("uid='$tuid'")->data($datas)->save();
+                    $datas['voucher']=$yourfruit['voucher']+$num;
+                    $res1=$f_mygoods->where("uid='$uid'")->data($data)->save();//保存自己果子
+                    $res2=$f_mygoods->where("uid='$tuid'")->data($datas)->save();//保存别人券
                     $arr['uid']=$uid;
                     $arr['tuid']=$tuid;
-                    $arr['num']=$num*(1+$transaction_fee);
-                    $arr['realnum']=$num;
+                    $arr['num']=$num*(1+$transaction_fee);//实际扣除果子
+                    $arr['realnum']=$num;//实际到账券
                     $arr['time']=date('Y-m-d H:i:s');
-                    $res=$trade->data($arr)->add();
+                    $res=$trade->data($arr)->add();//增加交易记录
                     $exc['uid']=$uid;
                     $exc['num']=$num*$trade_exchange;
                     $exc['time']=date('Y-m-d H:i:s');
-                    $result=$exchange->data($exc)->add();
+                    $result=$exchange->data($exc)->add();//增加兑换记录
                     if($res && $res1 && $res2 && $result){
                         tradinginfo($tuid,$num*(1+$transaction_fee));
                         beitradinginfo($tuid,$num);
@@ -680,7 +680,7 @@ public function fruitlist(){
                         $num=$val['num'];
                         $tuid=$val['tuid'];
                         $username=$user->where("id='$tuid'")->getField("username");
-                        $list[$key]['content']='你与'.$username.'交易成功，到账'.$num.'个果子';
+                        $list[$key]['content']='你与'.$username.'交易成功，到账'.$num.'个券';
                         $list[$key]['time']=$val['time'];
                         break;
                     case '7':

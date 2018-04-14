@@ -14,31 +14,73 @@
       <file leaf-file-name="FarmController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FarmController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-210">
-              <caret line="344" column="25" selection-start-line="344" selection-start-column="20" selection-end-line="344" selection-end-column="25" />
+            <state relative-caret-position="10143">
+              <caret line="483" column="49" lean-forward="true" selection-start-line="483" selection-start-column="49" selection-end-line="483" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="indx.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../View/index/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="254" column="32" lean-forward="true" selection-start-line="254" selection-start-column="32" selection-end-line="254" selection-end-column="32" />
+              <folding>
+                <element signature="n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#footer#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../Public/css/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="605" column="1" selection-start-line="605" selection-start-column="1" selection-end-line="605" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indx.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../View/farm/indx.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
+            <state relative-caret-position="162">
               <caret line="160" column="27" lean-forward="true" selection-start-line="160" selection-start-column="27" selection-end-line="160" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../Public/fjs/index.js">
+      <file leaf-file-name="LoginZhuce.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../../Public/js/LoginZhuce.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="488" column="82" lean-forward="true" selection-start-line="488" selection-start-column="82" selection-end-line="488" selection-end-column="82" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#p#6;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#p#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="462">
+              <caret line="145" column="60" selection-start-line="145" selection-start-column="60" selection-end-line="145" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setpass.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../View/person/setpass.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-258" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PersonController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="74">
+              <caret line="181" column="49" selection-start-line="181" selection-start-column="49" selection-end-line="181" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LoginController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="693">
+              <caret line="108" column="14" lean-forward="true" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -48,6 +90,10 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>three</find>
+      <find>destroy</find>
+      <find />
+      <find>checkPhone</find>
+      <find>shop</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -57,10 +103,19 @@
         <option value="$PROJECT_DIR$/../View/login/Register.html" />
         <option value="$USER_HOME$/Desktop/UserController.class.php" />
         <option value="$PROJECT_DIR$/../View/person/extend.html" />
-        <option value="$PROJECT_DIR$/PersonController.class.php" />
         <option value="$PROJECT_DIR$/../../../Public/js/orchard.js" />
         <option value="$PROJECT_DIR$/../../../Public/fjs/index.js" />
         <option value="$PROJECT_DIR$/../View/farm/indx.html" />
+        <option value="$PROJECT_DIR$/../View/person/address.html" />
+        <option value="$PROJECT_DIR$/../View/address/address.html" />
+        <option value="$PROJECT_DIR$/../View/address/editaddr.html" />
+        <option value="$PROJECT_DIR$/../../../Public/js/OneM.js" />
+        <option value="$PROJECT_DIR$/PersonController.class.php" />
+        <option value="$PROJECT_DIR$/FarmController.class.php" />
+        <option value="$PROJECT_DIR$/../../../Public/css/index.css" />
+        <option value="$PROJECT_DIR$/../View/index/index.html" />
+        <option value="$USER_HOME$/Desktop/mall.sql" />
+        <option value="$PROJECT_DIR$/../../../Public/js/LoginZhuce.js" />
       </list>
     </option>
   </component>
@@ -74,9 +129,9 @@
     <servers />
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="434" />
-    <option name="y" value="111" />
-    <option name="width" value="1857" />
+    <option name="x" value="204" />
+    <option name="y" value="35" />
+    <option name="width" value="1470" />
     <option name="height" value="1100" />
   </component>
   <component name="ProjectView">
@@ -130,18 +185,18 @@
       <workItem from="1523617100194" duration="181000" />
       <workItem from="1523618347944" duration="319000" />
       <workItem from="1523667838706" duration="5744000" />
-      <workItem from="1523674310644" duration="3196000" />
+      <workItem from="1523674310644" duration="19572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9452000" />
+    <option name="totallyTimeSpent" value="25828000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="434" y="111" width="1857" height="1100" extended-state="0" />
+    <frame x="204" y="35" width="1470" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09016839" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15268226" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -204,13 +259,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LoginController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-987">
-          <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../View/login/Register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -222,20 +270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PersonController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FarmController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-210">
-          <caret line="344" column="25" selection-start-line="344" selection-start-column="20" selection-end-line="344" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -258,10 +292,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AddressController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="71" column="30" lean-forward="true" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../View/address/editaddr.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Public/js/OneM.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="417" column="43" lean-forward="true" selection-start-line="417" selection-start-column="43" selection-end-line="417" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../View/person/address.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="151" column="17" lean-forward="true" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../View/address/address.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="57" selection-start-line="57" selection-end-line="57" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../View/person/setpass.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-258" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../View/farm/indx.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
+        <state relative-caret-position="162">
           <caret line="160" column="27" lean-forward="true" selection-start-line="160" selection-start-column="27" selection-end-line="160" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Public/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="605" column="1" selection-start-line="605" selection-start-column="1" selection-end-line="605" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PersonController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="181" column="49" selection-start-line="181" selection-start-column="49" selection-end-line="181" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../View/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="254" column="32" lean-forward="true" selection-start-line="254" selection-start-column="32" selection-end-line="254" selection-end-column="32" />
+          <folding>
+            <element signature="n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#footer#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/mall.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="479" column="31" lean-forward="true" selection-start-line="479" selection-start-column="31" selection-end-line="479" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FarmController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10143">
+          <caret line="483" column="49" lean-forward="true" selection-start-line="483" selection-start-column="49" selection-end-line="483" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LoginController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="108" column="14" lean-forward="true" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Public/js/LoginZhuce.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="145" column="60" selection-start-line="145" selection-start-column="60" selection-end-line="145" selection-end-column="60" />
         </state>
       </provider>
     </entry>

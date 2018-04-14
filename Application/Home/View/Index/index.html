@@ -69,62 +69,13 @@
             <li>待收货</li>
         </ul>
         <div class="all-D">
-            <!-- <div class="all-D-box">
-                <p class="all-D-top">
-                    <span>2018/02/29</span>
-                    <span>交易成功</span>
-                </p>
-                <div class="all-D-div">
-                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
-                    <p>破多而红酒(每天限量159份)</p>
-                    <p>
-                        <span>￥:300+30代金券</span>
-                        <span>×1</span>
-                    </p>
-                </div>
-                <p class="coles-D">
-                    <span class="removeBus">删除订单</span>
-                </p>
-            </div> -->
+
         </div>
         <div class="give-money">
-            <!-- <div class="all-D-box">
-                <p class="all-D-top">
-                    <span>2018/02/29</span>
-                    <span>等待买家付款</span>
-                </p>
-                <div class="all-D-div">
-                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
-                    <p>破多而红酒(每天限量159份)</p>
-                    <p>
-                        <span>￥:300+30代金券</span>
-                        <span>×1</span>
-                    </p>
-                </div>
-                <p class="coles-D">
-                    <span class="removeBus">取消订单</span>
-                    <span class="myPay">付款</span>
-                </p>
-            </div> -->
+
         </div>
         <div class="give-some">
-            <!-- <div class="all-D-box">
-                <p class="all-D-top">
-                    <span>2018/02/29</span>
-                    <span>交易成功</span>
-                </p>
-                <div class="all-D-div">
-                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
-                    <p>破多而红酒(每天限量159份)</p>
-                    <p>
-                        <span>￥:300+30代金券</span>
-                        <span>×1</span>
-                    </p>
-                </div>
-                <p class="coles-G">
-                    商家正在接受中，请耐心等待！
-                </p>
-            </div>
+
  -->
         </div>
         <div class="get-bus">
@@ -134,29 +85,7 @@
                     <button type="submit">查询</button>
                 </form>
             </div>
-            <!-- <div class="all-D-box">
-                <p class="all-D-top">
-                    <span>2018/02/29</span>
-                    <span>交易成功</span>
-                </p>
-                <div class="all-D-div">
-                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
-                    <p>破多而红酒(每天限量159份)</p>
-                    <p>
-                        <span>￥:300+30代金券</span>
-                        <span>×1</span>
-                    </p>
-                </div>
-                <div class="coles-Get">
-                    <p class="Get-left">
-                        <span class="wuliu">物流编号:
-                            <small id="Wuliu">1234567890123</small>
-                        </span>
-                        <button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>
-                    </p>
-                    <span class="Get-right">确认收货</span>
-                </div>
-            </div> -->
+
         </div>
     </div>
     <div class="nongchang">
@@ -197,7 +126,7 @@
                         </span>
                     </li>
                 </a>
-                <a href="" class="few">
+                <a  class="few" onclick="alertBox()">
                     <li>
                         <img class="list-img" src="__PUBLIC__/YM/userImg/1djq.png" alt="">
                         <span class="list-low">
@@ -258,6 +187,21 @@
                 <p>退出</p>
             </a>
         </div>
+        <div class="Aler-box">
+            <div>
+                <p>
+                    <img class="Cloose" src="__PUBLIC__/YM/imgs/gb.png" alt="">
+                </p>
+                <p>请输入您要兑换的果子数，兑换比例1：1</p>
+                <p class="Kone">
+                    <!--<img class="Jan" src="__ROOT__/Shop/Home/View/image/jian.jpg" alt="">-->
+                    <input type="number" id="number"  name="number">
+                     <!--<span>0</span>-->
+                     <!--<img class="Ja" src="__ROOT__/Shop/Home/View/image/jia.jpg" alt="">-->
+                </p>
+                <button type="submit" class="Tijiao">确定</button>
+            </div>
+        </div>
     </div>
 
     <footer class="footer" islogin="">
@@ -288,6 +232,32 @@
 </body>
 
 <script src="__PUBLIC__/js/index.js"></script>
+<script>
+    function alertBox() {
+        $(".Aler-box").fadeIn();
+        var num=$(".fruit-price").html();
+    }
+    $(".Cloose").click(function(){
+        $(".Aler-box").fadeOut();
+    })
+    $(".Tijiao").click(function(){
+        var number=$("#number").val();//兑换果子数
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "../Farm/exchange",
+            data: ({num: number}),
+            success: function (result) {
+                if (result.resultCode == 200) {
+                    alert("兑换成功");
+                    window.location.href = "../Index/index?num=3";
+                } else if (result.resultCode == 300) {
+                    alert("果子数量不足");
+                }
+            },
+        })
+    })
+</script>
 
 
 

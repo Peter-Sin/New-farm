@@ -190,7 +190,7 @@ $(function () {
         }
         console.log(datas);
         datas =JSON.stringify(datas)
-        window.location.href="http://www.test.com/index.php/Home/Order/dingOk?datas="+datas;
+        window.location.href="../Order/dingOk?datas="+datas;
 
         // console.log(datas)
         // $.ajax({
@@ -287,7 +287,7 @@ $(function () {
     //修改
     bianjis.click(function () {
         var AddrId=$(this).attr("AddrId")
-        window.location.href='http://www.test.com/index.php/Home/Address/eAddr?data='+AddrId
+        window.location.href='../Address/eAddr?data='+AddrId
         // console.log(AddrId)
     })
 
@@ -316,8 +316,120 @@ $(function () {
     hideadress.click(function () {
         window.location.href='../Address/address'
     })
-})
 
+    var DataJson = {
+        checkPhone: function (data) {
+            if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(data)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    };
+var $citypicker3 = $('#city-picker3');
+    $('#reset').click(function () {
+        $citypicker3.citypicker('reset');
+    });
+
+    $('#destroy').click(function () {
+        console.log("14725836900000dizhi");
+        var user = $("input[name='user'] ").val();
+        var phone = $("input[name='phone'] ").val();
+        var adress = $("input[name='adress'] ").val();
+        var city = $("input[name='citys'] ").val();
+        if (user=="") {
+            $(".Adrishi").show()
+            $(".Adrishi").html("请填写收货人")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else if(!DataJson.checkPhone(phone) || phone.length != 11){
+            $(".Adrishi").show()
+            $(".Adrishi").html("手机号格式不正确")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else if(adress==""){
+            $(".Adrishi").show()
+            $(".Adrishi").html("请填写详细地址")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else if (city == "") {
+            $(".Adrishi").show()
+            $(".Adrishi").html("请选择省市地区")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else{
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Address/addAddr",
+                data: ({ user: user, phone: phone, adress: adress, city: city }),
+                success: function (result) {
+                    if (result.resultCode == 200) {
+                        alert("地址添加成功");
+                        window.location.href='../Address/chooadres';
+                    }
+                },
+                error: function (err) {
+                    console.log(err.statusText)
+                }
+            });
+        }
+    });
+
+    $('#destroyedit').click(function () {
+        $citypicker3.citypicker('destroyedit');
+        var addrid = $(this).attr("addrid")
+        var user = $("input[name='user'] ").val()
+        var phone = $("input[name='phone'] ").val()
+        var adress = $("input[name='adress'] ").val()
+        var city = $("input[name='citys'] ").val()
+        if (user=="") {
+            $(".Adrishi").show()
+            $(".Adrishi").html("请填写收货人")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else if(!DataJson.checkPhone(phone) || phone.length != 11){
+            $(".Adrishi").show()
+            $(".Adrishi").html("手机号格式不正确")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else if(adress==""){
+            $(".Adrishi").show()
+            $(".Adrishi").html("请填写详细地址")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else if (city == "") {
+            $(".Adrishi").show()
+            $(".Adrishi").html("请选择省市地区")
+            setTimeout(function () {
+                $(".Adrishi").hide()
+            }, 2000)
+        }else{
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Address/EditAddr",
+                data: ({addrid:addrid, user: user, phone: phone, adress: adress, city: city }),
+                success: function (result) {
+                    if (result.resultCode == 200) {
+                        alert("地址修改成功");
+                        window.location.href='../Address/chooadres';
+                    }
+                },
+                error: function (err) {
+                    console.log(err.statusText)
+                }
+            });
+        }
+    });
+})
 
 $(function () {
     var times = $(".Duobao").find(".Odtime");

@@ -12,6 +12,10 @@ var DataJson = {
         }
     }
 };
+
+var reg = /^[0-9a-zA-Z]+$/;
+
+
 //Register
 //获取手机验证码
 $(".getPhone").click(function () {
@@ -65,6 +69,7 @@ $(".getPhone").click(function () {
     }
 })
 
+
 //注册
 // $("#Registers").submit(function (e) {
 $(".btn_regist").click(function () {
@@ -96,19 +101,31 @@ $(".btn_regist").click(function () {
                 $(".tishi").hide()
             }, 2000)
         }
-    } else if (data.password != data.passwordtwo) {
+    }else if(data.password=="" || !data.password){
+        $(".tishi").show()
+        $(".tishi").html("请输入密码")
+        setTimeout(function () {
+            $(".tishi").hide()
+        }, 2000)
+    }else if(data.password.length<8 || data.password.length>12){
+        $(".tishi").show()
+        $(".tishi").html("密码不能少于8 大于12位");
+        setTimeout(function () {
+            $(".tishi").hide()
+        }, 2000)
+    }else if(!reg.test(data.password)){
+        $(".tishi").show()
+        $(".tishi").html("密码只能由数字字母组成");
+        setTimeout(function () {
+            $(".tishi").hide()
+        }, 2000)
+    }else if (data.password != data.passwordtwo) {
         $(".tishi").show()
         $(".tishi").html("两次密码不一致")
         setTimeout(function () {
             $(".tishi").hide()
         }, 2000)
-    } else if (data.password.length != 10 || data.passwordtwo.length != 10) {
-        $(".tishi").show()
-        $(".tishi").html("请输入10位数的密码")
-        setTimeout(function () {
-            $(".tishi").hide()
-        }, 2000)
-    } else {
+    }else {
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -126,6 +143,7 @@ $(".btn_regist").click(function () {
                     setTimeout(function () {
                         $(".tishi").hide()
                     }, 2000)
+                    window.location.href = "__MODULE__/login/index";
                 } else if (result.resultCode == 300) {
                     $(".tishi").show()
                     $(".tishi").html("验证码有误")
@@ -196,26 +214,51 @@ $("#Getpasss").submit(function (e) {
     }
 })
 //修改密码
-$(".btn-setpass").click(function () {
-    // e.preventDefault()
+$(".btn-setpass").click(function (e) {
+    e.preventDefault()
     var data = {
         phone: $("input[name='phone'] ").val(),
         pass: $("input[name='pass'] ").val(),
         qpass: $("input[name='qpass'] ").val(),
     }
-    if (data.pass != data.qpass) {
+    console.log(data);
+    if(data.phone=="" || !data.phone){
+        $(".Setishi").show()
+        $(".Setishi").html("请输入旧密码")
+        setTimeout(function () {
+            $(".Setishi").hide()
+        }, 2000)
+    }else if(data.pass=="" || !data.pass){
+        $(".Setishi").show()
+        $(".Setishi").html("密码不能为空")
+        setTimeout(function () {
+            $(".Setishi").hide()
+        }, 2000)
+    }else if(data.phone==data.pass){
+        $(".Setishi").show()
+        $(".Setishi").html("新密码不能与旧密码相同");
+        setTimeout(function () {
+            $(".Setishi").hide()
+        }, 2000)
+    }else if(data.pass.length<8 || data.pass.length>12){
+        $(".Setishi").show()
+        $(".Setishi").html("密码不能少于8 大于12位");
+        setTimeout(function () {
+            $(".Setishi").hide()
+        }, 2000)
+    }else if(!reg.test(data.pass)){
+        $(".Setishi").show()
+        $(".Setishi").html("密码只能由数字、字母组成");
+        setTimeout(function () {
+            $(".Setishi").hide()
+        }, 2000)
+    }else if(data.pass != data.qpass) {
         $(".Setishi").show()
         $(".Setishi").html("两次密码不一致")
         setTimeout(function () {
             $(".Setishi").hide()
         }, 2000)
-    } else if (data.pass.length != 6 || data.qpass.length != 6) {
-        $(".Setishi").show()
-        $(".Setishi").html("请输入6位数的密码")
-        setTimeout(function () {
-            $(".Setishi").hide()
-        }, 2000)
-    } else {
+    }else {
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -246,20 +289,19 @@ $("#Paypasss").submit(function (e) {
         password: $("input[name='password'] ").val(),
         passwordtwo: $("input[name='passwordtwo'] ").val(),
     }
-    console.log("Pay")
-    if (data.password != data.passwordtwo) {
-        $(".Payishi").show()
-        $(".Payishi").html("两次密码不一致")
-        setTimeout(function () {
-            $(".Payishi").hide()
-        }, 2000)
-    } else if ( data.password.length != 6 || data.passwordtwo.length != 6) {
+    if( data.password.length != 6){
         $(".Payishi").show()
         $(".Payishi").html("请输入6位数的支付密码")
         setTimeout(function () {
             $(".Payishi").hide()
         }, 2000)
-    } else {
+    }else if(data.password != data.passwordtwo){
+        $(".Payishi").show()
+        $(".Payishi").html("两次密码不一致")
+        setTimeout(function () {
+            $(".Payishi").hide()
+        }, 2000)
+    }else{
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
@@ -286,23 +328,13 @@ $(".btn-login").click(function () {
         phone: $("input[name='phone'] ").val(),
         pass: $("input[name='pass'] ").val()
     }
-    if (!DataJson.checkPhone(data.phone) || data.phone.length != 11) {
+    if(!DataJson.checkPhone(data.phone) || data.phone.length != 11) {
         $(".Logishi").show()
         $(".Logishi").html("手机号格式不正确")
         setTimeout(function () {
             $(".Logishi").hide()
         }, 2000)
-        // return;
-    }
-    // else if (data.pass.length != 10) {
-    //     $(".Logishi").show()
-    //     $(".Logishi").html("请输入10位数的密码")
-    //     setTimeout(function () {
-    //         $(".Logishi").hide()
-    //     }, 2000)
-    //     // return;
-    // }
-    else {
+    }else{
         $.ajax({
             type: "POST",
             dataType: "json",

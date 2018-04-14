@@ -179,6 +179,7 @@ class PersonController extends AllowController
                 $res = $user->where("id='$uid'")->data($data)->save();
                 if ($res) {
                     unset($_SESSION['uid']);
+                    unset($_SESSION['is_login']);
                     $response = array(
                         'resultCode' => '200',//修改成功
                     );

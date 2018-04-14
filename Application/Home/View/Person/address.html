@@ -59,22 +59,23 @@
 <script src="__PUBLIC__/js/LoginZhuce.js"></script>
 <script src="__PUBLIC__/js/backthree.js"></script>
 <script>
-
-    'use strict';
-    var $citypicker1 = $('#city-picker1');
-    $citypicker1.citypicker();
-    var $citypicker2 = $('#city-picker2');
-    $citypicker2.citypicker({
-        province: '请选择省',
-        city: '市',
-        district: '区'
-    });
-    var $citypicker3 = $('#city-picker3');
+console.log("123456789");
+    // 'use strict';
+    // var $citypicker1 = $('#city-picker1');
+    // $citypicker1.citypicker();
+    // var $citypicker2 = $('#city-picker2');
+    // $citypicker2.citypicker({
+    //     province: '请选择省',
+    //     city: '市',
+    //     district: '区'
+    // });
+    // var $citypicker3 = $('#city-picker3');
 
     $('#reset').click(function () {
         $citypicker3.citypicker('reset');
     });
     $('#destroy').click(function () {
+        console.log("14725836900000dizhi");
         $citypicker3.citypicker('destroy');
         // console.log("确定地址")
         var user = $("input[name='user'] ").val()
