@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-04-14 16:19:08
+Date: 2018-04-15 01:23:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,6 +52,7 @@ CREATE TABLE `address` (
 -- ----------------------------
 -- Records of address
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for classprice
 -- ----------------------------
@@ -73,7 +74,6 @@ CREATE TABLE `classprice` (
 -- ----------------------------
 -- Records of classprice
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for focus
 -- ----------------------------
@@ -100,11 +100,11 @@ CREATE TABLE `f_exchange` (
   `num` float DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of f_exchange
--- ----------------------------
+-- ----------------------------;
 
 -- ----------------------------
 -- Table structure for f_goods
@@ -132,7 +132,7 @@ CREATE TABLE `f_harvest` (
   `amount` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of f_harvest
@@ -147,11 +147,12 @@ CREATE TABLE `f_land` (
   `uid` int(11) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of f_land
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for f_lowest
 -- ----------------------------
@@ -162,7 +163,7 @@ CREATE TABLE `f_lowest` (
   `lownum` float DEFAULT '300',
   `content` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of f_lowest
@@ -180,12 +181,11 @@ CREATE TABLE `f_mygoods` (
   `tree` int(11) DEFAULT '0',
   `land` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of f_mygoods
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for f_oldtree
 -- ----------------------------
@@ -198,12 +198,11 @@ CREATE TABLE `f_oldtree` (
   `time` datetime DEFAULT NULL,
   `oldtime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of f_oldtree
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for f_rate
 -- ----------------------------
@@ -225,9 +224,9 @@ INSERT INTO `f_rate` VALUES ('3', '3', '0.022', '22.72');
 INSERT INTO `f_rate` VALUES ('4', '4', '0.022', '15.15');
 INSERT INTO `f_rate` VALUES ('5', '5', '0.022', '11.36');
 INSERT INTO `f_rate` VALUES ('6', '6', '0.022', '9.09');
-INSERT INTO `f_rate` VALUES ('7', '7', '0.022', '0.01');
+INSERT INTO `f_rate` VALUES ('7', '7', '0.022', '7.57');
 INSERT INTO `f_rate` VALUES ('8', '8', '0.024', '7.57');
-INSERT INTO `f_rate` VALUES ('9', '9', '0.024', '6.49');
+INSERT INTO `f_rate` VALUES ('9', '9', '0.024', '6.45');
 INSERT INTO `f_rate` VALUES ('10', '10', '0.024', '5.2');
 INSERT INTO `f_rate` VALUES ('11', '11', '0.024', '4.62');
 INSERT INTO `f_rate` VALUES ('12', '12', '0.024', '4.16');
@@ -252,7 +251,6 @@ CREATE TABLE `f_steal` (
 -- ----------------------------
 -- Records of f_steal
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for f_trade
 -- ----------------------------
@@ -270,7 +268,6 @@ CREATE TABLE `f_trade` (
 -- ----------------------------
 -- Records of f_trade
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for f_tree
 -- ----------------------------
@@ -286,7 +283,6 @@ CREATE TABLE `f_tree` (
 -- ----------------------------
 -- Records of f_tree
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for f_treecycle
 -- ----------------------------
@@ -354,6 +350,7 @@ CREATE TABLE `goodsimg` (
 -- ----------------------------
 -- Records of goodsimg
 -- ----------------------------
+
 -- ----------------------------
 -- Table structure for letter
 -- ----------------------------
@@ -366,7 +363,7 @@ CREATE TABLE `letter` (
   `num` float DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of letter
@@ -459,6 +456,30 @@ CREATE TABLE `order` (
 -- Records of order
 -- ----------------------------
 -- ----------------------------
+-- Table structure for ouser
+-- ----------------------------
+DROP TABLE IF EXISTS `ouser`;
+CREATE TABLE `ouser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `oid` int(11) DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `telphone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `vipid` int(11) DEFAULT NULL,
+  `realname` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `sex` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `alipay` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `referee` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `registime` datetime DEFAULT NULL,
+  `faceimg` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `recomcode` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of ouser
+-- ----------------------------
+-- ----------------------------
 -- Table structure for setting
 -- ----------------------------
 DROP TABLE IF EXISTS `setting`;
@@ -468,17 +489,19 @@ CREATE TABLE `setting` (
   `tree_price` decimal(10,0) DEFAULT NULL,
   `farm_name` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '农场名称',
   `fruit_tree` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '果树生命值',
-  `transaction_fee` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '交易手续费百分比',
-  `trading_limits` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '仓库最低保有量',
+  `transaction_fee` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '交易手续费',
+  `trading_limits` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '交易额度百分比',
   `user_steal` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '用户偷取百分比',
-  `trade_exchange` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '交易强制兑换百分比',
+  `trade_exchange` varchar(12) COLLATE utf8_bin DEFAULT NULL COMMENT '交易兑换百分比',
+  `uprate` varchar(12) COLLATE utf8_bin DEFAULT NULL,
+  `upuprate` varchar(12) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of setting
 -- ----------------------------
-INSERT INTO `setting` VALUES ('1', '0', '300', '果然农场', '115', '10', '0', '5', '10');
+INSERT INTO `setting` VALUES ('1', '0', '300', '弥勒葡萄庄园', '30', '10', '300', '5', '10', '10', '6');
 
 -- ----------------------------
 -- Table structure for shopcar
@@ -497,7 +520,6 @@ CREATE TABLE `shopcar` (
 -- ----------------------------
 -- Records of shopcar
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
@@ -517,12 +539,11 @@ CREATE TABLE `user` (
   `faceimg` varchar(32) COLLATE utf8_bin NOT NULL,
   `recomcode` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-
 -- ----------------------------
 -- Table structure for winer
 -- ----------------------------
