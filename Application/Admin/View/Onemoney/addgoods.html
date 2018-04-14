@@ -1,0 +1,66 @@
+ <extend name="Layout/menu"/>
+<block name="content">
+
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> 
+    <a href="#" class="tip-bottom" data-original-title="回到后台">
+    <i class="icon-home"></i> 后台</a> 
+    <a href="#" class="tip-bottom">商城管理</a> 
+    <a href="#" class="current">添加商品</a> 
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>添加活动</h5>
+        </div>
+        <div class="widget-content nopadding">
+        <form action ="__MODULE__/Onemoney/uploadgoods" method="post" class="form-horizontal" enctype="multipart/form-data" >
+          <div class="control-group">
+            <label class="control-label">商品名称</label>
+            <div class="controls controls-row">
+              <input type="text" name="name">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">图片</label>
+            <div class="controls controls-row">
+              <input type="file" name="img">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">数量</label>
+            <div class="controls controls-row">
+              <input type="number" name="amount">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">上线时间</label>
+            <div class="controls controls-row">
+              <input type="datetime-local" name="uptime">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">抢购时长</label>
+            <div class="controls controls-row">
+              <input type="hour" name="hour">
+            </div>
+          </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-success" style="margin:0px 0px 0px 0px">添加</button>
+          <button type="reset" class="btn btn-success" style="margin:0px 0px 0px 30px">重置</button>
+        </div>
+    
+  </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</block>

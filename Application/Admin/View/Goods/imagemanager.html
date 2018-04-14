@@ -1,0 +1,68 @@
+<extend name="Layout/menu"/>
+<block name="content">
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="#" class="tip-bottom" data-original-title="回到后台"><i class="icon-home"></i>后台</a> <a href="#" class="current">图片管理</a> </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span><h5>图片管理</h5>
+            <a href="__URL__/index"><div style="float:right;margin:0px 40px 0px 0px;"><h5>返回上一级</h5></div></a>
+          </div>
+          <div class="widget-content nopadding">
+            <div style="height:50px;">
+              <div style="float:left; margin:12px 0px 0px 30px;font:18px 微软雅黑;">正在管理</div>
+              <div type="text" name="name" style="width:160px; margin:10px 0px 0px 5px;float:left;font:24px 楷体; text-align:center; color:red;">{$info['name']}
+              </div>
+              <div style="float:left; margin:15px 0px 0px 10px;font:15px 微软雅黑;">的图片</div>
+              <div class="controls" style="float:left; margin:0px 10px 0px 20px;"></div>
+              <div class="control-group" > 
+                <form action ="__MODULE__/Goods/uploadimage" method="post" class="form-horizontal" enctype="multipart/form-data" >
+                  <div class="controls controls-row" style="float:left">
+                      <input type="file" name="img">
+                      <input type="hidden" name="id" value="{$info['id']}">
+                  </div>
+                  <div style="float:right;margin:10px 100px ">
+                      <button type="submit">确定</button>
+                  </div> 
+                </form>
+              </div> 
+            </div>
+            <table class="table " >
+              <thead>
+                <tr>
+                  <th><span style="font:15px 微软雅黑,黑体">编号</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">图片</span></th>
+                  <!-- <th><span style="font:15px 微软雅黑,黑体">是否封面图片</span></th> -->
+                  <if condition="$_SESSION['admin']['statu'] eq 1"> 
+                       <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
+                  <else/>
+                  </if>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="image" item="val">
+                  <tr class="gradeC">
+                    <td style="text-align:center">{$val.id}</td>
+                    <td style="text-align:center;width:100px"><img src="__PUBLIC__/image/goods/{$val.name}" /></td>
+                    <if condition="$_SESSION['admin']['statu'] eq 1"> 
+                        <td class="center">
+                          <div style="text-align:center;">
+                          <a href="__MODULE__/Goods/deleteimage?id={$val.id}">删除</a>
+                          </div>
+                        </td>
+                      <else/>
+                      </if>
+                  </tr> 
+                </foreach>
+              </tbody>
+            </table>
+          </div>
+        </div>     
+      </div>
+    </div>
+  </div>
+</div>
+</block>

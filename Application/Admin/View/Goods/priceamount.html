@@ -1,0 +1,116 @@
+<extend name="Layout/menu"/>
+<block name="content">
+
+<style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+ul.countdown {
+  list-style: none;
+  margin: 0px 0;
+  padding: 0;
+  display: block;
+  text-align: center;
+}
+
+ul.countdown li {
+  display: inline-block;
+}
+
+ul.countdown li span {
+  font-size: 20px;
+  font-weight: 30px;
+  line-height: 30px;
+}
+
+ul.countdown li.seperator {
+  font-size: 10px;
+  line-height: 30px;
+  vertical-align: top;
+}
+
+ul.countdown li p {
+  color: #a7abb1;
+  font-size: 14px;
+
+}
+
+a {
+  color: #76949F;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.source {
+  width: 405px;
+  margin: 0 auto;
+  background: #4f5861;
+  color: #a7abb1;
+  font-weight: bold;
+  display: block;
+  white-space: pre;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn {
+  background: #f56c4c;
+  margin: 40px auto;
+  padding: 12px;
+  display: block;
+  width: 100px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.btn:hover {
+   text-decoration: none;
+   opacity: .7;
+}
+</style>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" class="tip-bottom" data-original-title="回到后台">
+            <i class="icon-home"></i>后台</a> <a href="#">商城管理</a>  <a href="#" class="current">类别信息</a> </div>
+    </div>
+  <div class="container-fluid" style="text-align:center;">
+    <div class="row-fluid" >
+      <div class="span12" >
+        <div class="widget-box" >
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+              <h5>商品类别</h5>
+          </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><span style="font:15px 微软雅黑,黑体">类别名称</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
+                </tr>
+            </thead>
+            <tbody>
+               <foreach name="li" item="val">
+                  <tr class="gradeC">
+                     <td style="text-align:center">{$val.name}</td>
+                      <td class="center">
+                        <div style="text-align:center;">  
+                          <a href="__MODULE__/Goods/editpriceamount?pid={$val.pid}&cone={$val.cone}&ctwo={$val.ctwo}">编辑</a>&nbsp;
+                        </div>
+                      </td>
+                  </tr>     
+               </foreach>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {$pageinfo}
+</div>
+</block>

@@ -1,0 +1,619 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    background-color: #f3f3f3;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h6,
+ul,
+p {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-bar {
+    background: white;
+
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    position: relative;
+    color: #666;
+    border-bottom: solid 1px rgb(214, 211, 211);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.back {
+    position: absolute;
+    height: 17px;
+    width: 10px;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.Duobao {
+    margin-top: 33px;
+    background: white;
+}
+
+.Duobao li {
+    width: 96%;
+    margin: 1% auto;
+    overflow: hidden;
+    padding: 2% 0;
+    border-bottom: solid 1px rgb(231, 228, 228);
+}
+
+.Duobao li img {
+    width: 55px;
+    height: 55px;
+    float: left;
+}
+
+.Duobao li div {
+    float: left;
+    margin-top: 1%;
+    width:45%;
+}
+
+.Duobao li div p {
+    font-size: 13px;
+    margin-left: 5%;
+    margin-top: 1%;
+}
+
+.Duobao li div p:nth-child(2) {
+    font-size: 11px;
+    background: rgb(235, 232, 232);
+    width: 80%;
+    text-align: center;
+    margin-top: 5%;
+    border-radius: 15px;
+}
+
+.Duobao li .Oget {
+    margin-left: 6%;
+    float: right;
+    font-size: 13px;
+    background: rgb(226, 147, 0);
+    /*margin-top: 2%;*/
+    padding: 1.3% 1.9%;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+.Duobao li .Odtime {
+    margin-left: 6%;
+    float: right;
+    text-align: center;
+    font-size: 10px;
+    padding: 0.8% 0.8%;
+    margin-top: 0.8%;
+    border-radius: 5px;
+    border: none;
+    /*background: red;*/
+    color: red;
+    /*display: none;*/
+}
+
+.Oneget {
+    background: white;
+}
+
+.Oneget p {
+    width: 96%;
+    margin: 0 auto;
+    font-size: 12px;
+    padding: 1% 0;
+}
+
+.Oneget p img {
+    width: 5%;
+}
+
+
+/* .OneMoney {
+    position: relative;
+} */
+
+.O-alert h5 {
+    font-size: 12px;
+    margin-top: 5%;
+}
+
+.O-alert p {
+    margin: 10% auto;
+    text-align: center;
+}
+
+.O-alert .closes {
+    position: absolute;
+    width: 7%;
+    right: 3px;
+    top: 3px;
+}
+
+.O-alert p img {
+    margin: 0 10%;
+    width: 10%;
+    border-radius: 5px;
+}
+
+.O-alert p span {
+    background: white;
+    padding-bottom: 1.5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 1%;
+    border-radius: 10px;
+}
+
+.O-alert {
+    position: fixed;
+    bottom: 30%;
+    z-index: 99;
+    width: 80%;
+    left: 10%;
+    background: rgb(888, 184, 184);
+    padding: 3%;
+    text-align: center;
+}
+
+.O-alert button {
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.closes:hover {
+    transform: rotate(90deg);
+    transition: all .5s;
+}
+
+.notic-box {
+    margin-top: 32px;
+    background: white;
+}
+
+.notic-box li,
+.Onlie-box li {
+    border-bottom: 1px solid rgb(212, 210, 210);
+    padding-top: 5%;
+    width: 96%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.notic-box li span {
+    float: left;
+    font-size: 14px;
+}
+
+.notic-box li i {
+    float: right;
+    font-size: 12px;
+    color: rgb(212, 210, 210);
+}
+
+.Onlie {
+    margin-top: 32PX;
+}
+
+.Onlie h5 {
+    background: rgb(86, 230, 255);
+    font-size: 14px;
+    padding: 3% 4%;
+    color: white;
+}
+
+.Onlie-box li a {
+    text-decoration: none;
+    color: black;
+    margin-left: 5%;
+    font-size: 14px;
+}
+
+
+/* shopcar */
+
+.Onlie ul {
+    background: white;
+    margin-bottom: 41px;
+}
+
+.Onlie ul li {
+    overflow: hidden;
+    width: 96%;
+    margin: 0 auto;
+    padding: 1.5% 0;
+    border-bottom: solid 1px rgb(241, 240, 240);
+}
+
+.Onlie ul li .checkbox {
+    float: left;
+    border: solid 0.5px rgb(206, 203, 203);
+    width: 4%;
+    height: 12px;
+    border-radius: 50%;
+    margin-top: 7.5%;
+    margin-right: 2%;
+}
+
+.Onlie ul li img.gg {
+    float: left;
+    width: 20%;
+}
+
+.Onlie ul li div {
+    float: left;
+    margin-left: 2%;
+    width: 70%;
+}
+
+.Onlie ul li div p {
+    margin-top: 3.5%;
+    font-size: 14px;
+}
+
+.Onlie ul li div p:nth-child(2) {
+    color: #666;
+}
+
+.Onlie ul li div p {
+    overflow: hidden;
+}
+
+.Onlie ul li div p span {
+    float: left;
+}
+
+.Onlie ul li div p img {
+    width: 5%;
+    float: right;
+}
+
+.Onlie ul li div p i {
+    float: right;
+}
+
+.active {
+    background: orange;
+}
+
+.actives {
+    background: red;
+}
+
+.all-check {
+    background: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 40px;
+}
+
+.all-check .allcheckbox {
+    float: left;
+    border: solid 0.5px rgb(206, 203, 203);
+    width: 4.3%;
+    height: 14px;
+    border-radius: 50%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 4%;
+}
+
+.all-check span {
+    font-size: 12px;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+}
+
+.all-check .maidan{
+    float: right;
+    width: 80%;
+    text-align: center;
+    overflow: hidden;
+    height: 40px;
+}
+
+
+
+
+
+
+
+
+.all-check .maidan span:nth-child(1) {
+    float: left;
+    width: 15%;
+    /* padding: 3% 0; */
+    line-height: 40px;
+}
+.all-check .maidan span:nth-child(5) {
+    float: left;
+    width: 15%;
+    /* padding: 3% 0; */
+    line-height: 40px;
+}
+.all-check .maidan span:nth-child(3){
+    float: left;
+    width: 3%;
+    /* padding: 3% 0; */
+    line-height: 40px;
+}
+.all-check .maidan span:nth-child(2){
+ float: left;
+    width: 20%;
+    /* padding: 3% 0; */
+    line-height: 40px;
+    font-size: 13px;
+}
+.all-check .maidan span:nth-child(4) {
+    float: left;
+    width: 12%;
+    /* padding: 3% 0; */
+    line-height: 40px;
+    font-size: 13px;
+}
+
+.all-check .maidan span:nth-child(6) {
+    float: right;
+    width: 30%;
+    background: orange;
+    /* padding: 3% 0; */
+    line-height: 40px;
+    color: white;
+}
+
+
+.maiOk {
+    cursor: pointer;
+}
+
+.giveOk {
+    cursor: pointer;
+}
+
+
+/* 确认订单 */
+
+.Ding-adress {
+    background: white;
+    overflow: hidden;
+}
+
+.Ding-adress div {
+    width: 92%;
+    margin: 0 auto;
+    padding: 2% 0;
+    margin-bottom: 1%;
+    border-bottom: 1px solid rgb(223, 220, 220);
+}
+
+.Ding-adress div .Ding-top,
+.Ding-adress div .Ding-down {
+    font-size: 12px;
+    color: rgb(185, 184, 184);
+}
+
+.Ding-adress div .Ding-mid {
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.Ding-adress div .Ding-down {
+    overflow: hidden;
+}
+
+.Ding-adress div .Ding-mid .Ding-mid-left,
+.Ding-adress div .Ding-down .Ding-down-left {
+    float: left;
+}
+
+.Ding-adress div .Ding-mid .Ding-mid-right,
+.Ding-adress div .Ding-down .Ding-down-right {
+    float: right;
+}
+
+.Ding-down-left {
+    width: 23%;
+    height: 40px;
+}
+
+.Ding-down-right {
+    width: 77%;
+    height: 40px;
+}
+
+
+/* //商品订单详情 */
+
+.Ding-goods {
+    margin-top: 1%;
+}
+
+.Ding-goods ul {
+    background: white;
+    /* padding: 2% 0; */
+}
+
+.Ding-goods ul li {
+    width: 96%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 2%;
+    border-bottom: 0.5px solid rgb(230, 229, 229);
+}
+
+.Ding-goods ul li img {
+    float: left;
+    width: 20%;
+}
+
+.Ding-goods ul li p.few {
+    float: left;
+    font-size: 13px;
+    width: 52%;
+    margin-left: 3%;
+}
+
+.Ding-goods ul li .D-list {
+    float: left;
+    font-size: 14px;
+    width: 25%;
+    text-align: right;
+    padding-bottom: 2%;
+}
+
+.del {
+    text-decoration: line-through;
+    color: #666;
+}
+
+.D-choose {
+    background: rgb(252, 249, 249);
+    float: left;
+    width: 100%;
+    font-size: 13px;
+    color: #666;
+}
+
+.D-choose p {
+    overflow: hidden;
+}
+
+.D-choose p .D-choose-left {
+    float: left;
+}
+
+.D-choose p .D-choose-right {
+    float: right;
+}
+
+.ared {
+    color: red;
+}
+
+.Ding-goods h5 {
+    margin-top: 2%;
+    background: white;
+    padding: 1% 2%;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.Ding-goods h5 .boo {
+    color: #666;
+    float: left;
+}
+
+.Ding-goods h5 .jaja {
+    color: red;
+    float: right;
+}
+
+.caozuo {
+    overflow: hidden;
+}
+
+.caozuo p {
+    float: left;
+    width: 50%;
+    font-size: 13px;
+    color: #666;
+}
+
+.caozuo p .choso {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0.5px solid #666;
+}
+
+.caozuo p.xiugai span img {
+    width: 25%;
+}
+
+.caozuo p.xiugai {
+    overflow: hidden;
+}
+
+.caozuo p.xiugai span:nth-child(1) {
+    float: left;
+    cursor: pointer;
+}
+
+.caozuo p.xiugai span:nth-child(2) {
+    float: right;
+    text-align: right;
+    cursor: pointer;
+}
+
+.hide-adress {
+    position: fixed;
+    width: 100%;
+    background: white;
+    bottom: 0;
+    padding: 2%;
+    text-align: center;
+}
+
+.hide-adress p {
+    background: red;
+    width: 88%;
+    margin: 0 auto;
+    padding-bottom: 1.5%;
+    color: white;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding-top: 1%;
+}
+
+
+.all-check .jkajs {
+    float: right;
+    width: 80%;
+    text-align: center;
+    overflow: hidden;
+    height: 40px;
+}
+
+
+.all-check .jkajs span:nth-child(1) {
+    float: left;
+    width: 50%;
+    /* padding: 3% 0; */
+    line-height: 40px;
+}
+.all-check .jkajs span:nth-child(2){
+ float: left;
+    width: 50%;
+    /* padding: 3% 0; */
+    line-height: 40px;
+    font-size: 13px;
+    background: orange;
+}

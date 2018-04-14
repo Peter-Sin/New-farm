@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>选择收货地址</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/OneM.css">
+</head>
+
+<body>
+    <div class="Onlie">
+        <p class="nav-bar">
+            <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 选择收货地址
+        </p>
+    </div>
+    <div class="Ding-adress">
+        <foreach name="list" item="val">
+            <div class="Ding-all">
+                <p class="Ding-mid">
+                    <span class="Ding-mid-left">收货人:
+                        <i>{$val.username}</i>
+                    </span>
+                   <span class="Ding-mid-right">{$val.telphone}</span>
+                </p>
+                <section class="Ding-down">
+                    <span class="Ding-down-left">收货地址：</span>
+                    <span class="Ding-down-right">{$val.address} {$val.place}</span>
+                </section>
+                <h6 class="caozuo">
+                    <p>
+                        <span class="choso" c="off" IsChoose="{$val.choose}"></span>
+                        <span>默认地址</span>
+                    </p>
+                    <p class="xiugai">
+                        <span class="bianjis" AddrId="{$val.id}">
+                        <img src="__PUBLIC__/YM/fontimg/bj.png" alt=""> 编辑
+                    </span>
+                    <span class="deletes" AddrId="{$val.id}" choose="{$val.choose}">
+                        <img src="__PUBLIC__/YM/fontimg/sc.png" alt=""> 删除
+                    </span>
+                    </p>
+                </h6>
+            </div>
+        </foreach>
+    </div>
+    <h6 class="hide-adress">
+        <p>添加新地址</p>
+    </h6>
+
+</body>
+
+<script src="__PUBLIC__/js/OneM.js"></script>
+<script src="__PUBLIC__/js/backthree.js"></script>
+
+
+
+</html>

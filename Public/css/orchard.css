@@ -1,0 +1,378 @@
+* {
+    box-sizing: border-box
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #f3f3f3;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h6,
+ul,
+p {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-bar {
+    background: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    position: relative;
+    color: #666;
+    border-bottom: solid 1px rgb(214, 211, 211);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.back {
+    position: absolute;
+    height: 17px;
+    width: 10px;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.three-choose{
+    background: white;
+    text-align: center;
+    color: rgb(87, 85, 85);
+    overflow: hidden;
+    margin-bottom: 5px;
+    padding-top: 32px;
+}
+
+.friend-choose {
+    background: white;
+    text-align: center;
+    color: rgb(87, 85, 85);
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.three-choose li,
+.friend-choose li {
+    float: left;
+    width: 33.3%;
+    padding: 12px 0;
+    font-size: 14px;
+}
+
+.active {
+    border-bottom: solid 2px orange;
+    color: orange;
+}
+
+.Div-choose,
+.F-level {
+    display: none;
+}
+
+.Div-choose ul li {
+    background: white;
+    padding: 3% 2%;
+    margin-top: 0.5%;
+    overflow: hidden;
+}
+
+.Div-choose ul li img.trees {
+    float: left;
+    width: 19%;
+}
+
+.Div-choose ul li div.trees {
+    float: left;
+    width: 19%;
+    margin-left: 10px;
+}
+
+.Div-choose ul li div.trees p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.Div-choose ul li div.treesInfo {
+    float: left;
+    width: 61%;
+}
+
+.Div-choose ul li div.treesInfos {
+    float: left;
+}
+
+.Div-choose ul li div.treesInfo p {
+    font-size: 12px;
+    margin-top: 1.2%;
+    color: rgb(46, 43, 43);
+}
+
+.Div-choose ul li div.treesInfos p {
+    font-size: 12px;
+    margin-top: 3.9%;
+    color: rgb(46, 43, 43);
+    font-weight: 700;
+}
+
+.Div-choose ul li div.loseinfor p {
+    font-size: 12px;
+    margin-top: 2.5%;
+    color: rgb(46, 43, 43);
+    font-weight: 700;
+}
+
+.Div-choose ul li div.treesInfo p:nth-child(3) {
+    color: #666;
+}
+
+.Div-choose ul li div.gettree {
+    float: left;
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 1.5%;
+    padding: 5% 1%;
+    background: rgb(243, 9, 9);
+}
+
+.Div-choose ul li div.gettree img {
+    width: 33%;
+}
+
+.Div-choose ul li div.gettree p {
+    font-size: 12px;
+    margin-top: 7%;
+    color:white;
+}
+
+.Div-choose .lower {
+    margin: 0 3%;
+    margin-top: 3%;
+    font-size: 14px;
+    color: #666;
+}
+
+.Div-choose .busesse {
+    background: white;
+    margin: 0 3%;
+    margin-top: 3%;
+    box-shadow: 1px 1px 2px #666;
+}
+
+.Div-choose .busesse p {
+    text-align: left;
+    padding: 1.5% 2%;
+    border-bottom: 0.5px solid rgb(206, 202, 202);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.Div-choose .busesse p input {
+    border: none;
+}
+
+.Div-choose .bussOk {
+    display: block;
+    text-align: center;
+    width: 80%;
+    margin-top: 5%;
+    margin-left: 10%;
+    border: none;
+    background: rgb(56, 146, 56);
+    padding: 0.5% 0;
+    padding-bottom: 0.5%;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.Infor {
+    background: rgb(218, 133, 133);
+    margin-top: 5%;
+}
+
+.Div-choose .orders p {
+    padding-top: 7%;
+    color: rgb(133, 130, 130);
+}
+
+.Div-choose .ordersInfos p {
+    color: rgb(133, 130, 130);
+    padding-top: 2.1%;
+    margin-left: 5%;
+}
+
+.Div-choose .ordersInfos p:nth-child(7) {
+    background: rgb(56, 146, 56);
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    padding-bottom: 3px;
+}
+
+.Div-choose .rembers p {
+    margin-left: 30%;
+}
+
+.Div-choose .rembers p:nth-child(10) {
+    background: rgb(56, 146, 56);
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    padding-bottom: 3px;
+}
+
+.user-set {
+    position: relative;
+    margin-top: 32px;
+}
+
+.user-set .bg {
+    width: 100%;
+}
+
+.user-infor {
+    position: absolute;
+    top: 13%;
+    left: 3%;
+    overflow: hidden;
+}
+
+.user-infor img {
+    width: 20%;
+    float: left;
+    padding: 8px 0;
+}
+
+.infor-data {
+    float: left;
+    margin-left: 9%;
+    margin-top: -1%;
+}
+
+.infor-data p {
+    font-size: 12px;
+    margin-top: 4px;
+    color: #666;
+}
+
+
+.orchard .twoma {
+    background-color: white;
+    text-align: center;
+    padding: 10% 0;
+    position: relative;
+}
+
+.orchard .twoma p button {
+    background: white;
+    margin-top: 10%;
+    margin-bottom: 14%;
+    padding: 2% 8%;
+    border-radius: 5px;
+    border: solid 1px black;
+    color: #666;
+}
+
+.orchard .twoma .Weichat {
+    position: absolute;
+    width: 38%;
+    left: 31%;
+    top: 23.5%;
+    border-radius: 10px;
+}
+
+.FthreeChoose {
+    width: 100%;
+    background: white;
+}
+
+
+/* friend----------层级------------------- */
+
+.friend-choose li:nth-child(2) {
+    border-left: 1px solid rgb(206, 202, 202);
+    border-right: 1px solid rgb(194, 192, 192);
+}
+
+.F-level div,
+.F-level ul li {
+    overflow: hidden;
+    text-align: center;
+}
+
+.F-level div p,
+.F-level ul li p {
+    float: left;
+    width: 50%;
+    background: white;
+    padding: 3% 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.F-level ul li p {
+    margin-top: 0.5%;
+    font-weight: 300;
+}
+
+.Rate .Rate-infor {
+    display: block;
+    width: 94%;
+    margin: 1.5% auto;
+    text-align: center;
+    background: rgb(91, 203, 231);
+    color: white;
+    font-size: 14px;
+    padding-top: 1.2%;
+    padding-bottom: 2%;
+    border-radius: 5px;
+}
+
+
+.Rate ul li{
+    background: white;
+    margin-top: 0.5%;
+    padding: 0 3%;
+}
+
+.Rate ul li .Rate-top {
+    overflow: hidden;
+}
+.Rate ul li .Rate-top span{
+    float: left;
+    width: 50%;
+}
+.Rate ul li .Rate-top span:nth-child(1){
+    font-size: 12px;
+    color: red;
+}
+.Rate ul li .Rate-top span:nth-child(2){
+    font-size: 12px;
+    color: rgb(153, 147, 147);
+}
+.Rate ul li p:nth-child(2){
+    font-size: 14px;
+}
+.Rate-div{
+    margin-top: -5%;
+}

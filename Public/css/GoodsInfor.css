@@ -1,0 +1,160 @@
+* {
+    box-sizing: border-box
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #f3f3f3;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h6,
+ul,
+p {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-bar {
+    background: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    position: relative;
+    color: #666;
+    border-bottom: solid 1px rgb(214, 211, 211);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.back {
+    position: absolute;
+    height: 17px;
+    width: 10px;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.G-down {
+    background: rgb(233, 231, 231);
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.G-down div {
+    padding: 2%;
+    float: left;
+    width: 80%;
+    border-right: solid 1px rgb(223, 221, 221);
+}
+
+.G-down p.D-ri {
+    position: relative;
+    text-align: center;
+    width: 20%;
+    float: left;
+}
+
+.G-down p img {
+    width: 45px;
+    height: 45px;
+}
+
+.dedel {
+    text-decoration: line-through;
+}
+
+.downLis {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: white;
+    overflow: hidden;
+    text-align: center;
+    height: 40px;
+}
+
+.downLis p {
+    height: 40px;
+    position: relative;
+}
+
+.downLis p img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+}
+
+.downLis>p>img {
+    margin-left: 4%;
+}
+
+.downLis .buyCar img {
+    margin-left: 9%;
+}
+
+.downLis .kefu,
+.downLis .service {
+    float: left;
+    width: 15%;
+    font-size: 13px;
+    color: rgb(168, 164, 164);
+    line-height: 60px;
+}
+
+.downLis .service {
+    border-left: 0.5px solid rgb(212, 211, 211);
+    border-right: 0.5px solid rgb(212, 211, 211);
+}
+
+.downLis .buyCar {
+    float: left;
+    width: 16%;
+    font-size: 13px;
+    color: rgb(168, 164, 164);
+    line-height: 60px;
+}
+
+.downLis .hideCar,
+.downLis .buing {
+    float: left;
+    width: 27%;
+    font-size: 14px;
+    line-height: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.downLis .hideCar {
+    background: orangered;
+}
+
+.downLis .buing {
+    background: orange;
+}
+
+.goods-all{
+    margin-top: 32px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 150px;
+}

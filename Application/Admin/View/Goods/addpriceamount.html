@@ -1,0 +1,70 @@
+<extend name="Layout/menu"/>
+<block name="content">
+
+<div id="content">
+<div id="content-header">
+  	<div id="breadcrumb"> <div id="breadcrumb"> <a href="#" class="tip-bottom" data-original-title="回到后台"><i class="icon-home"></i> 商城管理</a> <a href="#" class="tip-bottom">商品编辑</a> <a href="#" class="current">商品编辑</a> </div>
+  <!-- <h1>商品编辑</h1> -->
+	</div>
+<div class="container-fluid">
+  <!-- <hr> -->
+  <div class="row-fluid">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <a href="__URL__/index"><h5>返回上一级</h5></a>
+        </div>
+        <div class="widget-content nopadding">
+	        <form action ="__MODULE__/Goods/uploadpriceamount" method="post" class="form-horizontal" enctype="multipart/form-data" >
+	            <div class="control-group">
+	              <label class="control-label">价钱</label>
+	              <div class="controls controls-row">
+	                <input type="text" placeholder="" name="price" value="">
+	                <input type="hidden" placeholder="" name="pid" value="{$list[pid]}">
+	                <input type="hidden" placeholder="" name="cone" value="{$list[C_one]}">
+	                <input type="hidden" placeholder="" name="ctwo" value="{$list[C_two]}">
+	              </div>
+	            </div>
+	         
+	            <div class="control-group">
+	              <label class="control-label">优惠券</label>
+	              <div class="controls controls-row">
+	                <input type="text" name="voucher" value="">
+	              </div>
+	            </div>
+
+	            <div class="control-group">
+	              <label class="control-label">库存</label>
+	              <div class="controls controls-row">
+	                <input type="number" name="amount" value="">
+	              </div>
+							</div>
+							
+							<div class="control-group">
+	              <label class="control-label">图片</label>
+	              <div class="controls controls-row">
+	                <input type="file" name="img">
+	              </div>
+							</div>
+
+	            <div class="control-group">
+	              <label class="control-label">默认否</label>
+	              <div class="controls">
+	                否<input type="radio" name="choose" checked value="0" />
+	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                是<input type="radio" name="choose" value="1" />
+	              </div>
+	            </div>
+
+		        <div class="form-actions">
+		            <button type="submit" class="btn btn-success" style="margin:0px 0px 0px 200px">确定</button>
+		            <button type="reset" class="btn btn-success" style="margin:0px 0px 0px 30px">重置</button>
+		        </div>
+		    </form> 
+		</div>
+        
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</block>

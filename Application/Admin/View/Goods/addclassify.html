@@ -1,0 +1,53 @@
+<extend name="Layout/menu"/>
+<block name="content">
+  <div id="content">
+    <div id="content-header">
+      <div id="breadcrumb">
+        <a href="#" class="tip-bottom" data-original-title="回到后台">
+          <i class="icon-home"></i>分类分类管理</a>
+          <a href="#" class="tip-bottom">分类分类</a> 
+          <a href="#" class="current">添加分类</a> 
+      </div>
+      <!-- <h1>添加分类</h1> -->
+    </div>
+    <div class="container-fluid">
+      <!-- <hr> -->
+      <div class="row-fluid">
+        <div class="widget-box">
+          <div class="widget-title">
+            <span class="icon"> 
+              <i class="icon-align-justify"></i>
+            </span>
+            <h5>添加分类</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form action ="__MODULE__/Goods/uploadclassify" method="post"  class="form-horizontal"  >
+              <div class="control-group">
+                <label class="control-label">分类名称</label>
+                <div class="controls controls-row">
+                  <input type="text" placeholder="" name="name">
+                  <input type="hidden" placeholder="" name="goodsid" value="{$list['pid']}">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">pid</label>
+                <div class="controls controls-row">
+                  <input type="text" readonly placeholder="" value="{$list['fid']}" name="pid">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">path</label>
+                <div class="controls controls-row">
+                  <input type="text" readonly value="{$list['path']}" name="path">
+                </div>
+              </div>          
+              <div class="form-actions">
+                <button type="submit" class="btn btn-success">确定</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block>

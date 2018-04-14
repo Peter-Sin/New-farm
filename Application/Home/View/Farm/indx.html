@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <link rel="stylesheet" href="__PUBLIC__/fcs/index.css">
+    <script src="__PUBLIC__/fjs/jquery.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/fcs/index.css">
+</head>
+
+<body style="overflow-y:hidden;margin-top: 30px">
+    <!-- <div class="BBB">
+        <div class="wait">
+            5
+        </div>
+    </div> -->
+
+    <div class="adre">
+        <div class="A-top">
+            <img src="__PUBLIC__/img/anmition/x.jpg" alt="">
+        </div>
+        <div class="btn">
+            开始
+        </div>
+        <div class="A-down">
+            <img src="__PUBLIC__/img/anmition/z.jpg" alt="">
+        </div>
+    </div>
+    <div class="Home">
+        <div class="BG">
+            <img src="__PUBLIC__/img/ff.png" alt="">
+        </div>
+        <div class="BOX">
+            <div class="B-top">
+                <!--<img src="__PUBLIC__/img/1.png" alt="">-->
+                <div class="Top-Box">
+                    <div class="TB-left">
+                        <div class="img-left">
+                                <img src="__PUBLIC__/image/userimage/{$uinfo['faceimg']}" alt="" class="left-img"></a>
+                            <p class="ids">ID:{$uinfo['vipid']}</p>
+                        </div>
+                        <div class="img-right">
+                            <p class="username">{$uinfo['username']}</p>
+                            <p class="userOcch">
+                                <span class="uc">{$info['fruit']}</span>
+                            </p>
+                            <p class="userOcch">
+                                <span class="uo">{$info['voucher']}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="TB-right">
+                        <img src="__PUBLIC__/img/3.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="B-mid">
+                <!--<img src="__PUBLIC__/img/5.png" alt="">-->
+                <div class="LLbox">
+                    <ul class="ifC">
+                        <foreach name="list" item="val">
+                            <li class="land-land" landid="{$val.land}" treeid="{$val.tree}" fruitid="{$val.fruit}" kd="{$val.kd}">
+                                <img src="__PUBLIC__/img/xx1.png" alt="" class="land-tree" id="land-tree-one">
+                                <img src="__PUBLIC__/img/xx2.png" alt="" class="land-tree" id="land-tree-two" style="display:none">
+                                <img src="__PUBLIC__/img/9.png" alt="" class="tree" id="tree-one" style="display:none">
+                                <img src="__PUBLIC__/img/f.png" alt="" class="tree" id="tree-two" style="display:none">
+                                <img src="__PUBLIC__/img/tree.png" alt="" class="tree" id="tree-die" style="display:none">
+                                <img src="__PUBLIC__/img/kd.png" alt="" class="tree" id="kd" style="display:none">
+                            </li>
+                        </foreach>
+                    </ul>
+                </div>
+            </div>
+            <div class="B-down">
+                <!--<img src="__PUBLIC__/img/7.png" alt="">-->
+            </div>
+        </div>
+        <div class="footer">
+            <img class="FBG" src="__PUBLIC__/img/footer.png" alt="">
+            <ul class="U-Box">
+                <li>
+                    <div class="zz-div">
+                        <img class="aheihei" src="__PUBLIC__/img/f3.png" alt="">
+                        <img class="ahahaha" src="__PUBLIC__/img/f33.png" alt="">
+                    </div>
+                </li>
+                <li classid="chanchu">
+                    <div>
+                        <img class="aheihei" classid="chanchu" src="__PUBLIC__/img/f4.png" alt="">
+                        <img class="ahahaha" src="__PUBLIC__/img/f44.png" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img class="aheihei" src="__PUBLIC__/img/f2.png" alt="">
+                        <img class="ahahaha" src="__PUBLIC__/img/22.png" alt="">
+                    </div>
+                </li>
+                <li classid="shouhuo">
+                    <div>
+                        <img class="aheihei" src="__PUBLIC__/img/f5.png" alt="">
+                        <img class="ahahaha" src="__PUBLIC__/img/f55.png" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <img class="aheihei" src="__PUBLIC__/img/f1.png" alt="">
+                        <img class="ahahaha" src="__PUBLIC__/img/f11.png" alt="">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="AlertBox">
+        <div class="Jiaoyi">
+            <div class="Jbg">
+                <img class="jb2" src="__PUBLIC__/img/alert/jiaoyi/j1.png" alt="">
+                <ul>
+                    <li>
+                        <img class="Jclose" src="__PUBLIC__/img/alert/jiaoyi/close.png" alt="">
+                    </li>
+                    <li>
+                        <img class="J_lis1" src="__PUBLIC__/img/alert/jiaoyi/11.png" alt="">
+                    </li>
+                    <li>
+                        <img class="J_lis2" src="__PUBLIC__/img/alert/jiaoyi/11.png" alt="">
+                    </li>
+                    <li>
+                        <img class="J_lis3" src="__PUBLIC__/img/alert/jiaoyi/11.png" alt="">
+                    </li>
+                </ul>
+                <div class="one">
+                    <p>
+                        <img class="one-img1" src="__PUBLIC__/img/alert/jiaoyi/13.png" alt="">
+                    </p>
+                    <form action="">
+                        <label for="">获赠号码：</label>
+                        <input name="giveId" type="text" placeholder="获赠人ID">
+                        <br>
+                        <label for="">转增数量：</label>
+                        <input name="giveNum" type="text" placeholder="转增数量">
+                        <br>
+                        <label for="">支付密码：</label>
+                        <input name="Paypass" type="password" placeholder="支付密码">
+                        <div class="oneInfo">
+                            <p>转让手续费：
+                                <span class="transaction_fee">0</span>
+                            </p>
+                            <p>滞留积分百分比：
+                                <span class="trade_exchange">0</span>
+                            </p>
+                            <p>现有数量：
+                                <span class="num-fruit">0</span>
+                            </p>
+                        </div>
+                    </form>
+                    <div class="oneTR">
+                        <p>
+                            <!--发觉我见佛为发觉我发觉我减肥我可能副科级为发觉我发觉我减肥我可能副科级为发觉科级服从可我就反问范围分为非平稳-->
+                        </p>
+                        <p>
+                            <button class="oneOk">确认交易</button>
+                        </p>
+                    </div>
+                </div>
+                <div class="TWO">
+                    <p>
+                        <img class="one-img1" src="__PUBLIC__/img/alert/jiaoyi/13.png" alt="">
+                    </p>
+                    <div class="three">
+                        <li class="three_box">
+                        </li>
+                    </div>
+                </div>
+                <div class="Three">
+                    <p>
+                        <img class="one-img1" src="__PUBLIC__/img/alert/jiaoyi/13.png" alt="">
+                    </p>
+                    <div class="three">
+                        <li class="three_box">
+
+                            <!--<div>-->
+                                <!--<p>-->
+                                    <!--<span>时间：</span>-->
+                                    <!--<span>2015-12-28 21:45:79</span>-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span>数量：</span>-->
+                                    <!--<span>1234.12</span>-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span>身份：</span>-->
+                                    <!--<span>被转让者</span>-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span>ID：</span>-->
+                                    <!--<span>456897</span>-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span>昵称：</span>-->
+                                    <!--<span>黄土高坡的小红帽</span>-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span>更新时间：</span>-->
+                                    <!--<span>2015-12-88 21:45:79</span>-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span>订单状态：</span>-->
+                                    <!--<span>交易已经完成</span>-->
+                                <!--</p>-->
+                            <!--</div>-->
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Email">
+            <div class="Ebg">
+                <img class="Eb2" src="__PUBLIC__/img/alert/email/ebg.png" alt="">
+                <img class="Eclose" src="__PUBLIC__/img/alert/jiaoyi/close.png" alt="">
+                <ul class="two">
+                    <p>
+                        <img class="two-img1" src="__PUBLIC__/img/alert/email/email.png" alt="">
+                    </p>
+                    <li>
+                        <div class="letter">
+                        </div>
+                    </li>
+                    <div class="T-choose">
+                        <p class="T_Q">
+                            <img src="__PUBLIC__/img/alert/email/3.png" alt="">
+                        </p>
+                        <p class="T_D">
+                            <img src="__PUBLIC__/img/alert/email/4.png" alt="">
+                        </p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="Z_Alert">
+            <div class="Z_bg">
+                <img class="Z_b2" src="__PUBLIC__/img/alert/email/e.png" alt="">
+                <img class="Z_close" src="__PUBLIC__/img/alert/jiaoyi/close.png" alt="">
+                <ul class="Zwo">
+                    <p>
+                        <img class="Z_woimg1" src="__PUBLIC__/img/alert/email/w.png" alt="">
+                    </p>
+                    <li>
+                        <div>
+                            <p class="Z_infor">
+                                您的果子还未成熟，确定要铲除吗？
+                            </p>
+                        </div>
+                    </li>
+                    <div class="Z_choose">
+                        <p class="Z__Q">
+                            <img src="__PUBLIC__/img/alert/email/3.png" alt="">
+                        </p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="Buss">
+            <div class="B_bg">
+                <img class="Z_b2" src="__PUBLIC__/img/alert/bussins/jiaoyi.png" alt="">
+                <img class="Z_close" src="__PUBLIC__/img/alert/jiaoyi/close.png" alt="">
+                <ul class="Bwo">
+                    <p>
+                        <img class="Z_woimg1" src="__PUBLIC__/img/alert/bussins/grfejkbg.png" alt="">
+                    </p>
+                    <li>
+                        <form action="" class="B_infor">
+                            <p>
+                                <label for="">请输入要兑换的果子数</label>
+                            </p>
+                            <input name="trees" type="text" placeholder="0">
+                            <p>
+                                <label for="">您即将获得的代金券为</label>
+                            </p>
+                            <input name="money" type="text" placeholder="0">
+                        </form>
+                    </li>
+                    <div class="B_choose">
+                        <p class="B__Q">
+                            <img src="__PUBLIC__/img/alert/email/3.png" alt="">
+                        </p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="Getrees">
+            <div class="B_bg">
+                <img class="Z_b2" src="__PUBLIC__/img/alert/bussins/jiaoyi.png" alt="">
+                <img class="Z_close" src="__PUBLIC__/img/alert/jiaoyi/close.png" alt="">
+                <ul class="GET">
+                    <p>
+                        <img class="G_woimg1" src="__PUBLIC__/img/alert/bussins/345.png" alt="">
+                    </p>
+                    <li>
+                        <div class="G_infor">
+                            <h6 style=" color: green;">土地数</h6>
+                            <p class="A">1块地</p>
+                            <p class="B">7块地以内</p>
+                            <p class="A">14块地以内</p>
+                            <p class="B">15块地以内</p>
+                        </div>
+                        <div class="G_infor2">
+                            <h6 style=" color: rgb(224, 221, 13);">收益率</h6>
+                            <p class="A">利率2%</p>
+                            <p class="B">利率2.20%</p>
+                            <p class="A">利率2.40%</p>
+                            <p class="B">利率2.60%</p>
+                        </div>
+                        <div class="G_infor3">
+                            <h6 style=" color: rgb(7, 140, 202);">收益</h6>
+                            <p class="A">可产690</p>
+                            <p class="B">可产5313</p>
+                            <p class="A">可产11592</p>
+                            <p class="B">可产13455</p>
+                        </div>
+                    </li>
+                    <div class="G_choose">
+                        <p class="G__Q">
+                            <img src="__PUBLIC__/img/alert/email/3.png" alt="">
+                        </p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="__PUBLIC__/fjs/index.js"></script>
+
+</html>

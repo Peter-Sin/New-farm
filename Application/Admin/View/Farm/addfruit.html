@@ -1,0 +1,124 @@
+<extend name="Layout/menu"/>
+<block name="content">
+  <!--sidebar-menu-->
+  <div id="content">
+    <div id="content-header">
+      <div id="breadcrumb">
+        <a href="#" class="tip-bottom" data-original-title="回到后台">
+          <i class="icon-home"></i>后台
+        </a>
+        <a href="#">系统设置</a>
+        <a href="#" class="current">农场设置</a>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+          <h5>加减果子</h5>
+          <a href=""><span class="label label-info">Featured</span></a>
+        </div>
+        <div class="widget-content nopadding">
+          <form class="form-horizontal" method="post" action="__MODULE__/Farm/uploadaddfruit" name="number_validate" id="number_validate" novalidate="novalidate">
+            <div class="control-group">
+              <label class="control-label">用户号码</label>
+              <div class="controls">
+                <input name="telphone" class="span3" id="usertel" type="text">
+                <input value="查找推荐人" class="btn btn-success" id="findreferee" type="submit"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">果子数量</label>
+              <div class="controls">
+                <input name="num" class="span3" type="number">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">添加说明</label>
+              <div class="controls">
+                <input name="content" class="span6" type="text">
+              </div>
+            </div>
+            <hr/>
+            <div class="control-group">
+              <label class="control-label">推荐号码</label>
+              <div class="controls">
+                <input name="refereetel" readonly class="span3" id="refereeuser" type="text">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">果子数量</label>
+              <div class="controls">
+                <input name="refereenum" class="span3" type="number">
+              </div>
+            </div>
+            <div class="form-actions">
+              <input value="提交" class="btn btn-success" id="submitdata" type="submit"/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+      $("#findreferee").click(function(e){
+          e.preventDefault();
+          var tel=$("#usertel").val();
+          var nul='';
+          console.log(tel);
+          if(tel){
+              $.ajax({
+                  type: "POST",
+                  dataType: "json",
+                  url: "../Farm/findrefereetel",
+                  data: ({tel:tel}),
+                  success: function (result) {
+                      var refereetel=result.data;
+                      if (result.resultCode == 200) {
+                         $("#refereeuser").val(refereetel);
+                      }else if(result.resultCode == 300){
+                          alert("没有推荐人");
+                          $("#refereeuser").val(nul);
+                      }else if(result.resultCode == 400){
+                          alert("用户号码有误");
+                          $("#refereeuser").val(nul);
+                      }
+                  }
+              })
+          }else{
+              alert("号码不能为空");
+          }
+      })
+
+      $("#submitdata").click(function(e){
+          e.preventDefault();
+          var d = {};
+          var tel=$("#usertel").val();
+          var data=$('form').serializeArray();
+          $.each(data, function() {
+              d[this.name] = this.value;
+          });
+          console.log(d.telphone);
+          if(d.telphone){
+              $.ajax({
+                  type: "POST",
+                  dataType: "json",
+                  url: "../Farm/uploadaddfruit",
+                  data: d,
+                  success: function (result) {
+                      if (result.resultCode == 200 && result.resultCode1==200) {
+                          alert("用户与推荐人充值成功");
+                      }else if(result.resultCode == 300 && result.resultCode1==200){
+                          alert("用户充值失败，推荐人充值成功");
+                      }else if(result.resultCode == 200 && result.resultCode1==300){
+                          alert("用户充值成功，推荐人充值失败");
+                      }else if(result.resultCode == 300 && result.resultCode1==300) {
+                          alert("用户与推荐人充值失败");
+                      }
+                  }
+              })
+          }else{
+              alert("用户号码不能为空");
+          }
+      })
+  </script>
+</block>

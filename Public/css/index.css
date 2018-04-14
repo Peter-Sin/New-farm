@@ -1,0 +1,597 @@
+* {
+    box-sizing: border-box
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #f3f3f3;
+    height: 100%;
+}
+
+.index,
+.userset {
+    margin-bottom: 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h6,
+ul,
+p {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+li {
+    list-style: none;
+}
+
+.In-Top {
+    overflow: hidden;
+    background: white;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
+
+.In-Top p {
+    float: left;
+    margin: 2% 0;
+  
+}
+
+.In-Top p:nth-child(1) {
+    margin-left: 40%;
+}
+.In-Top p:nth-child(2) {
+    margin-left:28%;
+}
+
+.In-Top p img {
+    width: 49%;
+    cursor: pointer;
+}
+
+.canyu {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.7;
+    color: white;
+    padding: 2px 10px;
+    overflow: hidden;
+    font-size: 12px;
+    position: relative;
+    top: -22px;
+    margin-bottom: 0;
+}
+
+.canyu .canyu-left {
+    float: left;
+    cursor: pointer;
+}
+
+.canyu .canyu-right {
+    float: right;
+    cursor: pointer;
+}
+
+.canyu .canyu-right a {
+    color: white;
+    text-decoration: none;
+}
+
+.canyu .canyu-right a:hover {
+    color: aqua;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+    margin-top: 36px;
+}
+
+.lits {
+    overflow: hidden;
+    background-color: white;
+    margin-top: -22px;
+}
+
+.lits a {
+    float: left;
+    width: 25%;
+    text-align: center;
+    position: relative;
+    padding-top: 50px;
+    font-size: 11px;
+    padding-bottom: 5px;
+    color: rgb(63, 61, 61);
+    text-decoration: none;
+}
+
+.lits a img {
+    width: 40px;
+    position: absolute;
+    top: 5px;
+    left: 27%;
+}
+
+.font-img {
+    margin: 5px 0;
+}
+
+.font-img img {
+    width: 6px;
+}
+
+.goods {
+    overflow: hidden;
+    width: 97%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.goods li {
+    float: left;
+    width: 47.4%;
+    margin-left: 1.3%;
+    margin-right: 1.3%;
+    margin-bottom: 3%;
+    background: white;
+    text-decoration: none;
+    color: #666;
+}
+.goods li a {
+    background: white;
+    text-decoration: none;
+    color: #666;
+    height: 100%;
+}
+
+.goods li .goods-img {
+    width: 100%;
+}
+
+.goods li .add {
+    width: 13%;
+    margin-bottom: 2px;
+    cursor: pointer;
+   
+}
+
+.goods li a p {
+    text-align: left;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.goods li a .prize {
+    font-size: 11px;
+    margin-left: 3px;
+    color: red;
+}
+
+.goods li a .del {
+    font-size: 11px;
+    text-decoration: line-through;
+    color: #666;
+}
+.in-tishi{
+    position: fixed;
+    bottom: 30%;
+    background: rgb(2, 2, 2);
+    width: 100px;
+    height: 60px;
+    left: 35%;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 55px;
+    color: wheat;
+    border: solid .5px wheat;
+    box-shadow: 1px 1px 1px black;
+    display: none;
+}
+
+footer {
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.active {
+    background: rgb(208, 232, 252);
+}
+
+
+/* ==============标题================= */
+
+.nav-bar {
+    background: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.userset {
+    width: 100%;
+}
+
+.user-set {
+    position: relative;
+}
+
+.user-set .bg {
+    width: 100%;
+}
+
+.user-infor {
+    position: absolute;
+    top: 10%;
+    left: 3%;
+    overflow: hidden;
+}
+
+.user-infor img {
+    width: 20%;
+    float: left;
+    padding: 8px 0;
+}
+
+.infor-data {
+    float: left;
+    margin-left: 7%;
+    margin-top: -1%;
+}
+
+.infor-data p {
+    font-size: 12px;
+    margin-top: 2px;
+    color: #666;
+}
+
+.user-list {
+    overflow: hidden;
+    background: white;
+}
+
+.user-list a {
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    padding: 5% 0;
+    text-decoration: none;
+}
+
+.user-list a li {
+    overflow: hidden;
+    padding: 3% 0;
+}
+
+.user-list>a>li {
+    border-left: 1px solid #eee;
+}
+
+.user-list a li.asd {
+    border: none;
+}
+
+.user-list a li img {
+    width: 15%;
+    margin-top: 8%;
+}
+
+.list-img {
+    float: left;
+    margin-left: 15%;
+    margin-top: 6.5%;
+}
+
+.list-low {
+    float: left;
+    margin-left: 5%;
+}
+
+.user-list a li span {
+    font-size: 13px;
+    color: #666;
+}
+
+
+/* 16个点击事件 */
+
+.user-clicks {
+    background: white;
+    margin-top: 2%;
+    overflow: hidden;
+}
+
+.user-clicks a {
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: 3% 0;
+    text-decoration: none;
+    border-left: solid 0.3px rgb(240, 234, 234);
+}
+
+.user-clicks a:first-child,
+.user-clicks a:nth-child(5),
+.user-clicks a:nth-child(9) {
+    border-left: solid 0.3px transparent;
+}
+
+.user-clicks a:nth-child(5),
+.user-clicks a:nth-child(6),
+.user-clicks a:nth-child(7),
+.user-clicks a:nth-child(8) {
+    border-top: solid 0.3px rgb(240, 234, 234);
+    border-bottom: solid 0.3px rgb(240, 234, 234);
+}
+
+.user-clicks a img {
+    width: 35%;
+}
+
+.user-clicks a p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5%;
+}
+
+
+/* -----------------------userset----------------------------- */
+
+
+/* -------------------------dingdan--------------------- */
+
+.dingdan {
+    overflow: hidden;
+}
+
+.nav-bar {
+    position: fixed;
+    width: 100%;
+}
+
+.dingdan-choose {
+    background: white;
+    text-align: center;
+    color: rgb(87, 85, 85);
+    overflow: hidden;
+    margin-top: 31px;
+}
+
+.dingdan-choose li {
+    background: #eee;
+    float: left;
+    width: 25%;
+    padding: 8px 0;
+    font-size: 13px;
+}
+
+.active {
+    border-bottom: solid 2px orange;
+    color: orange;
+}
+
+.all-D-box {
+    background: white;
+    margin: 1% 0;
+}
+
+.all-D,
+.give-money,
+.give-some,
+.get-bus {
+    margin-bottom: 55px;
+}
+
+.all-D .all-D-top,
+.give-money .all-D-top,
+.give-some .all-D-top,
+.get-bus .all-D-top {
+    overflow: hidden;
+}
+
+.all-D .all-D-top span:nth-child(1),
+.give-money .all-D-top span:nth-child(1),
+.give-some .all-D-top span:nth-child(1),
+.get-bus .all-D-top span:nth-child(1) {
+    float: left;
+    width: 50%;
+    font-size: 14px;
+    padding: 1% 3%;
+}
+
+.all-D .all-D-top span:nth-child(2),
+.give-money .all-D-top span:nth-child(2),
+.give-some .all-D-top span:nth-child(2),
+.get-bus .all-D-top span:nth-child(2) {
+    float: right;
+    width: 50%;
+    font-size: 14px;
+    text-align: right;
+    padding: 1% 3%;
+    color: orange;
+}
+
+.all-D .all-D-div,
+.give-money .all-D-div,
+.give-some .all-D-div,
+.get-bus .all-D-div {
+    background: rgb(247, 244, 244);
+    padding: 2% 4%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.all-D .all-D-div img,
+.give-money .all-D-div img,
+.give-some .all-D-div img,
+.get-bus .all-D-div img {
+    width: 20%;
+    height: 58px;
+    border-radius: 5px;
+    float: left;
+}
+
+.all-D .all-D-div p,
+.give-money .all-D-div p,
+.give-some .all-D-div p,
+.get-bus .all-D-div p {
+    float: left;
+    width: 80%;
+    padding: 1.3% 4%;
+    font-size: 14px;
+}
+
+.all-D .all-D-div p span,
+.give-money .all-D-div p span,
+.give-some .all-D-div p span,
+.get-bus .all-D-div p span {
+    color: rgb(180, 178, 178);
+    font-size: 13px;
+}
+
+.all-D .all-D-div p span:nth-child(1),
+.give-money .all-D-div p span:nth-child(1),
+.give-some .all-D-div p span:nth-child(1),
+.get-bus .all-D-div p span:nth-child(1) {
+    float: left;
+    width: 50%;
+}
+
+.all-D .all-D-div p span:nth-child(2),
+.give-money .all-D-div p span:nth-child(2),
+.give-some .all-D-div p span:nth-child(2),
+.get-bus .all-D-div p span:nth-child(2) {
+    float: right;
+    width: 50%;
+    text-align: right;
+}
+
+.coles-D {
+    font-size: 12px;
+    text-align: right;
+    padding: 1.5% 0;
+}
+
+.coles-D span {
+    border: solid 0.5px rgb(184, 184, 184);
+    border-radius: 15px;
+    margin-right: 3%;
+    padding: 0.3% 2%;
+    color: rgb(145, 141, 141);
+    cursor: pointer;
+}
+
+.coles-D .myPay {
+    color: orange;
+    border: solid 0.5px orange;
+}
+
+.coles-G {
+    text-align: center;
+    font-size: 14px;
+    padding: 1% 0;
+    color: rgb(184, 184, 184);
+}
+
+.coles-Get {
+    overflow: hidden;
+    font-size: 14px;
+    padding: 1% 3%;
+}
+
+.coles-Get .Get-left {
+    float: left;
+    width: 70%;
+}
+
+.coles-Get .Get-right {
+    float: right;
+    text-align: right;
+    border: solid 1px orange;
+    border-radius: 15px;
+    padding-bottom: 1%;
+    padding-left: 1.2%;
+    padding-right: 1.2%;
+    color: orange;
+    cursor: pointer;
+}
+
+.coles-Get .Get-infors {
+    border: solid 1px #666;
+    border-radius: 5px;
+    padding-bottom: 0.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    background: white;
+    color: #666;
+    cursor: pointer;
+}
+
+.coles-Get .wuliu {
+    font-size: 14px;
+    color: #666;
+}
+
+.my-posts {
+    background: white;
+}
+
+.my-posts .search-bud {
+    padding: 2% 2%;
+    overflow: hidden;
+}
+
+.my-posts .search-bud input {
+    background: rgb(228, 224, 224);
+    float: left;
+    border: none;
+    font-size: 14px;
+    width: 80%;
+    padding: 1% 2%;
+    border-radius: 5px;
+    color: rgb(150, 141, 141);
+}
+
+.my-posts .search-bud button {
+    float: right;
+    border: none;
+    background: orange;
+    padding: 0.5% 4%;
+    border-radius: 5px;
+    color: wheat;
+    cursor: pointer;
+}
+.shopping{
+    position: absolute;
+    bottom: 90px;
+    right: 10px;
+    width: 45px;
+    cursor: pointer;
+
+}
+.shopping img{
+    width: 100%;
+}
+.shopping span{
+    position: absolute;
+    background: red;
+    border-radius: 50%;
+    display: block;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    right: 0;
+}
+

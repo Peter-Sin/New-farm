@@ -1,0 +1,79 @@
+<extend name="Layout/menu"/>
+<block name="content">
+<!--sidebar-menu-->
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb">
+      <a href="#" class="tip-bottom" data-original-title="回到后台">
+        <i class="icon-home"></i>后台
+      </a>
+      <a href="#">系统设置</a>
+      <a href="#" class="current">农场设置</a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="widget-box">
+      <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+        <h5>信息编辑</h5>
+        <a href=""><span class="label label-info">Featured</span></a>
+      </div>
+      <div class="widget-content nopadding">
+        <form class="form-horizontal" method="post" action="__MODULE__/Farm/uploadsetting" name="number_validate" id="number_validate" novalidate="novalidate">
+          <div class="control-group">
+            <label class="control-label">农场名称</label>
+            <div class="controls">
+              <input name="farm_name" class="span3" type="text" value="{$info['farm_name']}">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">果树生命值</label>
+            <div class="controls">
+              <input name="fruit_tree" class="span3" type="text" value="{$info['fruit_tree']}">天
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">土地价值</label>
+            <div class="controls">
+              <input name="land_price" class="span3" type="text" value="{$info['land_price']}">/块
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">果树价值</label>
+            <div class="controls">
+              <input name="tree_price" class="span3" type="text" value="{$info['tree_price']}">/棵
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">交易手续费(百分比)</label>
+            <div class="controls">
+              <input name="transaction_fee" class="span3" type="text" value="{$info['transaction_fee']}">%
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">转账限额(百分比)</label>
+            <div class="controls">
+              <input name="trading_limits" class="span3" type="text" value="{$info['trading_limits']}">%
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">用户偷取(百分比)</label>
+            <div class="controls">
+              <input name="user_steal" class="span3" type="text" value="{$info['user_steal']}">%
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">交易兑换(百分比)</label>
+            <div class="controls">
+              <input name="trade_exchange" class="span3" type="text" value="{$info['trade_exchange']}">%
+            </div>
+          </div>
+          <div class="form-actions">
+            <input value="保存" class="btn btn-success" type="submit"/>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+</block>

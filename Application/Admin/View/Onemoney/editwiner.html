@@ -1,0 +1,56 @@
+<extend name="Layout/menu"/>
+<block name="content">
+
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <div id="breadcrumb"> <a href="#" class="tip-bottom" data-original-title="回到后台"><i class="icon-home"></i> 商品管理</a> <a href="#" class="tip-bottom">商品编辑</a> <a href="#" class="current">商品编辑</a> </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+      <div class="widget-box">
+        <div class="widget-title">
+         <span class="icon">
+          <i class="icon-align-justify"></i>
+        </span>
+        <h5>获奖者编辑</h5>
+        <a href="__URL__/lootinfo"><h5 style="float:right">返回上一级</h5></a>
+        </div>
+        <div class="widget-content nopadding">
+          <form action ="__MODULE__/Onemoney/updatewiner" method="post" class="form-horizontal" enctype="multipart/form-data" >
+          
+            <div class="control-group">
+              <label class="control-label">商品名称</label>
+              <div class="controls controls-row">
+                <input type="text" placeholder="" name="name" value="{$list[name]}">
+                <input type="hidden" placeholder="" name="pid" value="{$list[id]}">
+                <input type="hidden" placeholder="" name="id" value="{$info[id]}">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">中奖者</label>
+              <div class="controls controls-row">
+                <input type="text" name="winer" value="{$info[winer]}">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">参与次数</label>
+              <div class="controls controls-row">
+                <input type="number" value="{$info[number]}" name="number">
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" style="margin:0px 0px 0px 200px">确定</button>
+              <button type="reset" class="btn btn-success" style="margin:0px 0px 0px 30px">重置</button>
+            </div> 
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+</block>

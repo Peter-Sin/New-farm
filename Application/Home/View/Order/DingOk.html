@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>确认订单</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/OneM.css">
+</head>
+
+<body>
+    <div class="Onlie">
+        <p class="nav-bar">
+            <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 确认订单
+        </p>
+    </div>
+    <div class="Ding-adress" addrId="{$addr.id}">
+        <div>
+            <p class="Ding-top">
+                <i>2016-08-01 </i>
+                <span>10:53:30</span>
+            </p>
+            <p class="Ding-mid">
+                <span class="Ding-mid-left">收货人:
+                    <i>{$addr.username}</i>
+                </span>
+                <span class="Ding-mid-right">{$addr.telphone}</span>
+            </p>
+            <section class="Ding-down">
+                <span class="Ding-down-left">收货地址：</span>
+                <span class="Ding-down-right">{$addr.address} {$addr.place}</span>
+            </section>
+        </div>
+    </div>
+    <div class="Ding-goods">
+        <ul>
+            <foreach name="info" item="val">
+                <li class="ding" gid="{$val.id}" cid="{$val.cid}" num="{$val.num}">
+                    <img src="__PUBLIC__/image/goods/{$val.image}" alt="">
+                    <p class="few">{$val.name}</p>
+                    <div class="D-list">
+                        <p>￥{$val.cprice}</p>
+                        <p class="del">￥{$val.oprice}</p>
+                        <p>×{$val.num}</p>
+                    </div>
+                    <div class="D-choose">
+                        <p>
+                            <span class="D-choose-left">代金卷抵扣</span>
+                            <span class="D-choose-right">-
+                                <i>￥{$val.cvoucher}</i>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="D-choose-left">实付款</span>
+                            <span class="D-choose-right ared">￥{$val.ccprice}</span>
+                        </p>
+                    </div>
+                </li>
+            </foreach>
+        </ul>
+        <!-- <h5>
+            <span class="boo">代金卷已抵扣</span>
+            <span class="jaja">￥150.12</span>
+        </h5> -->
+    </div>
+    <div class="all-check">
+        <p class="maidan jkajs">
+            <span>合计:￥{$total}</span>
+            <span class="giveOk" ccc="{$ccc}">提交订单</span>
+        </p>
+    </div>
+</body>
+
+<script src="__PUBLIC__/js/OneM.js"></script>
+
+
+
+</html>

@@ -1,0 +1,492 @@
+* {
+    box-sizing: border-box
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    height: 100%;
+}
+
+.index,
+.userset {
+    margin-bottom: 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h6,
+ul,
+p {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-bar {
+    background: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    border-bottom: 0.5px solid rgb(221, 218, 218);
+}
+
+.back {
+    position: absolute;
+    height: 17px;
+    width: 10px;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.Dbg {
+    width: 100%;
+}
+
+.bbbg {
+    width: 100%;
+}
+
+.Looo {
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.Getpass,
+.Paypass,
+.Adrpass {
+    background: white;
+}
+
+.Logpass,
+.Setpass,
+.Register {
+    margin-top: 40%;
+    margin-bottom: 50%;
+    position: relative;
+}
+
+.Getpass form,
+.Paypass form,
+.Adrpass form {
+    width: 94%;
+    margin: 2% auto;
+}
+
+
+/* .Register form{
+    width: 80%;
+} */
+
+.Getpass form p,
+.Paypass form p .Adrpass form p {
+    border-bottom: solid 1px rgb(221, 218, 218);
+    margin-top: 2%;
+    padding-bottom: 1.5%;
+    overflow: hidden;
+    position: relative;
+}
+
+.Register form p {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-top: 2.2%
+}
+
+.Getpass form p img,
+.Paypass form p img {
+    width: 15px;
+    height: 20px;
+}
+
+.Register form p img {
+    width: 25px;
+    height: 25px;
+}
+
+.Getpass form p input,
+.Paypass form p input {
+    border: none;
+    font-size: 13px;
+    color: rgb(168, 167, 167);
+    margin-left: 2%;
+    width: 180px;
+}
+
+.Register form p input {
+    border: none;
+    font-size: 12px;
+    color: rgb(168, 167, 167);
+    margin-left: 2%;
+    width: 70%;
+    background: rgb(143, 87, 24);
+    border-radius: 5px;
+}
+
+#Logpasss,
+#ZZhuce {
+    width: 60%;
+    position: absolute;
+    top: 32.5%;
+    right: 0;
+}
+
+#Registers {
+    width: 80%;
+    position: absolute;
+    top: 22%;
+    left: 9%;
+}
+
+#Logpasss p {
+    margin-right: 10%;
+}
+
+#ZZhuce p.vv {
+    margin-left: 10%;
+}
+
+#ZZhuce p:nth-child(1) {
+    margin-top: -1%;
+}
+
+#Logpasss p:nth-child(2) {
+    margin-top: 7%;
+}
+
+#ZZhuce p:nth-child(2) {
+    margin-top: 8%;
+}
+
+#ZZhuce p:nth-child(3) {
+    margin-top: 8%;
+}
+
+#Logpasss input {
+    width: 75%;
+    background: transparent;
+    border: 2px solid transparent;
+    font-size: 14px;
+}
+
+#ZZhuce input {
+    width: 65%;
+    background: transparent;
+    border: 2px solid transparent;
+    font-size: 14px;
+}
+
+#Logpasss p img {
+    width: 40%;
+}
+
+.LLogin {
+    margin-left: -30%;
+    margin-top: 15%;
+}
+
+.ZZZZe {
+    margin-left: -38%;
+    margin-top: 9%;
+}
+
+.LLogin img {
+    width: 40%;
+}
+
+.ZZZZe img {
+    width: 38%;
+}
+
+.getPhone {
+    background: rgb(143, 87, 24);
+    font-size: 13px;
+    padding: 1% 2%;
+    color: wheat;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 83px;
+    position: absolute;
+    right: 9.4%;
+    top: 2%;
+}
+
+.getPhones {
+    background: rgb(151, 149, 149);
+    font-size: 13px;
+    padding: 1% 4%;
+    color: wheat;
+    border-radius: 5px;
+    width: 83px;
+    position: absolute;
+    right: 9.4%;
+    top: 2%;
+    display: none;
+}
+
+.Getpass form button,
+.Paypass form button,
+{
+    width: 94%;
+    margin-left: 2%;
+    margin-top: 15%;
+    padding: 2% 0;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    background: rgb(64, 189, 247);
+}
+
+.Register form button {
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+}
+
+.Register form span img {
+    width: 35%;
+}
+
+.tishi,
+.Gtishi,
+.Setishi,
+.Payishi,
+.Logishi,
+.Adrishi {
+    width: 60%;
+    margin: 5% auto;
+    text-align: center;
+    padding: 2% 1%;
+    background: rgb(231, 186, 186);
+    color: black;
+    display: none;
+    font-size: 14px;
+}
+
+.Logimg {
+    margin: 10% 3%;
+    text-align: center;
+    position: relative;
+}
+
+.Logimg img {
+    width: 80%;
+}
+
+#Adrpasss {
+    font-size: 14px;
+    margin-top: 5%;
+}
+
+#Adrpasss p {
+    margin-bottom: 3%;
+}
+
+.container {
+    width: 100%;
+    padding: 0 0;
+    margin: 0 0;
+}
+
+.city-picker-input {
+    opacity: 0 !important;
+    /* top: -9999px;
+    left: -9999px; */
+    position: absolute;
+}
+
+.city-picker-span {
+    position: relative;
+    display: block;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.city-picker-span>.placeholder {
+    color: #aaa;
+}
+
+.city-picker-span>.arrow {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 10px;
+    margin-top: -3px;
+    height: 5px;
+}
+
+.city-picker-span.focus,
+.city-picker-span.open {
+    border-bottom-color: #46A4FF;
+}
+
+.city-picker-span.open>.arrow {
+    background-position: -10px -10px;
+}
+
+.city-picker-span>.title>span {
+    color: #333;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.city-picker-span>.title>span:hover {
+    background-color: #f1f8ff;
+}
+
+.city-picker-dropdown {
+    position: absolute;
+    width: 100% !important;
+    left: -9999px;
+    top: -9999px;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    z-index: 999999;
+    display: none;
+    margin-bottom: 20px;
+}
+
+.city-select-wrap {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    top: 0;
+}
+
+.city-select-tab {
+    border-bottom: 1px solid #ccc;
+    background: #f0f0f0;
+    font-size: 13px;
+}
+
+.city-select-tab>a {
+    display: inline-block;
+    padding: 8px 22px;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid transparent;
+    color: #4D4D4D;
+    text-align: center;
+    outline: 0;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: -1px;
+}
+
+.city-select-tab>a.active {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+    color: #46A4FF;
+}
+
+.city-select-tab>a:first-child {
+    border-left: none;
+}
+
+.city-select-tab>a:last-child.active {
+    border-right: 1px solid #ccc;
+}
+
+.city-select-content {
+    width: 100%;
+    min-height: 10px;
+    background-color: #fff;
+    padding: 10px 15px;
+}
+
+.city-select {
+    font-size: 13px;
+}
+
+.city-select dl {
+    line-height: 2;
+    clear: both;
+    padding: 3px 0;
+    margin: 0;
+}
+
+.city-select dt {
+    position: absolute;
+    width: 2.5em;
+    font-weight: 500;
+    text-align: right;
+    line-height: 2;
+}
+
+.city-select dd {
+    margin-left: 0;
+    line-height: 2;
+}
+
+.city-select.province dd {
+    margin-left: 3em;
+}
+
+.city-select a {
+    display: inline-block;
+    padding: 0 10px;
+    outline: 0;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-right: 2px;
+    color: #333;
+    cursor: pointer;
+}
+
+.city-select a:hover,
+.city-select a:focus {
+    background-color: #f1f8ff;
+    border-radius: 2px;
+    color: #46A4FF;
+}
+
+.city-select a.active {
+    background-color: #46A4FF;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.Adrpass form p input {
+    border: none;
+    font-size: 12px;
+    color: rgb(168, 167, 167);
+    margin-left: 2%;
+    width: 180px;
+}
+
+.Adrpass form p {
+    border-bottom: solid 1px rgb(221, 218, 218);
+    margin-top: 2%;
+    padding-bottom: 1.5%;
+    overflow: hidden;
+    position: relative;
+}
+
+.button{
+    border: solid 1px green;
+    width: 60%;
+    margin:  0 auto;
+    margin-top: 10%l
+}
+.button button{
+    width: 100%;
+    background-color: rgb(6, 190, 6);
+    color: wheat;
+}

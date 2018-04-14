@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css">
+    <script src="__PUBLIC__/YM/js/clipboard.min.js"></script>
+</head>
+
+<body>
+    <div class="index">
+        <div class="In-Top" show="{$num}">
+            <p>果然商城</p>
+            <p>
+                <img src="__PUBLIC__/YM/userImg/ss.png" alt="">
+            </p>
+        </div>
+        <div id="demo" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="http://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                </div>
+                <p class="canyu">
+                    <span class="canyu-left">参与人数:</span>
+                    <h>6000</h>
+                    <span class="canyu-right">
+                        <a href="__MODULE__/Index/onemoney">进入></a>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <ul class="lits">
+            <a onclick="indexs(1)">
+                <img src="__PUBLIC__/YM/imgs/gs.png" alt="" >果篮
+            </a>
+            <a onclick="indexs(2)">
+                <img src="__PUBLIC__/YM/imgs/cd.png" alt=""> 穿戴
+            </a>
+            <a onclick="indexs(3)">
+                <img src="__PUBLIC__/YM/imgs/kx.png" alt=""> 快消
+            </a>
+            <a onclick="indexs(4)">
+                <img src="__PUBLIC__/YM/imgs/dz.png" alt=""> 电子
+            </a>
+        </ul>
+        <h6 class="font-img">
+            <img src="__PUBLIC__/YM/imgs/bq.png" alt=""> 新品热卖
+        </h6>
+        <ul class="goods">
+            
+        </ul>
+        <div>
+        </div>
+        <p class="in-tishi">添加成功</p>
+
+    </div>
+    <div class="dingdan">
+        <p class="nav-bar">订单</p>
+        <ul class="dingdan-choose">
+            <li class="active">全部</li>
+            <li>待付款</li>
+            <li>待发货</li>
+            <li>待收货</li>
+        </ul>
+        <div class="all-D">
+            <!-- <div class="all-D-box">
+                <p class="all-D-top">
+                    <span>2018/02/29</span>
+                    <span>交易成功</span>
+                </p>
+                <div class="all-D-div">
+                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
+                    <p>破多而红酒(每天限量159份)</p>
+                    <p>
+                        <span>￥:300+30代金券</span>
+                        <span>×1</span>
+                    </p>
+                </div>
+                <p class="coles-D">
+                    <span class="removeBus">删除订单</span>
+                </p>
+            </div> -->
+        </div>
+        <div class="give-money">
+            <!-- <div class="all-D-box">
+                <p class="all-D-top">
+                    <span>2018/02/29</span>
+                    <span>等待买家付款</span>
+                </p>
+                <div class="all-D-div">
+                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
+                    <p>破多而红酒(每天限量159份)</p>
+                    <p>
+                        <span>￥:300+30代金券</span>
+                        <span>×1</span>
+                    </p>
+                </div>
+                <p class="coles-D">
+                    <span class="removeBus">取消订单</span>
+                    <span class="myPay">付款</span>
+                </p>
+            </div> -->
+        </div>
+        <div class="give-some">
+            <!-- <div class="all-D-box">
+                <p class="all-D-top">
+                    <span>2018/02/29</span>
+                    <span>交易成功</span>
+                </p>
+                <div class="all-D-div">
+                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
+                    <p>破多而红酒(每天限量159份)</p>
+                    <p>
+                        <span>￥:300+30代金券</span>
+                        <span>×1</span>
+                    </p>
+                </div>
+                <p class="coles-G">
+                    商家正在接受中，请耐心等待！
+                </p>
+            </div>
+ -->
+        </div>
+        <div class="get-bus">
+            <div class="my-posts">
+                <form class="search-bud" action="">
+                    <input id="wuliu" type="text" placeholder="输入物流编号查询物流信息">
+                    <button type="submit">查询</button>
+                </form>
+            </div>
+            <!-- <div class="all-D-box">
+                <p class="all-D-top">
+                    <span>2018/02/29</span>
+                    <span>交易成功</span>
+                </p>
+                <div class="all-D-div">
+                    <img src="__PUBLIC__/YM/imgs/goods1.png" alt="">
+                    <p>破多而红酒(每天限量159份)</p>
+                    <p>
+                        <span>￥:300+30代金券</span>
+                        <span>×1</span>
+                    </p>
+                </div>
+                <div class="coles-Get">
+                    <p class="Get-left">
+                        <span class="wuliu">物流编号:
+                            <small id="Wuliu">1234567890123</small>
+                        </span>
+                        <button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>
+                    </p>
+                    <span class="Get-right">确认收货</span>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="nongchang">
+        <p class="nav-bar">农场</p>
+    </div>
+    <div class="userset">
+        <p class="nav-bar">个人中心</p>
+        <div class="user-set">
+            <img class="bg" src="__PUBLIC__/YM/userImg/bg.png" alt="">
+            <div class="user-infor">
+                <img class="faceimg" src="__PUBLIC__/YM/userImg/mrtx.png" alt="">
+                <div class="infor-data">
+                        <div class="userInfor">
+                            <p>会员id:   <a class="vipid"></a></p>
+                            <p>昵称:    <a class="username"></a></p>
+                            <p>推荐人:    <a class="referee"></a></p>
+                            <p>登录名:    <a class="telphone"></a></p>
+                        </div>
+                </div>
+                    <a class="aaa" style="float:right;font-size:28px;margin-right:20px" href="__MODULE__/person/changeinfo">></a>
+            </div>
+            <ul class="user-list">
+               <a href="" class="few">
+                    <li class="asd">
+                        <img class="list-img" src="__PUBLIC__/YM/userImg/1dt.png" alt="">
+                        <span class="list-low">
+                            <p>土地价值</p>
+                            <p class="land-price">0</p>
+                        </span>
+                    </li>
+                </a>
+                <a href="" class="few">
+                    <li>
+                        <img class="list-img" src="__PUBLIC__/YM/userImg/1kc.png" alt="">
+                        <span class="list-low">
+                            <p>仓库库存</p>
+                            <p class="fruit-price">0</p>
+                        </span>
+                    </li>
+                </a>
+                <a href="" class="few">
+                    <li>
+                        <img class="list-img" src="__PUBLIC__/YM/userImg/1djq.png" alt="">
+                        <span class="list-low">
+                            <p>代金卷</p>
+                            <p class="voucher-price">0</p>
+                        </span>
+                    </li> 
+                </a>
+            </ul>
+        </div>
+        <div class="user-clicks">
+            <a href="__MODULE__/person/orachard">
+                <img src="__PUBLIC__/YM/userImg/nchd.png" alt="">
+                <p>果园互动</p>
+            </a>
+            <a href="__MODULE__/person/fruitt">
+                <img src="__PUBLIC__/YM/userImg/gzhd.png" alt="">
+                <p>果子交易</p>
+            </a>
+            <a href="__MODULE__/person/friend">
+                <img src="__PUBLIC__/YM/userImg/hy.png" alt="">
+                <p>好友</p>
+            </a>
+            <a href="__MODULE__/address/chooadres">
+                <img src="__PUBLIC__/YM/userImg/shdz.png" alt="">
+                <p>收货地址</p>
+            </a>
+            <a href="__MODULE__/person/extend">
+                <img src="__PUBLIC__/YM/userImg/ewm.png" alt="">
+                <p>推广二维码</p>
+            </a>
+            <a href="__MODULE__/person/rate">
+                <img src="__PUBLIC__/YM/userImg/cfl.png" alt="">
+                <p>昨日拆分率</p>
+            </a>
+            <a href="__MODULE__/person/news">
+                <img src="__PUBLIC__/YM/userImg/znx.png" alt="">
+                <p>站内信</p>
+            </a>
+            <a href="__MODULE__/person/notic">
+                <img src="__PUBLIC__/YM/userImg/gg.png" alt="">
+                <p>公告</p>
+            </a>
+            <a href="__MODULE__/person/paypass">
+                <img src="__PUBLIC__/YM/userImg/jymm.png" alt="">
+                <p>交易密码</p>
+            </a>
+            <a href="__MODULE__/person/setpass">
+                <img src="__PUBLIC__/YM/userImg/xgmm.png" alt="">
+                <p>修改密码</p>
+            </a>
+            <a href="__MODULE__/person/online">
+                <img src="__PUBLIC__/YM/userImg/kf.png" alt="">
+                <p>客服</p>
+            </a>
+            <a class="logout">
+                <img src="__PUBLIC__/YM/userImg/tc.png" alt="">
+                <p>退出</p>
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer" islogin="">
+        <ul>
+            <a href="" class="shop-mall"><li>
+                <img src="__PUBLIC__/YM/imgs/shop.png" alt="">
+                <p>商城</p>
+                </li></a>
+            <a href=""><li>
+                <img src="__PUBLIC__/YM/imgs/dd.png" alt="">
+                <p>订单</p>
+                </li></a>
+            <a href="__MODULE__/Farm/index" ><li>
+                <img src="__PUBLIC__/YM/imgs/nc.png" alt="">
+                <p>农场</p>
+                </li></a>
+            <a href="" class="person-info"><li>
+                <img src="__PUBLIC__/YM/imgs/user.png" alt="">
+                <p>个人中心</p>
+                </li></a>
+            </ul>
+        <div class="shopping">
+            <span id="shoppingnum">0</span>
+            <img src="__PUBLIC__/YM/fontimg/gwc.png" alt="">
+        </div>
+    </footer>
+
+</body>
+
+<script src="__PUBLIC__/js/index.js"></script>
+
+
+
+</html>

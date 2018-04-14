@@ -1,0 +1,735 @@
+div.BG {
+    width: 100%;
+    height: 100%;
+}
+
+div.BG img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+p {
+    margin: 0 0;
+}
+
+body,
+html {
+    margin: 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+}
+
+.BOX {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    height: 100%;
+}
+
+.B-top{
+    /* padding: 5%; */
+    overflow: hidden;
+    position: relative;
+    height: 30%;
+}
+.B-mid {
+    /* padding: 5%; */
+    overflow: hidden;
+    position: relative;
+    height: 50%;
+    padding-bottom: 5%;
+}
+.B-down{
+    height: 20%;
+}
+
+
+ul {
+    padding: 0 0;
+    margin: 0 0;
+}
+
+li {
+    list-style: none;
+    text-align: center;
+}
+
+.Top-Box {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    top: 15.5%;
+}
+
+.TB-left {
+    border: solid 1px black;
+    width: 38%;
+    float: left;
+    padding: 1.6% 3.6%;
+    margin-left: 4%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.TB-left .img-left {
+    width: 31%;
+    /*border: solid 1px rgb(238, 3, 54);*/
+    border-radius: 12px;
+    float: left;
+}
+
+.TB-left .img-right {
+    float: left;
+    width: 60%;
+    margin-left: 4%;
+    /* border: solid 1px rgb(8, 255, 111); */
+}
+
+.TB-left .img-right p.username {
+    font-size: 11px;
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+    background-color: rgb(128, 68, 0);
+}
+
+.TB-left .img-right p.userOcch {
+    font-size: 11px;
+    margin-top: 2%;
+    margin-left: 2%;
+    background-color: rgb(128, 68, 0);
+    border-radius: 10px;
+}
+
+.TB-left .img-right p.userOcch span {
+    display: inline-block;
+    width: 65%;
+    height: 1%;
+    background-color: rgb(10, 245, 10);
+    border-radius: 10px;
+    color: rgb(128, 68, 0);
+    padding-left: 2%;
+}
+
+
+/* ====颜色===== */
+
+.TB-left .img-left p.ids {
+    /* background-color: rgb(128, 68, 0); */
+    border-radius: 20px;
+    height: 10px;
+    font-size: 6px;
+    margin-top: 3%;
+    padding: 0 2%;
+}
+
+.TB-right {
+    /*border: solid 1px rgb(9, 117, 218);*/
+    width: 16%;
+    float: left;
+    margin-left: 5%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.B-top img {
+    display: block;
+    width: 100%;
+}
+
+.B-mid img,
+.B-down img {
+    width: 100%;
+    display: block;
+}
+
+.LLbox {
+    position: absolute;
+    width: 100%;
+    top: 5%;
+    z-index: 15;
+    transform-style: preserve-3d;
+    /* perspective: 1000px; */
+    transform: rotate3d(2.5, -1, 2, 70deg);
+}
+
+.ifC {
+    /*overflow: hidden;*/
+    text-align: center;
+    width: 80%;
+    /* padding: 5% 6% 15% 9%; */
+    margin: 0 auto;
+    padding-top: 9%;
+    padding-left: 15%;
+}
+
+.ifC li {
+    float: left;
+    width: 21.5%;
+    display: block;
+    border: solid 1px transparent;
+    position: relative;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+
+/* 
+.ifC li:hover {
+    border: solid 1px rgb(255, 0, 0);
+    border-radius: 5px;
+} */
+
+.ifC li img {
+    display: block;
+    width: 100%;
+}
+
+.tree {
+    width: 120%;
+    position: absolute;
+    z-index: 15;
+    height: 120px;
+    transform: rotate(-45deg);
+    top: -50px;
+    left: -27px;
+}
+
+
+/* ==========底部==================== */
+
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 15;
+    display: block;
+}
+
+.footer img.FBG {
+    width: 100%;
+    display: block;
+}
+
+.U-Box {
+    position: absolute;
+    width: 100%;
+    z-index: 17;
+    top: -30%;
+}
+
+.U-Box li {
+    float: left;
+    width: 20%;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.U-Box li div {
+    width: 100%;
+    text-align: center;
+}
+
+.U-Box li div img.aheihei {
+    width: 60%;
+    text-align: center;
+}
+
+.ahahaha {
+    width: 45%;
+    display: block;
+    margin-left: 27%;
+    margin-top: -10%;
+}
+
+.Home {
+    /* display: none; */
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ========动画=========== */
+
+.adre {
+    width: 100%;
+    position: relative;
+    display: none;
+}
+
+.adre div {
+    width: 100%;
+    /* position: absolute; */
+}
+
+.adre div img {
+    width: 100%;
+    display: block;
+}
+
+.adre .A-top {
+    /* margin-top: -100%; */
+}
+
+.adre .A-down {
+    /* margin-top: 200%; */
+}
+
+
+/* ============BTN============== */
+
+.btn {
+    position: fixed;
+    width: 100%;
+    top: 47%;
+    text-align: center;
+    background-color: rgba(228, 215, 201, 0.4);
+    color: rgb(255, 102, 0);
+    font-weight: 600;
+    padding: 2% 0;
+    box-shadow: -2px -1px 5px rgba(8, 82, 78, 0.4) inset;
+    margin-left: 100%;
+    transition: all .5s;
+}
+
+.btn:hover {
+    background-color: rgba(241, 203, 171);
+    color: rgb(0, 231, 193);
+    cursor: pointer;
+}
+
+.wait {
+    background-color: rgb(11, 226, 190);
+    padding: 85.2% 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900px;
+    color: rgb(233, 218, 12);
+    transition: all .5s;
+}
+
+
+/* ==================AlertBox================== */
+
+.AlertBox {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 8888;
+    background-color: rgba(160, 159, 159, 0.4);
+    display: none;
+}
+
+.Jiaoyi {
+    width: 86%;
+    margin: 36% auto;
+    display: none;
+}
+
+.Email {
+    width: 86%;
+    margin: 35% auto;
+    display: none;
+}
+
+.Z_Alert {
+    width: 86%;
+    margin: 57% auto;
+    display: none;
+}
+
+.Buss {
+    width: 86%;
+    margin: 48% auto;
+    display: none;
+}
+
+.Getrees {
+    width: 86%;
+    margin: 48% auto;
+    display: none;
+}
+
+.Jiaoyi div.Jbg {
+    width: 100%;
+    position: relative;
+}
+
+.Email .Ebg,
+.Z_Alert .Z_bg,
+.Buss .B_bg,
+.Getrees .B_bg {
+    width: 90%;
+    margin-left: 5%;
+    position: relative;
+}
+
+.Jiaoyi div.Jbg img.jb2,
+.Email div.Ebg img.Eb2,
+.Z_Alert div.Z_bg img.Z_b2,
+.Buss div.B_bg img.Z_b2,
+.Getrees div.B_bg img.Z_b2 {
+    width: 100%;
+}
+
+.Jiaoyi div.Jbg ul {
+    width: 10%;
+    position: absolute;
+    top: 10%;
+    right: 4%;
+}
+
+.Jiaoyi div.Jbg ul li img {
+    width: 90%;
+    display: block;
+}
+
+
+/* 
+=============================================
+=============================================
+==================== ONE =========================
+=============================================
+============================================= */
+
+.one {
+    width: 66%;
+    position: absolute;
+    top: 10%;
+    left: 17%;
+    /* display: none; */
+    /* border: solid 0.2px red; */
+}
+
+.TWO,
+.Three {
+    width: 66%;
+    position: absolute;
+    top: 10%;
+    left: 17%;
+    height: 80%;
+    display: none;
+    /* border: solid 0.2px red; */
+}
+
+
+.TWO p,
+.Three p {
+    text-align: center;
+}
+
+.three {
+    margin-top: 5%;
+    padding: 3%;
+    height: 80%;
+}
+
+.three_box {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+.three_box div {
+    border-bottom: solid 2px black;
+}
+
+.three_box div p {
+    font-size: 13px;
+    text-align: left;
+    color: wheat;
+}
+
+.two,
+.Zwo {
+    width: 66%;
+    height: 70%;
+    position: absolute;
+    top: 5%;
+    left: 17%;
+    /* border: solid 0.2px red; */
+}
+
+.Bwo {
+    width: 66%;
+    position: absolute;
+    top: 5%;
+    left: 17%;
+    /* border: solid 0.2px red; */
+}
+
+.GET {
+    width: 88%;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    /* border: solid 0.2px red; */
+}
+
+.GET li {
+    overflow: hidden;
+    width: 98%;
+    margin-left: 2%;
+}
+
+.GET li .G_infor,
+.GET li .G_infor2,
+.GET li .G_infor3 {
+    float: left;
+    width: 33%;
+}
+
+.GET p {
+    text-align: center;
+}
+
+.two li {
+    width: 100%;
+    height: 90%;
+    overflow: scroll;
+}
+
+.Zwo li {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.Bwo li {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.two li div {
+    overflow: hidden;
+}
+
+.two li div .T-infor {
+    overflow: hidden;
+    background-color: rgb(170, 95, 9);
+    border-radius: 10px;
+    margin-top: 2%;
+    padding: 1% 5%;
+    color: white;
+    font-weight: 600;
+}
+
+.Zwo li div .Z_infor {
+    background-color: rgb(170, 95, 9);
+    border-radius: 10px;
+    padding: 8%;
+    color: white;
+    font-weight: 600;
+    box-shadow: 1px 2px 2px inset rgb(97, 54, 4);
+}
+
+.B_infor {
+    border-radius: 10px;
+    margin-top: 5%;
+    color: white;
+    font-size: 12px;
+    text-align: left;
+    padding: 5%;
+}
+
+
+/* .G_infor {
+    border-radius: 10px;
+    text-align: left;
+}
+.G_infor2 {
+    border-radius: 10px;
+    text-align: left;
+}
+.G_infor3 {
+    border-radius: 10px;
+    text-align: left;
+} */
+
+h6 {
+    margin: 0 0;
+    font-size: 16px;
+}
+
+.B_infor p {
+    text-align: left !important;
+    margin-top: 5%;
+}
+
+.G_infor p {
+    text-align: center !important;
+    font-size: 13px;
+    color: green;
+}
+
+.G_infor2 p {
+    text-align: center !important;
+    font-size: 13px;
+    color: rgb(224, 221, 13);
+}
+
+.G_infor3 p {
+    text-align: center !important;
+    font-size: 13px;
+    color: rgb(7, 140, 202);
+}
+
+.B_infor input {
+    width: 90%;
+    border: none;
+    background-color: rgb(170, 95, 9);
+    box-shadow: 1px -2px 2px inset rgb(194, 164, 130);
+    border-radius: 10px;
+    border: solid 2px transparent;
+}
+
+.A {
+    background-color: rgb(170, 95, 9);
+}
+
+.B {
+    background-color: rgb(133, 71, 5);
+}
+
+.Z_infor {
+    font-size: 12px;
+}
+
+.two li div .T-infor .T-num {
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+.two li div .T-infor .T-time {
+    float: right;
+    width: 100%;
+    text-align: right;
+}
+
+.one p,
+.two p,
+.Zwo p,
+.Bwo p {
+    text-align: center;
+}
+
+.one-img1 {
+    width: 50%;
+}
+
+.two-img1 {
+    width: 40%;
+}
+
+B_infor .Z_woimg1 {
+    width: 30%;
+}
+
+.G_woimg1 {
+    width: 40%;
+}
+
+.T-choose {
+    overflow: hidden;
+    margin-top: 5%;
+}
+
+.Z_choose {
+    margin-top: 10%；
+}
+
+.T_Q {
+    float: left;
+    width: 50%;
+    cursor: pointer;
+}
+
+.T_D {
+    float: left;
+    width: 50%;
+    cursor: pointer;
+}
+
+.T_D img,
+.T_Q img {
+    width: 80%;
+}
+
+.Z__Q {
+    margin-top: 6%;
+}
+
+.B__Q {
+    margin-top: 15%;
+}
+
+.G__Q {
+    margin-top: 20%;
+}
+
+.Eclose,
+.Z_close {
+    position: absolute;
+    top: 8%;
+    right: 0;
+}
+
+.one form {
+    margin: 8% 0;
+    padding: 1% 0.5%;
+    font-size: 12px;
+    color: wheat;
+}
+
+.one form input {
+    height: 14px;
+    width: 50%;
+    border: none;
+    background-color: rgb(128, 68, 0);
+    box-shadow: 1px -2px 5px rgb(241, 233, 222) inset;
+    border-radius: 10px;
+    padding: 0.5% 2%;
+    margin-top: 2%;
+    font-size: 11px;
+    color: rgb(251, 255, 0);
+}
+
+.oneInfo {
+    margin-top: 2%;
+}
+
+.oneInfo p {
+    text-align: left !important;
+    font-weight: 600;
+}
+
+.oneTR {
+    margin-top: 14%;
+}
+
+.oneTR p {
+    text-align: left !important;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.oneTR p:nth-child(2) {
+    margin-top: 3%;
+    text-align: center !important;
+}
+
+.oneOk {
+    border: none;
+    cursor: pointer;
+    background-color: rgb(7, 219, 78);
+    color: yellow;
+    border-radius: 10px;
+    box-shadow: 1px 2px 3px rgb(5, 5, 5);
+    border: solid 1px rgb(161, 157, 157);
+}

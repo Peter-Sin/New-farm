@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>好友</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/orchard.css">
+</head>
+
+<body>
+    <div class="orchard">
+        <p class="nav-bar">
+            <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 好友
+        </p>
+        <div class="user-set">
+            <img class="bg" src="__PUBLIC__/YM/userImg/bg.png" alt="">
+            <div class="user-infor">
+                <img src="__PUBLIC__/image/userimage/{$info['faceimg']}" alt="">
+                <div class="infor-data">
+                    <p>会员id:{$info['vipid']}</p>
+                    <p>昵称:{$info['username']}</p>
+                    <p>推荐人:{$info['referee']}</p>
+                    <p>登录名:{$info['telphone']}</p>
+                </div>
+            </div>
+        </div>
+        <ul class="friend-choose">
+            <li class="active">一层</li>
+            <li>二层</li>
+            <li>三层</li>
+        </ul>
+        <div class="F-level" style="display: block;">
+            <div>
+                <p>登录名/会员名</p>
+                <p>层级</p>
+            </div>
+            <ul class="one-class">
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="__PUBLIC__/js/orchard.js"></script>
+<script src="__PUBLIC__/js/backthree.js"></script>
+</html>

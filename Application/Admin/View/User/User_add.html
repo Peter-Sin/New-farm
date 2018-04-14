@@ -1,0 +1,56 @@
+<extend name="Layout/menu"/>
+<block name="content">
+<!--sidebar-menu-->
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="#" class="tip-bottom" data-original-title="回到后台">
+      <i class="icon-home"></i> 后台</a> 
+      <a href="#">添加管理员</a> 
+      <a href="#" class="current"></a> 
+    </div>
+    <h1>添加管理员</h1>
+  </div>
+  <div class="container-fluid"><hr>
+      <!--from start-->
+
+
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
+            <h5>管理员添加</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form class="form-horizontal" method="post" action="#" name="number_validate" id="number_validate" novalidate="novalidate">
+              <div class="control-group">
+                <label class="control-label">管理员名</label>
+                <div class="controls">
+                  <input name="user" id="min" type="text">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">密码</label>
+                <div class="controls">
+                  <input name="password" id="max" type="password">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">确认密码</label>
+                <div class="controls">
+                  <input name="repassword" id="number" type="password">
+                </div>
+              </div>
+              <div style="position:relative">
+                <div class="form-actions" style="position:absolute;top:0px;right:650px;">
+                  <input value="重置" class="btn btn-success" type="reset" />
+                  <input value="添加" class="btn btn-success" type="submit"/>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+
+      <!--form end-->
+  </div>
+</div>
+</block>

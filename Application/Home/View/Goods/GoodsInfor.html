@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>商品详情</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/GoodsInfor.css">
+</head>
+<style>
+
+
+        .ERROR {
+            width: 5%;
+            border: solid 1px black;
+            border-radius: 50%;
+            float: right;
+            margin-top: 105px;
+            margin-right: 2%;
+        }
+
+        .MM {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            position: fixed;
+            bottom: -400px;
+            width: 100%;
+            border-top-left-radius: 5%;
+            border-top-right-radius: 5%;
+            transition: all .5s;
+        }
+
+        .LL {
+            width: 100%;
+            padding: 2%;
+            border-top-left-radius: 5%;
+            border-top-right-radius: 5%;
+            background: white;
+            height: 300px;
+            margin-top: 100px;
+        }
+
+        .MM .LL img.goos {
+            position: absolute;
+            top: 60px;
+            z-index: 9999;
+            width: 30%;
+            left: 2%;
+        }
+
+        .INFOR {
+            /* float: right; */
+            margin-left: 33%;
+            color: red;
+            width: 40%;
+        }
+
+        .PP,
+        .GG {
+            margin: 3% 0;
+            font-size: 14px;
+            border-bottom: solid 1px rgb(192, 191, 191);
+        }
+
+        .PP div.OO,
+        .GG div.OO {
+            margin-bottom: 2%;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .GG div.OO p,
+        .PP div.OO p {
+            float: left;
+            width: 18%;
+            background: rgb(212, 206, 206);
+            margin-right: 5%;
+            font-size: 14px;
+            color: black;
+            border-radius: 7px;
+        }
+
+        .NN {
+            border-bottom: solid 1px rgb(192, 191, 191);
+            padding-bottom: 2%;
+            font-size: 14px;
+        }
+
+        small {
+            color: rgb(156, 152, 152);
+        }
+
+        .NN img {
+            width: 7%;
+        }
+
+        .active {
+            background: red !important;
+        }
+
+        .HJ span {
+            padding: 0 7%;
+        }
+
+        .LL p.BB {
+            margin-top: 5%;
+            text-align: center;
+            border-top: 1px solid rgb(224, 222, 222);
+        }
+
+        .LL p.BB button {
+            margin-top: 3%;
+            width: 50%;
+            border: none;
+            padding: 2%;
+            background: rgb(0, 217, 255);
+            border-radius: 7px;
+            color: white;
+        }
+    </style>
+<body>
+    <div class="GoodIn">
+        <p class="nav-bar">
+            <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 商品详情
+        </p>
+        <div class="goods-all">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <!-- <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul> -->
+                <div class="carousel-inner">
+                   
+                    <!-- <div class="carousel-item active">
+                        <img src="http://static.runoob.com/images/mix/img_nature_wide.jpg">
+                    </div> -->
+           <!-- 
+                    <div class="carousel-item">
+                        <img src="http://static.runoob.com/images/mix/img_mountains_wide.jpg">
+                    </div> -->
+                     <foreach name="info.imgs" item="val">
+                        <div class="carousel-item">
+                            <img src="__PUBLIC__/image/goods/{$val}">
+                        </div>
+                    </foreach>
+                </div>
+
+                <!-- 左右切换按钮 -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+
+            </div>
+            <div class="G-down">
+                <div>
+                    <p>{$info.name}</p>
+                    <p>
+                        <span>￥{$info.price}</span>+
+                        <span>{$info.voucher}</span>
+                        <span>抵用卷</span>
+                    </p>
+                    <p class="dedel">
+                        ￥{$info.oprice}
+                    </p>
+                </div>
+                <p class="D-ri">
+                    <img src="__PUBLIC__/YM/fontimg/plfu.png" alt="">
+                    <br>
+                    <span>分享</span>
+                </p>
+            </div>
+        </div>
+        {$info.contents}
+
+
+        <div class="downLis" GoodsId="{$info.id}">
+            <p class="kefu">
+                <img src="__PUBLIC__/YM/fontimg/plfu.png" alt=""> 客服
+            </p>
+            <p class="service">
+                <img src="__PUBLIC__/YM/fontimg/oiu.png" alt=""> 收藏
+            </p>
+            <p class="buyCar">
+                <img src="__PUBLIC__/YM/fontimg/wee.png" alt=""> 购物车
+            </p>
+            <p class="hideCar" a="hideCar" >加入购物车</p>
+            <p class="buing" b="buing">立即购买</p>
+        </div>
+    </div>
+     <div class="MM">
+        <!-- <img class="ERROR" src="http://www.test.com/Public/YM/imgs/gb.png" alt=""> -->
+       <!--  <div class="LL">
+            <img class="goos" src="../YM/imgs/tx.png" alt="">
+            <div class="YY">
+                <img class="ERROR" src="../YM/imgs/gb.png" alt="">
+                <p class="INFOR">￥360</p>
+                <p class="INFOR">库存：
+                    <span>4564</span> 件</p>
+            </div>
+            <div class="PP">
+                <p>规格：</p>
+                <div class="OO">
+                    <p class="active">87年</p>
+                    <p>89年</p>
+                    <p>84年</p>
+                    <p>88年</p>
+                </div>
+            </div>
+            <div class="GG">
+                <p>年份：</p>
+                <div class="OO">
+                    <p>6瓶装</p>
+                    <p>8瓶装</p>
+                    <p>9瓶装</p>
+                    <p>12瓶装</p>
+                </div>
+            </div>
+            <div class="NN">
+                <span>购买数量
+                    <small>此商品没人限购3件</small>
+                </span>
+                <span class="HJ" style=" margin-left: 10%;">
+                    <img src="../YM/imgs/jian.jpg" alt="">
+                    <span>0</span>
+                    <img src="../YM/imgs/jia.jpg" alt="">
+                </span>
+            </div>
+            <p class="BB">
+                <button>确定</button>
+            </p>
+        </div> -->
+
+    </div>
+</body>
+
+<script src="__PUBLIC__/js/GoodsInfor.js"></script>
+<script src="__PUBLIC__/js/alerts.js"></script>
+<script type="text/javascript">
+    $(".carousel-item").eq(0).addClass("active")
+</script>
+
+
+</html>

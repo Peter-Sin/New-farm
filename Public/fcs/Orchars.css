@@ -1,0 +1,361 @@
+* {
+    box-sizing: border-box;
+}
+
+p,
+ul {
+    margin: 0 0;
+    padding: 0 0;
+    font-size: 14px;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    margin: 0 0;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+button {
+    border: none;
+}
+
+
+/* ============================== */
+
+#demo {
+    width: 100%;
+    /* position: absolute; */
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item {
+    width: 100%;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 520px;
+}
+
+.TwoBG {
+    z-index: 9;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    transform-style: preserve-3d;
+}
+
+.top {
+    width: 100%;
+    height: 82px;
+}
+
+
+/* 
+.top img.Q {
+    margin-top: -15px;
+} */
+
+.top img.q {
+    width: 100%;
+    margin-top: -15px;
+}
+
+.top img.w1,
+.top img.w2,
+.top img.w3 {
+    margin-top: -35px;
+}
+
+.top img.w1 {
+    margin-left: 10%;
+}
+
+.top img.w2 {
+    margin-left: 23%;
+}
+
+.top img.w3 {
+    margin-left: 18%;
+}
+
+.user {
+    overflow: hidden;
+    margin-top: -12px;
+}
+
+.user-left {
+    width: 45%;
+    background: greenyellow;
+    margin-left: 3%;
+    border-radius: 15px;
+    padding: 0 3%;
+    padding-top: 1%;
+    padding-bottom: -1%;
+    float: left;
+    overflow: hidden;
+}
+
+.u1 {
+    width: 30%;
+    /* border: solid 0.5px red; */
+    border-radius: 10px;
+    float: left;
+}
+
+.u1 img.ut {
+    width: 95%;
+}
+
+.uu {
+    width: 95%;
+    margin-top: -10px;
+    margin-left: 2%;
+}
+
+.u6 {
+    width: 13%;
+    /* position: relative; */
+    margin-left: 6.5%;
+    float: left;
+    margin-top: 0;
+}
+
+.u2 {
+    float: left;
+    width: 70%;
+    margin-top: 2%;
+}
+
+.u2 p.uname {
+    background: rgb(75, 45, 6);
+    color: wheat;
+    padding: 0 4%;
+    border-radius: 5px;
+}
+
+.u3 {
+    font-size: 11px;
+    margin-top: 0.3%;
+}
+
+.u3 span.box {
+    background: rgb(86, 138, 8);
+    display: inline-block;
+    width: 70%;
+    border-radius: 5px;
+}
+
+.u3 span.box span {
+    background: red;
+    display: inline-block;
+    width: 60%;
+    border-radius: 5px;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer div.fbg img {
+    width: 100%;
+}
+
+.footer ul {
+    position: relative;
+    overflow: hidden;
+    bottom: -42px;
+    z-index: 188;
+}
+
+.footer ul li {
+    text-align: center;
+    float: left;
+    width: 20%;
+}
+
+.footer ul li img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.mid .house {
+    width: 35%;
+    margin-left: 65%;
+    margin-top: 18%;
+}
+
+.mid .tudi {
+    width: 90%;
+}
+
+.mid .rive {
+    width: 35%;
+    margin-left: 63%;
+    margin-top: -30%;
+}
+
+.tudiD {
+    width: 65%;
+    margin-left: 20%;
+    overflow: hidden;
+    padding: 1%;
+    transform: rotate3d(2, -1, 2, 65deg);
+}
+
+.tudiD p {
+    width: 25%;
+    margin-top: 2%;
+    /* height: 40px; */
+    float: left;
+    position: relative;
+}
+
+.tudiD p img.cao {
+    width: 100%;
+    height: 50px;
+    transform: rotate(45deg);
+    /* display: none; */
+}
+
+.tudiD p img.htudi {
+    width: 100%;
+    height: 50px;
+    transform: rotate(45deg);
+    display: none;
+}
+
+.tudiD p img.tree {
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    z-index: 99;
+    left: -15px;
+    top: -19px;
+    transform: rotate(-45deg);
+    display: none;
+}
+
+.tudiD p img.trees {
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    z-index: 99;
+    left: -15px;
+    top: -19px;
+    transform: rotate(-45deg);
+    display: none;
+}
+
+.alert {
+    position: absolute;
+    width: 80%;
+    top: 30%;
+    z-index: 9999;
+    margin: 0 5%;
+    display: none;
+}
+
+.jiaoyi {
+    position: relative;
+    width: 100%;
+}
+
+.J-con {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+}
+
+.jiaoyi img.asdaq {
+    width: 100%;
+}
+
+.J-con p {
+    text-align: center;
+}
+
+.J-con form {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.J-con form label {
+    margin: 0 0;
+}
+
+.J-con form input {
+    height: 15px;
+    background: transparent;
+    background: rgb(78, 74, 74);
+    color: wheat;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 2px 5px wheat inset;
+}
+
+.J-con form p {
+    margin-top: 15%;
+    text-align: center;
+   
+}
+
+.J-con form p button {
+    border-radius: 20px;
+    color: rgb(253, 189, 11);
+    background: rgb(7, 199, 17);
+    text-shadow: 1px 1px 2px #FF0000;
+}
+
+@media screen and (max-width: 374px) {
+    .mid .tudiD {
+        width: 50%;
+        margin-top: -15%;
+        margin-left: 25%;
+    }
+    .mid .rive {
+        width: 35%;
+        margin-left: 63%;
+        margin-top: -40%;
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .carousel-inner img {
+        width: 100%;
+        height: 700px;
+    }
+}
+
+@media screen and (min-width: 420px) {
+    .carousel-inner img {
+        width: 100%;
+        height: 520px;
+    }
+}
+
+@media screen and (min-width: 520px) {
+    .carousel-inner img {
+        width: 100%;
+        height: 620px;
+    }
+}
+
+@media screen and (min-width: 710px) {
+    .carousel-inner img {
+        width: 100%;
+        height: 720px;
+    }
+}

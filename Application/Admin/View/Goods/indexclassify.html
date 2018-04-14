@@ -1,0 +1,53 @@
+<extend name="Layout/menu"/>
+<block name="content">
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+      <a href="#" class="tip-bottom" data-original-title="回到后台"><i class="icon-home"></i>后台</a> 
+      <a href="#" class="current">商品分类管理</a> </div>
+  </div>
+  <div class="container-fluid" style="text-align:center;">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>商品分类</h5>
+            <a href="__MODULE__/Goods/addclassify?goodsid={$goodsid}&cid=0" style="float:right;margin-right:20px"><h5>添加分类</h5></a>
+          </div>
+            <table class="table " >
+              <thead>
+                <tr>
+                  <th><span style="font:15px 微软雅黑,黑体">分类名称</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">父类</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">路径</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">操作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="list"  item="val">
+                  <tr class="gradeC">
+                    <td style="text-align:center">{$val.name}</td>
+                    <td style="text-align:center">{$val.fid}</td>
+                    <td style="text-align:center">{$val.path}</td>
+                    <!-- <td style="text-align:center"><div class="xianshi" gid="<{$val.id}>"><if condition="$val.display eq 0">显示<else />隐藏</if></div></td> -->
+                    <td class="center">
+                      <div style="text-align:center;">
+                        <a href="__MODULE__/Goods/findchildclass?id={$goodsid}&cid={$val.id}">查看子类</a>&nbsp;|
+                        <a href="__MODULE__/Goods/addclassify?goodsid={$goodsid}&cid={$val.id}">添加子类</a>&nbsp;|
+                        <if condition="$_SESSION['admin']['statu'] eq 1"> 
+                            <a href="__MODULE__/Goods/deleteclassify?id={$val.id}">删除</a>
+                        <else/>
+                        </if>
+                        </div>
+                    </td>
+                  </tr>
+                </foreach>
+              </tbody>
+            </table>
+        </div>
+      </div> 
+    </div>
+  </div>
+  {$pageinfo}
+</div>
+</block>

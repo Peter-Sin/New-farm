@@ -1,0 +1,50 @@
+<extend name="Layout/menu"/>
+<block name="content">
+
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> 
+    <a href="#" class="tip-bottom" data-original-title="回到后台"><i class="icon-home"></i>后台</a> 
+    <a href="#" class="tip-bottom">用户中心</a> 
+    <a href="#" class="current">用户充值</a> 
+  </div>
+  <h1>用户现金充值</h1>
+</div>
+<div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>用户充值</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="__MODULE__/User/userAddCash" method="post" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">用户名</label>
+              <div class="controls">
+                <input type="text" name="username" class="span11" value="<{$vo.username}>" disabled />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">充值美金值</label>
+              <div class="controls">
+                <input type="text" name="cash" class="span11" placeholder="输入需要充值的钱数" />
+              </div>
+            </div>
+           
+            <input type="hidden" name="id" value="<{$vo.id}>">
+            <div class="form-actions">
+              <button type="reset" class="btn btn-success">重置</button> 
+              <button type="submit" class="btn btn-success">充值</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+    </div>
+  </div>
+</div></div>
+<!--Footer-part-->
+</block>

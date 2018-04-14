@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>果然商城</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/page-info.css" />
+
+    <!-- <link rel="stylesheet" href="__PUBLIC__/Admin/css/colorpicker.css" /> -->
+<!-- <link rel="stylesheet" href="__PUBLIC__/Admin/css/datepicker.css" /> -->
+<!-- <link rel="stylesheet" href="__PUBLIC__/Admin/css/uniform.css" /> -->
+<!-- <link rel="stylesheet" href="__PUBLIC__/Admin/css/select2.css" /> -->
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/matrix-style.css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/matrix-media.css" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/bootstrap-wysihtml5.css" />
+<link href="__PUBLIC__/Admin/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'> -->
+<script src="__PUBLIC__/Admin/js/jquery.min.js"></script> 
+</head>
+<body>
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">果然商城</a></h1>
+</div>
+<!--close-Header-part--> 
+<!--top-Header-menu-->
+<include file="Public/header" />
+<!--start-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+  <ul>
+    <li><a href="__APP__/Admin/Index/index"><i class="icon icon-home"></i> <span>后台首页</span></a> </li>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>用户管理</span> <span class="label label-important"></span></a>
+      <ul>
+        <if condition="$_SESSION['admin']['statu'] eq 1">
+          <li><a href="__APP__/Admin/User/userinfo">我的信息</a></li>
+          <li><a href="__APP__/Admin/User/userManager">管理员</a></li>
+          <li><a href="__APP__/Admin/User/userManagerAdd">添加管理员</a></li>
+          <li><a href="__APP__/Admin/User/userList">网站用户</a></li>
+        <else/>
+          <li><a href="__APP__/Admin/User/userinfo">个人信息</a></li>
+        </if>
+      </ul>
+    </li>
+    <li class="submenu" > <a href="#"><i class="icon icon-th-list"></i> <span>果然商城</span> <span class="label label-important"></span></a>
+        <ul>
+            <li><a href="__APP__/Admin/Goods/index">商品信息</a></li>
+            <li><a href="__APP__/Admin/Order/index">订单信息</a></li>
+        </ul>
+    </li> 
+    <li class="submenu" > <a href="#"><i class="icon icon-th-list"></i> <span>一元夺宝</span> <span class="label label-important"></span></a>
+        <ul>
+            <li><a href="__APP__/Admin/Onemoney/index">商品信息</a></li>
+            <li><a href="__APP__/Admin/Onemoney/lootinfo">夺宝信息</a></li>
+        </ul>
+    </li>
+      <li class="submenu" > <a href="#"><i class="icon icon-th-list"></i> <span>农场管理</span> <span class="label label-important"></span></a>
+          <ul>
+              <li><a href="__APP__/Admin/Farm/index">会员管理</a></li>
+              <li><a href="__APP__/Admin/Farm/setting">系统设置</a></li>
+              <li><a href="__APP__/Admin/Farm/addfruitrecord">加减果子记录</a></li>
+              <!--<li><a href="__APP__/Admin/Farm/setting">会员登录记录</a></li>-->
+              <!--<li><a href="__APP__/Admin/Farm/setting">后台添加果子数</a></li>-->
+              <!--<li><a href="__APP__/Admin/Farm/setting">果子流水明细</a></li>-->
+              <!--<li><a href="__APP__/Admin/Farm/setting">系统设置</a></li>-->
+              <li><a href="__APP__/Admin/Farm/rate">拆分率</a></li>
+          </ul>
+      </li>
+  </ul>
+</div>
+<block name="content"></block>
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2018 &copy; Today <a href="http://themedesigner.in/">我们要一步一步迈向巅峰</a> </div>
+</div>
+<!--end-Footer-part-->
+<script src="__PUBLIC__/Admin/js/jquery.ui.custom.js"></script> 
+<script src="__PUBLIC__/Admin/js/bootstrap.min.js"></script> 
+<script src="__PUBLIC__/Admin/js/bootstrap-colorpicker.js"></script> 
+<script src="__PUBLIC__/Admin/js/bootstrap-datepicker.js"></script> 
+<!-- <script src="__PUBLIC__/Admin/js/jquery.toggle.buttons.html"></script>  -->
+<script src="__PUBLIC__/Admin/js/masked.js"></script> 
+<script src="__PUBLIC__/Admin/js/jquery.uniform.js"></script> 
+<!-- <script src="__PUBLIC__/Admin/js/select2.min.js"></script>  -->
+<script src="__PUBLIC__/Admin/js/matrix.js"></script> 
+<script src="__PUBLIC__/Admin/js/matrix.form_common.js"></script> 
+<!-- <script src="__PUBLIC__/Admin/js/wysihtml5-0.3.0.js"></script>  -->
+<script src="__PUBLIC__/Admin/js/jquery.peity.min.js"></script> 
+<!-- <script src="__PUBLIC__/Admin/js/bootstrap-wysihtml5.js"></script>  -->
+<script src="__PUBLIC__/Admin/js/jquery.dataTables.min.js"></script> 
+<script>
+  // $('.textarea_editor').wysihtml5();
+</script>
+</body>
+</html>
+

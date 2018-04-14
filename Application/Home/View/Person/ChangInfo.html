@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>修改信息</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/Chang.css">
+</head>
+
+<body style="background: white;">
+    <div class="Notic">
+        <form action="__MODULE__/Person/uploadchangeinfo" method="post" enctype="multipart/form-data">
+            <p class="nav-bar">
+                    <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 修改信息
+            </p>
+            <ul class="notic-box">
+                <li>
+                    <div class="asdas">
+                        <span>个人头像</span>
+                    </div>
+                    <section class="img-box">
+                        <if condition="$userinfo['faceimg']==null">
+                            <img class="Chang_img" src="__PUBLIC__/YM/fontimg/back2.png" alt="">
+                            <else/>
+                            <img class="Chang_img" src="__PUBLIC__/image/userimage/{$userinfo['faceimg']}" alt="">
+                        </if>
+
+                    </section>
+                    <input class="Beau" id="upload_file" name="Beau" type="file"  multiple>
+                </li>
+                <li>
+                    <div>
+                        <span>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称 &nbsp;&nbsp;</span>
+                        <input name="username" type="text" value="{$userinfo['username']}" placeholder="昵称">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名 &nbsp;&nbsp;</span>
+                        <input name="xingming" type="text" value="{$userinfo['realname']}" placeholder="姓名">
+                    </div>
+                </li>
+                <!-- <li>
+                    <div>
+                        <span>手&nbsp;&nbsp;机&nbsp;&nbsp;号 &nbsp;&nbsp;</span>
+                        <input name="phone" type="text" value="15617801519" placeholder="姓名">
+                    </div>
+                </li> -->
+                <li>
+                    <div>
+                        <span>支&nbsp;&nbsp;付&nbsp;&nbsp;宝 &nbsp;&nbsp;</span>
+                        <input name="Payphone" type="text" value="{$userinfo['alipay']}" placeholder="姓名">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别 &nbsp;&nbsp;</span>
+                        <input name="sex" type="text" value="{$userinfo['sex']}" placeholder="请输入性别">
+                    </div>
+                </li>
+                <!--<input type="submit" value="tijiao" class="hide">-->
+                <button type="submit" class="hide">提交</button>
+            </ul>
+        </form>
+        <div class="aale" style="  text-align: center;">
+            123
+        </div>
+    </div>
+</body>
+<script src="__PUBLIC__/js/ChangInfo.js"></script>
+
+</html>

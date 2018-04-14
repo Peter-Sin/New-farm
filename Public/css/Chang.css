@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    background-color: #f3f3f3;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h6,
+ul,
+p {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-bar {
+    background: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    position: relative;
+    color: #666;
+    border-bottom: solid 1px rgb(214, 211, 211);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.nav-bar a {
+    color: black;
+    text-decoration: none;
+}
+
+.back {
+    position: absolute;
+    height: 17px;
+    width: 10px;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.closes:hover {
+    transform: rotate(90deg);
+    transition: all .5s;
+}
+
+.notic-box {
+    margin-top: 32px;
+    background: white;
+}
+
+.notic-box li {
+    border-bottom: 1px solid rgb(212, 210, 210);
+    padding: 5% 0;
+    width: 96%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.notic-box li div {
+    float: left;
+    width: 70%;
+}
+
+.notic-box li section {
+    float: right;
+    width: 20%;
+    overflow: hidden;
+}
+
+.notic-box li section img {
+    width: 100%;
+}
+
+.notic-box li div span:nth-child(2) {
+    color: gray;
+}
+
+.asdas {
+    line-height: 50px;
+}
+
+.notic-box li div input {
+    width: 60%;
+    border: none;
+}
+
+.Chang_img {
+    cursor: pointer;
+}
+
+button {
+    border: none;
+    width: 150px;
+    padding: 1%;
+    text-align: center;
+    margin-left: 27%;
+    margin-top: 10%;
+    background: rgb(8, 161, 207);
+    color: wheat;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.aale {
+    display: none;
+}
+
+.Beau {
+    display: none;
+}

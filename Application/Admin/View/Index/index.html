@@ -1,0 +1,50 @@
+<extend name="Layout/menu"/>
+<block name="content">
+
+<!--main-container-part-->
+<div id="content">
+<!--breadcrumbs-->
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-content">
+            <div class="error_ex">
+              <h1>果然商城</h1>
+              <br> <br> <br> <br> <br> <br> <br> <br>
+              <h3>果然商城，属于你的自由购物空间</h3> <br> <br> <br> <br> <br> <br>
+              <p>胜讯网络科技工作组 出品 2018</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End-breadcrumbs-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"></div>
+</div>
+
+<!--end-Footer-part-->
+
+
+<script type="text/javascript">
+
+  function goPage (newURL) {
+
+      if (newURL != "") {
+          if (newURL == "-" ) {
+              resetMenu();            
+          }          
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+</script>
+</block>
