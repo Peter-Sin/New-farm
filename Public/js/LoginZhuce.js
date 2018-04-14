@@ -93,14 +93,18 @@ $(".btn_regist").click(function () {
         setTimeout(function () {
             $(".tishi").hide()
         }, 2000)
-    } else if(data.Tphone){
-        if(!DataJson.checkPhone(data.Tphone) || data.Tphone.length != 11) {
-            $(".tishi").show()
-            $(".tishi").html("推荐人手机号格式不正确")
+    } else if(data.Tphone && (!DataJson.checkPhone(data.Tphone) || data.Tphone.length != 11)) {
+            $(".tishi").show();
+            $(".tishi").html("推荐人手机号格式不正确");
             setTimeout(function () {
                 $(".tishi").hide()
             }, 2000)
-        }
+    } else if(data.Tphone == data.phone) {
+        $(".tishi").show();
+        $(".tishi").html("推荐人不能为自己");
+        setTimeout(function () {
+            $(".tishi").hide()
+        }, 2000)
     }else if(data.password=="" || !data.password){
         $(".tishi").show()
         $(".tishi").html("请输入密码")
@@ -141,9 +145,10 @@ $(".btn_regist").click(function () {
                     $(".tishi").show()
                     $(".tishi").html("注册成功")
                     setTimeout(function () {
-                        $(".tishi").hide()
-                    }, 2000)
-                    window.location.href = "__MODULE__/login/index";
+                        $(".tishi").hide();
+                        window.location.href = "../login/index";
+                    }, 3000);
+
                 } else if (result.resultCode == 300) {
                     $(".tishi").show()
                     $(".tishi").html("验证码有误")
