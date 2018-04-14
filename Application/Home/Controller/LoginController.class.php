@@ -80,7 +80,7 @@ class LoginController extends Controller {
 				$data['registime']=date("Y-m-d H:i:s");
 				$sql=$mod->data($data)->add();
 				$arr['uid']=$sql;
-				$arr['lownum']=300;//默认最低300果子
+				$arr['lownum']=0;//默认最低0果子
                 $arr['content']="默认";
 				$res1=$lowest->data($arr)->add();
 				$think['uid']=$sql;

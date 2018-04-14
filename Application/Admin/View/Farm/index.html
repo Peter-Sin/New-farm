@@ -59,7 +59,9 @@
                 <td>{$val.lnum}</td>
                 <td>{$val.telphone}</td>
                 <td>{$val.lowest}</td>
-                <td><a href="__MODULE__/Farm/setlowest?id={$val.id}">设置</a></td>
+                <td><a href="__MODULE__/Farm/setlowest?id={$val.id}">设置</a>|
+                <!--<a href="__MODULE__/Farm/edituser?id={$val.id}">修改</a>|-->
+                <a href="__MODULE__/Farm/deleteuser?id={$val.id}">删除</a></td>
               </tr>
               </foreach>
               </tbody>

@@ -12,6 +12,8 @@ class FarmController extends AllowController {
         $this->trading_limits=$info['trading_limits'];//交易最低额度
         $this->user_steal=$info['user_steal']/100;//用户偷取百分比
         $this->trade_exchange=$info['trade_exchange']/100;//交易兑换百分比
+        $this->uprate=$info['uprate']/100;
+        $this->upuprate=$info['upuprate']/100;
     }
 
     private function lowest(){
@@ -304,22 +306,79 @@ class FarmController extends AllowController {
                     $fruitnum=$f_mygoods->where("uid='$uid'")->getField("fruit");
                     $datas['fruit']=$fruitnum+$total;
                     $result=$f_mygoods->where("uid='$uid'")->data($datas)->save();
-                    if($result){
-                        haravestinfo($total);
-                        M()->commit();
-                        $response=array(
-                            'resultCode'=>200,
-                            'content'=>'收获成功'
-                        );
-                        $this->ajaxReturn($response,'json');
-                    }else{
-                        M()->rollback();
-                        $response=array(
-                            'resultCode'=>400,
-                            'content'=>'收获失败'
-                        );
-                        $this->ajaxReturn($response,'json');
+                    $user=M("user");
+                    $userinfo=$user->where("id='$uid'")->find();
+
+                    $usertel=$userinfo["referee"];
+                    $upuserinfo=$user->where("telphone='$usertel'")->find();
+                    if($upuserinfo){
+                        $uprare=$this->uprate;
+                        $upuprare=$this->upuprate;
+                        $upuserid=$upuserinfo["id"];//上级id
+                        $upfruittotal=$total*$uprare;
+                        $result1=$f_mygoods->where("uid='$upuserid'")->setInc("fruit",$upfruittotal);
+
+                        $upusertel=$upuserinfo["referee"];
+                        $upupuserinfo=$user->where("telphone='$upusertel'")->find();
+                        if($upupuserinfo){
+                            $upupuserid=$upupuserinfo["id"];//上上级id
+                            $upupfruittotal=$total*$upuprare;
+                            $result2=$f_mygoods->where("uid='$upupuserid'")->setInc("fruit",$upupfruittotal);
+                        }
                     }
+                    if($upuserinfo && !$upupuserinfo){
+                        if($result && $result1){
+                            haravestinfo($total);
+                            M()->commit();
+                            $response=array(
+                                'resultCode'=>200,
+                                'content'=>'收获成功'
+                            );
+                            $this->ajaxReturn($response,'json');
+                        }else{
+                            M()->rollback();
+                            $response=array(
+                                'resultCode'=>400,
+                                'content'=>'收获失败'
+                            );
+                            $this->ajaxReturn($response,'json');
+                        }
+                    }else if(!$upuserinfo){
+                        if($result){
+                            haravestinfo($total);
+                            M()->commit();
+                            $response=array(
+                                'resultCode'=>200,
+                                'content'=>'收获成功'
+                            );
+                            $this->ajaxReturn($response,'json');
+                        }else{
+                            M()->rollback();
+                            $response=array(
+                                'resultCode'=>400,
+                                'content'=>'收获失败'
+                            );
+                            $this->ajaxReturn($response,'json');
+                        }
+                    }else if($upuserinfo && $upupuserinfo){
+                        if($result && $result1 && $result2){
+                            haravestinfo($total);
+                            M()->commit();
+                            $response=array(
+                                'resultCode'=>200,
+                                'content'=>'收获成功'
+                            );
+                            $this->ajaxReturn($response,'json');
+                        }else{
+                            M()->rollback();
+                            $response=array(
+                                'resultCode'=>400,
+                                'content'=>'收获失败'
+                            );
+                            $this->ajaxReturn($response,'json');
+                        }
+                    }
+
                 }
             }
 		}

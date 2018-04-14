@@ -28,8 +28,9 @@ class PersonController extends AllowController
         $info = $user->where("id='$id'")->find();
         $info['faceimg']="/Public/image/userimage/".$info['faceimg'];
         $goodsinfo = $f_mygoods->where("uid='$id'")->field("fruit,voucher,land")->find();
-        $land_price=$this->land_price;
-        $info['landprice']=$goodsinfo['land']*$land_price;
+//        $land_price=$this->land_price;
+//        $goodsinfo['land']*$land_price
+        $info['landprice']=300;
         $info['fruitnum'] = $goodsinfo['fruit'];
         $info['vouchernum'] = $goodsinfo['voucher'];
         $this->ajaxReturn($info, 'json');
@@ -156,6 +157,20 @@ class PersonController extends AllowController
         $user = M("user");
         $uid = $_SESSION["uid"];
         $info = $user->where("id='$uid'")->find();
+        $f_rate=M("f_rate");
+        $f_land=M("f_land");
+        $landcount=$f_land->where("uid='$uid'")->count();
+        $todayrate=$f_rate->where("land_num='$landcount'")->getField("rate");
+        $castime=date("Y-m-d",time());
+        $landcount1=$f_land->where("time<='$castime'")->count();
+        $yesterdayrate=$f_rate->where("land_num='$landcount1'")->getField("rate");
+        $latime=date('Y-m-d H:i:s');
+        $casstime=date('Y-m-d H:i:s',strtotime($castime));
+        $this->assign('latime',$latime);
+        $this->assign('castime',$casstime);
+        $this->assign('todayrate', $todayrate);
+        $this->assign('yesterdayrate', $yesterdayrate);
+        $this->assign('yesterdayrate', $yesterdayrate);
         $this->assign('info', $info);
         $this->display('rate');
     }
@@ -273,7 +288,7 @@ class PersonController extends AllowController
     {
         $user = M("user");
         $uid = $_SESSION['uid'];
-        $userinfo = $user->where("id='$uid'")->field('faceimg,username,realname,sex,telphone,alipay')->find();
+        $userinfo = $user->where("id='$uid'")->field('faceimg,username,referee,realname,sex,telphone,alipay')->find();
         if (empty($userinfo['src'])) {
             $userinfo['src'] = '__PUBLIC__/YM/fontimg/back2.png';
         }
@@ -287,30 +302,38 @@ class PersonController extends AllowController
     }
 
     public function uploadchangeinfo(){
+
         $user = M("user");
-        $uid = $_SESSION['uid'];
-        $upload = new \Think\Upload();
-        $upload->sizeMax = 3147528;//初始化大小
-        $upload->exts = array("png", "gif", "jpeg", "jpg");//初始化上传类型
-        $upload->rootPath = "./Public/image/userimage/";//初始化上传路径
-        $upload->autoSub = false;
-        $info = $upload->upload();
-        if (!$info) {
-            $this->error("请选择图片", U("Person/changeinfo"));exit;
-        } else {
-            $data['faceimg']=$info['Beau']['savename'];
-            $data['username'] = $_POST['username'];
-            $data['realname'] = $_POST['xingming'];
-            $data['alipay'] = $_POST['Payphone'];
-            if ($_POST['sex'] == "男") {
-                $data['sex'] = 1;
+        if($_FILES['Beau']['size']) {
+            $upload = new \Think\Upload();
+            $upload->sizeMax = 3147528;//初始化大小
+            $upload->exts = array("png", "gif", "jpeg", "jpg");//初始化上传类型
+            $upload->rootPath = "./Public/image/userimage/";//初始化上传路径
+            $upload->autoSub = false;
+            $info = $upload->upload();
+            if (!$info) {
+                $this->error("请选择图片", U("Person/changeinfo"));
+                exit;
             } else {
-                $data['sex'] = 2;
+                $data['faceimg'] = $info['Beau']['savename'];
             }
-            $res = $user->where("id='$uid'")->data($data)->save();
-            if ($res) {
-                Header('Location:../Person/changeinfo');
-            }
+        }
+        $uid = $_SESSION['uid'];
+        $data['username'] = $_POST['username'];
+        $data['realname'] = $_POST['xingming'];
+        if($_POST['refereeas']=="" || !$_POST['refereeas']){
+            $data['referee'] = $_POST['referee'];
+        }
+        $data['alipay'] = $_POST['Payphone'];
+        if ($_POST['sex'] == "男") {
+            $data['sex'] = 1;
+        } else {
+            $data['sex'] = 2;
+        }
+        $res = $user->where("id='$uid'")->data($data)->save();
+        if ($res) {
+            echo "<script>alert('修改成功');</script>";
+            Header('Location:../Person/changeinfo');
         }
     }
 

@@ -21,7 +21,7 @@
             <foreach name="info" item="val">
               <form class="form-horizontal" action="__MODULE__/Farm/uploadrate" method="post" >
                 <div class="control-group">
-                  <label class="control-label">{$val['land_num']}棵树</label>
+                  <label class="control-label">{$val['land_num']}块地</label>
                   <div class="controls">
                     <input name="rate" class="span3" type="text" value="{$val['rate']}">
                     <input name="lnum" class="span3" type="hidden" value="{$val['land_num']}">

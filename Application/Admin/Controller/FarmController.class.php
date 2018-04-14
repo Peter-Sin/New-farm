@@ -46,6 +46,30 @@ class FarmController extends AllowController
         $this->display("index");
     }
 
+    public function deleteuser(){
+        $uid=$_GET['id'];
+        $user=M("user");
+        $ouser=M("ouser");
+        $data=$user->where("id='$uid'")->field('username,telphone,vipid,realname,sex,alipay,referee,registime,faceimg,recomcode')->find();
+        $data['oid']=$uid;
+        $data['time']=date('Y-m-d H:i:s');
+        M()->startTrans();//开始事务处理
+        $res=$ouser->data($data)->add();
+        $result=$user->where("id='$uid'")->delete();
+        if($res && $result){
+            M()->commit();
+            $this->success(删除成功);
+        }else{
+            M()->rollback();
+            $this->success(删除失败);
+        }
+    }
+
+
+    public function edituser(){
+        $this->display('edituser');
+    }
+
     public function setting(){
         $mod=M("setting");
         $info=$mod->where("id='1'")->find();
@@ -63,6 +87,8 @@ class FarmController extends AllowController
         $data['trading_limits']=$_POST["trading_limits"];
         $data['user_steal']=$_POST["user_steal"];
         $data['trade_exchange']=$_POST["trade_exchange"];
+        $data['uprate']=$_POST["uprate"];
+        $data['upuprate']=$_POST["upuprate"];
         $res=$mod->where("id='1'")->data($data)->save();
         if($res){
             $this->success(修改成功,'./setting');
@@ -76,6 +102,25 @@ class FarmController extends AllowController
         $info=$f_rate->select();
         $this->assign("info",$info);
         $this->display('rate');
+    }
+
+    public function landcycle(){
+        $f_rate=M("f_rate");
+        $info=$f_rate->select();
+        $this->assign("info",$info);
+        $this->display('landcycle');
+    }
+
+    public function uploadlandcycle(){
+        $f_rate=M("f_rate");
+        $where['land_num']=$_POST['lnum'];
+        $data['cycle']=$_POST['cycle'];
+        $res=$f_rate->where($where)->data($data)->save();
+        if($res){
+            $this->success(修改成功,'./landcycle');
+        }else{
+            $this->error(修改失败,'./landcycle');
+        }
     }
 
     public function uploadrate(){
@@ -170,6 +215,9 @@ class FarmController extends AllowController
         $uid=$_GET['id'];
         $user=M("user");
         $info=$user->where("id='$uid'")->field("username,id")->find();
+        $uid=$info['id'];
+        $f_lowest=M("f_lowest");
+        $info['lownum']=$f_lowest->where("uid='$uid'")->getField("lownum");
         $this->assign("info",$info);
         $this->display("setlowest");
     }

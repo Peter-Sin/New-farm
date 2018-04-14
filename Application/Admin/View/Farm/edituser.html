@@ -1,0 +1,60 @@
+<extend name="Layout/menu"/>
+<block name="content">
+    <!--sidebar-menu-->
+    <div id="content">
+        <div id="content-header">
+            <div id="breadcrumb">
+                <a href="#" class="tip-bottom" data-original-title="回到后台">
+                    <i class="icon-home"></i>后台
+                </a>
+                <a href="#">系统设置</a>
+                <a href="#" class="current">农场设置</a>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                    <h5>编辑信息</h5>
+                    <a href=""><span class="label label-info">Featured</span></a>
+                </div>
+                <div class="widget-content nopadding">
+                    <form class="form-horizontal" method="post" action="__MODULE__/Farm/uploadaddfruit" name="number_validate" id="number_validate" novalidate="novalidate">
+                        <div class="control-group">
+                            <label class="control-label">用户昵称</label>
+                            <div class="controls">
+                                <input name="username" class="span3" value="{$userinfo['username']}" type="text">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">果子数量</label>
+                            <div class="controls">
+                                <input name="num" class="span3" type="number">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">添加说明</label>
+                            <div class="controls">
+                                <input name="content" class="span3" type="text">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">推荐号码</label>
+                            <div class="controls">
+                                <input name="refereetel" class="span3" type="text">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">果子数量</label>
+                            <div class="controls">
+                                <input name="refereenum" class="span3" type="number">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <input value="提交" class="btn btn-success" id="submitdata" type="submit"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
