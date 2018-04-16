@@ -24,9 +24,9 @@ function js_sdk(){
 
 
 //站内信
-function resigninfo(){
+function resigninfo($uid){
     $letter=M("letter");
-    $data['uid']=$_SESSION['uid'];
+    $data['uid']=$uid;
     $data['classid']=1;//注册
     $data['tuid']=0;
     $data['num']=0;

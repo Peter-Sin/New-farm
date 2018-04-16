@@ -808,12 +808,12 @@ public function fruitlist(){
         if($res){
             $response=array(
                 'resultCode'=>'200',
-                'data'=>'删除成功',
+                'data'=>'邮箱已清空',
             );
         }else{
             $response=array(
                 'resultCode'=>'300',
-                'data'=>'删除失败',
+                'data'=>'清空失败',
             );
         }
         $this->ajaxReturn($response,'json');

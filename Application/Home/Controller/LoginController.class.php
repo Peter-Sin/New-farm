@@ -91,7 +91,7 @@ class LoginController extends Controller {
                 $res2=$mygoods->data($think)->add();
 				if($sql && $res1 && $res2){
                     M()->commit();
-                    resigninfo();
+                    resigninfo($sql);
 					$response=array(
 						'resultCode'=>200,
 					);

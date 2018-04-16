@@ -329,29 +329,26 @@ $(function () {
 
 $(function () {
     $(".T_Q").click(function () {
-        var thiss =$(".letter");
-        console.log($(".Z_Alert"));
         var information = "您确定要清空邮箱吗？";
-         $(".AlertBox").fadeIn(50);
+         $(".Email").fadeOut(50);
          $(".Z_Alert").fadeIn(70);
          $(".Z_infor").html(information);
          $(".Z__Q").click(function (){
             $(".AlertBox").fadeOut(50);
             $(".Z_Alert").fadeOut(70);
-        // $.ajax({
-        //     type: "POST",
-        //     dataType: "json",
-        //     url: "../Farm/deleteallletter",
-        //     // data:({pid:pid}),
-        //     success: function (result) {
-        //         if(result.resultCode==200){
-        //             alert("邮箱已清空");
-        //             thiss.hide();
-        //         }else if(result.resultCode==300){
-        //             alert("邮箱清空失败");
-        //         }
-        //     }
-        })
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Farm/deleteallletter",
+                success: function (result) {
+                    if(result.resultCode==200){
+                        alert("邮箱已清空");
+                    }else if(result.resultCode==300){
+                        alert("邮箱清空失败");
+                    }
+                }
+            })
+         })
     })
     $(".T_D").click(function () {
         var boll = "1";
