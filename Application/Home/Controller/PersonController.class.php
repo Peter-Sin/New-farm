@@ -81,6 +81,9 @@ class PersonController extends AllowController
         $user = M("user");
         $uid = $_SESSION["uid"];
         $info = $user->where("id='$uid'")->find();
+        if(!$info['referee']){
+            $info['referee']="暂无";
+        }
         $this->assign('info', $info);
         $this->display('friend');
     }
@@ -129,9 +132,8 @@ class PersonController extends AllowController
                 'resultCode' => '200',
                 'friends' => $friends,
             );
+            $this->ajaxReturn($response, 'json');
         }
-        $this->ajaxReturn($response, 'json');
-
     }
 
     public function rate()

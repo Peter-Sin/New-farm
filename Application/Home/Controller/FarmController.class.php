@@ -339,7 +339,7 @@ class FarmController extends AllowController {
                             M()->rollback();
                             $response=array(
                                 'resultCode'=>400,
-                                'content'=>'收获失败'
+                                'content'=>'收获失败1'
                             );
                             $this->ajaxReturn($response,'json');
                         }
@@ -356,7 +356,7 @@ class FarmController extends AllowController {
                             M()->rollback();
                             $response=array(
                                 'resultCode'=>400,
-                                'content'=>'收获失败'
+                                'content'=>'收获失败2'
                             );
                             $this->ajaxReturn($response,'json');
                         }
@@ -373,7 +373,7 @@ class FarmController extends AllowController {
                             M()->rollback();
                             $response=array(
                                 'resultCode'=>400,
-                                'content'=>'收获失败'
+                                'content'=>'收获失败3'
                             );
                             $this->ajaxReturn($response,'json');
                         }
