@@ -659,7 +659,7 @@ public function fruitlist(){
 			$list=$f_steal->where("tuid='$uid'")->select();
 			foreach($list as $key =>$val){
 				$uid=$val['uid'];
-				$info=$user_>where("id='$uid'")->find();
+				$info=$user->where("id='$uid'")->find();
 				$list[$key]['username']=$info['username'];
 				$list[$key]['vipid']=$info['vipid'];
 			}

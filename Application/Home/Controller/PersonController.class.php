@@ -147,7 +147,7 @@ class PersonController extends AllowController
         $user = M("user");
         $uid = $_SESSION["uid"];
         $info = $user->where("id='$uid'")->find();
-        if(!info['referee']){
+        if(!$info['referee']){
             $info['referee']="暂无";
         }
         $f_rate=M("f_rate");
@@ -267,14 +267,33 @@ class PersonController extends AllowController
         $where['password'] = md5($_POST['pass']);
         $info = $user->where($where)->find();
         if ($info) {
-            $data['paypass'] = md5($_POST['password']);
-            $res = $user->where($where)->data($data)->save();
-            if ($res) {
-                $this->ajaxReturn(1);//密码设置成功
+            if($info['paypass']==md5($_POST['password'])){
+                $response=array(
+                    'resultCode'=>'300',
+                    'data'=>'新密码与旧密码一样',
+                );
+            }else{
+                $data['paypass'] = md5($_POST['password']);
+                $res = $user->where($where)->data($data)->save();
+                if ($res) {
+                    $response=array(
+                        'resultCode'=>'200',
+                        'data'=>'密码设置成功',
+                    );
+                } else {
+                    $response=array(
+                        'resultCode'=>'400',
+                        'data'=>'密码设置失败',
+                    );
+                }
             }
-        } else {
-            $this->ajaxReturn(0);//密码输入有误
+        }else{
+            $response=array(
+                'resultCode'=>'500',
+                'data'=>'密码输入有误',
+            );
         }
+        $this->ajaxReturn($response,'json');
     }
 
     public function changeinfo()

@@ -135,11 +135,11 @@ console.log("123456789");
     });
     $('#destroyedit').click(function () {
         $citypicker3.citypicker('destroyedit');
-        var addrid = $(this).attr("addrid")
-        var user = $("input[name='user'] ").val()
-        var phone = $("input[name='phone'] ").val()
-        var adress = $("input[name='adress'] ").val()
-        var city = $("input[name='citys'] ").val()
+        var addrid = $(this).attr("addrid");
+        var user = $("input[name='user'] ").val();
+        var phone = $("input[name='phone'] ").val();
+        var adress = $("input[name='adress'] ").val();
+        var city = $("input[name='citys'] ").val();
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -147,7 +147,6 @@ console.log("123456789");
             data: ({ user: user, phone: phone, adress: adress, city: city, addrid: addrid }),
             success: function (result) {
                 if (result.resultCode == 200) {
-                    // console.log("bainji")
                     window.location.href = '../Address/chooadres'
                 }
             },

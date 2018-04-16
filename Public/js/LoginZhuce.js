@@ -311,13 +311,17 @@ $("#Paypasss").submit(function (e) {
             //几个参数需要注意一下
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "__MODULE__/Person/update" ,//url
+            url: "../Person/update" ,//url
             data: $("#Paypasss").serialize(),
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
-                if (result == 1) {
+                if (result.resultCode==200) {
                     alert("SUCCESS");
-                    window.location.href = "__MODULE__/index/index";
+                    window.location.href = "../index/index";
+                }else if(result.resultCode==300){
+                    alert("新密码与旧密码一样");
+                }else if(result.resultCode==400){
+                    alert("登录密码输入有误");
                 }
                 ;
             },
