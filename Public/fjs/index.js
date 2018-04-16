@@ -331,7 +331,13 @@ $(function () {
     $(".T_Q").click(function () {
         var thiss =$(".letter");
         console.log($(".Z_Alert"));
-        $(".Z_Alert").show();
+        var information = "您确定要清空邮箱吗？";
+         $(".AlertBox").fadeIn(50);
+         $(".Z_Alert").fadeIn(70);
+         $(".Z_infor").html(information);
+         $(".Z__Q").click(function (){
+            $(".AlertBox").fadeOut(50);
+            $(".Z_Alert").fadeOut(70);
         // $.ajax({
         //     type: "POST",
         //     dataType: "json",
@@ -345,7 +351,7 @@ $(function () {
         //             alert("邮箱清空失败");
         //         }
         //     }
-        // })
+        })
     })
     $(".T_D").click(function () {
         var boll = "1";
