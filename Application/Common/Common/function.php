@@ -144,3 +144,14 @@ function exchangeinfo($num){
     $res=$letter->data($data)->add();
     return $res;
 }
+
+function lowerlevel($uid,$num,$n){
+    $letter=M("letter");
+    $data['uid']=$uid;
+    $data['classid']=$n;//12下级   13 下下级
+    $data['tuid']=$_SESSION['uid'];//偷
+    $data['num']=$num;
+    $data['time']=date("Y-m-d H:i:s");
+    $res=$letter->data($data)->add();
+    return $res;
+}

@@ -328,6 +328,7 @@ class FarmController extends AllowController {
                     if($upuserinfo && !$upupuserinfo){
                         if($result && $result1){
                             haravestinfo($total);
+                            lowerlevel($upuserid,$upfruittotal,12);
                             M()->commit();
                             $response=array(
                                 'resultCode'=>200,
@@ -362,6 +363,8 @@ class FarmController extends AllowController {
                     }else if($upuserinfo && $upupuserinfo){
                         if($result && $result1 && $result2){
                             haravestinfo($total);
+                            lowerlevel($upuserid,$upfruittotal,12);
+                            lowerlevel($upupuserid,$upupfruittotal,13);
                             M()->commit();
                             $response=array(
                                 'resultCode'=>200,
@@ -768,6 +771,20 @@ public function fruitlist(){
                     case '11':
                         $num=$val['num'];
                         $list[$key]['content']='你成功兑换'.$num.'个券';
+                        $list[$key]['time']=$val['time'];
+                        break;
+                    case '12':
+                        $num=$val['num'];
+                        $tuid=$val['tuid'];
+                        $username=$user->where("id='$tuid'")->getField("username");
+                        $list[$key]['content']='下级'.$username.'收获成功，系统赠送你'.$num.'个果子';
+                        $list[$key]['time']=$val['time'];
+                        break;
+                    case '13':
+                        $num=$val['num'];
+                        $tuid=$val['tuid'];
+                        $username=$user->where("id='$tuid'")->getField("username");
+                        $list[$key]['content']='下下级'.$username.'收获成功，系统赠送你'.$num.'个果子';
                         $list[$key]['time']=$val['time'];
                         break;
                 }
