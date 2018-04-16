@@ -228,33 +228,45 @@ $(function () {
                 boll = "2";
                 var Lis = $(".ifC").find("li");
                   Lis.click(function () {
-                      if(boll == "2"){
+                      var landid = $(this).attr("landid");
+                      var treeid = $(this).attr("treeid");
+                      if (boll == "2") {
                           boll = "3";
-                          var num=$(this).index();
-                          var thiss = $(this);
-                          var landid = $(this).attr("landid");
-                          var treeid = $(this).attr("treeid");
-                          var fruitid = $(this).attr("fruitid");
-                          if(landid==1 && treeid==1){
-                              $.ajax({
-                                  type: "POST",
-                                  dataType: "json",
-                                  url: "../Farm/xiuli",
-                                  data: ({abc:ins,num:num+1}),
-                                  success: function (result) {
-                                      if (result.resultCode == 200) {
-                                          alert("已铲除");
-                                          window.location.reload();
-                                      }else if(result.resultCode == 300){
-                                          alert("铲除失败");
+                          if(landid==1 && treeid==1) {
+                              var num = $(this).index();
+                              var fruitid = $(this).attr("fruitid");
+                              if (fruitid == 1) {
+                                  var information = "您的果子还未收获，确定要铲除吗？";
+                              } else {
+                                  var information = "您的果子还未成熟，确定要铲除吗？";
+                              }
+                              $(".AlertBox").fadeIn(50);
+                              $(".Z_Alert").fadeIn(70);
+                              $(".Z_infor").html(information);
+                              $(".Z__Q").click(function (){
+                                  $(".AlertBox").fadeOut(50);
+                                  $(".Z_Alert").fadeOut(70);
+                                  $.ajax({
+                                      type: "POST",
+                                      dataType: "json",
+                                      url: "../Farm/xiuli",
+                                      data: ({abc:ins,num:num+1}),
+                                      success: function (result) {
+                                          if (result.resultCode == 200) {
+                                              alert("已铲除");
+                                              window.location.reload();
+                                          }else if(result.resultCode == 300){
+                                              alert("铲除失败");
+                                          }
                                       }
-                                  }
+                                  })
                               })
                           }else{
                               alert("没有果树可以铲除");
                           }
                       }
                   })
+
             }else if (ins == 2) {
                 $.ajax({
                     type: "POST",
@@ -318,20 +330,22 @@ $(function () {
 $(function () {
     $(".T_Q").click(function () {
         var thiss =$(".letter");
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "../Farm/deleteallletter",
-            data:({pid:pid}),
-            success: function (result) {
-                if(result.resultCode==200){
-                    alert("邮箱已清空");
-                    thiss.hide();
-                }else if(result.resultCode==300){
-                    alert("邮箱清空失败");
-                }
-            }
-        })
+        console.log($(".Z_Alert"));
+        $(".Z_Alert").show();
+        // $.ajax({
+        //     type: "POST",
+        //     dataType: "json",
+        //     url: "../Farm/deleteallletter",
+        //     // data:({pid:pid}),
+        //     success: function (result) {
+        //         if(result.resultCode==200){
+        //             alert("邮箱已清空");
+        //             thiss.hide();
+        //         }else if(result.resultCode==300){
+        //             alert("邮箱清空失败");
+        //         }
+        //     }
+        // })
     })
     $(".T_D").click(function () {
         var boll = "1";

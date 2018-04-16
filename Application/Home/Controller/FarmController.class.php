@@ -227,15 +227,14 @@ class FarmController extends AllowController {
                     'resultCode'=>200,
                     'content'=>'success'
                 );
-                $this->ajaxReturn($response,'json');
             }else{
                 M()->rollback();
                 $response=array(
                     'resultCode'=>300,
                     'content'=>'铲除失败'
                 );
-                $this->ajaxReturn($response,'json');
             }
+            $this->ajaxReturn($response,'json');
 		}elseif($abc==3){//收获
 			$f_harvest=M("f_harvest");
 			$f_mygoods=M("f_mygoods");
