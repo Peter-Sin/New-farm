@@ -625,7 +625,7 @@ public function fruitlist(){
                     $fruit_tree_life = $this->fruit_tree;//树木生命值
                     $dietime = strtotime($v['time']) + $fruit_tree_life * 24 * 3600;//树木死亡时间
                     if ($dietime > time()) {
-                        if ($cstime <= time()) {
+                        if ($chnegshutime <= time()) {
                             if($stealtime<$chnegshutime){//判断偷取是否在成熟之前
                                 $total+=$tree_price*$harvest[0]['rate'];
                                 $i++;

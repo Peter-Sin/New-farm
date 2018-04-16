@@ -30,6 +30,9 @@ class PersonController extends AllowController
         $goodsinfo = $f_mygoods->where("uid='$id'")->field("fruit,voucher,land")->find();
 //        $land_price=$this->land_price;
 //        $goodsinfo['land']*$land_price
+        if(!$goodsinfo['referee']){
+            $goodsinfo['referee']="暂无";
+        }
         $info['landprice']=300;
         $info['fruitnum'] = $goodsinfo['fruit'];
         $info['vouchernum'] = $goodsinfo['voucher'];
@@ -50,6 +53,9 @@ class PersonController extends AllowController
         $user = M("user");
         $uid = $_SESSION["uid"];
         $info = $user->where("id='$uid'")->find();
+        if(!$info['referee']){
+            $info['referee']="暂无";
+        }
         $value = 'http://'.$_SERVER['SERVER_NAME'].'/index.php/Home/login/register?tel='.$info['telphone']; //二维码内容
         if(empty($info['recomcode'])){
             Vendor('phpqrcode.phpqrcode');
@@ -141,6 +147,9 @@ class PersonController extends AllowController
         $user = M("user");
         $uid = $_SESSION["uid"];
         $info = $user->where("id='$uid'")->find();
+        if(!info['referee']){
+            $info['referee']="暂无";
+        }
         $f_rate=M("f_rate");
         $f_land=M("f_land");
         $landcount=$f_land->where("uid='$uid'")->count();
