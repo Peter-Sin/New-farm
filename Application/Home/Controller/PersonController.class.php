@@ -207,6 +207,9 @@ class PersonController extends AllowController
 
     public function online()
     {
+        $online=M("online");
+        $list=$online->select();
+        $this->assign("list",$list);
         $this->display('online');
     }
 
