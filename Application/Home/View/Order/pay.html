@@ -5,6 +5,7 @@
     <title>去支付</title>
 </head>
 <body>
-<div><p>金额:</p><p>{$info['tee']}</p></div>
+<div><p>金额:</p><p class="tee">{$info['money']}</p></div>
+<button><a href="__MODULE__/Order/dowxpay?order={$info['ordernum']}">去支付</a></button>
 </body>
 </html>

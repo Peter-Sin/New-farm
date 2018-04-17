@@ -14,19 +14,18 @@
           <div class="widget-content nopadding">
             <div style="height:50px;">
               <div style="float:left; margin:12px 0px 0px 30px;font:18px 微软雅黑;">正在管理</div>
-              <div type="text" name="name" style="width:160px; margin:10px 0px 0px 5px;float:left;font:24px 楷体; text-align:center; color:red;">{$info['name']}
+              <div type="text" name="name" style="width:160px; margin:10px 0px 0px 5px;float:left;font:20px 楷体; text-align:center; color:red;">{$info['name']}
               </div>
               <div style="float:left; margin:15px 0px 0px 10px;font:15px 微软雅黑;">的图片</div>
               <div class="controls" style="float:left; margin:0px 10px 0px 20px;"></div>
               <div class="control-group" > 
                 <form action ="__MODULE__/Goods/uploadimage" method="post" class="form-horizontal" enctype="multipart/form-data" >
                   <div class="controls controls-row" style="float:left">
-                      <input type="file" name="img">
-                      <input type="hidden" name="id" value="{$info['id']}">
+                    <label class="control-label">添加图片</label>
+                    <input type="file" name="img">
+                    <input type="hidden" name="id" value="{$info['id']}">
+                    <button type="submit">确定</button>
                   </div>
-                  <div style="float:right;margin:10px 100px ">
-                      <button type="submit">确定</button>
-                  </div> 
                 </form>
               </div> 
             </div>
@@ -46,7 +45,7 @@
                 <foreach name="image" item="val">
                   <tr class="gradeC">
                     <td style="text-align:center">{$val.id}</td>
-                    <td style="text-align:center;width:100px"><img src="__PUBLIC__/image/goods/{$val.name}" /></td>
+                    <td style="text-align:center;width:50px"><img src="__PUBLIC__/image/goods/{$val.name}" /></td>
                     <if condition="$_SESSION['admin']['statu'] eq 1"> 
                         <td class="center">
                           <div style="text-align:center;">

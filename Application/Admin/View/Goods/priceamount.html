@@ -85,13 +85,17 @@ a:hover {
       <div class="span12" >
         <div class="widget-box" >
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-              <h5>商品类别</h5>
+              <h5>商品类别</h5><h style="color:red">(添加分类后本页面才有信息显示)</h>
+              <h5 style="float:right;color:red"><a href="__MODULE__/Goods/index">返回上一级</a></h5>
           </div>
         </div>
         <table class="table">
             <thead>
                 <tr>
                     <th><span style="font:15px 微软雅黑,黑体">类别名称</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">价钱</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">购物券</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">库存</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
                 </tr>
             </thead>
@@ -99,6 +103,9 @@ a:hover {
                <foreach name="li" item="val">
                   <tr class="gradeC">
                      <td style="text-align:center">{$val.name}</td>
+                      <td style="text-align:center">{$val.price}</td>
+                      <td style="text-align:center">{$val.voucher}</td>
+                      <td style="text-align:center">{$val.num}</td>
                       <td class="center">
                         <div style="text-align:center;">  
                           <a href="__MODULE__/Goods/editpriceamount?pid={$val.pid}&cone={$val.cone}&ctwo={$val.ctwo}">编辑</a>&nbsp;

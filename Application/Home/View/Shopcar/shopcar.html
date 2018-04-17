@@ -14,7 +14,7 @@
 
 <body>
     <div class="Onlie">
-        <p class="nav-bar">
+        <p class="nav-bar id="asd">
             <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 购物车
         </p>
         <ul>
@@ -60,6 +60,8 @@
 </body>
 <script src="__PUBLIC__/js/OneM.js"></script>
 <script type="text/javascript">
-    // console.log($(".maip"))
-</script>>
+    $("#asd").find(".back").click(function(){
+        location.href = "../Index/index";
+    })
+</script>
 </html>

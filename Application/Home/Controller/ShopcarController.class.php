@@ -43,11 +43,21 @@ class ShopcarController extends AllowController {
             $id=$val['pid'];
             $info=$goods->where("id='$id'")->field("name,price,voucher")->find();
             $cid=$val['cid'];
-            $info1=$classprice->where("id='$cid'")->field("price,image,voucher")->find();
-            $list[$key]['pname']=$info['name'];
-            $list[$key]['image']=$info1['image'];
-            $list[$key]['price']=$info1['price'];
-            $list[$key]['voucher']=$info1['voucher'];
+            if($cid==0){
+                $list[$key]['pname']=$info['name'];
+                $goodsimg=M("goodsimg");
+                $imginfo=$goodsimg->where("pid='$id'")->find();
+                $list[$key]['image']=$imginfo['name'];
+                $list[$key]['price']=$info['price'];
+                $list[$key]['voucher']=$info['voucher'];
+            }else{
+                $info1=$classprice->where("id='$cid'")->field("price,image,voucher")->find();
+                $list[$key]['pname']=$info['name'];
+                $list[$key]['image']=$info1['image'];
+                $list[$key]['price']=$info1['price'];
+                $list[$key]['voucher']=$info1['voucher'];
+            }
+
         }
         if($list){
             $this->assign("list",$list);

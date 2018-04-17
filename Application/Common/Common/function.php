@@ -15,6 +15,24 @@ function tel_code($phone,$telcode){
     return $result;
 }
 
+function getnumcode($num){
+    $arr= array(a,b,c,d,e,f,g,h,i,j,k,m,n,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9);
+    $str='';
+    for($i=0;$i<$num;$i++){
+        $key=mt_rand(0,count($arr)-1);
+        $str=$str.$arr[$key];
+    }
+    return $str;
+}
+
+function is_weixin(){
+    if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
 function js_sdk(){
     require './ThinkPHP/Library/Org/Fenxiang/jssdk.class.php';
     $jssdk = new JSSDK("wx93f30672fccea4dc", "ec3a8d30338a9dd7db0cf9a56a33b9e4");

@@ -9,6 +9,7 @@ class GoodsController extends AllowController {
         $where['title']=array("like","%{$_GET['title']}%");   
       }
       $mod=M("goods");
+      $goodsimg=M("goodsimg");
       $sou=$mod->where($where)->count();
       $pan=new \Think\Page($sou,20);
       $pan->setConfig("prev","上一页");
@@ -17,6 +18,19 @@ class GoodsController extends AllowController {
       $gclassify=M("gclassify");
       $list=$mod->where($where)->order("id desc")->limit($pan->firstRow,$pan->listRows)->select();
       foreach($list as $key=>$val){
+        $pid=$val['id'];
+        $imginfo=$goodsimg->where("pid='$pid'")->find();
+        $list[$key]['image']=$imginfo["name"];
+        if($val['sort']==1){
+                $list[$key]['sort']="果篮";
+        }elseif($val['sort']==2){
+                $list[$key]['sort']="穿戴";
+        }elseif($val['sort']==3){
+                $list[$key]['sort']="快消";
+        }elseif($val['sort']==4){
+                $list[$key]['sort']="电子";
+        }
+
         $classify=$val['classify'];
         if($classify==0){
           $list[$key]['cname']="未添加默认分类";
@@ -49,11 +63,17 @@ class GoodsController extends AllowController {
     public function uploadgoods(){
       $goods=M("goods");
       $data['name']=$_POST['name'];
+      $data['price']=$_POST['price'];
+      $data['voucher']=$_POST['voucher'];
+      $data['oprice']=$_POST['oprice'];
+      $data['sort']=$_POST['sort'];
       $data['contents']=$_POST['xiangqing'];
       $data['uptime']=date("Y-m-d H:i:s");
       $res=$goods->data($data)->add();
       if($res){
-        $this->success("添加成功");
+          $this->success("添加成功",'./index');
+      }else{
+          $this->success("添加失败");
       }
     }
 
@@ -61,7 +81,6 @@ class GoodsController extends AllowController {
       $id=$_GET['id'];
       $goods=M('goods');
       $list=$goods->where("id='$id'")->find();
-      // dump($list);
       $this->assign("list",$list);
       $this->display('editgoods');
     }
@@ -70,6 +89,10 @@ class GoodsController extends AllowController {
       $goods=M("goods");
       $id=$_POST["id"];
       $data['name']=$_POST['name'];
+      $data['price']=$_POST['price'];
+      $data['voucher']=$_POST['voucher'];
+      $data['sort']=$_POST['sort'];
+      $data['oprice']=$_POST['oprice'];
       $data['contents']=$_POST["content"];
       $res=$goods->where("id='$id'")->data($data)->save();
       if($res){
@@ -196,20 +219,44 @@ class GoodsController extends AllowController {
       $classprice=M("classprice");
       $id=$_GET['id'];
       $list=$gclassify->where("pid='$id' AND fid=0")->select();
-      foreach($list as $key=>$val){
-        $cone=$val['id'];
-        $info[$key]=$gclassify->where("pid='$id' AND fid='$cone'")->select();
-      }
-      $i=0;
-      foreach ($info[0] as $key =>$val){
-        $a=$val['name'];
-        foreach ($info[1] as $k=>$v){
-          $li[$i]['name']=$list[0]['name'].":".$a." ".$list[1]['name'].":".$v['name'];
-          $li[$i]['cone']=$val['id'];
-          $li[$i]['ctwo']=$v['id'];
-          $li[$i]['pid']=$id;
-          $i++;
-        }
+      if(count($list)==1){
+          $cone=$list[0]['id'];
+          $info=$gclassify->where("pid='$id' AND fid='$cone'")->select();
+          foreach($info as $key=>$val){
+              $li[$key]['name']=$list[0]['name'].":".$val['name'];
+              $li[$key]['cone']=$val['id'];
+              $li[$key]['pid']=$id;
+              $where['C_one']=$val['id'];
+              $where['C_two']=0;
+              $where['pid']=$id;
+              $list=$classprice->where($where)->find();
+              $li[$key]['price']=$list['price'];
+              $li[$key]['voucher']=$list['voucher'];
+              $li[$key]['num']=$list['amount'];
+          }
+      }else{
+          foreach($list as $key=>$val){
+              $cone=$val['id'];
+              $info[$key]=$gclassify->where("pid='$id' AND fid='$cone'")->select();
+          }
+          $i=0;
+          foreach ($info[0] as $key =>$val){
+              $a=$val['name'];
+              foreach ($info[1] as $k=>$v){
+                  $li[$i]['name']=$list[0]['name'].":".$a." ".$list[1]['name'].":".$v['name'];
+                  $li[$i]['cone']=$val['id'];
+                  $li[$i]['ctwo']=$v['id'];
+                  $li[$i]['pid']=$id;
+                  $i++;
+                  $where['C_one']=$val['id'];
+                  $where['C_two']=$v['id'];
+                  $where['pid']=$id;
+                  $list=$classprice->where($where)->find();
+                  $li[$i]['price']=$list['price'];
+                  $li[$i]['voucher']=$list['voucher'];
+                  $li[$i]['num']=$list['amount'];
+              }
+          }
       }
       $this->assign("li",$li);
       $this->display('priceamount');

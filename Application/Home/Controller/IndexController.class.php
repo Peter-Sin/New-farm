@@ -24,9 +24,9 @@ class IndexController extends Controller {
         $shopcar=M("shopcar");
         $where['sort']=$_POST['classify'];
         if($_POST['classify']==0){
-            $list=$goods->limit(8)->select();
+            $list=$goods->limit(10)->select();
         }else{
-            $list=$goods->where($where)->limit(8)->select();
+            $list=$goods->where($where)->limit(10)->select();
         }
         $goodsimg=M("goodsimg");
         foreach($list as $key=>$val){

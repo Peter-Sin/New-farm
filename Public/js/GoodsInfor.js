@@ -1,4 +1,5 @@
 $(function (num) {
+    var test = window.location.host;
     //客服
     var kefu = $(".kefu")
     kefu.click(function () {
@@ -36,8 +37,8 @@ $(function (num) {
         var Biao =$(this).attr("a")
         num++
         if (num == 1) {
-            $(".MM").append('<img class="ERROR" src="../Public/YM/imgs/gb.png" alt="">')
-        aaa(num,goodsId,Biao)
+            $(".MM").append('<img class="ERROR" src="http://'+test+'/Public/YM/imgs/gb.png" alt="">')
+        aaa(num,goodsId,Biao);
          
          $(".ERROR").click(function () {
         // $(".MM").empty(".LL")
@@ -47,16 +48,14 @@ $(function (num) {
     }
     })
 
-    var buing = $(".buing")
+    var buing = $(".buing");
     buing.click(function () {
-        
         var goodsId=$(this).parents(".downLis").attr("GoodsId")
-        var Biao =$(this).attr("b")
+        var Biao =$(this).attr("b");
         num++
         if (num == 1) {
-            console.log(num)
-             $(".MM").append('<img class="ERROR" src="../Public/YM/imgs/gb.png" alt="">')
-         aaa(num,goodsId,Biao) 
+             $(".MM").append('<img class="ERROR" src="http://'+test+'/Public/YM/imgs/gb.png" alt="">')
+         aaa(num,goodsId,Biao);
          $(".ERROR").click(function () {
         // $(".MM").empty(".LL")
         // $(".MM").css("bottom", "-400px")
@@ -70,6 +69,7 @@ $(function (num) {
 })
 
 function aaa(num,goodsId,Biao){
+    var test = window.location.host;
     $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
@@ -77,131 +77,265 @@ function aaa(num,goodsId,Biao){
             url: "../Goods/goodsClassifyInfo" ,//url 
             data:({goodsId:goodsId,Biao}) ,
             success: function (result) {
-                $(".MM").css("bottom", "0")
-                $(".MM").append('<div class="LL" GoodsId="'+result.data.id+'" Cid="'+result.data.classify+'">' +
-                    '<img class="goos" src="http://www.test.com/Public/image/goods/'+result.data.image+'" alt="">' +
-                    '<div class="YY">' +
-                    ' <p class="INFOR">￥'+
-                    '<span class="price">'+result.data.price+'</span>'+'+'+
-                    '<span class="voucher">'+result.data.voucher+'</span>'+
-                    '<span>优惠券</span>'+
-                    '</p>' +
-                    ' <p class="INFOR">库存：<span class="amount">4564</span> 件</p>'
-                    + '</div>'+
-                '<div class="ff">'+
-                    '<div class="PP">' +
-                    ' <p>'+result.data1[0].name+'：</p>' +
-                    '<div  class="OO">' 
-                    
-                    + '</div>'
-                    + '</div>' +
-                    '<div class="GG">' +
-                    ' <p>'+result.data1[1].name+'：</p>' +
-                    '<div  class="OO">' 
-                    + '</div>'
-                    + '</div>' +
-                '</div>'+
-                    '<div class="NN">' +
-                    '<span>购买数量 <small>此商品没人限购3件</small></span>' +
-                    '<span class="HJ" style=" margin-left: 10%;">' +
-                    '<img class="Jian" src="../Public/YM/imgs/jian.jpg" alt="">' +
-                    '<span>1</span>' +
-                    '<img class="Jia" src="../Public/YM/imgs/jia.jpg" alt="">'
-                    + '</span>' + '</div>' +
-                    '<p class="BB" Biao="'+result.biao+'" ccc="1230"><button>确定</button></p>'
-                    + '</div>' 
-                )
-                // var html0="";
-                // for(var i=0;i<result.data1.length;i++){
-                //     html0 += '<div class="PP'+i+'">' +
-                //     ' <p>'+result.data1[i]+'：</p>' +
-                //     '<div  class="OO">' 
-                //     + '</div>'
-                //     + '</div>' 
-                // } 
+                if(result.resultCode==200) {
+                    console.log(result.data1.length);
+                    if(result.data1.length==1) {
+                        $(".MM").css("bottom", "0")
+                        $(".MM").append('<div class="LL" GoodsId="' + result.data.id + '" Cid="' + result.data.classify + '">' +
+                            '<img class="goos" src="http://' + test + '/Public/image/goods/' + result.data.image + '" alt="">' +
+                            '<div class="YY">' +
+                            ' <p class="INFOR">￥' +
+                            '<span class="price">' + result.data.price + '</span>' + '+' +
+                            '<span class="voucher">' + result.data.voucher + '</span>' +
+                            '<span>优惠券</span>' +
+                            '</p>' +
+                            ' <p class="INFOR">库存：<span class="amount">4564</span> 件</p>'
+                            + '</div>' +
 
-                var html="";
-                for(var i=0;i<result.data2[0].length;i++){
+                            '<div class="ff">' +
+                            '<div class="PP">' +
+                            ' <p>' + result.data1[0].name + '：</p>' +
+                            '<div  class="OO">'
+                            + '</div>'
+                            + '</div>' +
+                            '<div class="NN">' +
+                            '<span>购买数量 <small>此商品每人限购3件</small></span>' +
+                            '<span class="HJ" style=" margin-left: 10%;">' +
+                            '<img class="Jian" src="http://' + test + '/Public/YM/imgs/jian.jpg" alt="">' +
+                            '<span>1</span>' +
+                            '<img class="Jia" src="http://' + test + '/Public/YM/imgs/jia.jpg" alt="">'
+                            + '</span>' + '</div>' +
+                            '<p class="BB" Biao="' + result.biao + '" ccc="1230"><button>确定</button></p>'
+                            + '</div>'
+                        )
 
-                    html += '<p Cid="'+result.data2[0][i].id+'">'+result.data2[0][i].name+'</p>';
-                    
+                        var html = "";
+                        for (var i = 0; i < result.data2[0].length; i++) {
+                            html += '<p Cid="' + result.data2[0][i].id + '">' + result.data2[0][i].name + '</p>';
+                        }
+                        // var html1 = "";
+                        // for (var i = 0; i < result.data2[1].length; i++) {
+                        //     html1 += '<p Cid="' + result.data2[1][i].id + '">' + result.data2[1][i].name + '</p>';
+                        // }
+                        // $(".ff").append(html0)
+                        $(".PP").find(".OO").append(html);
+                        // $(".GG").find(".OO").append(html1);
 
-                } 
-                var html1="";
-                for(var i=0;i<result.data2[1].length;i++){
-                    html1 += '<p Cid="'+result.data2[1][i].id+'">'+result.data2[1][i].name+'</p>';
+
+                        for (var i = 0; i < result.data2[0].length; i++) {
+                            var MoRenP = $(".PP .OO").find("p")
+                            if (result.data.C_one == MoRenP.eq(i).attr("cid")) {
+                                MoRenP.eq(i).addClass("active")
+                            }
+                        }
+                        // for (var i = 0; i < result.data2[1].length; i++) {
+                        //     var MoRenP = $(".GG .OO").find("p")
+                        //     if (result.data.C_two == MoRenP.eq(i).attr("cid")) {
+                        //         MoRenP.eq(i).addClass("active")
+                        //     }
+                        // }
+                        classifyPrice(result.data.C_one, result.data.C_two, 1, result.data.id);
+
+
+                        var Gui = $(".PP .OO").find("p");
+                        Gui.click(function () {
+                            var that = $(this)
+                            $(this).addClass("active").siblings().removeClass("active");
+                            var goodsId = $(this).parents(".LL").attr("GoodsId");
+                            var a = $(this).attr("cid");
+                            var b = 0;
+                            var c = $(".NN").children(".HJ").find("span").text();
+                            // console.log(a);
+                            // console.log(c);
+                            // console.log($(".NN").children(".HJ").find("span").text());
+                            classifyPrice(a, b, c, goodsId);
+                            // var num = result.data2[1].length;
+                            // classone(a, goodsId, num);
+                        })
+
+
+                        // var Gui = $(".GG .OO").find("p");
+                        // Gui.click(function () {
+                        //     $(this).addClass("active").siblings().removeClass("active");
+                        //     var goodsId = $(this).parents(".LL").attr("GoodsId");
+                        //     var a = $(this).parents(".GG").siblings(".PP").children(".OO").find("p.active").attr("cid");
+                        //     var b = $(this).attr("cid");
+                        //     var c = $(this).parents(".ff").siblings(".NN").children(".HJ").find("span").text();
+                        //     classifyPrice(a, b, c, goodsId);
+                        // })
+                        var numbee = $(".HJ").find("span").text();
+                        $(".Jian").click(function () {
+                            if (numbee > 1) {
+                                numbee--;
+                                $(".HJ").find("span").html(numbee);
+                            } else {
+                                $(".HJ").find("span").html('1');
+                            }
+                            var goodsId = $(this).parents(".LL").attr("GoodsId");
+                            var a = $(".PP").find("p.active").attr("cid");
+                            var b = 0;
+                            var c = numbee;
+                            classifyPrice(a, b, c, goodsId);
+                        })
+                        $(".Jia").click(function () {
+                            if (numbee < 3) {
+                                numbee++;
+                                $(".HJ").find("span").html(numbee);
+                            } else {
+                                $(".HJ").find("span").html('3');
+                            }
+                            var goodsId = $(this).parents(".LL").attr("GoodsId")
+                            var a = $(".PP").find("p.active").attr("cid");
+                            var b = 0;
+                            var c = numbee;
+                            classifyPrice(a, b, c, goodsId);
+                        })
+                    }else{
+                        $(".MM").css("bottom", "0")
+                        $(".MM").append('<div class="LL" GoodsId="' + result.data.id + '" Cid="' + result.data.classify + '">' +
+                            '<img class="goos" src="http://' + test + '/Public/image/goods/' + result.data.image + '" alt="">' +
+                            '<div class="YY">' +
+                            ' <p class="INFOR">￥' +
+                            '<span class="price">' + result.data.price + '</span>' + '+' +
+                            '<span class="voucher">' + result.data.voucher + '</span>' +
+                            '<span>优惠券</span>' +
+                            '</p>' +
+                            ' <p class="INFOR">库存：<span class="amount">4564</span> 件</p>'
+                            + '</div>' +
+
+                            '<div class="ff">' +
+                            '<div class="PP">' +
+                            ' <p>' + result.data1[0].name + '：</p>' +
+                            '<div  class="OO">'
+                            + '</div>'
+                            + '</div>' +
+
+                            '<div class="GG">' +
+                            ' <p>' + result.data1[1].name + '：</p>' +
+                            '<div  class="OO">'
+                            + '</div>'
+                            + '</div>' +
+                            '</div>' +
+
+                            '<div class="NN">' +
+                            '<span>购买数量 <small>此商品每人限购3件</small></span>' +
+                            '<span class="HJ" style=" margin-left: 10%;">' +
+                            '<img class="Jian" src="http://' + test + '/Public/YM/imgs/jian.jpg" alt="">' +
+                            '<span>1</span>' +
+                            '<img class="Jia" src="http://' + test + '/Public/YM/imgs/jia.jpg" alt="">'
+                            + '</span>' + '</div>' +
+                            '<p class="BB" Biao="' + result.biao + '" ccc="1230"><button>确定</button></p>'
+                            + '</div>'
+                        )
+
+                        var html = "";
+                        for (var i = 0; i < result.data2[0].length; i++) {
+                            html += '<p Cid="' + result.data2[0][i].id + '">' + result.data2[0][i].name + '</p>';
+                        }
+                        var html1 = "";
+                        for (var i = 0; i < result.data2[1].length; i++) {
+                            html1 += '<p Cid="' + result.data2[1][i].id + '">' + result.data2[1][i].name + '</p>';
+                        }
+                        // $(".ff").append(html0)
+                        $(".PP").find(".OO").append(html);
+                        $(".GG").find(".OO").append(html1);
+
+
+                        for (var i = 0; i < result.data2[0].length; i++) {
+                            var MoRenP = $(".PP .OO").find("p")
+                            if (result.data.C_one == MoRenP.eq(i).attr("cid")) {
+                                MoRenP.eq(i).addClass("active")
+                            }
+                        }
+                        for (var i = 0; i < result.data2[1].length; i++) {
+                            var MoRenP = $(".GG .OO").find("p")
+                            if (result.data.C_two == MoRenP.eq(i).attr("cid")) {
+                                MoRenP.eq(i).addClass("active")
+                            }
+                        }
+                        classifyPrice(result.data.C_one, result.data.C_two, 1, result.data.id);
+
+
+                        var Gui = $(".PP .OO").find("p");
+                        Gui.click(function () {
+                            var that = $(this)
+                            $(this).addClass("active").siblings().removeClass("active");
+                            var goodsId = $(this).parents(".LL").attr("GoodsId");
+                            var a = $(this).attr("cid");
+                            var b = $(this).parents(".PP").siblings(".GG").children(".OO").find("p.active").attr("cid");
+                            var c = $(this).parents(".ff").siblings(".NN").children(".HJ").find("span").text();
+                            classifyPrice(a, b, c, goodsId);
+                            var num = result.data2[1].length;
+                            classone(a, goodsId, num);
+                        })
+
+
+                        var Gui = $(".GG .OO").find("p");
+                        Gui.click(function () {
+                            $(this).addClass("active").siblings().removeClass("active");
+                            var goodsId = $(this).parents(".LL").attr("GoodsId");
+                            var a = $(this).parents(".GG").siblings(".PP").children(".OO").find("p.active").attr("cid");
+                            var b = $(this).attr("cid");
+                            var c = $(this).parents(".ff").siblings(".NN").children(".HJ").find("span").text();
+                            classifyPrice(a, b, c, goodsId);
+                        })
+                        var numbee = $(".HJ").find("span").text();
+                        $(".Jian").click(function () {
+                            if (numbee > 1) {
+                                numbee--;
+                                $(".HJ").find("span").html(numbee);
+                            } else {
+                                $(".HJ").find("span").html('1');
+                            }
+                            var goodsId = $(this).parents(".LL").attr("GoodsId");
+                            var a = $(this).parents(".NN").siblings(".ff").children(".PP").find("p.active").attr("cid");
+                            var b = $(this).parents(".NN").siblings(".ff").children(".GG").find("p.active").attr("cid");
+                            var c = numbee;
+                            classifyPrice(a, b, c, goodsId);
+                        })
+                        $(".Jia").click(function () {
+                            if (numbee < 3) {
+                                numbee++;
+                                $(".HJ").find("span").html(numbee);
+                            } else {
+                                $(".HJ").find("span").html('3');
+                            }
+                            var goodsId = $(this).parents(".LL").attr("GoodsId")
+                            var a = $(this).parents(".NN").siblings(".ff").children(".PP").find("p.active").attr("cid");
+                            var b = $(this).parents(".NN").siblings(".ff").children(".GG").find("p.active").attr("cid");
+                            var c = numbee;
+                            classifyPrice(a, b, c, goodsId);
+                        })
+                    }
+                }else if(result.resultCode==300){
+                    alert("没有分类信息");
+                    var gId=$(".downLis").attr("goodsid");
+                    if(Biao=="hideCar"){
+                        $.ajax({
+                            //几个参数需要注意一下
+                            type: "POST",//方法类型
+                            dataType: "json",//预期服务器返回的数据类型
+                            url: "../Shopcar/addShopcar" ,//url
+                            data:({cid:0,pid:goodsId,num:1}) ,
+                            success: function (result) {
+                                if(result.resultCode==200){
+                                    window.location.href="../Shopcar/shopcar";
+                                }
+                            }
+                        })
+                    }else if(Biao=="buing"){
+                        var ccc=$(".BB").attr("ccc");
+                        var datas=[];
+                        datas[0]={};
+                        datas[0].g=gId;
+                        datas[0].c=0;
+                        datas[0].n=1;
+                        datas[0].ccc=ccc;
+                        datas =JSON.stringify(datas);
+                        window.location.href="../Order/dingOk?datas="+datas;
+                    }
+
                 }
-                // $(".ff").append(html0)
-                $(".PP").find(".OO").append(html);
-                $(".GG").find(".OO").append(html1);
-                for(var i=0;i<result.data2[0].length;i++){
-                    var MoRenP = $(".PP .OO").find("p")
-                    if(result.data.C_one ==MoRenP.eq(i).attr("cid") ){
-                        MoRenP.eq(i).addClass("active")
-                    }
-                } 
-                for(var i=0;i<result.data2[1].length;i++){
-                    var MoRenP = $(".GG .OO").find("p")
-                    if(result.data.C_two ==MoRenP.eq(i).attr("cid") ){
-                        MoRenP.eq(i).addClass("active")
-                    }
-                } 
-                classifyPrice(result.data.C_one,result.data.C_two,1,result.data.id);
-
-
-
-                    var Gui = $(".PP .OO").find("p");
-                    Gui.click(function () {
-                        var that=$(this)
-
-                        $(this).addClass("active").siblings().removeClass("active");
-                        var goodsId=$(this).parents(".LL").attr("GoodsId");
-                        var a=$(this).attr("cid");
-                        var b=$(this).parents(".PP").siblings(".GG").children(".OO").find("p.active").attr("cid");
-                        var c=$(this).parents(".ff").siblings(".NN").children(".HJ").find("span").text();
-                        classifyPrice(a,b,c,goodsId);
-                        var num=result.data2[1].length;
-                        classone(a,goodsId,num);
-                    })
-
-
-
-                    var Gui = $(".GG .OO").find("p");
-                    Gui.click(function () {
-                        $(this).addClass("active").siblings().removeClass("active");
-                        var goodsId=$(this).parents(".LL").attr("GoodsId");
-                        var a=$(this).parents(".GG").siblings(".PP").children(".OO").find("p.active").attr("cid");
-                        var b=$(this).attr("cid");
-                        var c=$(this).parents(".ff").siblings(".NN").children(".HJ").find("span").text();
-                        classifyPrice(a,b,c,goodsId);
-                    })
-                    var numbee = $(".HJ").find("span").text();
-                    $(".Jian").click(function () {
-                        if (numbee >1) {
-                            numbee--;
-                            $(".HJ").find("span").html(numbee);
-                        } else {
-                            $(".HJ").find("span").html('1');
-                        }
-                        var goodsId=$(this).parents(".LL").attr("GoodsId");
-                        var a=$(this).parents(".NN").siblings(".ff").children(".PP").find("p.active").attr("cid");
-                        var b=$(this).parents(".NN").siblings(".ff").children(".GG").find("p.active").attr("cid");
-                        var c=numbee;
-                        classifyPrice(a,b,c,goodsId);
-                    })
-                    $(".Jia").click(function () {
-                        if (numbee < 3) {
-                            numbee++;
-                            $(".HJ").find("span").html(numbee);
-                        } else {
-                            $(".HJ").find("span").html('3');
-                        }
-                        var goodsId=$(this).parents(".LL").attr("GoodsId")
-                        var a=$(this).parents(".NN").siblings(".ff").children(".PP").find("p.active").attr("cid");
-                        var b=$(this).parents(".NN").siblings(".ff").children(".GG").find("p.active").attr("cid");
-                        var c=numbee;
-                        classifyPrice(a,b,c,goodsId);
-                    })
 
                     var button = $(".BB").find("button");
                     button.click(function () {
@@ -268,8 +402,7 @@ function classifyPrice(a,b,c,goodsId,that){
         url: "../Goods/classifyPrice" ,//url 
         data:({C_one:a,C_two:b,G_num:c,goodsid:goodsId}) ,
         success: function (result) {
-            if(result.resultCode==200){
-                // that.addClass("active").siblings().removeClass("active");
+            if(result.code==200){
                 var aa=$(".LL").find("span.price");
                 $(".LL").find("span.price").html(result.totalprice);
                 $(".LL").find("span.voucher").html(result.totalvoucher);

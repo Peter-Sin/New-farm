@@ -28,6 +28,10 @@ class GoodsController extends AllowController {
         $classprice=M("classprice");
         $where['id']=$_POST['goodsId'];
         $info=$goods->where($where)->find();
+        $goodsimg=M("goodsimg");
+        $pid=$_POST['goodsId'];
+        $imginfo=$goodsimg->where("pid='$pid'")->find();
+        $info['image']=$imginfo['name'];
         $a['pid']=$_POST['goodsId'];
         $a['choose']=1;
         $sql=$classprice->where($a)->find();
@@ -40,14 +44,25 @@ class GoodsController extends AllowController {
             $info2=$gclassify->where($where1)->where("fid='$fid'")->field('id,name')->select();
             $info3[$key]=$info2;
         }
-        $response = array(
-            'resultCode'  => 200, 
-            'message' => 'success for request',
-            'data'  => $info,
-            'data1'=>$info1,
-            'data2'=>$info3,
-            'biao'=>$_POST['Biao']
-        ); 
+        if($info1){
+            $response = array(
+                'resultCode'  => 200,
+                'message' => 'success for request',
+                'data'  => $info,
+                'data1'=>$info1,
+                'data2'=>$info3,
+                'biao'=>$_POST['Biao'],
+            );
+        }else{
+            $response = array(
+                'resultCode'  => 300,
+                'message' => '没有分类信息',
+//                'data'  => $info,
+//                'data1'=>$info1,
+//                'data2'=>$info3,
+//                'biao'=>$_POST['Biao'],
+            );
+        }
         $this->ajaxReturn($response,'json');
     }
 
@@ -71,8 +86,12 @@ class GoodsController extends AllowController {
         $classprice=M("classprice");
         $num=$_POST["G_num"];
         $where['C_one']=$_POST["C_one"];
-        $data['C_two']=$_POST["C_two"];
         $where['pid']=$_POST["goodsid"];
+        if($_POST["C_two"]==0){
+            $data['C_two']=0;
+        }else{
+            $data['C_two']=$_POST["C_two"];
+        }
         $info=$classprice->where($where)->where($data)->find();
 
         $amount=$info['amount'];
@@ -81,7 +100,7 @@ class GoodsController extends AllowController {
         $totalvoucher=$num*$info['voucher'];
         if($info){
             $response = array(
-                'resultCode'  => 200, 
+                'code'  => 200,
                 'message' => 'success for request',
                 'amount'  => $amount,
                 'totalprice'  => $totalprice,

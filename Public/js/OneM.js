@@ -217,6 +217,7 @@ $(function () {
         var ding = $(".ding")
         var addrid=$(".Ding-adress").attr("addrId");
         var ccc=$(this).attr("ccc");
+        var money=$(".money").html();
         var datas=[];
         for (var i=0;i<ding.length;i++) {
             datas[i]={};
@@ -225,8 +226,8 @@ $(function () {
             datas[i].n=ding[i].getAttribute("num");
             datas[i].addrid=addrid;
             datas[i].ccc=ccc;
+            datas[i].money=money;
         }
-        // console.log(datas)
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -234,7 +235,8 @@ $(function () {
             data: ({datas}),
             success: function (result) {
                 if (result.resultCode == 200) {
-                  
+                    alert("订单提交成功");
+                    window.location.href="../Order/dowxpay?ordernum="+result.ordernum;
                 }
             },
             error: function (err) {
@@ -252,11 +254,11 @@ function IsChoose(addrid,that){
         data: ({addrid:addrid}),
         success: function (result) {
             if (result.resultCode==200) {
-                console.log("addrid")
-                $(".Ding-adress").find(".choso").removeClass("actives")
-                $(".Ding-adress").find(".choso").attr("c", "off")
-                that.addClass("actives")
-                that.attr("c", "on")
+                console.log("addrid");
+                $(".Ding-adress").find(".choso").removeClass("actives");
+                $(".Ding-adress").find(".choso").attr("c", "off");
+                that.addClass("actives");
+                that.attr("c", "on");
             }
         },
         error: function (err) {
@@ -266,11 +268,11 @@ function IsChoose(addrid,that){
 }
 //选择收货地址
 $(function () {
-    var ischoose=$(".Ding-all").find(".choso")
+    var ischoose=$(".Ding-all").find(".choso");
     for (var i = 0;i<ischoose.length;i++) {
         if(ischoose[i].getAttribute("IsChoose") == 1){
-            $(".Ding-all").find(".choso").eq(i).addClass("actives")
-            $(".Ding-all").find(".choso").eq(i).attr("c", "on")
+            $(".Ding-all").find(".choso").eq(i).addClass("actives");
+            $(".Ding-all").find(".choso").eq(i).attr("c", "on");
         }
     }
     var choso = $(".Ding-adress").find(".choso")

@@ -83,7 +83,12 @@ a:hover {
           <thead>
               <tr>
                   <th><span style="font:15px 微软雅黑,黑体">编号</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">商品图片</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">商品名称</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">价格</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">购物券</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">原价</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">属性</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">默认分类</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
               </tr>
@@ -92,8 +97,13 @@ a:hover {
             <foreach name="list" item="val">
               <tr class="gradeC">
                 <td style="text-align:center">{$val.id}</td>
-                <td style="text-align:center">{$val.name}</td>
-                <td style="text-align:center" class="order">{$val.cname}</td>
+                  <td style="text-align:center;width:50px"><img src="__PUBLIC__/image/goods/{$val.image}" /></td>
+                  <td style="text-align:center">{$val.name}</td>
+                  <td style="text-align:center">{$val.price}</td>
+                  <td style="text-align:center">{$val.voucher}</td>
+                  <td style="text-align:center">{$val.oprice}</td>
+                  <td style="text-align:center">{$val.sort}</td>
+                  <td style="text-align:center" class="order">{$val.cname}</td>
                 <td class="center">
                   <div style="text-align:center;">  
                     <a href="__MODULE__/Goods/imagemanager?id={$val.id}">图片管理</a>&nbsp;|
