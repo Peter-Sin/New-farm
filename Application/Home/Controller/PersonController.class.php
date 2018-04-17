@@ -154,12 +154,9 @@ class PersonController extends AllowController
         $f_land=M("f_land");
         $landcount=$f_land->where("uid='$uid'")->count();
         $todayrate=$f_rate->where("land_num='$landcount'")->getField("rate");
-//dump($landcount1);
         $castime=date("Y-m-d",time());
-        $landcount1=$f_land->where("time<='$castime'")->count();
-        dump($landcount1);
+        $landcount1=$f_land->where("time<='$castime' AND uid='$uid'")->count();
         $yesterdayrate=$f_rate->where("land_num='$landcount1'")->getField("rate");
-        dump($yesterdayrate);
         $latime=date('Y-m-d H:i:s');
         $casstime=date('Y-m-d H:i:s',strtotime($castime));
         $this->assign('latime',$latime);
