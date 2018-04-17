@@ -24,7 +24,7 @@ $(function (num) {
 
     var buyCar = $(".buyCar")
     buyCar.click(function () {
-        window.location.href="http://www.test.com/index.php/Home/shopcar/shopcar"
+        window.location.href="../shopcar/shopcar"
         console.log("购物车")
     })
 
@@ -36,7 +36,7 @@ $(function (num) {
         var Biao =$(this).attr("a")
         num++
         if (num == 1) {
-            $(".MM").append('<img class="ERROR" src="http://www.test.com/Public/YM/imgs/gb.png" alt="">')
+            $(".MM").append('<img class="ERROR" src="../Public/YM/imgs/gb.png" alt="">')
         aaa(num,goodsId,Biao)
          
          $(".ERROR").click(function () {
@@ -55,7 +55,7 @@ $(function (num) {
         num++
         if (num == 1) {
             console.log(num)
-             $(".MM").append('<img class="ERROR" src="http://www.test.com/Public/YM/imgs/gb.png" alt="">')
+             $(".MM").append('<img class="ERROR" src="../Public/YM/imgs/gb.png" alt="">')
          aaa(num,goodsId,Biao) 
          $(".ERROR").click(function () {
         // $(".MM").empty(".LL")
@@ -104,9 +104,9 @@ function aaa(num,goodsId,Biao){
                     '<div class="NN">' +
                     '<span>购买数量 <small>此商品没人限购3件</small></span>' +
                     '<span class="HJ" style=" margin-left: 10%;">' +
-                    '<img class="Jian" src="http://www.test.com/Public/YM/imgs/jian.jpg" alt="">' +
+                    '<img class="Jian" src="../Public/YM/imgs/jian.jpg" alt="">' +
                     '<span>1</span>' +
-                    '<img class="Jia" src="http://www.test.com/Public/YM/imgs/jia.jpg" alt="">'
+                    '<img class="Jia" src="../Public/YM/imgs/jia.jpg" alt="">'
                     + '</span>' + '</div>' +
                     '<p class="BB" Biao="'+result.biao+'" ccc="1230"><button>确定</button></p>'
                     + '</div>' 
@@ -221,7 +221,7 @@ function aaa(num,goodsId,Biao){
                                 data:({cid:cid,pid:goodsId,num:num}) ,
                                 success: function (result) {
                                     if(result.resultCode==200){
-                                        window.location.href="http://www.test.com/index.php/Home/Shopcar/shopcar";
+                                        window.location.href="../Shopcar/shopcar";
                                     }
                                 }
                             })
@@ -233,7 +233,7 @@ function aaa(num,goodsId,Biao){
                             datas[0].n=num;
                             datas[0].ccc=ccc;
                             datas =JSON.stringify(datas);
-                            window.location.href="http://www.test.com/index.php/Home/Order/dingOk?datas="+datas;
+                            window.location.href="../Order/dingOk?datas="+datas;
 
                             // $.ajax({
                             //     //几个参数需要注意一下
