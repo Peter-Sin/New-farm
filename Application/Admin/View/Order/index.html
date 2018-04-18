@@ -96,6 +96,7 @@ a:hover {
                     <th><span style="font:15px 微软雅黑,黑体">编号</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">订单号</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">价格</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">购物券</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">状态</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">买家</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">下单时间</span></th>
@@ -111,6 +112,10 @@ a:hover {
                          <input type="text"  value="{$val.money}"  name="money" style="height:12px;width:60px">
                          <a class="editmoney">修改</a>
                      </td>
+                      <td style="text-align:center" class="voucher">
+                          <input type="text"  value="{$val.voucher}"  name="voucher" style="height:12px;width:60px">
+                          <a class="editvoucher">修改</a>
+                      </td>
                       <td style="text-align:center" class="order">{$val.step}</td>
                       <td style="text-align:center" class="order">{$val.username}</td>
                      <!-- <td style="text-align:center">
@@ -162,7 +167,7 @@ a:hover {
             });
 
          $(".editmoney").click(function(){
-             var abc=confirm("确定删除该权限?");
+             var abc=confirm("确定修改价钱?");
              if(abc){
                  var money=$(this).siblings("input[name=money]").val();
                  var ordernum=$(this).parent(".money").siblings(".order").html();
@@ -183,6 +188,29 @@ a:hover {
                  window.location.href="../Order/index";
              }
          })
+
+       $(".editvoucher").click(function(){
+           var abc=confirm("确定修改购物券数量?");
+           if(abc){
+               var voucher=$(this).siblings("input[name=voucher]").val();
+               var ordernum=$(this).parent(".voucher").siblings(".order").html();
+               $.ajax({
+                   type: "POST",//方法类型
+                   dataType: "json",//预期服务器返回的数据类型
+                   url: "../Order/editvoucher",//url
+                   data: ({voucher: voucher,ordernum:ordernum}),
+                   success: function (result) {
+                       if (result.code == 200) {
+                           alert("修改成功");
+                       }else if(result.code == 300){
+                           alert("修改失败");
+                       }
+                   }
+               })
+           }else{
+               window.location.href="../Order/index";
+           }
+       })
    });
 </script>
 </block>

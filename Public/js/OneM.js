@@ -218,11 +218,14 @@ $(function () {
         var addrid=$(".Ding-adress").attr("addrId");
         var ccc=$(this).attr("ccc");
         var money=$(".money").html();
+        var voucher=$(".voucher").html();
         var datas=[];
         var order=[];
-        order.addrid=addrid;
-        order.ccc=ccc;
-        order.money=money;console.log(order);
+        // order.addrid=addrid;
+        // order.ccc=ccc;
+        // order.money=money;
+        // order.voucher=voucher;
+        // console.log(order);
         for (var i=0;i<ding.length;i++) {
             datas[i]={};
             datas[i].g=ding[i].getAttribute("gid");
@@ -233,7 +236,7 @@ $(function () {
             type: "POST",
             dataType: "json",
             url: "../Order/addorder",
-            data: ({datas:datas,addrid:addrid,ccc:ccc,money:money}),
+            data: ({datas:datas,addrid:addrid,ccc:ccc,money:money,voucher:voucher}),
             success: function (result) {
                 if (result.resultCode == 200) {
                     alert("订单提交成功");

@@ -75,6 +75,25 @@ class OrderController extends AllowController {
         $this->ajaxReturn($response,'json');
     }
 
+    public function editvoucher(){
+        $data['voucher']=$_POST["voucher"];
+        $order=M("order");
+        $where['ordernum']=$_POST["ordernum"];
+        $result=$order->where($where)->data($data)->save();
+        if($result){
+            $response=array(
+                'code'=>200,
+                'content'=>'修改成功',
+            );
+        }else{
+            $response=array(
+                'code'=>300,
+                'content'=>'修改失败',
+            );
+        }
+        $this->ajaxReturn($response,'json');
+    }
+
     public function deleteorder(){
 	    $order=M("order");
 	    $orderinfo=M("orderinfo");

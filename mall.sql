@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-04-18 19:08:32
+Date: 2018-04-18 19:43:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -359,13 +359,14 @@ CREATE TABLE `order` (
   `uptime` datetime NOT NULL,
   `addrid` int(11) DEFAULT NULL,
   `money` decimal(10,0) DEFAULT NULL,
+  `voucher` decimal(10,0) DEFAULT NULL,
   `pay_time` datetime DEFAULT NULL,
   `pay_type` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `pay_return_no` int(11) DEFAULT NULL,
   `pay_return_sts` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `buyer_email` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for orderinfo
@@ -378,7 +379,7 @@ CREATE TABLE `orderinfo` (
   `ordernum` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   `num` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for ouser
@@ -432,7 +433,7 @@ CREATE TABLE `shopcar` (
   `amount` int(11) DEFAULT NULL,
   `uptime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for user

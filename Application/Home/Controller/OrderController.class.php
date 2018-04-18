@@ -93,6 +93,7 @@ class OrderController extends AllowController {
         $data['ordernum']=md5($data['uid'].$data['uptime'].$datas);
         $data['addrid']=$_POST['addrid'];
         $data['money']=$_POST['money'];
+        $data['voucher']=$_POST['voucher'];
         $res=$order->data($data)->add();
         foreach($datas as $key=>$val){
             $d['pid']=$val['g'];
@@ -191,7 +192,6 @@ class OrderController extends AllowController {
     //确认订单页面
     public function dingOk(){
         $data=json_decode($_GET["datas"],true);
-        // dump($data);
         $address=M("address");
         $goods=M("goods");
         $classprice=M("classprice");
@@ -221,6 +221,7 @@ class OrderController extends AllowController {
                 $info[$key]['num']=$val['n'];
                 $info[$key]['cid']=$val['c'];
                 $total+=$info[$key]['ccprice'];
+                $vcount+=$info[$key]['cvoucher'];
                 $ccc=$val['ccc'];
             }else{
                 $list=$classprice->where("id='$cid'")->find();
@@ -231,6 +232,7 @@ class OrderController extends AllowController {
                 $info[$key]['num']=$val['n'];
                 $info[$key]['cid']=$val['c'];
                 $total+=$info[$key]['ccprice'];
+                $vcount+=$info[$key]['cvoucher'];
                 $ccc=$val['ccc'];
             }
         }
@@ -238,6 +240,7 @@ class OrderController extends AllowController {
         $this->assign("info",$info);
         $this->assign("addr",$addr);
         $this->assign("total",$total);
+        $this->assign("vcount",$vcount);
         $this->assign("ccc",$ccc);
         $this->display('DingOk');
     }
