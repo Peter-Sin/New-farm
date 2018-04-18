@@ -48,7 +48,7 @@ function indexs(a) {
             for(var i=0;i<resnum;i++){
                 html += '<li class="HHH">'+
                 '<a href="http://'+test+'/index.php/Home/Goods/goodsinfo?id='+result.data[i].id+'" GoodId='+result.data[i].id +'>'+
-                '<img class="goods-img"  src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
+                '<img style="height:172px" class="goods-img"  src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
                 '<p>'+result.data[i].name+'</p>'+
                 '<span class="prize">￥:'+result.data[i].price+'+'+result.data[i].voucher+'代金券</span>' +
                 '<p>'+
@@ -56,11 +56,9 @@ function indexs(a) {
                     '<p/>'+
                 '</a>'+
                 '<span id="goodsid" style="display:none;">'+result.data[i].id+'</span>'+
-                '<img class="adds" cid="'+result.data[i].classify+'" style=" margin-left: 5%;width:25px;" src="http://'+test+'/Public/YM/imgs/add.png" alt="">'+
+                '<img class="adds" cid="'+result.data[i].classify+'" style="width: 25px;margin-top: -15%;float: right;" src="http://'+test+'/Public/YM/imgs/add.png" alt="">'+
                 '</li>'
             } 
-
-
 
             // $(function () {
             //     // $(".adre").hide()
@@ -82,8 +80,6 @@ function indexs(a) {
                     
             //     });
             // })
-
-
 
             $("#shoppingnum").html(result.shopcar_num)   
             $(".goods").empty();
@@ -127,10 +123,13 @@ function removebus(goodsid,that){
         type: "POST",
         dataType: "json",
         url: "../Order/removeBus",
-        data: ({orderid:goodsid}),
+        data: ({ordernum:goodsid}),
         success: function (result) {
             if (result.code == 200) {
+                alert("订单已取消");
                 that.parents(".all-D-box").remove()
+            }else if(result.code == 200){
+                alert("取消订单失败");
             }
         },
         error: function (err) {
@@ -148,183 +147,143 @@ function orderlist(a) {
         url: "../order/orderlist" ,//url 
         data:({name:a}) ,
         success: function (result) {
-            if(a==0){
-                var html="";
-                for(var i=0;i<result.data.length;i++){
-                    if(result.data[i].statu==1){
-                        html+='<div class="all-D-box">'+
-                            '<p class="all-D-top">'+
-                                '<span>'+result.data[i].uptime+'</span>'+
-                                '<span>'+result.data[i].status+'</span>'+
-                            '</p>'+
-                            '<div class="all-D-div">'+
-                                '<img src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
-                                '<p>'+result.data[i].pname+'</p>'+
-                                '<p>'+
-                                    '<span>￥:'+result.data[i].price+'+'+result.data[i].voucher+'代金券</span>'+
-                                    '<span>x'+result.data[i].num+'</span>'+
-                                '</p>'+
-                            '</div>'+
-                            '<p class="coles-D">'+
-                                '<span class="removeBus" GoodId='+result.data[i].id+'>取消订单</span>'+
-                                '<span class="myPay"><a href="http://'+test+'/index.php/home/order/dowxpay?id='+result.data[i].ordernum+'">付款</a></span>'+
-                            '</p>'+
-                        '</div>'
-                    }else if(result.data[i].statu==2){
-                        html+='<div class="all-D-box">'+
-                            '<p class="all-D-top">'+
-                                '<span>'+result.data[i].uptime+'</span>'+
-                                '<span>'+result.data[i].status+'</span>'+
-                            '</p>'+
-                            '<div class="all-D-div">'+
-                                '<img src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
-                                '<p>'+result.data[i].pname+'</p>'+
-                                '<p>'+
-                                    '<span>￥:'+result.data[i].price+'+'+result.data[i].voucher+'代金券</span>'+
-                                    '<span>x'+result.data[i].num+'</span>'+
-                                '</p>'+
-                            '</div>'+
-                            '<p class="coles-G">'+
-                                '商家正在接受中，请耐心等待！'+
-                            '</p>'+
-                        '</div>'
-                    }else if(result.data[i].statu==3){
-                        html+='<div class="all-D-box">'+
-                            '<p class="all-D-top">'+
-                                '<span>'+result.data[i].uptime+'</span>'+
-                                '<span>'+result.data[i].status+'</span>'+
-                            '</p>'+
-                            '<div class="all-D-div">'+
-                                '<img src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
-                                '<p>'+result.data[i].pname+'</p>'+
-                                '<p>'+
-                                    '<span>￥:'+result.data[i].price+'+'+result.data[i].voucher+'代金券</span>'+
-                                    '<span>x'+result.data[i].num+'</span>'+
-                                '</p>'+
-                            '</div>'+
-                            '<div class="coles-Get">'+
-                                '<p class="Get-left">'+
-                                    '<span class="wuliu">物流编号:'+
-                                        '<small id="Wuliu">1234567890123</small>'+
-                                    '</span>'+
-                                    '<button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>'+
-                                '</p>'+
-                                '<span class="Get-right">确认收货</span>'+
-                            '</div>'+
-                        '</div>'
+            if (a == 10) {
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    if (result.data[i].step == 0) {
+                        html += '<div class="all-D-box">' +
+                            '<p class="all-D-top">' +
+                            '<span>' + result.data[i].uptime + '</span>' +
+                            '<span>' + result.data[i].status + '</span>' +
+                            '</p>' +
+                            '<div class="all-D-div" id="all-D-div'+i+'">' +
+                            '</div>' +
+                            '<p class="coles-D">' +
+                            '<span class="removeBus" GoodId=' + result.data[i].ordernum + '>取消订单</span>' +
+                            '<span class="myPay"><a href="http://' + test + '/index.php/home/order/dowxpay?id=' + result.data[i].ordernum + '">付款</a></span>' +
+                            '</p>' +
+                            '</div>'
+                    } else if (result.data[i].step == 1) {
+                        html += '<div class="all-D-box">' +
+                            '<p class="all-D-top">' +
+                            '<span>' + result.data[i].uptime + '</span>' +
+                            '<span>' + result.data[i].status + '</span>' +
+                            '</p>' +
+                            '<div class="all-D-div" id="all-D-div'+i+'">' +
+                            '</div>' +
+                            '<p class="coles-G">' +
+                            '商家正在接受中，请耐心等待！' +
+                            '</p>' +
+                            '</div>'
+                    } else if (result.data[i].step == 2) {
+                        html += '<div class="all-D-box">' +
+                            '<p class="all-D-top">' +
+                            '<span>' + result.data[i].uptime + '</span>' +
+                            '<span>' + result.data[i].status + '</span>' +
+                            '</p>' +
+                            '<div class="all-D-div" id="all-D-div'+i+'">' +
+                            '</div>' +
+                            '<div class="coles-Get">' +
+                            '<p class="Get-left">' +
+                            '<span class="wuliu">物流编号:' +
+                            '<small id="Wuliu">1234567890123</small>' +
+                            '</span>' +
+                            '<button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>' +
+                            '</p>' +
+                            '<span class="Get-right">确认收货</span>' +
+                            '</div>' +
+                            '</div>'
                     }
                 }
-            $(".all-D").append('<div class="all-D0">'+html+'</div>')
-        		var removeBus = $(".coles-D").find("span.removeBus")
-		            removeBus.click(function () {
-		            	var GoodId=$(this).attr("GoodId")
-                        var that =$(this)
-                        removebus(GoodId,that)
-		            })
-            }else if(a==1){
-            	var html="";
-                for(var i=0;i<result.data.length;i++){
-                html+='<div class="all-D-box">'+
-                    '<p class="all-D-top">'+
-                        '<span>'+result.data[i].uptime+'</span>'+
-                        '<span>'+result.data[i].status+'</span>'+
-                    '</p>'+
-                    '<div class="all-D-div">'+
-                        '<img src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
-                        '<p>'+result.data[i].pname+'</p>'+
-                        '<p>'+
-                            '<span>￥:'+result.data[i].price+'+'+result.data[i].voucher+'代金券</span>'+
-                            '<span>x'+result.data[i].num+'</span>'+
-                        '</p>'+
-                    '</div>'+
-                    '<p class="coles-D">'+
-                        '<span class="removeBus" GoodId='+result.data[i].id+'>取消订单</span>'+
-                        '<span class="myPay"><a href="http://'+test+'/index.php/home/order/dowxpay?id='+result.data[i].ordernum+'">付款</a></span>'+
-                    '</p>'+
-                '</div>'
-                }
-            $(".give-money").append('<div class="give-money1">'+html+'</div>')
+
+                $(".all-D").append('<div class="all-D0">' + html + '</div>');
                 var removeBus = $(".coles-D").find("span.removeBus")
-                    removeBus.click(function () {
-                        var GoodId=$(this).attr("GoodId")
-                        var that =$(this)
-                        removebus(GoodId,that)
-                    })
-            }else if(a==2){
-            	var html="";
-                for(var i=0;i<result.data.length;i++){
-                    html+='<div class="all-D-box">'+
-                        '<p class="all-D-top">'+
-                            '<span>'+result.data[i].uptime+'</span>'+
-                            '<span>'+result.data[i].status+'</span>'+
-                        '</p>'+
-                        '<div class="all-D-div">'+
-                            '<img src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
-                            '<p>'+result.data[i].pname+'</p>'+
-                            '<p>'+
-                                '<span>￥:'+result.data[i].price+'+'+result.data[i].voucher+'代金券</span>'+
-                                '<span>x'+result.data[i].num+'</span>'+
-                            '</p>'+
-                        '</div>'+
-                        '<p class="coles-G">'+
-                            '商家正在接受中，请耐心等待！'+
-                        '</p>'+
-                    '</div>'
+                removeBus.click(function () {
+                    var GoodId = $(this).attr("GoodId")
+                    var that = $(this)
+                    removebus(GoodId, that)
+                })
+            } else if (a == 0) {
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    html += '<div class="all-D-box">' +
+                        '<p class="all-D-top">' +
+                        '<span>' + result.data[i].uptime + '</span>' +
+                        '<span>' + result.data[i].status + '</span>' +
+                        '</p>' +
+                        '<div class="all-D-div" id="all-D-div'+i+'">' +
+                        '</div>' +
+                        '<p class="coles-D">' +
+                        '<span class="removeBus" GoodId=' + result.data[i].ordernum + '>取消订单</span>' +
+                        '<span class="myPay"><a href="http://' + test + '/index.php/home/order/dowxpay?id=' + result.data[i].ordernum + '">付款</a></span>' +
+                        '</p>' +
+                        '</div>'
                 }
-            $(".give-some").append('<div class="give-some2">'+html+'</div>')
-            }else if(a==3){
-                var html="";
-                for(var i=0;i<result.data.length;i++){
-                    html+='<div class="all-D-box">'+
-                        '<p class="all-D-top">'+
-                            '<span>'+result.data[i].uptime+'</span>'+
-                            '<span>'+result.data[i].status+'</span>'+
-                        '</p>'+
-                        '<div class="all-D-div">'+
-                            '<img src="http://'+test+'/Public/image/goods/'+result.data[i].image+'" alt="">'+
-                            '<p>'+result.data[i].pname+'</p>'+
-                            '<p>'+
-                                '<span>￥:'+result.data[i].price+'+'+result.data[i].voucher+'代金券</span>'+
-                                '<span>x'+result.data[i].num+'</span>'+
-                            '</p>'+
-                        '</div>'+
-                        '<div class="coles-Get">'+
-                            '<p class="Get-left">'+
-                                '<span class="wuliu">物流编号:'+
-                                    '<small id="Wuliu">1234567890123</small>'+
-                                '</span>'+
-                                '<button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>'+
-                            '</p>'+
-                            '<span class="Get-right">确认收货</span>'+
-                        '</div>'+
-                    '</div>'
-    	        }
-	        $(".get-bus").append('<div class="get-bus3">'+html+'</div>')
-	       }
-	    }
+                $(".give-money").append('<div class="give-money1">' + html + '</div>')
+                var removeBus = $(".coles-D").find("span.removeBus")
+                removeBus.click(function () {
+                    var GoodId = $(this).attr("GoodId")
+                    var that = $(this)
+                    removebus(GoodId, that)
+                })
+            } else if (a == 1) {
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    html += '<div class="all-D-box">' +
+                        '<p class="all-D-top">' +
+                        '<span>' + result.data[i].uptime + '</span>' +
+                        '<span>' + result.data[i].status + '</span>' +
+                        '</p>' +
+                        '<div class="all-D-div" id="all-D-div'+i+'">' +
+                        '</div>' +
+                        '<p class="coles-G">' +
+                        '商家正在接受中，请耐心等待！' +
+                        '</p>' +
+                        '</div>'
+                }
+                $(".give-some").append('<div class="give-some2">' + html + '</div>')
+            } else if (a == 2) {
+                var html = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    html += '<div class="all-D-box">' +
+                        '<p class="all-D-top">' +
+                        '<span>' + result.data[i].uptime + '</span>' +
+                        '<span>' + result.data[i].status + '</span>' +
+                        '</p>' +
+                        '<div class="all-D-div" id="all-D-div'+i+'">' +
+                        '</div>' +
+                        '<div class="coles-Get">' +
+                        '<p class="Get-left">' +
+                        '<span class="wuliu">物流编号:' +
+                        '<small id="Wuliu">1234567890123</small>' +
+                        '</span>' +
+                        '<button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>' +
+                        '</p>' +
+                        '<span class="Get-right">确认收货</span>' +
+                        '</div>' +
+                        '</div>'
+                }
+                $(".get-bus").append('<div class="get-bus3">' + html + '</div>')
+            }
+            for (var j = 0; j < result.info.length; j++) {
+                var htmlgoods = '';
+                for (var k = 0; k < result.info[j].length; k++) {
+                    htmlgoods += '<div class="goods_lists"><img  src="http://' + test + '/Public/image/goods/' + result.info[j][k].image + '" alt="">' +
+                        '<p>' + result.info[j][k].pname + '</p>' +
+                        '<p>' +
+                        '<span>￥:' + result.info[j][k].price + '+' + result.info[j][k].voucher + '代金券</span>' +
+                        '<span>x' + result.info[j][k].num + '</span>' +
+                        '</p></div>';
+                }
+                $("#all-D-div"+j).empty();
+                $("#all-D-div"+j).append(htmlgoods);
+            }
+        }
     })
 }
 
 //index 订单  农场  个人中心
 function caidan() {
-    // $("footer").append('<ul>' +
-    //     '<a href="" class="active"><li>'
-    //     + '<img src="http://www.test.com/Public/YM/imgs/shop.png" alt="">' +
-    //     ' <p>商城</p>' +
-    //     '</li></a>' +
-    //     '<a href=""><li>'
-    //     + '<img src="http://www.test.com/Public/YM/imgs/dd.png" alt="">' +
-    //     ' <p>订单</p>' +
-    //     '</li></a>' +
-    //     '<a href="http://www.test.com/index.php/Home/Farm/index" ><li>'
-    //     + '<img src="http://www.test.com/Public/YM/imgs/nc.png" alt="">' +
-    //     ' <p>农场</p>' +
-    //     '</li></a>' +
-    //     '<a href="" ><li>'
-    //     + '<img src="http://www.test.com/Public/YM/imgs/user.png" alt="">' +
-    //     ' <p>个人中心</p>' +
-    //     '</li></a>' +
-    //     '</ul>')
 
     var ul = $("footer").find("ul");
     ul.css({
@@ -375,11 +334,12 @@ function caidan() {
             if(uid) {
                 $(".index").hide();
                 $(".dingdan").show();
+                // $(".dingdan").empty();
                 $(".nongchang").hide();
                 $(".userset").hide();
                 shopS.hide();
                 $(this).addClass("active").siblings().removeClass('active');
-                orderlist("0")
+                orderlist("10")
             }else{
                 window.location.href="../login/index";
             }
@@ -439,7 +399,6 @@ function userset() {
 $(function () {
     var Dli = $(".dingdan-choose").find("li");
     var dins = $(".dingdan-choose").find("li").index();
-    // console.log(dins)
     if (dins == 0) {
         $(".all-D").show();
         $(".give-money").hide();
@@ -456,7 +415,6 @@ $(function () {
                 url: "./order/orderlist",
                 // data: $('#form1').serialize(),
                 success: function (result) {
-                    // console.log(result);
                     if (result.resultCode == 200) {
                         $(this).parents(".all-D-box").remove()
                     }
@@ -475,12 +433,12 @@ $(function () {
 
     //删除 ---- 取消订单
      Dli.click(function () {
-    	// console.log("123")
         $(this).addClass("active").siblings().removeClass("active");
         var dins = $(this).index();
+        console.log(dins);
         if (dins == 0) {//全部
             $(".all-D").show();
-            orderlist("0");
+            orderlist("10");
             $(".give-money").hide();
             $(".give-some").hide();
             $(".get-bus").hide();
@@ -495,7 +453,7 @@ $(function () {
             $("div.all-D0").empty();
             $("div.give-some2").empty();
             $("div.get-bus3").empty();
-            orderlist("1");
+            orderlist("0");
             var removeBus = $(".coles-D").find("span.removeBus");
             removeBus.click(function () {
             	$(this).parents(".all-D-box").remove();
@@ -542,7 +500,7 @@ $(function () {
             $("div.all-D0").empty();
             $("div.give-money1").empty();
             $("div.get-bus3").empty();
-            orderlist("2") 
+            orderlist("1")
         } else if (dins == 3) {//待收货
             $(".all-D").hide();
             $(".give-money").hide();
@@ -551,7 +509,7 @@ $(function () {
             $("div.all-D0").empty();
             $("div.give-money1").empty();
             $("div.give-some2").empty();
-            orderlist("3");
+            orderlist("2");
             //确认支付
             var GetOk = $(".coles-Get").find("span.Get-right");
             GetOk.click(function () {

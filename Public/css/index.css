@@ -144,7 +144,8 @@ li {
     margin-bottom: 3%;
     background: white;
     text-decoration: none;
-    color: #666;
+    color: #b9fffd;
+    border:2px solid;
 }
 .goods li a {
     background: white;
@@ -381,7 +382,7 @@ footer {
 }
 
 .all-D-box {
-    background: white;
+    background: #f5f2ff;
     margin: 1% 0;
 }
 
@@ -425,7 +426,7 @@ footer {
 .give-money .all-D-div,
 .give-some .all-D-div,
 .get-bus .all-D-div {
-    background: rgb(247, 244, 244);
+    background: rgb(239, 238, 247);
     padding: 2% 4%;
     margin: 0 auto;
     overflow: hidden;
@@ -625,5 +626,9 @@ footer {
     font-size: 14px;
     padding-bottom: 1.5%;
     cursor: pointer;
+}
+.goods_lists{
+    margin-bottom: 1%;
+    overflow: hidden;
 }
 

@@ -1,0 +1,62 @@
+<extend name="Layout/menu"/>
+<block name="content">
+    <div id="content">
+        <div id="content-header">
+            <div id="breadcrumb">
+                <a href="#" class="tip-bottom" data-original-title="回到后台">
+                    <i class="icon-home"></i>后台
+                </a>
+                <a href="#">用户管理</a>
+                <a href="#" class="current">网站用户</a>
+            </div>
+        </div>
+        <div class="container-fluid" style="text-align:center;">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                            <h5>会员管理</h5>
+                            <a href="__MODULE__/Order/index"><span class="label label-info">返回上一级</span></a>
+                        </div>
+                        <!--<form action="__MODULE__/Farm/index" method="get">-->
+                            <!--<div class="widget-content nopadding">-->
+                                <!--<div style="height:50px;">-->
+                                    <!--<div style="float:left; margin:12px 0 0 30px;font:18px 微软雅黑;">搜索:</div>-->
+                                    <!--<input type="text" class="span3" name="title" style=" margin:10px 10px;float:left;" value="{$Think.get.username}" />-->
+                                    <!--<div style="float:left; margin:2px 0 0 10px;font:18px 微软雅黑;">-->
+                                        <!--<input type="submit" value="查询" style="width:60px; margin:10px 0; background:lightgray;">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                        <div class="widget-content nopadding">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>商品编号</th>
+                                    <th>商品图片</th>
+                                    <th>商品名称</th>
+                                    <th>类别</th>
+                                    <th>数量</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <foreach name="list" item="val">
+                                    <tr class="odd gradeX">
+                                        <td>{$val.id}</td>
+                                        <td><img src="__PUBLIC__/image/goods/{$val.image}" style="width:30px;"/></td>
+                                        <td>{$val.gname}</td>
+                                        <td>{$val.classify}</td>
+                                        <td>{$val.num}</td>
+                                    </tr>
+                                </foreach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {$pageinfo}
+    </div>
+</block>

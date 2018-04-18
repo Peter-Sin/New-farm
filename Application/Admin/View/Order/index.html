@@ -94,25 +94,24 @@ a:hover {
             <thead>
                 <tr>
                     <th><span style="font:15px 微软雅黑,黑体">编号</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">商品名称</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">商品类别</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">订单号</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">数量</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">价格</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">状态</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">买家</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">下单时间</span></th>
-                    <!-- <th><span style="font:15px 微软雅黑,黑体">操作</span></th> -->
+                     <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
                 </tr>
             </thead>
             <tbody>
                <foreach name="list" item="val">
                   <tr class="gradeC">
                      <td style="text-align:center">{$val.id}</td>
-                     <td style="text-align:center">{$val.goodsname}</td>
-                     <td style="text-align:center">{$val.cname}</td>
                      <td style="text-align:center" class="order">{$val.ordernum}</td>
-                     <td style="text-align:center" class="order">{$val.num}</td>
-                      <td style="text-align:center" class="order">{$val.statu}</td>
+                     <td style="text-align:center" class="money">
+                         <input type="text"  value="{$val.money}"  name="money" style="height:12px;width:60px">
+                         <a class="editmoney">修改</a>
+                     </td>
+                      <td style="text-align:center" class="order">{$val.step}</td>
                       <td style="text-align:center" class="order">{$val.username}</td>
                      <!-- <td style="text-align:center">
                         <if condition="$val.statu eq 0">
@@ -126,14 +125,13 @@ a:hover {
                         </if>
                      </td> -->
                      <td style="text-align:center">{$val.uptime}</td>
-                      <!-- <td class="center">
-                        <div style="text-align:center;">  
-                          <a href="__MODULE__/Goods/goodsclassify?id={$val.id}&cid=0">分类</a>&nbsp;|
-                          <a href="__MODULE__/Goods/imagemanager?id={$val.id}">图片管理</a>&nbsp;|
-                          <a href="__MODULE__/Goods/priceamount/id/{$val.id}">价格库存</a>&nbsp;|
-                          <a href="__MODULE__/Goods/goodsdelete/id/{$val.id}">删除</a>
+                      <td class="center">
+                        <div style="text-align:center;">
+                          <a href="__MODULE__/Order/orderaddress?ordernum={$val.ordernum}">收获地址</a>&nbsp;|
+                          <a href="__MODULE__/Order/orderclass?ordernum={$val.ordernum}">商品属性</a>&nbsp;|
+                          <a href="__MODULE__/Order/deleteorder?ordernum={$val.ordernum}">删除</a>
                         </div>
-                      </td> -->
+                      </td>
                   </tr>     
                </foreach>
             </tbody>
@@ -162,6 +160,29 @@ a:hover {
                   }
                },"text");
             });
-         });
+
+         $(".editmoney").click(function(){
+             var abc=confirm("确定删除该权限?");
+             if(abc){
+                 var money=$(this).siblings("input[name=money]").val();
+                 var ordernum=$(this).parent(".money").siblings(".order").html();
+                 $.ajax({
+                     type: "POST",//方法类型
+                     dataType: "json",//预期服务器返回的数据类型
+                     url: "../Order/editmoney",//url
+                     data: ({money: money,ordernum:ordernum}),
+                     success: function (result) {
+                         if (result.code == 200) {
+                             alert("修改成功");
+                         }else if(result.code == 300){
+                             alert("修改失败");
+                         }
+                     }
+                 })
+             }else{
+                 window.location.href="../Order/index";
+             }
+         })
+   });
 </script>
 </block>

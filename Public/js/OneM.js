@@ -219,24 +219,27 @@ $(function () {
         var ccc=$(this).attr("ccc");
         var money=$(".money").html();
         var datas=[];
+        var order=[];
+        order.addrid=addrid;
+        order.ccc=ccc;
+        order.money=money;console.log(order);
         for (var i=0;i<ding.length;i++) {
             datas[i]={};
             datas[i].g=ding[i].getAttribute("gid");
             datas[i].c=ding[i].getAttribute("cid");
             datas[i].n=ding[i].getAttribute("num");
-            datas[i].addrid=addrid;
-            datas[i].ccc=ccc;
-            datas[i].money=money;
         }
         $.ajax({
             type: "POST",
             dataType: "json",
             url: "../Order/addorder",
-            data: ({datas}),
+            data: ({datas:datas,addrid:addrid,ccc:ccc,money:money}),
             success: function (result) {
                 if (result.resultCode == 200) {
                     alert("订单提交成功");
-                    window.location.href="../Order/dowxpay?ordernum="+result.ordernum;
+                    // window.location.href="../Order/dowxpay?ordernum="+result.ordernum;
+                }else{
+                    alert("订单提交失败");
                 }
             },
             error: function (err) {

@@ -18,42 +18,47 @@ class OrderController extends AllowController {
     //订单查询列表
     public function orderlist(){
     	$order=M("order");
+    	$orderinfo=M("orderinfo");
         $classprice=M("classprice");
     	$where['uid']=$_SESSION['uid'];
-    	if($_POST['name']==0){
+    	if($_POST['name']==10){
     		$list=$order->where($where)->order('id desc')->select();
     	}else{
-            $where['statu']=$_POST['name'];
+            $where['step']=$_POST['name'];
     		$list=$order->where($where)->order('id desc')->select();
     	}
         if($list){
             $goods=M("goods");
             foreach($list as $key=>$val){
-                $id=$val['pid'];
-                $cid=$val['cid'];
-                $result=$goods->where("id='$id'")->field('name,price,image,voucher')->find();
-                $list[$key]['pname']=$result['name'];
-                if($cid==0){
-                    $goodsimg=M("goodsimg");
-                    $imginfo=$goodsimg->where("pid='$id'")->find();
-                    $list[$key]['image']=$imginfo['name'];
-                    $list[$key]['price']=$result['price'];
-                    $list[$key]['voucher']=$result['voucher'];
-                }else{
-                    $info=$classprice->where("pid='$id' AND id='$cid'")->find();
-                    $list[$key]['image']=$info['image'];
-                    $list[$key]['price']=$info['price'];
-                    $list[$key]['voucher']=$info['voucher'];
+                $ordernum=$val['ordernum'];
+                $goodsclassinfo[$key]=$orderinfo->where("ordernum='$ordernum'")->select();
+                foreach($goodsclassinfo[$key] as $k=>$v){
+                    $pid=$v['pid'];
+                    $cid=$v['cid'];
+                    $result=$goods->where("id='$pid'")->field('name,price,image,voucher')->find();
+                    $goodsclassinfo[$key][$k]['pname']=$result['name'];
+                    if($cid==0){
+                        $goodsimg=M("goodsimg");
+                        $imginfo=$goodsimg->where("pid='$pid'")->find();
+                        $goodsclassinfo[$key][$k]['image']=$imginfo['name'];
+                        $goodsclassinfo[$key][$k]['price']=$result['price'];
+                        $goodsclassinfo[$key][$k]['voucher']=$result['voucher'];
+                    }else{
+                        $info=$classprice->where("pid='$pid' AND id='$cid'")->find();
+                        $goodsclassinfo[$key][$k]['image']=$info['image'];
+                        $goodsclassinfo[$key][$k]['price']=$info['price'];
+                        $goodsclassinfo[$key][$k]['voucher']=$info['voucher'];
+                    }
                 }
-                switch ($val['statu']) {
+                switch ($val['step']) {
+                    case '0':
+                    $list[$key]['status']="待付款";
+                        break;
                     case '1':
-                $list[$key]['status']="待付款";
+                    $list[$key]['status']="待发货";
                         break;
                     case '2':
-                $list[$key]['status']="待发货";
-                        break;
-                    case '3':
-                $list[$key]['status']="待收货";
+                    $list[$key]['status']="待收货";
                         break;
                 }
             }
@@ -61,41 +66,44 @@ class OrderController extends AllowController {
                 'code'  => 200, 
                 'message' => 'success for request',
                 'data'  => $list,
+                'info'=>$goodsclassinfo,
             );
-            $this->ajaxReturn($response,'json');
         }else{
             $response = array(
-                'code'  => 200, 
-                'message' => 'success for request',
-                'data'  => $list,
+                'code'  => 300,
+                'message' => '暂无订单',
             );
         }
-    	
+        $this->ajaxReturn($response,'json');
     }
 
 
     //提交订单
     public function addorder(){
         $order=M("order");
+        $orderinfo=M("orderinfo");
         $shopcar=M("shopcar");
         $data['uid']=$_SESSION['uid'];
-        $data['statu']=1;
+        $data['statu']=0;
+        $data['step']=0;
         $data['uptime']=date("Y-m-d H:i:s");
         $datas=$_POST["datas"];
         M()->startTrans();
         $i=0;$j=0;
         $data['ordernum']=md5($data['uid'].$data['uptime'].$datas);
+        $data['addrid']=$_POST['addrid'];
+        $data['money']=$_POST['money'];
+        $res=$order->data($data)->add();
         foreach($datas as $key=>$val){
-            $data['pid']=$val['g'];
-            $data['cid']=$val['c'];
-            $data['num']=$val['n'];
-            $data['addrid']=$val['addrid'];
-            $data['money']=$val['money'];
-            $res=$order->data($data)->add();
-            if($res){
+            $d['pid']=$val['g'];
+            $d['cid']=$val['c'];
+            $d['num']=$val['n'];
+            $d['ordernum']=$data['ordernum'];
+            $resu=$orderinfo->data($d)->add();
+            if($resu){
                 $i++;
             }
-            if($val['ccc']==1231){
+            if($_POST['ccc']==1231){
                 $where['uid']=$_SESSION['uid'];
                 $where['pid']=$val['g'];
                 $where['cid']=$val['c'];
@@ -106,43 +114,77 @@ class OrderController extends AllowController {
                 }
             }
         }
-        if($val['ccc']==1231){
-            if(count($datas)==$i && $i==$j){
+        if($_POST['ccc']==1231){
+            if($res && count($datas)==$i && $i==$j){
+                M()->commit();
                 $response = array(
                     'resultCode' =>'200',
                     'message' => 'success for request',
                     'ordernum'  => $data['ordernum'],
-                    'deleteshopcar'=>$info,
+                    'i'=>$i,
+                    'j'=>$j,
+                    'n'=>count($datas),
                 );
-                $this->ajaxReturn($response,'json');
+            }else{
+                M()->rollback();
+                $response = array(
+                    'resultCode' =>'300',
+                    'message' => 'fail for request',
+                    'ordernum'  => $data['ordernum'],
+                    'i'=>$i,
+                    'j'=>$j,
+                    'n'=>count($datas),
+                );
             }
+            $this->ajaxReturn($response,'json');
         }else{
-            if(count($datas)==$i){
+            if($res && count($datas)==$i){
+                M()->commit();
                 $response = array(
                     'resultCode' =>'200',
                     'message' => '提交成功',
                     'ordernum'  => $data['ordernum'],
-                    'deleteshopcar'=>$info,
+                    'i'=>$i,
+                    'n'=>count($datas),
                 );
-                $this->ajaxReturn($response,'json');
+            }else{
+                M()->rollback();
+                $response = array(
+                    'resultCode' =>'300',
+                    'message' => '提交失败',
+                    'ordernum'  => $data['ordernum'],
+                );
             }
+            $this->ajaxReturn($response,'json');
         }
     }
 
     //取消订单
     public function removeBus(){
         $order=M("order");
-        $where['id']=$_POST['orderid'];
+        $orderinfo=M("orderinfo");
+        $ordernum=$_POST['ordernum'];
+        $where['ordernum']=$ordernum;
         $where['uid']=$_SESSION['uid'];
+        M()->startTrans();
         $res=$order->where($where)->delete();
-        if($res){
+        $result=$orderinfo->where("ordernum='$ordernum'")->delete();
+        if($res && $result){
+            M()->commit();
             $response = array(
                 'code'  => 200, 
-                'message' => 'success for request',
+                'message' => '取消订单成功',
                 'data'  => $where,
             );
-            $this->ajaxReturn($response,'json');
+        }else{
+            M()->rollback();
+            $response = array(
+                'code'  => 300,
+                'message' => '取消订单失败',
+                'data'  => $where,
+            );
         }
+        $this->ajaxReturn($response,'json');
     }
 
 
