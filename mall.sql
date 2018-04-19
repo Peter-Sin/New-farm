@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-04-18 19:43:17
+Date: 2018-04-19 19:27:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `address` (
   `choose` int(1) NOT NULL COMMENT '是否默认',
   `uptime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for classprice
@@ -109,7 +109,7 @@ CREATE TABLE `f_harvest` (
   `amount` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=229 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for f_land
@@ -252,8 +252,9 @@ CREATE TABLE `goods` (
   `contents` text COLLATE utf8_bin,
   `oprice` double NOT NULL,
   `uptime` datetime DEFAULT NULL,
+  `statu` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for goodsimg
@@ -265,7 +266,7 @@ CREATE TABLE `goodsimg` (
   `name` varchar(32) COLLATE utf8_bin NOT NULL,
   `uptime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for letter
@@ -279,7 +280,7 @@ CREATE TABLE `letter` (
   `num` float DEFAULT NULL,
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for lootgoods
@@ -292,7 +293,7 @@ CREATE TABLE `lootgoods` (
   `amount` int(255) DEFAULT NULL COMMENT '抢购数量',
   `loot_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for manager
@@ -331,6 +332,8 @@ CREATE TABLE `onemoney` (
   `hour` float DEFAULT NULL COMMENT '在线时长   单位（小时）',
   `number` int(11) DEFAULT NULL COMMENT '参与人数',
   `image` varchar(32) COLLATE utf8_bin DEFAULT NULL,
+  `online` int(1) DEFAULT NULL,
+  `statu` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -366,7 +369,7 @@ CREATE TABLE `order` (
   `pay_return_sts` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `buyer_email` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=274 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for orderinfo
@@ -379,7 +382,7 @@ CREATE TABLE `orderinfo` (
   `ordernum` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   `num` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for ouser
@@ -433,7 +436,7 @@ CREATE TABLE `shopcar` (
   `amount` int(11) DEFAULT NULL,
   `uptime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for user
