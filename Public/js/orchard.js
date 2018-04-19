@@ -141,6 +141,7 @@ function friendlist(a){
                             '</li>'
                     }
                 }
+                $(".one-class").empty();
                 $(".one-class").append(html);
             }
         },

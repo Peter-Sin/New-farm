@@ -51,6 +51,16 @@ li {
     padding: 2px;
 }
 
+.backs {
+    position: absolute;
+    height: 17px;
+    width: 10px;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+    padding: 2px;
+}
+
 .Dbg {
     width: 100%;
 }
@@ -239,7 +249,7 @@ li {
 }
 
 .Getpass form button,
-.Paypass form button,
+.Paypass form button
 {
     width: 94%;
     margin-left: 2%;

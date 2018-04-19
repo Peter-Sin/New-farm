@@ -86,6 +86,7 @@ a:hover {
                     <th><span style="font:15px 微软雅黑,黑体">商品图片</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">商品名称</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">剩余数量</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">状态</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">上线时间</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">持续时长</span></th>
                     <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
@@ -100,6 +101,7 @@ a:hover {
                      </td>
                      <td style="text-align:center">{$val.name}</td>
                      <td style="text-align:center">{$val.num}</td>
+                      <td style="text-align:center" class="statu" id="{$val.id}" sid="{$val.statu}">{$val.status}</td>
                      <td style="text-align:center">{$val.uptime}</td>
                      <td style="text-align:center">{$val.hour}小时</td>
                       <td class="center">
@@ -117,4 +119,30 @@ a:hover {
   </div>
   {$pageinfo}
 </div>
+    <script>
+        $(function() {
+            $(".statu").css("cursor", "pointer");
+            $(".statu").click(function () {
+                var pid = $(this).attr("id");
+                var sid = $(this).attr("sid");
+                var here = $(this);
+                var order = $(this).text();
+                console.log(pid);
+                console.log(sid);
+                console.log(here);
+                console.log(order);
+                $.post("__MODULE__/Onemoney/statu", {id: pid, sid: sid}, function (data) {
+                    if (data == 1) {
+                        if (order == 'X') {
+                            here.text('✓');
+                            here.attr("sid",'1');
+                        } else {
+                            here.text('X');
+                            here.attr("sid",'0');
+                        }
+                    }
+                }, "text");
+            })
+        });
+    </script>
 </block>

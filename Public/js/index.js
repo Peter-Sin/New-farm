@@ -16,6 +16,15 @@
         shopS.hide();
         userset();
     }
+    $(".enter-onemoney").click(function(e){
+        e.preventDefault();
+        var uid=$(".footer").attr("islogin");
+        if(uid==2){
+            window.location.href = "../Index/onemoney";
+        }else{
+            window.location.href = "../Login/index";
+        }
+    })
 
 })()
 
@@ -89,29 +98,34 @@ function indexs(a) {
                 var GoodId=$(this).siblings("a").attr("GoodId");
                 var cid=$(this).attr("cid");
                 var num=1;
+                var islogin=$(".footer").attr("islogin");
                 var goodsnum=$(".shopping").find("span").html();
-                // console.log(goodsnum);
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "../shopcar/addShopcar",
-                    data:({cid:cid,pid:GoodId,num:num}),
-                    success: function (result) {
-                        if (result.resultCode == 200) {
-                            goodsnum++;
-                            $("#shoppingnum").html(goodsnum)
-                            // 添加成功时的弹窗
-                            $(".in-tishi").fadeIn(500)
-                            // 1.5秒之后弹窗消失
-                            setTimeout(function () {
-                                $(".in-tishi").fadeOut(500)
-                            }, 1500)
+                if(islogin){
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "../shopcar/addShopcar",
+                        data:({cid:cid,pid:GoodId,num:num}),
+                        success: function (result) {
+                            if (result.resultCode == 200) {
+                                goodsnum++;
+                                $("#shoppingnum").html(goodsnum)
+                                // 添加成功时的弹窗
+                                $(".in-tishi").fadeIn(500)
+                                // 1.5秒之后弹窗消失
+                                setTimeout(function () {
+                                    $(".in-tishi").fadeOut(500)
+                                }, 1500)
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err.statusText)
                         }
-                    },
-                    error: function (err) {
-                        console.log(err.statusText)
-                    }
-                });
+                    });
+                }else{
+                    window.location.href = "../login/index";
+                }
+
             })
         }
     })
@@ -284,7 +298,6 @@ function orderlist(a) {
 
 //index 订单  农场  个人中心
 function caidan() {
-
     var ul = $("footer").find("ul");
     ul.css({
         "height": "50px",
@@ -389,7 +402,6 @@ function userset() {
             $(".land-price").html(result.landprice);
             $(".fruit-price").html(result.fruitnum);
             $(".voucher-price").html(result.vouchernum);
-            // $(".faceimg").setAttribute('src',result.faceimg);
             }
         })
 }
@@ -610,9 +622,13 @@ $(function () {
 //前往购物车
 $(function () {
     var goshop = $(".shopping").find("img");
-    // console.log(goshop)
     goshop.click(function () {
-        window.location.href="../shopcar/shopcar";
+        var uid=$("footer").attr("islogin");
+        if(uid==2){
+            window.location.href="../shopcar/shopcar";
+        }else{
+            window.location.href="../Login/index";
+        }
         // console.log("123")
         // $.ajax({
         //     type: "POST",

@@ -18,6 +18,11 @@ class GoodsController extends AllowController {
       $gclassify=M("gclassify");
       $list=$mod->where($where)->order("id desc")->limit($pan->firstRow,$pan->listRows)->select();
       foreach($list as $key=>$val){
+          if($val['statu']==1){
+              $list[$key]['status'] ='✓';
+          }else{
+              $list[$key]['status'] ='X';
+          }
         $pid=$val['id'];
         $imginfo=$goodsimg->where("pid='$pid'")->find();
         $list[$key]['image']=$imginfo["name"];
@@ -368,6 +373,23 @@ class GoodsController extends AllowController {
       $info=$gclassify->where("fid='$cid' AND pid='$gid'")->select();
       $this->assign("info",$info);
       $this->display('childclass');
+    }
+
+    public function statu(){
+        $id=$_POST["id"];
+        $sid=$_POST["sid"];
+        $goods=M("goods");
+        if($sid==1){
+            $data['statu']=0;
+        }else{
+            $data['statu']=1;
+        }
+        $res=$goods->where("id='$id'")->data($data)->save();
+        if($res){
+            $this->ajaxReturn(1);
+        }else{
+            $this->ajaxReturn(0);
+        }
     }
 
   }    

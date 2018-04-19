@@ -25,8 +25,9 @@
                     <div class="Duo-div">
                         <p id="O-D" >{$val.name}</p>
                         <p class="Onum">
-                            <span>{$val.number}</span>/
+                            <span class="yinum{$val.id}">{$val.number}</span>/
                             <span>{$val.amount}</span>
+                            <span class="numa" style="float:right;color:red;margin-right:5%">{$val.anum}</span>
                         </p>
                     </div>
                     <button class="Oget">
@@ -35,6 +36,14 @@
                     <span class="Odtime" pid="{$val.id}" times = "{$val.endtime}">
                         <p></p>
                     </span>
+                    <button class="Ogetasdf" style="display:none;margin-left:6%;float:right;font-size:13px;background:rgb(165, 164, 164);height:60px;border-radius:5px;border:none;color:white">
+                        已结束
+                    </button>
+                    <div style="display:none;width:100%" class="Onegetasdf">
+                        <p>
+                            结果正在统计中,请稍候。。。
+                        </p>
+                    </div>
                 </li>
             </foreach>
            <!--  <li>
@@ -84,5 +93,12 @@
 </body>
 
 <script src="__PUBLIC__/js/OneM.js"></script>
-
+<script>
+    $(function(){
+        var back = $(".nav-bar").find("img.back")
+        back.click(function () {
+            location.href = "../Index/index";
+        })
+    })
+</script>
 </html>

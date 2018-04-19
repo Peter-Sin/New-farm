@@ -92,13 +92,13 @@ class OrderController extends AllowController {
         $i=0;$j=0;
         $data['ordernum']=md5($data['uid'].$data['uptime'].$datas);
         $data['addrid']=$_POST['addrid'];
-        $data['money']=$_POST['money'];
-        $data['voucher']=$_POST['voucher'];
-        $res=$order->data($data)->add();
         foreach($datas as $key=>$val){
             $d['pid']=$val['g'];
             $d['cid']=$val['c'];
             $d['num']=$val['n'];
+            $alltotal= checkmoney($val['c'],$val['g'],$val['n']);
+            $moneytotal+=$alltotal['money'];
+            $vouchertotal+=$alltotal['voucher'];
             $d['ordernum']=$data['ordernum'];
             $resu=$orderinfo->data($d)->add();
             if($resu){
@@ -115,6 +115,9 @@ class OrderController extends AllowController {
                 }
             }
         }
+        $data['money']=$_POST['money'];
+        $data['voucher']=$_POST['voucher'];
+        $res=$order->data($data)->add();
         if($_POST['ccc']==1231){
             if($res && count($datas)==$i && $i==$j){
                 M()->commit();
@@ -122,8 +125,8 @@ class OrderController extends AllowController {
                     'resultCode' =>'200',
                     'message' => 'success for request',
                     'ordernum'  => $data['ordernum'],
-                    'i'=>$i,
-                    'j'=>$j,
+                    'i'=>$moneytotal,
+                    'j'=>$vouchertotal,
                     'n'=>count($datas),
                 );
             }else{

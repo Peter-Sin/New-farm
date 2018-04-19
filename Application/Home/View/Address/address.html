@@ -15,7 +15,7 @@
 <body>
     <div class="orchard">
         <p class="nav-bar">
-            <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 添加新地址
+            <img class="backs" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 添加新地址
         </p>
         <div class="Adrpass">
             <form action="" id="Adrpasss">
@@ -54,9 +54,16 @@
         </div>
     </div>
 </body>
-<!--<script src="__PUBLIC__/js/LoginZhuce.js"></script>-->
-<script src="__PUBLIC__/js/OneM.js"></script>
+
 <script src="__PUBLIC__/js/aa.js"></script>
 <script src="__PUBLIC__/js/bb.js"></script>
-<script src="__PUBLIC__/js/backthree.js"></script>
+<script src="__PUBLIC__/js/address.js"></script>
+<script>
+    $(function(){
+        var backs = $(".nav-bar").find("img.backs")
+        backs.click(function () {
+            location.href = "../Address/chooadres";
+        })
+    })
+</script>
 </html>

@@ -16,7 +16,13 @@ class OnemoneyController extends AllowController {
       $list=$mod->where($where)->order("id desc")->limit($pan->firstRow,$pan->listRows)->select();
       foreach($list as $key=>$val){
         $list[$key]['num']=$val['amount']-$val['number'];
+        if($val['statu']==1){
+            $list[$key]['status']='✓';
+        }else{
+            $list[$key]['status']='X';
+        }
       }
+//      dump($list);
       $this->assign("list",$list);
       $this->assign("pageinfo",$pan->show());
       $this->display("index");
@@ -186,6 +192,23 @@ class OnemoneyController extends AllowController {
       if($res){
         $this->success("添加成功");
       }
+    }
+
+    public function statu(){
+        $id=$_POST["id"];
+        $sid=$_POST["sid"];
+        $onemoney=M("onemoney");
+        if($sid==1){
+            $data['statu']=0;
+        }else{
+            $data['statu']=1;
+        }
+        $res=$onemoney->where("id='$id'")->data($data)->save();
+        if($res){
+            $this->ajaxReturn(1);
+        }else{
+            $this->ajaxReturn(0);
+        }
     }
 }    
    

@@ -25,6 +25,21 @@ function getnumcode($num){
     return $str;
 }
 
+function checkmoney($cid,$pid,$num){
+    $classprice=M("classprice");
+    $goods=M("goods");
+    if($cid==0){
+        $checkinfo=$goods->where("id='$pid'")->find();
+        $list['money']=$checkinfo['price']*$num;
+        $list['voucher']=$checkinfo['voucher']*$num;
+    }else{
+        $checkinfo=$classprice->where("id='$cid' AND pid='$pid'")->find();
+        $list['money']=$checkinfo['price']*$num;
+        $list['voucher']=$checkinfo['voucher']*$num;
+    }
+    return $list;
+}
+
 function is_weixin(){
     if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false){
         return 1;

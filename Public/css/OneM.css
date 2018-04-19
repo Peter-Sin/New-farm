@@ -49,6 +49,16 @@ li {
     padding: 2px;
 }
 
+.backs {
+    position: absolute;
+    height: 17px;
+    width: 10px;
+    left: 10px;
+    top: 8px;
+    cursor: pointer;
+    padding: 2px;
+}
+
 .Duobao {
     margin-top: 33px;
     background: white;
@@ -83,8 +93,8 @@ li {
 .Duobao li div p:nth-child(2) {
     font-size: 11px;
     background: rgb(235, 232, 232);
-    width: 80%;
-    text-align: center;
+    width: 60%;
+    text-align: left;
     margin-top: 5%;
     border-radius: 15px;
 }
@@ -100,7 +110,31 @@ li {
     border: none;
     color: white;
 }
+/*.Duobao li .Ogetasdf {*/
+    /*margin-left: 6%;*/
+    /*float: right;*/
+    /*font-size: 13px;*/
+    /*background: rgb(226, 147, 0);*/
+    /*!*margin-top: 2%;*!*/
+    /*padding: 1.3% 1.9%;*/
+    /*border-radius: 5px;*/
+    /*border: none;*/
+    /*color: white;*/
+/*}*/
 
+/*.Duobao li .Odtimeasdf {*/
+    /*margin-left: 6%;*/
+    /*float: right;*/
+    /*text-align: center;*/
+    /*font-size: 10px;*/
+    /*padding: 0.8% 0.8%;*/
+    /*margin-top: 0.8%;*/
+    /*border-radius: 5px;*/
+    /*border: none;*/
+    /*!*background: red;*!*/
+    /*color: red;*/
+    /*!*display: none;*!*/
+/*}*/
 .Duobao li .Odtime {
     margin-left: 6%;
     float: right;
@@ -118,6 +152,9 @@ li {
 .Oneget {
     background: white;
 }
+/*.Onegetasdf {*/
+     /*background: white;*/
+ /*}*/
 
 .Oneget p {
     width: 96%;
@@ -125,11 +162,18 @@ li {
     font-size: 12px;
     padding: 1% 0;
 }
-
+/*.Onegetasdf p {*/
+    /*width: 96%;*/
+    /*margin: 0 auto;*/
+    /*font-size: 12px;*/
+    /*padding: 1% 0;*/
+/*}*/
 .Oneget p img {
     width: 5%;
 }
-
+/*.Onegetasdf p img {*/
+    /*width: 5%;*/
+/*}*/
 
 /* .OneMoney {
     position: relative;

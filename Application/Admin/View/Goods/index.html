@@ -89,6 +89,7 @@ a:hover {
                   <th><span style="font:15px 微软雅黑,黑体">购物券</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">原价</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">属性</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">状态</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">默认分类</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
               </tr>
@@ -103,6 +104,7 @@ a:hover {
                   <td style="text-align:center">{$val.voucher}</td>
                   <td style="text-align:center">{$val.oprice}</td>
                   <td style="text-align:center">{$val.sort}</td>
+                  <td style="text-align:center" class="statu" id="{$val.id}" sid="{$val.statu}">{$val.status}</td>
                   <td style="text-align:center" class="order">{$val.cname}</td>
                 <td class="center">
                   <div style="text-align:center;">  
@@ -122,4 +124,30 @@ a:hover {
   </div>
   {$pageinfo}
 </div>
+    <script>
+        $(function() {
+            $(".statu").css("cursor", "pointer");
+            $(".statu").click(function () {
+                var pid = $(this).attr("id");
+                var sid = $(this).attr("sid");
+                var here = $(this);
+                var order = $(this).text();
+                console.log(pid);
+                console.log(sid);
+                console.log(here);
+                console.log(order);
+                $.post("__MODULE__/Goods/statu", {id: pid, sid: sid}, function (data) {
+                    if (data == 1) {
+                        if (order == 'X') {
+                            here.text('✓');
+                            here.attr("sid",'1');
+                        } else {
+                            here.text('X');
+                            here.attr("sid",'0');
+                        }
+                    }
+                }, "text");
+            })
+        });
+    </script>
 </block>

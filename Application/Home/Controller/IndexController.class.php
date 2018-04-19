@@ -23,10 +23,11 @@ class IndexController extends Controller {
     	$goods=M("goods");
         $shopcar=M("shopcar");
         $where['sort']=$_POST['classify'];
+        $arr['statu']=1;
         if($_POST['classify']==0){
-            $list=$goods->limit(10)->select();
+            $list=$goods->limit(10)->where($arr)->select();
         }else{
-            $list=$goods->where($where)->limit(10)->select();
+            $list=$goods->where($where)->where($arr)->limit(10)->select();
         }
         $goodsimg=M("goodsimg");
         foreach($list as $key=>$val){
@@ -55,10 +56,20 @@ class IndexController extends Controller {
 
     public function onemoney(){
     	$onemoney=M("onemoney");
-    	$list=$onemoney->where("uptime<=NOW() AND DATE_ADD(uptime, INTERVAL hour HOUR)>=NOW() AND amount>number")->select();
+    	$lootgoods=M("lootgoods");
+    	$arr['statu']=1;
+    	$list=$onemoney->where("uptime<=NOW() AND DATE_ADD(uptime, INTERVAL hour HOUR)>=NOW() AND amount>number")->where($arr)->select();
     	foreach($list as $key=>$val){
     		$cen=3600*$val['hour']+strtotime($val['uptime']);
     		$list[$key]['endtime']=date("Y-m-d H:i:s",$cen);
+    		$pid=$val['id'];
+    		$uid=$_SESSION["uid"];
+    		$anum=$lootgoods->where("pid='$pid' AND uid='$uid'")->getField("amount");
+            if($anum){
+                $list[$key]['anum']=$anum;
+            }else{
+                $list[$key]['anum']=0;
+            }
     	}
     	$this->assign("list",$list);
         $this->display("onemoney");
@@ -69,7 +80,7 @@ class IndexController extends Controller {
         $pid=$_POST["pid"];
         $info=$onemoney->where("id='$pid'")->find();
         $num=$info['amount']-$info['number'];
-        if($num>0){
+        if($num>=0){
             $response=array(
                 'resultCode'  => 200, 
                 'message' => 'success for request',
@@ -91,43 +102,67 @@ class IndexController extends Controller {
     	$lootgoods=M("lootgoods");
     	$onemoney=M("onemoney");
     	$data['uid']=$_SESSION['uid'];
+    	$amount=$_POST['amount'];
         $pid=$_POST['pid'];
         $data['pid']=$pid;
         $onelist=$onemoney->where("id='$pid'")->find();
-        if($onelist['amount']-$onelist['number']>=$_POST['amount']){
-            $info=$lootgoods->where($data)->find();
-            M()->startTrans();
-            if($info){
-                $where['amount']=$info['amount']+$_POST['amount'];
-                $where['loot_time']=date("Y-m-d H:i:s");
-                $res=$lootgoods->where($data)->data($where)->save();//夺宝数据库   修改
+        if($amount==0){
+            $response = array(
+                'resultCode'  => 500,
+                'message' => '果子数不能为0',
+            );
+            $this->ajaxReturn($response,'json');
+        }elseif($amount>0){
+            if($onelist['amount']-$onelist['number']>=$amount){
+                $info=$lootgoods->where($data)->find();
+                M()->startTrans();
+                if($info){
+                    $where['amount']=$info['amount']+$_POST['amount'];
+                    $anum=$where['amount'];
+                    $where['loot_time']=date("Y-m-d H:i:s");
+                    $res=$lootgoods->where($data)->data($where)->save();//夺宝数据库   修改
+                }else{
+                    $data['amount']=$_POST['amount'];
+                    $anum=$data['amount'];
+                    $data['loot_time']=date("Y-m-d H:i:s");
+                    $res=$lootgoods->data($data)->add();//夺宝数据库   添加
+                }
+                if($res){
+                    $pid=$_POST["pid"];
+                    $list=$onemoney->where("id='$pid'")->find();
+                    $t['number']=$list['number']+$_POST['amount'];
+                    $m=$onemoney->where("id='$pid'")->data($t)->save();//夺宝商品数据库
+                    if($m){
+                        M()->commit();
+                        $response = array(
+                            'resultCode'  => 200,
+                            'message' => '参与成功',
+                            'num'=>$t['number'],
+                            'total'=>$list['amount'],
+                            'anum'=>$anum,
+                        );
+                    }else{
+                        M()->rollback();
+                        $response = array(
+                            'resultCode'  => 400,
+                            'message' => '参与失败',
+                        );
+                    }
+                    $this->ajaxReturn($response,'json');
+                }
             }else{
-                $data['amount']=$_POST['amount'];
-                $data['loot_time']=date("Y-m-d H:i:s");
-                $res=$lootgoods->data($data)->add();//夺宝数据库   添加
-            }
-            if($res){
-                $pid=$_POST["pid"];
-                $list=$onemoney->where("id='$pid'")->find();
-                $t['number']=$list['number']+$_POST['amount'];
-                $m=$onemoney->where("id='$pid'")->data($t)->save();//夺宝商品数据库
-                if($m){
-                    M()->commit();
-                    $response = array(
-                    'resultCode'  => 200, 
+                $response = array(
+                    'resultCode'  => 300,
                     'message' => 'success for request',
-                    'data'  => $m,
+                    'data'  => '抢购数量超出',
                 );
                 $this->ajaxReturn($response,'json');
-                }else{
-                    M()->rollback();
-                }
             }
         }else{
             $response = array(
-                'resultCode'  => 300, 
+                'resultCode'  => 600,
                 'message' => 'success for request',
-                'data'  => 抢购数量超出,
+                'data'  => '数量不能小于0',
             );
             $this->ajaxReturn($response,'json');
         }
@@ -141,11 +176,9 @@ class IndexController extends Controller {
     	$uid=$_SESSION['uid'];
     	$list=M()
     	->table("lootgoods l,onemoney o")
-    	->field('l.id,o.name,o.amount,o.number,o.uptime,o.image,o.hour,o.id as pid')
+    	->field('l.id,o.name,o.amount,o.number,o.uptime,o.image,o.hour,o.id as pid,l.amount as anum')
     	->where("l.uid='$uid' AND l.pid=o.id AND o.uptime<NOW()")
-        // AND DATE_ADD(o.uptime, INTERVAL o.hour HOUR)<NOW()
     	->select();
-
         foreach($list as $key=>$val){
             $cen=3600*$val['hour']+strtotime($val['uptime']);
             $list[$key]['endtime']=date("Y-m-d H:i:s",$cen);
@@ -161,20 +194,8 @@ class IndexController extends Controller {
                 }else{
                     $list[$key]['ischoose']=0;
                 }
-                
-                // $info=M()
-                // ->table("winer w,user u")
-                // ->field('u.username')
-                // ->where("w.pid='$pid' AND w.winid=u.id")
-                // ->select();
-                // if(!empty($info[0]['username'])){
-                //     $list[$key]['username']=$info[0]['username'];
-                // }else{
-                //    $list[$key]['username']=$this->winner($pid);
-                // }
             }
         }
-        // dump($list);
     	$this->assign("list",$list);
     	$this->display('myonemoney');
     }
