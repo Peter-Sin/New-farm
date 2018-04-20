@@ -43,6 +43,7 @@
                   <th>会员电话</th>
                   <th>支付账号</th>
                   <th>注册时间</th>
+                  <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,6 +59,7 @@
                     <td>{$val.telphone}</td>
                     <td>{$val.alipay}</td>
                     <td>{$val.registime}</td>
+                    <td class="jinyong" id="{$val.id}" sid="{$val.statu}">{$val.status}</a></td>
                   </tr>
                 </foreach>
                 </tbody>
@@ -69,4 +71,30 @@
     </div>
     {$pageinfo}
   </div>
+  <script>
+  $(function() {
+  $(".jinyong").css("cursor", "pointer");
+  $(".jinyong").click(function () {
+  var pid = $(this).attr("id");
+  var sid = $(this).attr("sid");
+  var here = $(this);
+  var order = $(this).text();
+  console.log(pid);
+  console.log(sid);
+  console.log(here);
+  console.log(order);
+  $.post("__MODULE__/User/disable", {id: pid, sid: sid}, function (data) {
+  if (data == 1) {
+  if (order == '禁用') {
+    here.text('解禁');
+    here.attr("sid",'1');
+  } else {
+    here.text('禁用');
+    here.attr("sid",'0');
+  }
+  }
+  }, "text");
+  })
+  });
+  </script>
 </block>

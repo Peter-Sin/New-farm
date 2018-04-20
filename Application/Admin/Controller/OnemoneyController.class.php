@@ -22,7 +22,6 @@ class OnemoneyController extends AllowController {
             $list[$key]['status']='X';
         }
       }
-//      dump($list);
       $this->assign("list",$list);
       $this->assign("pageinfo",$pan->show());
       $this->display("index");

@@ -354,7 +354,9 @@ $(".btn-login").click(function () {
                     alert("登陆成功");
                     window.location.href = "../Index/index";
                 }else if(result.resultCode == 300){
-                    alert("登陆失败");
+                    alert("账号密码有误");
+                }else if(result.resultCode == 400){
+                    alert("账号被禁用");
                 }
             },
             error: function (err) {

@@ -9,7 +9,7 @@ class OrderController extends AllowController {
 	    }
 	    $mod=M("order");
 	    $sou=$mod->where($where)->count();
-	    $pan=new \Think\Page($sou,20);
+	    $pan=new \Think\Page($sou,15);
 	    $pan->setConfig("prev","上一页");
 	    $pan->setConfig("next","下一页");
 	    $list=$mod->where($where)->order("id desc")->limit($pan->firstRow,$pan->listRows)->select();

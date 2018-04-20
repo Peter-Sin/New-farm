@@ -10,7 +10,7 @@ $(function () {
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "../Index/onclicknum",
+            url: "../Onemoney/onclicknum",
             data: ({pid:pid}),
             success: function (result) {
                 console.log(result);
@@ -84,7 +84,7 @@ $(function () {
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "../Index/lootgoods",
+                    url: "../Onemoney/lootgoods",
                     data: ({amount: NUM,pid:pid}),
                     success: function (result) {
                         if (result.resultCode== 200 ) {

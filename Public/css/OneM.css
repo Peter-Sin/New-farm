@@ -399,6 +399,7 @@ li {
     width: 15%;
     /* padding: 3% 0; */
     line-height: 40px;
+    text-align: left;
 }
 .all-check .maidan span:nth-child(3){
     float: left;
@@ -412,10 +413,11 @@ li {
     /* padding: 3% 0; */
     line-height: 40px;
     font-size: 13px;
+    text-align: left;
 }
 .all-check .maidan span:nth-child(4) {
     float: left;
-    width: 12%;
+    width: 15%;
     /* padding: 3% 0; */
     line-height: 40px;
     font-size: 13px;
@@ -442,11 +444,13 @@ li {
 
 /* 确认订单 */
 
+.addresslist,
 .Ding-adress {
     background: white;
     overflow: hidden;
 }
 
+.addresslist div,
 .Ding-adress div {
     width: 92%;
     margin: 0 auto;
@@ -455,26 +459,34 @@ li {
     border-bottom: 1px solid rgb(223, 220, 220);
 }
 
+.addresslist div .Ding-down,
+.addresslist div .Ding-top,
 .Ding-adress div .Ding-top,
 .Ding-adress div .Ding-down {
     font-size: 12px;
     color: rgb(185, 184, 184);
 }
 
+.addresslist div .Ding-mid,
 .Ding-adress div .Ding-mid {
     font-size: 14px;
     overflow: hidden;
 }
 
+.addresslist div .Ding-down,
 .Ding-adress div .Ding-down {
     overflow: hidden;
 }
 
+.addresslist div .Ding-mid .Ding-down-left,
+.addresslist div .Ding-mid .Ding-mid-left,
 .Ding-adress div .Ding-mid .Ding-mid-left,
 .Ding-adress div .Ding-down .Ding-down-left {
     float: left;
 }
 
+.addresslist div .Ding-mid .Ding-down-right,
+.addresslist div .Ding-mid .Ding-mid-right,
 .Ding-adress div .Ding-mid .Ding-mid-right,
 .Ding-adress div .Ding-down .Ding-down-right {
     float: right;

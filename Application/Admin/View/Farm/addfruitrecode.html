@@ -6,8 +6,8 @@
         <a href="#" class="tip-bottom" data-original-title="回到后台">
           <i class="icon-home"></i>后台
         </a>
-        <a href="#">用户管理</a>
-        <a href="#" class="current">网站用户</a>
+        <a href="#">农场管理</a>
+        <a href="#" class="current">果子充值</a>
       </div>
     </div>
     <div class="container-fluid" style="text-align:center;">
@@ -15,10 +15,10 @@
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-              <h5>加减果子</h5>
+              <h5>充值记录</h5>
               <a href="__MODULE__/Farm/addfruit"><span class="label label-info">添加果子</span></a>
             </div>
-            <form action="__MODULE__/Farm/index" method="get">
+            <form action="__MODULE__/Farm/addfruitrecord" method="get">
               <div class="widget-content nopadding">
                 <div style="height:50px;">
                   <div style="float:left; margin:12px 0 0 30px;font:18px 微软雅黑;">搜索:</div>
@@ -33,23 +33,23 @@
               <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>vipid</th>
+                  <!--<th>vipid</th>-->
                   <th>用户昵称</th>
                   <th>果子数量</th>
                   <th>说明</th>
                   <th>时间</th>
-                  <th>操作</th>
+                  <!--<th>操作</th>-->
                 </tr>
                 </thead>
                 <tbody>
                 <foreach name="list" item="val">
                   <tr class="odd gradeX">
-                    <td>{$val.vipid}</td>
+                    <!--<td>{$val.vipid}</td>-->
                     <td>{$val.username}</td>
                     <td>{$val.num}</td>
                     <td>{$val.content}</td>
                     <td>{$val.time}</td>
-                    <td>{$val.image}</td>
+                    <!--<td>{$val.image}</td>-->
                   </tr>
                 </foreach>
                 </tbody>

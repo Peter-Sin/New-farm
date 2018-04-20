@@ -31,28 +31,6 @@ $(function () {
             addprize(prize,voucher,total,num,gnum,2)
         }
     })
-    allcheckbox.click(function () {
-        checkbox.attr("a", "on");
-        for (var i = 0; i < checkbox.length; i++) {
-            if (checkbox[i].getAttribute("a") != "off") {
-                checkbox.addClass("active")
-            }
-        }
-        $(this).addClass("active")
-        var prize =$(".Onlie >ul >li").find(".prize");
-        var gnum=$(".Onlie >ul >li").find(".gnum");
-        var totalprice=0;
-        for (var i=0;i<prize.length;i++) {
-            totalprice+=parseInt(prize[i].innerText)*parseInt(gnum[i].innerText);
-        }
-        var voucher =$(".Onlie >ul >li").find(".voucher");
-        var numvoucher=0;
-        for (var i=0;i<voucher.length;i++) {
-            numvoucher+=parseInt(voucher[i].innerText)*parseInt(gnum[i].innerText);
-        }
-        $("#maimaip").html(totalprice);
-        $("#daijinquan").html(numvoucher);
-    })
     function addprize(a,b,c,d,f,e){
         if(e==1){
             totalprice=parseInt(c)+parseInt(a)*parseInt(f);
@@ -64,6 +42,39 @@ $(function () {
         $("#maimaip").html(totalprice);
         $("#daijinquan").html(numvoucher);
     }
+
+    allcheckbox.click(function () {
+        if($(this).attr("a")=="on"){
+            checkbox.attr("a", "off");
+            checkbox.removeClass("active");
+            $(this).removeClass("active");
+            $(this).attr("a", "off");
+            $("#maimaip").html(0);
+            $("#daijinquan").html(0);
+        }else{
+            checkbox.attr("a", "on");
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].getAttribute("a") != "off") {
+                    checkbox.addClass("active");
+                }
+            }
+            $(this).addClass("active");
+            $(this).attr("a", "on");
+            var prize =$(".Onlie >ul >li").find(".prize");
+            var gnum=$(".Onlie >ul >li").find(".gnum");
+            var totalprice=0;
+            for (var i=0;i<prize.length;i++) {
+                totalprice+=parseInt(prize[i].innerText)*parseInt(gnum[i].innerText);
+            }
+            var voucher =$(".Onlie >ul >li").find(".voucher");
+            var numvoucher=0;
+            for (var i=0;i<voucher.length;i++) {
+                numvoucher+=parseInt(voucher[i].innerText)*parseInt(gnum[i].innerText);
+            }
+            $("#maimaip").html(totalprice);
+            $("#daijinquan").html(numvoucher);
+        }
+    })
 })
 
 
@@ -71,6 +82,77 @@ $(function () {
 
 //购物车结算
 $(function () {
+    var total=$(".goodsnums").attr("total");
+    $(".jian").click(function(){
+        var num=$(this).siblings(".gnum").html();
+        var pid=$(this).parents(".div-nums").siblings(".checkbox").attr("goodid");
+        var cid=$(this).parents(".div-nums").siblings(".checkbox").attr("cid");
+        var here=$(this);
+        num--;
+        console.log(num);
+        if(num<1){
+            $(this).siblings(".gnum").html(1);
+            alert("数量不能小于1");
+        }else{
+            shopcarnum(pid,cid,num,here);
+
+            // $(this).siblings(".gnum").html(num);
+        }
+    })
+
+    $(".jia").click(function(){
+        var num=$(this).siblings(".gnum").html();
+        var total=$(this).parents(".goodsnums").attr("total");
+        var pid=$(this).parents(".div-nums").siblings(".checkbox").attr("goodid");
+        var cid=$(this).parents(".div-nums").siblings(".checkbox").attr("cid");
+        var here=$(this);
+        num++;
+        if(num>total){
+            $(this).siblings(".gnum").html(total);
+            alert("不能购买更多");
+        }else{
+            shopcarnum(pid,cid,num,here);
+            // $(this).siblings(".gnum").html(num);
+        }
+    })
+
+    function shopcarnum(pid,cid,num,here){
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "../shopcar/shopcarnum",
+            data: ({num:num,pid:pid,cid:cid}),
+            success: function (result) {
+                if(result.code==200){
+                    here.siblings(".gnum").html(num);
+                }else{
+                    alert("faild");
+                }
+            }
+        })
+    }
+
+    $(".deletecar").click(function(){
+        var pid=$(this).parents(".div-nums").siblings(".checkbox").attr("goodid");
+        var cid=$(this).parents(".div-nums").siblings(".checkbox").attr("cid");
+        var here=$(this);
+        if(confirm("您确定要删除该条记录吗？")){
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../shopcar/deleteshopcar",
+                data: ({pid:pid,cid:cid}),
+                success: function (result) {
+                    if(result.code==200){
+                        here.parents(".shopcarlist").remove();
+                    }else{
+                        alert("faild");
+                    }
+                }
+            })
+        }
+    })
+
     var maiOk = $(".all-check").find(".maiOk")
     maiOk.click(function () {
         var Bechoose = $(".active")
@@ -83,9 +165,12 @@ $(function () {
             datas[i].n=Bechoose[i].getAttribute("GoodsNum");
             datas[i].ccc=$(this).attr("ccc");
         }
-        console.log(datas);
         datas =JSON.stringify(datas)
-        window.location.href="../Order/dingOk?datas="+datas;
+        if(datas=='[]'){
+            alert("请选择商品");
+        }else{
+            window.location.href="../Order/dingOk?datas="+datas;
+        }
         // console.log(datas)
         // $.ajax({
         //     type: "POST",
@@ -104,8 +189,16 @@ $(function () {
         // });
     })
 })
+
+
+
+
 //确认订单提交订单
 $(function () {
+    // $(".editaddress").click(function(){
+    //
+    // })
+
     var giveOk = $(".all-check").find(".giveOk")
     giveOk.click(function () {
         var ding = $(".ding")

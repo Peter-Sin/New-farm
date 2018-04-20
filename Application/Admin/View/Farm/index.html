@@ -6,8 +6,8 @@
       <a href="#" class="tip-bottom" data-original-title="回到后台">
         <i class="icon-home"></i>后台
       </a> 
-      <a href="#">用户管理</a> 
-      <a href="#" class="current">网站用户</a> 
+      <a href="#">农场设置</a>
+      <a href="#" class="current">会员管理</a>
     </div>
   </div>
   <div class="container-fluid" style="text-align:center;">
@@ -15,7 +15,7 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5>会员管理</h5>
+            <h5>会员信息</h5>
             <a href="__MODULE__/Farm/addland"><span class="label label-info">用户开地</span></a>
           </div>
           <form action="__MODULE__/Farm/index" method="get">
@@ -59,9 +59,9 @@
                 <td>{$val.lnum}</td>
                 <td>{$val.telphone}</td>
                 <td>{$val.lowest}</td>
-                <td><a href="__MODULE__/Farm/setlowest?id={$val.id}">设置</a>|
+                <td><a href="__MODULE__/Farm/setlowest?id={$val.id}">设置</a>
                 <!--<a href="__MODULE__/Farm/edituser?id={$val.id}">修改</a>|-->
-                <a href="__MODULE__/Farm/deleteuser?id={$val.id}">删除</a></td>
+                <!--<a href="__MODULE__/Farm/deleteuser?id={$val.id}">删除</a></td>-->
               </tr>
               </foreach>
               </tbody>

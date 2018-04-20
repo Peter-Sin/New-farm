@@ -20,7 +20,7 @@
         e.preventDefault();
         var uid=$(".footer").attr("islogin");
         if(uid==2){
-            window.location.href = "../Index/onemoney";
+            window.location.href = "../Onemoney/onemoney";
         }else{
             window.location.href = "../Login/index";
         }

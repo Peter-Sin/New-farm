@@ -19,22 +19,23 @@
         </p>
         <ul>
             <foreach name="list" item="val">
-                <li lia="off" cid="{$val.cid}">
+                <li class="shopcarlist" lia="off" cid="{$val.cid}">
                     <p class="checkbox" a="off" cid="{$val.cid}" GoodId="{$val.pid}" GoodsNum="{$val.amount}"></p>
                     <img class="gg" src="__PUBLIC__/image/goods/{$val.image}" alt="">
-                    <div>
-                        <p>
+                    <div class="div-nums">
+                        <p style="margin:0 0 5% 0;">
                             <span>{$val.pname}</span>
-                            <img src="__PUBLIC__/YM/fontimg/bj.png" alt="">
+                            <img class="deletecar" style="width:6%" src="__PUBLIC__/YM/fontimg/sc.png" alt="">
                         </p>
                         <p>
                             <span>￥:
                                 <small class="prize">{$val.price}</small> +
                                 <small class="voucher">{$val.voucher}</small>代金券
                             </span>
-                            <i>
-                                <a>x</a>
-                                <a class="gnum">{$val.amount}</a>
+                            <i class="goodsnums" total="{$val.total}">
+                                <span class="jian" style="width:20px;border:1px solid #bb84ff;padding:0 5px;background:#bb84ff;color:white">-</span>
+                                <span class="gnum" style="width:25px;border:1px solid #b1fffa;">{$val.amount}</span>
+                                <span class="jia" style="width:20px;border:1px solid #bb84ff;padding:0 5px;background:#bb84ff;color:white">+</span>
                             </i>
                         </p>
                     </div>
@@ -49,10 +50,11 @@
             <span>合计:￥</span>
             <span class="maip" id="maimaip">
             0.00</span>
-            <span>+</span>
+            <span></span>
+            <span>代金券:</span>
             <span class="daijinquan" id="daijinquan">
             0</span>
-             <span>代金券</span>
+
             
             <span class="maiOk" ccc="1231">结算</span>
         </p>

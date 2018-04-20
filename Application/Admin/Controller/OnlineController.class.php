@@ -69,9 +69,9 @@ class OnlineController extends AllowController
         $id=$_GET['id'];
         $res=$online->where("id='$id'")->delete();
         if($res){
-            $this->success("修改成功",'./index');
+            $this->success("删除成功",'./index');
         }else{
-            $this->success("修改失败",'./index');
+            $this->success("删除失败",'./index');
         }
     }
 

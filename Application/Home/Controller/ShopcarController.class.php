@@ -41,25 +41,27 @@ class ShopcarController extends AllowController {
         $list=$shopcar->where($where)->select();
         foreach($list as $key=>$val){
             $id=$val['pid'];
-            $info=$goods->where("id='$id'")->field("name,price,voucher")->find();
             $cid=$val['cid'];
             if($cid==0){
+                $info=$goods->where("id='$id'")->field("name,price,voucher,total")->find();
                 $list[$key]['pname']=$info['name'];
                 $goodsimg=M("goodsimg");
                 $imginfo=$goodsimg->where("pid='$id'")->find();
                 $list[$key]['image']=$imginfo['name'];
                 $list[$key]['price']=$info['price'];
                 $list[$key]['voucher']=$info['voucher'];
+                $list[$key]['total']=$info['total'];
             }else{
-                $info1=$classprice->where("id='$cid'")->field("price,image,voucher")->find();
+                $info1=$classprice->where("id='$cid'")->field("price,image,voucher,amount")->find();
                 $list[$key]['pname']=$info['name'];
                 $list[$key]['image']=$info1['image'];
                 $list[$key]['price']=$info1['price'];
                 $list[$key]['voucher']=$info1['voucher'];
+                $list[$key]['total']=$info1['amount'];
             }
-
         }
         if($list){
+//            dump($list);;
             $this->assign("list",$list);
             $this->display('shopcar');
         }else{
@@ -68,6 +70,46 @@ class ShopcarController extends AllowController {
                 window.location.href = '../Index/index';
                 </script>";
         }
+    }
 
+    public function shopcarnum(){
+        $shopcar=M("shopcar");
+        $where['cid']=$_POST["cid"];
+        $where['pid']=$_POST["pid"];
+        $where['uid']=$_SESSION["uid"];
+        $data['amount']=$_POST["num"];
+        $res=$shopcar->where($where)->data($data)->save();
+        if($res){
+            $response=array(
+                'code'=>200,
+                'content'=>"success",
+            );
+        }else{
+            $response=array(
+                'code'=>300,
+                'content'=>"save fail",
+            );
+        }
+        $this->ajaxReturn($response,'json');
+    }
+
+    public function deleteshopcar(){
+        $shopcar=M("shopcar");
+        $where['cid']=$_POST["cid"];
+        $where['pid']=$_POST["pid"];
+        $where['uid']=$_SESSION["uid"];
+        $res=$shopcar->where($where)->delete();
+        if($res){
+            $response=array(
+                'code'=>200,
+                'content'=>"success",
+            );
+        }else{
+            $response=array(
+                'code'=>300,
+                'content'=>"delete fail",
+            );
+        }
+        $this->ajaxReturn($response,'json');
     }
 }

@@ -23,6 +23,12 @@ class UserController extends AllowController {
             }elseif($val['sex']==2){
                 $list[$key]['sex']='女';
             }
+            if($val['statu']==1){
+                $list[$key]['status']='解禁';
+            }else{
+                $list[$key]['status']='禁用';
+            }
+
         }
         //配置分页
         $this->assign("tot",$tot);
@@ -172,5 +178,22 @@ class UserController extends AllowController {
       }else{
         $this->error("密码输入错误");exit;
       }
+    }
+
+    public function disable(){
+        $id=$_POST["id"];
+        $sid=$_POST["sid"];
+        $user=M("user");
+        if($sid==1){
+            $data['statu']=0;
+        }else{
+            $data['statu']=1;
+        }
+        $res=$user->where("id='$id'")->data($data)->save();
+        if($res){
+            $this->ajaxReturn(1);
+        }else{
+            $this->ajaxReturn(0);
+        }
     }
 }

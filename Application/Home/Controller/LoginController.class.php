@@ -15,16 +15,25 @@ class LoginController extends Controller {
     	$where['telphone']=$_POST['phone'];
     	$where['password']=md5($_POST['pass']);
     	$info=$mod->where($where)->find();
-    	if(!empty($info)){
-            $_SESSION['uid']=$info['id'];
-            $_SESSION['is_login']=2;
-            $response=array(
-				'resultCode'=>200,
-			);
-    	}else{
+        if(empty($info)){
             $response=array(
                 'resultCode'=>300,
+                'content'=>"账号密码有误",
             );
+        }else{
+    	    if($info['statu']==1){
+                $response=array(
+                    'resultCode'=>400,
+                    'content'=>"账号被禁用",
+                );
+            }else{
+                $_SESSION['uid']=$info['id'];
+                $_SESSION['is_login']=2;
+                $response=array(
+                    'resultCode'=>200,
+                    'content'=>"登陆成功",
+                );
+            }
         }
         $this->ajaxReturn($response,'json');
     }
@@ -75,6 +84,7 @@ class LoginController extends Controller {
 				$data['referee']=$_POST['Tphone'];
 				$data['vipid']=$this->vipid();
                 $data['paypass']='';
+                $data['statu']=1;
                 $data['shopcar_num']=0;
 				$data['faceimg']='defaultfaceimg.png';
 				$data['registime']=date("Y-m-d H:i:s");

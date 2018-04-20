@@ -136,12 +136,24 @@ class FarmController extends AllowController
     }
 
     public function addfruitrecord(){
+        $where = array();
+        if (!empty($_GET['title'])) {
+            $where['username'] = array("like", "%{$_GET['title']}%");
+        }
+        $mod=M("addfruit");
+        $sou = $mod->where($where)->count();
+        $pan = new \Think\Page($sou, 15);
+        $pan->setConfig("prev", "上一页");
+        $pan->setConfig("next", "下一页");
         $list=M()
             ->table("user u,addfruit f")
             ->field("u.username,u.telphone,f.*")
             ->where("u.telphone=f.telphone")
+            ->where($where)
+            ->order("id desc")
             ->select();
         $this->assign("list",$list);
+        $this->assign("pageinfo", $pan->show());
         $this->display("addfruitrecode");
     }
 
@@ -165,19 +177,19 @@ class FarmController extends AllowController
                 $data['time']=date("Y-m-d H:i:s");
                 $res=$addfruit->data($data)->add();
                 $result=$f_mygoods->where("uid='$userid'")->setInc("fruit",$_POST['num']);
-                if($res && $result){
-                    M()->commit();
-                    $response=array(
-                        'resultCode'  => 200,
-                        'message' => '用户果子充值成功',
-                    );
-                }else{
-                    M()->rollback();
-                    $response=array(
-                        'resultCode'  => 300,
-                        'message' => '用户果子充值失败',
-                    );
-                }
+            }
+            if($res && $result){
+                M()->commit();
+                $response=array(
+                    'resultCode'  => 200,
+                    'message' => '用户果子充值成功',
+                );
+            }else{
+                M()->rollback();
+                $response=array(
+                    'resultCode'  => 300,
+                    'message' => '用户果子充值失败',
+                );
             }
             if($_POST['refereetel'] && !empty($_POST['refereenum']) && $_POST['refereenum']!=0){
                 M()->startTrans();//开始事务处理
@@ -189,23 +201,15 @@ class FarmController extends AllowController
                 $arr['time']=date("Y-m-d H:i:s");
                 $res1=$addfruit->data($arr)->add();
                 $result1=$f_mygoods->where("uid='$refereeid'")->setInc("fruit",$_POST['refereenum']);
-                if($res1 && $result1){
-                    M()->commit();
-//                    $response=array(
-//                        'resultCode1'  => 200,
-//                        'message1' => '推荐人果子赠送成功',
-//                    );
-                    $response['resultCode1']=200;
-                    $response['message1']='推荐人果子赠送成功';
-                }else{
-                    M()->rollback();
-//                    $response=array(
-//                        'resultCode1'  => 300,
-//                        'message1' => '推荐人果子赠送失败',
-//                    );
-                    $response['resultCode1']=300;
-                    $response['message1']='推荐人果子赠送失败';
-                }
+            }
+            if($res1 && $result1){
+                M()->commit();
+                $response['resultCode1']=200;
+                $response['message1']='推荐人果子赠送成功';
+            }else{
+                M()->rollback();
+                $response['resultCode1']=300;
+                $response['message1']='推荐人果子赠送失败';
             }
         }
         $this->ajaxReturn($response,'json');

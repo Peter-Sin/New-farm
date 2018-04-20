@@ -107,5 +107,24 @@ class AddressController extends AllowController {
         $this->display('editaddr');
     }
 
+    public function selfaddress(){
+        $address=M("address");
+        $uid=$_SESSION["uid"];
+        $list=$address->where("uid='$uid'")->select();
+        if($list){
+            $response=array(
+                'code'=>200,
+                'content'=>'success',
+                'data'=>$list,
+            );
+        }else{
+            $response=array(
+                'code'=>300,
+                'content'=>'faild',
+            );
+        }
+        $this->ajaxReturn($response,'json');
+    }
+
 
 }
