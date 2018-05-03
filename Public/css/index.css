@@ -234,6 +234,7 @@ footer {
 }
 
 .user-infor {
+	width:100%;
     position: absolute;
     top: 10%;
     left: 3%;
@@ -249,13 +250,20 @@ footer {
 .infor-data {
     float: left;
     margin-left: 7%;
-    margin-top: -1%;
+    margin-top: 1%;
 }
 
 .infor-data p {
+width:200px;
     font-size: 12px;
     margin-top: 2px;
     color: #666;
+}
+.aaa{
+	margin-top:20px;
+	float:right;
+	font-size:28px;
+	margin-right:20px;
 }
 
 .user-list {
