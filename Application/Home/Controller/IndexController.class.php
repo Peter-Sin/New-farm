@@ -5,6 +5,7 @@ use Think\Controller;
 class IndexController extends Controller {
     public function index(){
         $user=M("user");
+        $setting=M("setting");
         $where['uid']=$_SESSION['uid'];
         $uid=$SESSION['is_login'];
         $list=$user->where($where)->find();
@@ -13,6 +14,8 @@ class IndexController extends Controller {
         }else{
             $num=1;
         }
+        $mallname=$setting->where("id=1")->getField("farm_name");
+        $this->assign("mallname",$mallname);
         $this->assign("num",$num);
         $this->assign("uid",$uid);
         $this->assign("list",$list);

@@ -1,5 +1,4 @@
 
-
 //一元夺宝
 $(function () {
     var test = window.location.host;

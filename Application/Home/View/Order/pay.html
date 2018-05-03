@@ -1,11 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>去支付</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PaysApi支付</title>
+    <style type="text/css">
+        .choosepay{
+            text-align: center;
+            font-size: 40px;
+        }
+        .radio{
+            margin:5% 5%;
+            width:30%;
+            font-size: 35px;
+            display:none;
+        }
+        #demoBtn1{
+            margin:5% 30%;
+            width:30%;
+            height:20%;
+            background: orange;
+            font-size: 35px;
+            padding: 3%;
+        }
+        #demo1-weixin{
+            font-size: 30px;
+        }
+        .youhui{
+            font-size: 30px;
+            margin: 0 5%;
+        }
+
+    </style>
 </head>
 <body>
-<div><p>金额:</p><p class="tee">{$info['money']}</p></div>
-<button><a href="__MODULE__/Order/dowxpay?order={$info['ordernum']}">去支付</a></button>
+<form>
+    <div class="choosepay">选择支付</div>
+<div class="pay" ordernum="{$info['ordernum']}" isstyle="{$info['istype']}">
+    <div class="radio" id="wxpay">
+        <label>
+            <p><input type="radio" name="demo1" id="demo1-weixin" value="option2" checked="">
+                微信支付</p>
+        </label>
+    </div>
+
+    <div class="radio" id="alipay">
+        <label>
+            <p><input type="radio" name="demo1" id="demo1-alipay" value="option1"  >
+                支付宝支付</p>
+        </label>
+    </div>
+</div>
+    <span class="youhui">价格：{$info['money']}</span>
+    <span class="youhui">优惠券：{$info['voucher']}</span>
+    <button type="button" id="demoBtn1">确认购买</button>
+</form>
+
+
+
+<form style='display:none;' id='formpay' name='formpay' method='post' action='https://pay.paysapi.com'>
+    <input name='goodsname' id='goodsname' type='text' value='' />
+    <input name='istype' id='istype' type='text' value='' />
+    <input name='key' id='key' type='text' value=''/>
+    <input name='notify_url' id='notify_url' type='text' value=''/>
+    <input name='orderid' id='orderid' type='text' value=''/>
+    <input name='orderuid' id='orderuid' type='text' value=''/>
+    <input name='price' id='price' type='text' value=''/>
+    <input name='return_url' id='return_url' type='text' value=''/>
+    <input name='uid' id='uid' type='text' value=''/>
+    <input type='submit' id='submitdemo1'>
+</form>
+
+<!-- Jquery files -->
+<script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $().ready(function(){
+        var ispay= $(".pay").attr("isstyle");
+        var ordernum=$(".pay").attr("ordernum");
+        if(ispay==1){
+            $("#alipay").hide();
+            $("#wxpay").show();
+        }else{
+            $("#alipay").show();
+            $("#wxpay").show();
+        }
+        function getistype(){
+            return ($("#demo1-alipay").is(':checked') ? "1" : "2" );
+        }
+        $("#demoBtn1").click(function(){
+            $.post(
+                "../Paypay/pay",
+                {
+                    // price : $("#inputprice").val(),
+                    istype : ispay,
+                    ordernum:ordernum,
+
+                },
+                function(data){
+                    if (data.code > 0){
+                        $("#goodsname").val(data.data.goodsname);
+                        $("#istype").val(data.data.istype);
+                        $('#key').val(data.data.key);
+                        $('#notify_url').val(data.data.notify_url);
+                        $('#orderid').val(data.data.orderid);
+                        $('#orderuid').val(data.data.orderuid);
+                        $('#price').val(data.data.price);
+                        $('#return_url').val(data.data.return_url);
+                        $('#uid').val(data.data.uid);
+                        $('#submitdemo1').click();
+
+                    } else {
+                        alert(data.msg);
+                    }
+                }, "json"
+            );
+        });
+    });
+</script>
 </body>
 </html>

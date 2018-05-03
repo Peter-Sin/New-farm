@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>一元夺宝</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/OneM.css">
+</head>
+
+<body>
+    <div class="OneMoney">
+        <p class="nav-bar">
+            <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 一元夺宝  
+            <span><a href="__MODULE__/Onemoney/myonemoney">我的夺宝</a></span>
+        </p>
+        <ul class="Duobao">
+            <foreach name="list" item="val">
+                <li>
+                    <img src="__PUBLIC__/image/onemoney/{$val.image}" alt="">
+                    <div class="Duo-div">
+                        <p id="O-D" >{$val.name}</p>
+                        <p class="Onum">
+                            <span class="yinum{$val.id}">{$val.number}</span>/
+                            <span>{$val.amount}</span>
+                            <span class="numa" style="float:right;color:red;margin-right:5%">{$val.anum}</span>
+                        </p>
+                    </div>
+                    <button class="Oget">
+                        参与夺宝
+                    </button>
+                    <span class="Odtime" pid="{$val.id}" times = "{$val.endtime}">
+                        <p></p>
+                    </span>
+                    <button class="Ogetasdf" style="display:none;margin-left:6%;float:right;font-size:13px;background:rgb(165, 164, 164);height:60px;border-radius:5px;border:none;color:white">
+                        已结束
+                    </button>
+                    <div style="display:none;width:100%" class="Onegetasdf">
+                        <p>
+                            结果正在统计中,请稍候。。。
+                        </p>
+                    </div>
+                </li>
+            </foreach>
+           <!--  <li>
+                <img src="__PUBLIC__/YM/imgs/img1.png" alt="">
+                <div class="Duo-div">
+                    <p id="O-D">破多1红酒(每天限量500份)</p>
+                    <p class="Onum">
+                        <span>0</span>/
+                        <span>200</span>
+                    </p>
+                </div>
+                <button class="Oget">
+                    参与夺宝
+                </button>
+                <span class="Odtime">
+                    <p>倒计时</p>
+                    <p>00:03:59</p>
+                </span>
+
+            </li> -->
+        </ul>
+        <!-- <div class="Oneget">
+            <p>
+                本期获得者:
+                <img src="__PUBLIC__/YM/imgs/wxz1.png" alt="">
+                <span>+++</span>
+                <span style="color: rgb(165, 164, 164);">(买入：59)</span>
+            </p>
+        </div> -->
+        <!-- alert -->
+        <!-- <div class="O-alert">
+            <img class="closes" src="__PUBLIC__/YM/imgs/gb.png" alt="">
+            <h5>请输入购买的份数，够买越多夺宝几率越大</h5>
+            <p class="dataname">
+
+            </p>
+            <p>
+                <img id="Jian" src="__PUBLIC__/YM/imgs/jian.jpg" alt="">
+                <span class="My-num">
+                    0
+                </span>
+                <img id="jia" src="__PUBLIC__/YM/imgs/jia.jpg" alt="">
+            </p>
+            <button class="MyDuobao" type="submit">确定</button>
+        </div> -->
+    </div>
+</body>
+
+<script src="__PUBLIC__/js/OneM.js"></script>
+<script>
+    $(function(){
+        var back = $(".nav-bar").find("img.back")
+        back.click(function () {
+            location.href = "../Index/index";
+        })
+    })
+</script>
+</html>

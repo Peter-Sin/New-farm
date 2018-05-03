@@ -87,14 +87,20 @@ $(function () {
         var num=$(this).siblings(".gnum").html();
         var pid=$(this).parents(".div-nums").siblings(".checkbox").attr("goodid");
         var cid=$(this).parents(".div-nums").siblings(".checkbox").attr("cid");
+        var price=$(this).parents(".goodsnums").siblings(".pricevoucher").find(".prize");
+        var voucher=$(this).parents(".goodsnums").siblings(".pricevoucher").find(".voucher");
         var here=$(this);
+        var choose=$(this).parents(".div-nums").siblings(".checkbox").attr("a");
+        if(choose=='on'){
+            var totalprice=parseInt($("#maimaip").html())-parseInt(price.html());
+            var numvoucher=parseInt($("#daijinquan").html())-parseInt(voucher.html());
+        }
         num--;
-        console.log(num);
         if(num<1){
             $(this).siblings(".gnum").html(1);
             alert("数量不能小于1");
         }else{
-            shopcarnum(pid,cid,num,here);
+            shopcarnum(pid,cid,num,here,totalprice,numvoucher);
 
             // $(this).siblings(".gnum").html(num);
         }
@@ -105,18 +111,24 @@ $(function () {
         var total=$(this).parents(".goodsnums").attr("total");
         var pid=$(this).parents(".div-nums").siblings(".checkbox").attr("goodid");
         var cid=$(this).parents(".div-nums").siblings(".checkbox").attr("cid");
+        var price=$(this).parents(".goodsnums").siblings(".pricevoucher").find(".prize");
+        var voucher=$(this).parents(".goodsnums").siblings(".pricevoucher").find(".voucher");
         var here=$(this);
+        var choose=$(this).parents(".div-nums").siblings(".checkbox").attr("a");
+        if(choose=='on'){
+            var totalprice = parseInt($("#maimaip").html()) + parseInt(price.html());
+            var numvoucher = parseInt($("#daijinquan").html()) + parseInt(voucher.html());
+        }
         num++;
         if(num>total){
             $(this).siblings(".gnum").html(total);
             alert("不能购买更多");
         }else{
-            shopcarnum(pid,cid,num,here);
-            // $(this).siblings(".gnum").html(num);
+            shopcarnum(pid,cid,num,here,totalprice,numvoucher);
         }
     })
 
-    function shopcarnum(pid,cid,num,here){
+    function shopcarnum(pid,cid,num,here,totalprice,numvoucher){
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -125,6 +137,9 @@ $(function () {
             success: function (result) {
                 if(result.code==200){
                     here.siblings(".gnum").html(num);
+                    here.parents(".div-nums").siblings(".checkbox").attr("GoodsNum",num);
+                    $("#maimaip").html(totalprice);
+                    $("#daijinquan").html(numvoucher);
                 }else{
                     alert("faild");
                 }
@@ -195,9 +210,63 @@ $(function () {
 
 //确认订单提交订单
 $(function () {
-    // $(".editaddress").click(function(){
-    //
-    // })
+    $(".editaddress").click(function(){
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "../address/selfaddress",
+            // data:({datas}),
+            success: function (result) {
+                if(result.code==200){
+                    $(".addresslist").show();
+                    html='';
+                    for(var i=0;i<result.data.length;i++){
+                        html+='<div class="listcarchop" choose='+result.data[i].choose+'><span class="choosecar" pid="'+result.data[i].id+'"><li></li></span>选中'+
+                            '<p class="Ding-mid">'+
+                            '<span class="Ding-mid-left">收货人:'+
+                            '<i>'+result.data[i].username+'</i>'+
+                            '</span>'+
+                            '<span class="Ding-mid-right">'+result.data[i].telphone+'</span>'+
+                            '</p>'+
+                            '<section class="Ding-down" style="margin:0 0 0 5%">'+
+                            '<span class="Ding-down-left">收货地址：</span>'+
+                            '<span class="Ding-down-right">'+result.data[i].address+result.data[i].place+'</span>'+
+                            '</section></div>';
+
+                    }
+
+                    $(".addresslist").append(html);
+                    for(var i=0;i<result.data.length;i++) {
+                        if(result.data[i].choose==1){
+                            $(".listcarchop").eq(i).find(".choosecar").addClass("active");
+                        }
+                    }
+                    $(".addresslist").find(".choosecar").click(function(){
+                        var pid=$(this).attr("pid");
+                        var here=$(this);
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "../address/selfischoose",
+                            data:({pid:pid}),
+                            success: function (result) {
+                                if(result.code==200){
+                                    $(".choosecar").removeClass("active");
+                                    here.addClass("active");
+                                }
+                            }
+                        })
+                    })
+
+
+                    $(".closeaddress").click(function(){
+                        $(".addresslist").show();
+                        window.location.reload();
+                    })
+                }
+            }
+        })
+    })
 
     var giveOk = $(".all-check").find(".giveOk")
     giveOk.click(function () {
@@ -227,7 +296,7 @@ $(function () {
             success: function (result) {
                 if (result.resultCode == 200) {
                     alert("订单提交成功");
-                    // window.location.href="../Order/dowxpay?ordernum="+result.ordernum;
+                    window.location.href="../Order/dopay?ordernum="+result.ordernum;
                 }else{
                     alert("订单提交失败");
                 }

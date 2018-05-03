@@ -174,7 +174,7 @@ function orderlist(a) {
                             '</div>' +
                             '<p class="coles-D">' +
                             '<span class="removeBus" GoodId=' + result.data[i].ordernum + '>取消订单</span>' +
-                            '<span class="myPay"><a href="http://' + test + '/index.php/home/order/dowxpay?id=' + result.data[i].ordernum + '">付款</a></span>' +
+                            '<span class="myPay"><a href="http://' + test + '/index.php/home/order/dopay?ordernum=' + result.data[i].ordernum + '">付款</a></span>' +
                             '</p>' +
                             '</div>'
                     } else if (result.data[i].step == 1) {
@@ -229,7 +229,7 @@ function orderlist(a) {
                         '</div>' +
                         '<p class="coles-D">' +
                         '<span class="removeBus" GoodId=' + result.data[i].ordernum + '>取消订单</span>' +
-                        '<span class="myPay"><a href="http://' + test + '/index.php/home/order/dowxpay?id=' + result.data[i].ordernum + '">付款</a></span>' +
+                        '<span class="myPay"><a href="http://' + test + '/index.php/home/order/dopay?ordernum=' + result.data[i].ordernum + '">付款</a></span>' +
                         '</p>' +
                         '</div>'
                 }

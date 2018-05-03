@@ -698,3 +698,22 @@ li {
     font-size: 13px;
     background: orange;
 }
+
+.choosecar{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    cursor:pointer;
+    border:0.5px solid #666;
+}
+
+.addresslist{
+    width:100%;
+    background:#fbdfff;
+    display: none;
+    z-index: 8888;
+    position: absolute;
+    margin-top: 35%;
+    top: 0;
+}

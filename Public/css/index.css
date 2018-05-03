@@ -11,8 +11,7 @@ body {
     height: 100%;
 }
 
-.index,
-.userset {
+.index{
     margin-bottom: 50px;
 }
 
@@ -48,7 +47,7 @@ li {
 }
 
 .In-Top p:nth-child(1) {
-    margin-left: 40%;
+    margin-left: 35%;
 }
 .In-Top p:nth-child(2) {
     margin-left:28%;
@@ -210,17 +209,20 @@ footer {
 }
 
 
-/* ==============标题================= */
-
 .nav-bar {
     background: white;
     text-align: center;
     padding: 5px 0;
     font-size: 14px;
 }
+.nongchang{
+    display:none;
+}
 
 .userset {
+    margin-bottom: 50px;
     width: 100%;
+    display:none;
 }
 
 .user-set {
@@ -353,6 +355,7 @@ footer {
 
 .dingdan {
     overflow: hidden;
+    display:none;
 }
 
 .nav-bar {

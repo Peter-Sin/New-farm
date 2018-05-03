@@ -124,7 +124,7 @@ class OnemoneyController extends AllowController {
         $number=$val['number'];
         if($uptime>time()){
           $list[$key]['iswiner']="未开始";
-        }elseif($uptime<$uptime+$hour && $number<$amount){
+        }elseif($uptime<time() && time()<$uptime+$hour && $number<$amount){
           $list[$key]['iswiner']="正在抢购中";
         }else{
           $pid=$val["id"];

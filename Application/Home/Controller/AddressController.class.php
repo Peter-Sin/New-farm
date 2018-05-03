@@ -127,4 +127,28 @@ class AddressController extends AllowController {
     }
 
 
+    public function selfischoose(){
+        $address=M("address");
+        $id=$_POST['pid'];
+        $uid=$_SESSION["uid"];
+        $data["choose"]=0;
+        $arr["choose"]=1;
+        M()->startTrans();
+        $res=$address->where("uid='$uid'")->data($data)->save();
+        $result=$address->where("uid='$uid' AND id='$id'")->data($arr)->save();
+        if($res && $result){
+            M()->commit();
+            $response=array(
+                'code'=>'200',
+                'content'=>'success',
+            );
+        }else{
+            M()->rollback();
+            $response=array(
+                'code'=>'300',
+                'content'=>'fault',
+            );
+        }
+        $this->ajaxReturn($response,'json');
+    }
 }

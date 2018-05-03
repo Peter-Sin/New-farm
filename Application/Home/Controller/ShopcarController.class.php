@@ -13,10 +13,10 @@ class ShopcarController extends AllowController {
         $data['cid']=$_POST['cid'];
 
         $info=$shopcar->where($data)->find();
-        // $this->ajaxReturn($info,'json');
         if($info){
             $num=$_POST['num'];
             $datas['amount']=$info['amount']+$num;
+            $datas['uptime']=date("Y-m-d H:i:s");
             $res=$shopcar->where($data)->data($datas)->save();
         }else{
             $data['amount']=$_POST['num'];
@@ -38,12 +38,12 @@ class ShopcarController extends AllowController {
         $goods=M("goods");
         $classprice=M("classprice");
         $where['uid']=$_SESSION['uid'];
-        $list=$shopcar->where($where)->select();
+        $list=$shopcar->where($where)->order("uptime desc")->select();
         foreach($list as $key=>$val){
             $id=$val['pid'];
             $cid=$val['cid'];
+            $info=$goods->where("id='$id'")->field("name,price,voucher,total")->find();
             if($cid==0){
-                $info=$goods->where("id='$id'")->field("name,price,voucher,total")->find();
                 $list[$key]['pname']=$info['name'];
                 $goodsimg=M("goodsimg");
                 $imginfo=$goodsimg->where("pid='$id'")->find();

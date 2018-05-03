@@ -44,7 +44,7 @@ function is_weixin(){
     if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false){
         return 1;
     }else{
-        return 0;
+        return 2;
     }
 }
 

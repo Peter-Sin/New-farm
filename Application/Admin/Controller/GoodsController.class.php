@@ -53,7 +53,7 @@ class GoodsController extends AllowController {
           $ctwof=$gclassify->where("id='$ctwofid'")->find();
           $conefname=$conef['name'];
           $ctwofname=$conef['name'];
-          $list[$key]['cname']=$conef['name'].":".$cone['name'].";".$conef['name'].":".$ctwo['name'];
+          $list[$key]['cname']=$conef['name'].":".$cone['name'].";".$ctwof['name'].":".$ctwo['name'];
         }
       }
       $this->assign("list",$list);

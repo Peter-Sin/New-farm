@@ -490,7 +490,7 @@ li {
 }
 
 .button{
-    border: solid 1px green;
+    /*border: solid 1px green;*/
     width: 60%;
     margin:  0 auto;
     margin-top: 10%l

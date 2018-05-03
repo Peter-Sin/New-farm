@@ -44,10 +44,10 @@
               </div>
             </div>
 
-            <div class="control-group">
+            <div class="control-group" id="sortchoose" chooseid="{$list['sort']}">
               <label class="control-label">类别</label>
               <div class="controls controls-row">
-                果篮<input type="radio" name="sort" value="1" checked>
+                果篮<input type="radio" name="sort" value="1">
                 穿戴<input type="radio" name="sort" value="2">
                 快消<input type="radio" name="sort" value="3">
                 电子<input type="radio" name="sort" value="4">
@@ -62,7 +62,7 @@
                   <h5>详情介绍</h5>
                 </div>
                  <!-- 加载编辑器的容器 -->
-                <script id="container" name="content" type="" placeholder="" >{$list[contents]}</script>
+                <script id="container" name="content">{$list[contents]}</script>
                 <!-- 配置文件 -->
                 <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
                 <!-- 编辑器源码文件 -->
@@ -78,7 +78,7 @@
 
             <div class="form-actions">
               <button type="submit" class="btn btn-success" style="margin:0px 0px 0px 200px">确定</button>
-               <button type="reset" class="btn btn-success"style="margin:0px 0px 0px 30px">重置</button>
+               <button type="reset" class="btn btn-success" style="margin:0px 0px 0px 30px">重置</button>
          </div> 
         </form>
         </div>
@@ -88,4 +88,13 @@
   </div>
   </div>
 </div>
+  <script>
+    var chooseid=$("#sortchoose").attr("chooseid");
+    var num=$("input[name='sort']").size();
+    for(var i=0;i<=num;i++){
+      if($("input[name='sort']").eq(i).val()==chooseid){
+          $("input[name='sort']").eq(i).attr("checked","checked");
+      }
+    }
+  </script>
 </block>

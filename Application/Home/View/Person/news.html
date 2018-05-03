@@ -37,5 +37,10 @@
     </div>
 </body>
 <script src="__PUBLIC__/js/OneM.js"></script>
-<script src="__PUBLIC__/js/backthree.js"></script>
+<script>
+    var back = $(".nav-bar").find(".back")
+    back.click(function () {
+        location.href = "../Index/index?num=3";
+    })
+</script>
 </html>

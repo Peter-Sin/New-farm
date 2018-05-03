@@ -239,7 +239,6 @@ class OrderController extends AllowController {
                 $ccc=$val['ccc'];
             }
         }
-        // dump($info);
         $this->assign("info",$info);
         $this->assign("addr",$addr);
         $this->assign("total",$total);
@@ -251,198 +250,19 @@ class OrderController extends AllowController {
     public function dopay(){
         $order=M("order");
         $ordernum=$_GET['ordernum'];
-        $info=$order->where("ordernum='$ordernum'")->find();
-        $this->assign("info",$info);
-        $this->display("pay");
-    }
-
-    function getUserOpenId(){
-        $appid="wx1023c9b4490b8cca";
-        $appsecret="79ae5365decbce25018d5c338c323514";
-        $code=$_GET['code'];
-        dump($code);
-        $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$appsecret."code=".$code."&grant_type=authorization_code";
-        $res=$this->http_curl($url,'get');
-        dump($res);
-    }
-
-    public function getcode(){
-        $appid="wx1023c9b4490b8cca";
-        $redirect_uri=urlencode("http://www.cusdc.cn/index.php/Home/Pay/getUserOpenId");
-        $url="https://open.weixin.qq.com/connect/qrconnect?appid=".$appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect";
-        header('location:'.$url);
-    }
-
-    private function is_weixin(){
-        if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
-            return 1;
-        }
-        return 0;
-    }
-
-    private function CheckOrderStatus($ordid){
-        $Ord=M('enroll');
-        $condition['order'] = $ordid;
-        $ordstatus=$Ord->where($condition)->getField('statu');
-        if($ordstatus==1){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    private function CheckOrder($order){
-        $Ord=M('enroll');
-        $condition['order'] = $order;
-        $ordstatus=$Ord->where($condition)->getField('order');
-        if($ordstatus==$order){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    private function OrderHandle($parameter){
-        $ordid=$parameter['out_trade_no'];
-        $data['pay_time']          =date("Y-m-d H:i:s");
-        $data['pay_type']          =$parameter['pay_type'];
-        $data['pay_return_no']     =$parameter['trade_no'];
-        $data['pay_return_sts']    =$parameter['trade_status'];
-        $data['buyer_email']       =$parameter['buyer_email'];
-        $data['statu']             ='1';
-        $data['pay_money']         =$parameter['total_fee'];
-        $data['grants']			   ='0';
-        $Ord=M('enroll');
-        $condition['order'] = $ordid;
-        $res=$Ord->where($condition)->save($data);
-        if($res){
-            $commission=M("commission");
-            $info=$Ord->where("order='$order'")->field("recode,uid,cid,order")->find();
-//            $checkrecode=CheckRecode($info['recode']);
-            if($info['recode'] && $checkrecode){
-                $information['uid']=$info['uid'];
-                $information['cid']=$info['cid'];
-                $information['recode']=$info['recode'];
-                $information['order']=$info['order'];
-                $information['batch']=1;
-                $information['sign']=1;
-                $information['amount']=50;
-                $information['time']=date('Y-m-d H:i:s');
-                $result=$commission->add($information);
-            }
-        }
-    }
-
-
-    public function dowxpay(){
-        $order=M('order');
-        $ordernum=$_GET["ordernum"];
-        $condition['ordernum'] = $ordernum;
-        $info=$order->where($condition)->find();
-        if(empty($info) || $info=='NULL'){
-            $this->ajaxReturn('0');exit;//订单号不存在
-        }else{
-            $statu=$order->where($condition)->getField('statu');
-            if($statu=='2'){
-                $this->ajaxReturn('1');exit;//该订单已支付
+        $info=$order->where("ordernum='$ordernum'")->field("ordernum,uptime,money,voucher,statu")->find();
+        if($info){
+            if($info['statu']==1){
+                echo "<script> alert('该订单已支付');location.href = \"../Index/index\";</script>";
             }else{
-                $usernames="商城支付";
-                $datainfo=$info['ordernum'].$info['uptime'];
-                $order=substr($info['ordernum'],0,30).getnumcode(2);//订单号
-                $fee=C(ENROLL_FEE)*100;
-                if(is_weixin()==1){
-                    //①、获取用户openid
-                    $tools = new \WxPayJsApi();
-                    $openId = $tools->GetOpenid();
-                    //②、统一下单
-                    $input = new \WxPayUnifiedOrder();
-                    $input->SetBody($usernames);//商品简单描述String(128)
-                    $input->SetAttach($datainfo);//附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。String(127)
-                    $input->SetOut_trade_no($order);//商户系统内部订单号，要求32个字符内、且在同一个商户号下唯一
-                    $input->SetTotal_fee($fee);//订单总金额，单位为分
-                    $input->SetTime_start(date("YmdHis"));//订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。
-                    $input->SetTime_expire(date("YmdHis", time() + 600));//订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。
-                    $input->SetGoods_tag('');//商品标记，使用代金券或立减优惠功能时需要的参数String(32)
-                    $input->SetNotify_url('http://www.cusdc.cn/index.php/Home/Pay/weipayverify');//异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数
-                    //https://api.mch.weixin.qq.com/pay/unifiedorder
-                    $input->SetTrade_type('JSAPI');//取值如下：JSAPI，NATIVE，APP等
-                    $input->SetOpenid($openId);
-                    // $input->SetProduct_id($uuid);//trade_type=NATIVE时（即扫码支付），此参数必传。此参数为二维码中包含的商品ID，商户自行定义。String(32)
-                    // $input->SetSpbill_create_ip(get_client_ip());//APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP，String(16)
-                    $result = \WxPayApi::unifiedOrder($input);
-                    $jsApiParameters = $tools->GetJsApiParameters($result);
-                }else{
-                    $input = new \WxPayUnifiedOrder();
-                    $input->SetBody($usernames);//商品简单描述String(128)
-                    $input->SetAttach($datainfo);//附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。String(127)
-                    $input->SetOut_trade_no($order);//商户系统内部订单号，要求32个字符内、且在同一个商户号下唯一
-                    $input->SetTotal_fee($fee);//订单总金额，单位为分
-                    $input->SetTime_start(date("YmdHis"));//订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。
-                    $input->SetTime_expire(date("YmdHis", time() + 600));//订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。
-                    $input->SetGoods_tag('');//商品标记，使用代金券或立减优惠功能时需要的参数String(32)
-                    $input->SetNotify_url('http://www.cusdc.cn/index.php/Home/Pay/weipayverify');//异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数
-                    //https://api.mch.weixin.qq.com/pay/unifiedorder
-                    $input->SetTrade_type('MWEB');//取值如下：JSAPI，NATIVE，APP等
-                    $input->SetProduct_id($order);//trade_type=NATIVE时（即扫码支付），此参数必传。此参数为二维码中包含的商品ID，商户自行定义。String(32)
-                    $input->SetSpbill_create_ip(get_client_ip());//APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP，String(16)
-                    $result = \WxPayApi::unifiedOrder($input);
-                }
-                if ($result['return_code'] == 'FAIL') {
-                    $this->assign("wxalt", $result['return_msg']);
-                    $this->assign("wxewm", '');
-                } elseif ($result['result_code'] == 'FAIL') {
-                    $this->assign("wxalt", $result['err_code'].':'.$result['err_code_des']);
-                    $this->assign("wxewm", '');
-                } else {
-                    if(is_weixin()==1){
-                        $this->assign('jsApiParameters',$jsApiParameters);
-                        $this->display("wxpay");
-                    }else{
-                        $redirect_url=urlencode("http://www.cusdc.cn");
-                        $url=$result['mweb_url']."&redirect_url=".$redirect_url;
-                        $this->assign('url',$url);
-                        $this->display("www");
-                    }
-                }
+                $istype=is_weixin();
+                $info['istype']=$istype;
+                $this->assign("info",$info);
+                $this->display("pay");
             }
+        }else{
+            echo "<script> alert('订单信息不存在');location.href = \"../Index/index\";</script>";
         }
+
     }
-
-
-    public function weipayverify(){
-        //写支付记录，WEB_PATH是我网站的根目录
-        libxml_disable_entity_loader(true);
-        $postStr = $this->postdata();//接收post数据
-        $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-        $arr = $this->object2array($postObj);//对象转成数组
-        ksort($arr);// 对数据进行排序
-        $str =$this-> ToUrlParams($arr);//对数据拼接成字符串
-        $user_sign = strtoupper(md5($str));
-        if($user_sign == $arr['sign']){//验证成功
-            $out_trade_no   = $arr['out_trade_no'];        //商户订单号
-            $trade_no       = $arr['transaction_id'];        //微信交易号
-            $trade_status   = $arr['result_code'];    //交易状态
-            $total_fee      = $arr['total_fee']/100;       //交易金额
-            // $notify_id      = $arr['notify_id'];       //通知校验ID
-            // $notify_time    = $arr['notify_time'];     //通知的发送时间。格式为yyyy-MM-dd HH:mm:ss。
-            $buyer_email    = $arr['openid'];     //买家支付宝帐号
-            $parameter = array(
-                "out_trade_no" => $out_trade_no, //商户订单编号
-                "trade_no"     => $trade_no,     //支付宝交易号
-                "trade_status" => $trade_status, //交易状态
-                "total_fee"    => $total_fee,    //交易金额
-                // "notify_id"    => $notify_id,    //通知校验ID
-                // "notify_time"  => $notify_time,  //通知的发送时间
-                "buyer_email"  => $buyer_email,  //买家支付宝帐号
-                "pay_type"     => 'wxpay',
-            );
-
-            if(!$this->CheckOrderStatus($out_trade_no)){
-                $this->OrderHandle($parameter);  //进行订单处理，并传送从支付宝返回的参数；
-            }
-        }
-    }
-
-
-
 }
