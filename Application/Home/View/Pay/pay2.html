@@ -73,7 +73,6 @@
 <script src="//cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
 var istype=$("#use").attr("istype");
-    // <?php if($istype==10001){ ?>
     if(istype==10001){
         $(document).ready(function(){
             var targetText=$("#target").text();
@@ -92,8 +91,6 @@ var istype=$("#use").attr("istype");
             });
         });
     }
-       
-    // <?php }?>
 
     var myTimer;
     var strcode = $("#use").attr("orderid");
