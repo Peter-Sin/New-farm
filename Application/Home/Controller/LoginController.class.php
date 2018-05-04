@@ -84,7 +84,7 @@ class LoginController extends Controller {
 				$data['referee']=$_POST['Tphone'];
 				$data['vipid']=$this->vipid();
                 $data['paypass']='';
-                $data['statu']=1;
+                $data['statu']=0;
                 $data['shopcar_num']=0;
 				$data['faceimg']='defaultfaceimg.png';
 				$data['registime']=date("Y-m-d H:i:s");

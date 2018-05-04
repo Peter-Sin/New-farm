@@ -23,18 +23,40 @@ class AddressController extends AllowController {
         $data['telphone']=$_POST['phone'];
         $data['place']=$_POST['adress'];
         $data['address']=$_POST['city'];
-        $data['uid']=$_SESSION['uid'];
-        $data['choose']='0';
+		$uid=$_SESSION['uid'];
+        $data['uid']=$uid;
+        $data['choose']='1';
         $data['uptime']=date("Y-m-d H:i:s");
-        $res=$address->data($data)->add();
-        if($res){
-            $response = array(
-                'resultCode'  => 200, 
-                'message' => 'success for request',
-                'data'  => $res,
-            ); 
-            $this->ajaxReturn($response,'json');
-        }  
+        $arr['choose']='0';
+		$num=$address->where("uid='$uid' AND choose=1")->count();
+		if($num){
+			M()->startTrans();
+			$result=$address->where("choose=1")->data($arr)->save();
+			$res=$address->data($data)->add();
+			if($result && $res){
+				M()->commit();
+				$response = array(
+					'resultCode'  => 200, 
+					'message' => 'success for request',
+					'data'  => $res,
+					'data1'=>$result,
+				); 
+				$this->ajaxReturn($response,'json');
+			}else{
+				M()->callback();
+			}
+		}else{
+			$res=$address->data($data)->add();
+			if($res){
+				$response = array(
+					'resultCode'  => 200, 
+					'message' => 'success for request',
+					'data'  => $res,
+				); 
+				$this->ajaxReturn($response,'json');
+			}  
+		}
+        
     }
 
     public function DelAddr(){
