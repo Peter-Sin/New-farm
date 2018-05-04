@@ -64,30 +64,46 @@ li {
     overflow: hidden;
     position: absolute;
     width: 100%;
-    top: 15.5%;
+    top: 4%;
 }
 
 .TB-left {
-    border: solid 1px black;
-    width: 38%;
+   
+    width: 80%;
     float: left;
-    padding: 1.6% 3.6%;
-    margin-left: 4%;
+    margin-left: 2%;
     border-radius: 12px;
     overflow: hidden;
 }
+.username, .ids{
+	font-size:10px;
+	background-color:rgb(0, 0, 0,0.5);
+	color:white;
+	padding:0 2%;
+	width:86%;
+	border-radius:10px;
+	text-align:center;
+	margin:1% 0;
+}
 
 .TB-left .img-left {
-    width: 31%;
+    width: 30%;
     /*border: solid 1px rgb(238, 3, 54);*/
     border-radius: 12px;
     float: left;
+	padding-bottom:5%;
+	text-align;center;
+	
+}
+.TB-left .img-left .left-img{
+	display:black;
+	
 }
 
 .TB-left .img-right {
     float: left;
-    width: 60%;
-    margin-left: 8%;
+    width: 66%;
+	overflow:hidden;
     /* border: solid 1px rgb(8, 255, 111); */
 }
 
@@ -99,52 +115,64 @@ li {
     background-color: rgb(128, 68, 0);
 }
 
-.TB-left .img-right p.userOcch {
-    font-size: 11px;
-    margin-top: 2%;
-    margin-left: 2%;
-    background-color: rgb(128, 68, 0);
-    border-radius: 10px;
+.uc-box , .uo-box{
+	float:left;
+	width:48%;
+	margin:0 1%;
+	height:26px;
+	position:relative;
+	text-align:center;
 }
-
-.TB-left .img-right p.userOcch span {
-    display: inline-block;
-    width: 65%;
-    height: 1%;
-    background-color: rgb(10, 245, 10);
-    border-radius: 10px;
-    color: rgb(128, 68, 0);
-    padding-left: 2%;
+.uc-box{
+    background:url('../img/t1.png') no-repeat center;
+	background-size:100% 100%;
+}
+.uo-box{
+    background:url('../img/t2.png') no-repeat center;
+	background-size:100% 90%;
+}
+.uc{
+	padding:1%;
+	font-size:12px;
+}
+.uo{
+	font-size:12px;
+	}
+.uc .GetG{
+	position:absolute;
+	width:20% !important;
+	top:2px;
+	right:-2px;
+}
+.uo .GetG{
+	position:absolute;
+	width:20% !important;
+	top:2px;
+	right:-1px;
 }
 
 
 /* ====颜色===== */
 
-.TB-left .img-left p.ids {
-    /* background-color: rgb(128, 68, 0); */
-    border-radius: 20px;
-    height: 10px;
-    font-size: 6px;
-    margin-top: 3%;
-    padding: 0 2%;
-}
-
 .TB-right {
     /*border: solid 1px rgb(9, 117, 218);*/
     width: 16%;
     float: left;
-    margin-left: 5%;
     border-radius: 10px;
     cursor: pointer;
 }
 
 .B-top img {
     display: block;
-    width: 100%;
+    width: 70%;
+	 border: solid 2px white;
+	 border-radius:10px;
+	 margin-left:4%;
 }
 
 .B-mid img,
 .B-down img {
+	
     width: 100%;
     display: block;
 }
@@ -152,7 +180,8 @@ li {
 .LLbox {
     position: absolute;
     width: 100%;
-    top: 5%;
+    top: 19%;
+	left:-4%;
     z-index: 15;
     transform-style: preserve-3d;
     /* perspective: 1000px; */
@@ -162,7 +191,7 @@ li {
 .ifC {
     /*overflow: hidden;*/
     text-align: center;
-    width: 80%;
+    width: 90%;
     /* padding: 5% 6% 15% 9%; */
     margin: 0 auto;
     padding-top: 9%;
@@ -171,7 +200,7 @@ li {
 
 .ifC li {
     float: left;
-    width: 21.5%;
+    width: 19%;
     display: block;
     border: solid 1px transparent;
     position: relative;
@@ -197,36 +226,36 @@ li {
     z-index: 15;
     height: 120px;
     transform: rotate(-45deg);
-    top: -50px;
-    left: -27px;
+    top: -60px;
+    left: -35px;
 }
 
 
 /* ==========底部==================== */
 
 .footer {
-    width: 100%;
+    width: 94%;
     position: fixed;
-    bottom: 0;
+    bottom: 5px;
     z-index: 15;
     display: block;
+	margin:0 2%;
+	background-color:#ffffff87;
+	border:solid 2px white;
+	border-radius:15px;
 }
 
-.footer img.FBG {
-    width: 100%;
-    display: block;
-}
+
 
 .U-Box {
-    position: absolute;
-    width: 100%;
-    z-index: 17;
-    top: -30%;
+    width: 98%;
+	padding:2%;
+	overflow:hidden;
 }
 
 .U-Box li {
     float: left;
-    width: 20%;
+    width: 19.6%;
     transition: all .2s;
     cursor: pointer;
 }
@@ -237,7 +266,7 @@ li {
 }
 
 .U-Box li div img.aheihei {
-    width: 60%;
+    width: 70%;
     text-align: center;
 }
 
@@ -328,31 +357,31 @@ li {
 
 .Jiaoyi {
     width: 86%;
-    margin: 36% auto;
+    margin: 28% auto;
     display: none;
 }
 
 .Email {
-    width: 86%;
-    margin: 35% auto;
+    width: 100%;
+    margin: 20% auto;
     display: none;
 }
 
 .Z_Alert {
-    width: 86%;
-    margin: 57% auto;
+    width: 100%;
+    margin: 0% auto 40% auto;
     display: none;
 }
 
 .Buss {
     width: 86%;
-    margin: 48% auto;
+    margin: 0 auto 59% auto;
     display: none;
 }
 
 .Getrees {
-    width: 86%;
-    margin: 48% auto;
+    width: 100%;
+    margin: 0 auto 50% auto;
     display: none;
 }
 
@@ -365,8 +394,7 @@ li {
 .Z_Alert .Z_bg,
 .Buss .B_bg,
 .Getrees .B_bg {
-    width: 90%;
-    margin-left: 5%;
+    width: 90% auto;
     position: relative;
 }
 
@@ -379,10 +407,13 @@ li {
 }
 
 .Jiaoyi div.Jbg ul {
-    width: 10%;
+    width: 20%;
     position: absolute;
     top: 10%;
-    right: 4%;
+    right: -6%;
+}
+.Jiaoyi div.Jbg ul li{
+	margin:10% 0;
 }
 
 .Jiaoyi div.Jbg ul li img {
@@ -399,10 +430,10 @@ li {
 ============================================= */
 
 .one {
-    width: 66%;
+    width: 64%;
     position: absolute;
-    top: 10%;
-    left: 17%;
+    top: 4%;
+    left: 20%;
     /* display: none; */
     /* border: solid 0.2px red; */
 }
@@ -411,8 +442,8 @@ li {
 .Three {
     width: 66%;
     position: absolute;
-    top: 10%;
-    left: 17%;
+    top: 4%;
+    left: 19%;
     height: 80%;
     display: none;
     /* border: solid 0.2px red; */
@@ -428,6 +459,8 @@ li {
     margin-top: 5%;
     padding: 3%;
     height: 80%;
+	background-color:#d88f3de0;
+	border-radius:10px;
 }
 
 .three_box {
@@ -435,8 +468,11 @@ li {
     height: 100%;
     overflow: scroll;
 }
+.two_box div{
+    border-bottom: solid 2px black;
+}
 
-.three_box div {
+.Three .three_box div {
     border-bottom: solid 2px black;
 }
 
@@ -445,30 +481,33 @@ li {
     text-align: left;
     color: wheat;
 }
-
+.Z__Q img{
+width:80%}
+.B__Q img{
+	width:60%;
+}
 .two,
 .Zwo {
-    width: 66%;
-    height: 70%;
+    width: 64%;
     position: absolute;
-    top: 5%;
-    left: 17%;
+    top: 60%;
+    left: 16%;
     /* border: solid 0.2px red; */
 }
 
 .Bwo {
     width: 66%;
     position: absolute;
-    top: 5%;
+    top: 52%;
     left: 17%;
     /* border: solid 0.2px red; */
 }
 
 .GET {
-    width: 88%;
+    width: 68%;
     position: absolute;
-    top: 7%;
-    left: 5%;
+    top: 54%;
+    left: 14%;
     /* border: solid 0.2px red; */
 }
 
@@ -511,7 +550,7 @@ li {
 
 .two li div .T-infor {
     overflow: hidden;
-    background-color: rgb(170, 95, 9);
+    background-color: rgb(239, 161, 73);
     border-radius: 10px;
     margin-top: 2%;
     padding: 1% 5%;
@@ -572,6 +611,11 @@ h6 {
     font-size: 13px;
     color: rgb(224, 221, 13);
 }
+@media screen and (min-width: 320px) {
+    .B_infor p,.G_infor p,.G_infor2 p{
+		 font-size: 11px;
+	}
+}
 
 .G_infor3 p {
     text-align: center !important;
@@ -582,10 +626,11 @@ h6 {
 .B_infor input {
     width: 90%;
     border: none;
-    background-color: rgb(170, 95, 9);
+    background-color: #5dbd4b;
     box-shadow: 1px -2px 2px inset rgb(194, 164, 130);
     border-radius: 10px;
     border: solid 2px transparent;
+	padding-left:1%;
 }
 
 .A {
@@ -620,7 +665,7 @@ h6 {
 }
 
 .one-img1 {
-    width: 50%;
+    width: 70%;
 }
 
 .two-img1 {
@@ -637,7 +682,7 @@ B_infor .Z_woimg1 {
 
 .T-choose {
     overflow: hidden;
-    margin-top: 5%;
+    margin-top: 8%;
 }
 
 .Z_choose {
@@ -666,7 +711,7 @@ B_infor .Z_woimg1 {
 }
 
 .B__Q {
-    margin-top: 15%;
+    margin-top: 10%;
 }
 
 .G__Q {
@@ -676,15 +721,19 @@ B_infor .Z_woimg1 {
 .Eclose,
 .Z_close {
     position: absolute;
-    top: 8%;
+    top: 0%;
     right: 0;
+	width:20%;
 }
 
 .one form {
-    margin: 8% 0;
-    padding: 1% 0.5%;
+    padding: 16% 0;
+	margin-top:12%;
+	border:solid 2px green;
+	border-radius:10px;
     font-size: 12px;
     color: wheat;
+	background-color:#d88f3de0;
 }
 
 .one form input {
@@ -695,9 +744,9 @@ B_infor .Z_woimg1 {
     box-shadow: 1px -2px 5px rgb(241, 233, 222) inset;
     border-radius: 10px;
     padding: 0.5% 2%;
-    margin-top: 2%;
+    margin-top: 4%;
     font-size: 11px;
-    color: rgb(251, 255, 0);
+    color: white;
 }
 
 .oneInfo {

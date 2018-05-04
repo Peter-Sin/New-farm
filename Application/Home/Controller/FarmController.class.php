@@ -93,7 +93,7 @@ class FarmController extends AllowController {
 		$f_land=M("f_land");
 		$f_harvest=M("f_harvest");
 		$land_count=$f_land->where("uid='$uid'")->count();//土地数量
-		for($i=0;$i<16;$i++){
+		for($i=0;$i<15;$i++){
 			if($i<$land_count){
 				$list[$i]['land']=1;
 			}else{

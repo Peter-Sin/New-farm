@@ -452,7 +452,7 @@ $(function () {
     })
     $(".J_lis1").click(function () {
         $(".jb2").attr("src", "/Public/img/alert/jiaoyi/j1.png");
-        $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/13.png");
+        $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/1.png");
         $(".TWO").fadeOut(50);
         $(".one").fadeIn(50);
         $(".Three").fadeOut(50);
@@ -468,8 +468,8 @@ $(function () {
             data:({abc:abc}),
             success: function (result) {
                 if(result.resultCode==200){
-                    $(".jb2").attr("src", "/Public/img/alert/jiaoyi/os.png");
-                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/14.png");
+                    $(".jb2").attr("src", "/Public/img/alert/jiaoyi/j1.png");
+                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/2.png");
                     $(".Three").find(".three_box").empty();
                     $(".TWO").fadeIn(50);
                     $(".one").fadeOut(50);
@@ -488,7 +488,7 @@ $(function () {
                             // '<p><span>订单状态：</span><span style="color:rgb(15, 238, 15)">交易已经完成</span></p>'+
                         '</div>'
                     }
-                    $(".TWO").find(".three_box").append(html);
+                    $(".TWO").find(".two_box").append(html);
                 }
             }
         })
@@ -502,8 +502,8 @@ $(function () {
             data:({abc:abc}),
             success: function (result) {
                 if(result.resultCode==200){
-                    $(".jb2").attr("src", "/Public/img/alert/jiaoyi/os.png");
-                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/15.png");
+                    $(".jb2").attr("src", "/Public/img/alert/jiaoyi/j1.png");
+                    $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/3.png");
                     $(".TWO").find(".three_box").empty();
                     $(".TWO").fadeOut(50);
                     $(".one").fadeOut(50);
@@ -525,8 +525,8 @@ $(function () {
             }
         })
 
-        $(".jb2").attr("src", "/Public/img/alert/jiaoyi/os.png");
-        $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/15.png");
+        $(".jb2").attr("src", "/Public/img/alert/jiaoyi/j1.png");
+        $(".one-img1").attr("src", "/Public/img/alert/jiaoyi/3.png");
         $(".Three").fadeIn(50);
         $(".one").fadeOut(50);
         $(".TWO").fadeOut(50);
