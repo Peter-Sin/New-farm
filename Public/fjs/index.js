@@ -511,11 +511,11 @@ $(function () {
                     var html='';
                     for(var i=0;i<result.num.length;i++){
                         html+='<div>'+
-                            '<p><span>时间：</span><span>'+result.num[1].time+'</span></p>'+
-                        '<p><span>数量：</span><span>'+result.num[1].realnum+'</span></p>'+
+                            '<p><span>时间：</span><span>'+result.num[i].time+'</span></p>'+
+                        '<p><span>数量：</span><span>'+result.num[i].realnum+'</span></p>'+
                         '<p><span>身份：</span><span>'+'被转让者'+'</span></p>'+
-                        '<p><span>ID：</span><span>'+result.num[1].vipid+'</span></p>'+
-                        '<p><span>昵称：</span><span>'+result.num[1].username+'</span></p>'+
+                        '<p><span>ID：</span><span>'+result.num[i].vipid+'</span></p>'+
+                        '<p><span>昵称：</span><span>'+result.num[i].username+'</span></p>'+
                         // '<p><span>更新时间：</span><span>'+1999-12-88 21:45:79+'</span></p>'+
                         // '<p><span>订单状态：</span><span style="color:rgb(15, 238, 15)">'+交易已经完成+'</span></p>'+
                         '</div>'
