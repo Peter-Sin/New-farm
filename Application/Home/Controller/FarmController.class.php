@@ -23,60 +23,60 @@ class FarmController extends AllowController {
         return $lownum;
     }
 
-    public function getlastland(){
-        $f_land=M("f_land");
-        $f_mygoods=M("f_mygoods");
-        $f_rate=M("f_rate");
-        $num=$_POST["num"];
-        $uid=$_SESSION["uid"];
-        $landcount=$f_land->where("uid='$uid'")->count();
-        $land_price=$this->land_price;
-//        $trading_limits=$this->trading_limits;
-        $fruitinfo=$f_mygoods->where("uid='$uid'")->getField("fruit");
-        if($fruitinfo>=$land_price){
-            if($num==$landcount){
-                $lastinfo=$f_land->where("uid='$uid'")->order("id desc")->limit(1)->select();
-                $lastltime=strtotime($lastinfo[0]['time']);
-                $landnum=$landcount+1;
-                $landlife=$f_rate->where("land_num='$landnum'")->getField("cycle");
-                $numtime=$landlife*24*3600;
-                if($lastltime+$numtime<=time()){
-                    M()->startTrans();//开始事务处理
-                    $data['uid']=$_SESSION['uid'];
-                    $data['time']=date("Y-m-d H:i:s");
-                    $res=$f_land->data($data)->add();
-//                $landinfo=$f_mygoods->where("uid='$uid'")->getField("land");
-//                $arr['land']=$landinfo+1;
-//                $result=$f_mygoods->where("uid='$uid'")->data($arr)->save();
-                    $result=$f_mygoods->where("uid='$uid'")->setInc("land",1);
-                    if($res && $result){
-                        M()->commit();
-                        $response = array(
-                            'resultCode'  => 200,
-                            'message' => '开地成功',
-                        );
-                    }else{
-                        M()->rollback();
-                        $response = array(
-                            'resultCode'  => 300,
-                            'message' => '开地失败',
-                        );
-                    }
-                }else{
-                    $response = array(
-                        'resultCode'  => 400,
-                        'message' => '未达到固定周期,暂不可开地',
-                    );
-                }
-            }
-        }else{
-            $response = array(
-                'resultCode'  => 500,
-                'message' => '果子数量不足',
-            );
-        }
-        $this->ajaxReturn($response,'json');
-    }
+//    public function getlastland(){
+//        $f_land=M("f_land");
+//        $f_mygoods=M("f_mygoods");
+//        $f_rate=M("f_rate");
+//        $num=$_POST["num"];
+//        $uid=$_SESSION["uid"];
+//        $landcount=$f_land->where("uid='$uid'")->count();
+//        $land_price=$this->land_price;
+////        $trading_limits=$this->trading_limits;
+//        $fruitinfo=$f_mygoods->where("uid='$uid'")->getField("fruit");
+//        if($fruitinfo>=$land_price){
+//            if($num==$landcount){
+//                $lastinfo=$f_land->where("uid='$uid'")->order("id desc")->limit(1)->select();
+//                $lastltime=strtotime($lastinfo[0]['time']);
+//                $landnum=$landcount+1;
+//                $landlife=$f_rate->where("land_num='$landnum'")->getField("cycle");
+//                $numtime=$landlife*24*3600;
+//                if($lastltime+$numtime<=time()){
+//                    M()->startTrans();//开始事务处理
+//                    $data['uid']=$_SESSION['uid'];
+//                    $data['time']=date("Y-m-d H:i:s");
+//                    $res=$f_land->data($data)->add();
+////                $landinfo=$f_mygoods->where("uid='$uid'")->getField("land");
+////                $arr['land']=$landinfo+1;
+////                $result=$f_mygoods->where("uid='$uid'")->data($arr)->save();
+//                    $result=$f_mygoods->where("uid='$uid'")->setInc("land",1);
+//                    if($res && $result){
+//                        M()->commit();
+//                        $response = array(
+//                            'resultCode'  => 200,
+//                            'message' => '开地成功',
+//                        );
+//                    }else{
+//                        M()->rollback();
+//                        $response = array(
+//                            'resultCode'  => 300,
+//                            'message' => '开地失败',
+//                        );
+//                    }
+//                }else{
+//                    $response = array(
+//                        'resultCode'  => 400,
+//                        'message' => '未达到固定周期,暂不可开地',
+//                    );
+//                }
+//            }
+//        }else{
+//            $response = array(
+//                'resultCode'  => 500,
+//                'message' => '果子数量不足',
+//            );
+//        }
+//        $this->ajaxReturn($response,'json');
+//    }
 
     public function index(){
     	$user=M("user");
@@ -137,6 +137,7 @@ class FarmController extends AllowController {
 			    }
             }
 		}
+//		dump($list);
 		$this->assign("list",$list);
     	$this->assign("uinfo",$userinfo);
 		$this->assign("info",$goodsinfo);
@@ -148,6 +149,9 @@ class FarmController extends AllowController {
         $uid=$_SESSION['uid'];
         $tree_price=$this->tree_price;
     	$f_mygoods=M('f_mygoods');
+        $f_land=M("f_land");
+        $f_rate=M("f_rate");
+        $lid=$_POST['abc'];
         $info=$f_mygoods->where("uid='$uid'")->find();
 //        $lowest=$this->lowest();
 //        if($lowest){
@@ -155,47 +159,63 @@ class FarmController extends AllowController {
 //        }else{
 //            $trading_limits=$this->trading_limits;
 //        }
-        if($info['fruit']>=$tree_price){
-            $f_tree=M('f_tree');
-            $f_harvest=M("f_harvest");
-            $f_land=M("f_land");
-            $f_rate=M("f_rate");
-            $land_count=$f_land->where("uid='$uid'")->count();
-            $rate=$f_rate->where("land_num='$land_count'")->getField('rate');//当前拆分率
-            M()->startTrans();//开始事务处理
-            $data['uid']=$uid;
-            $lid=$_POST['abc'];
-            $data['lid']=$lid;
-            $data['time']=date("Y-m-d H:i:s");
-            $res=$f_tree->data($data)->add();//树表
-            $dataa['uid']=$uid;
-            $dataa['treeid']=$res;
-            $dataa['rate']=$rate;
-            $dataa['amount']=0;
-            $dataa['time']=date("Y-m-d H:i:s");
-            $resul=$f_harvest->data($dataa)->add();//收获表
-            $datas['fruit']=$info['fruit']-$tree_price;
-            $datas['tree']=$info['tree']+1;
-            $result=$f_mygoods->where("uid='$uid'")->data($datas)->save();
-            if($res && $resul && $result){
-                M()->commit();
-                plantinfo($lid);
-                $response = array(
-                    'resultCode'  => 200,
-                    'message' => 'success for request',
-                );
+        $landcount=$f_land->where("uid='$uid'")->count();
+        $landnum=$landcount+1;
+        if($lid==$landnum){
+            $lastinfo=$f_land->where("uid='$uid'")->order("id desc")->limit(1)->select();
+            $lastltime=strtotime($lastinfo[0]['time']);
+            $landlife=$f_rate->where("land_num='$landnum'")->getField("cycle");
+            $numtime=$landlife*24*3600;
+            if($lastltime+$numtime<=time()){
+                if($info['fruit']>=$tree_price){
+                    $f_tree=M('f_tree');
+                    $f_harvest=M("f_harvest");
+                    $land_count=$f_land->where("uid='$uid'")->count();
+                    $rate=$f_rate->where("land_num='$land_count'")->getField('rate');//当前拆分率
+                    M()->startTrans();//开始事务处理
+                    $ldata['uid']=$uid;
+                    $ldata['time']=date("Y-m-d H:i:s");
+                    $ldata['lnum']=$lid;
+                    $rl=$f_land->data($ldata)->add();
+                    $data['uid']=$uid;
+                    $data['lid']=$lid;
+                    $data['time']=date("Y-m-d H:i:s");
+                    $res=$f_tree->data($data)->add();//树表
+                    $dataa['uid']=$uid;
+                    $dataa['treeid']=$res;
+                    $dataa['rate']=$rate;
+                    $dataa['amount']=0;
+                    $dataa['time']=date("Y-m-d H:i:s");
+                    $resul=$f_harvest->data($dataa)->add();//收获表
+                    $datas['fruit']=$info['fruit']-$tree_price;
+                    $datas['tree']=$info['tree']+1;
+                    $result=$f_mygoods->where("uid='$uid'")->data($datas)->save();
+                    if($rl && $res && $resul && $result){
+                        M()->commit();
+                        plantinfo($lid);
+                        $response = array(
+                            'resultCode'  => 200,
+                            'message' => 'success for request',
+                        );
+                    }else{
+                        M()->rollback();
+                        $response = array(
+                            'resultCode'  => 400,
+                            'message' => '栽种失败',
+                        );
+                    }
+                }else{
+                    $response = array(
+                        'resultCode'  => 300,
+                        'message' => '果子数量不足',
+                    );
+                }
             }else{
-                M()->rollback();
                 $response = array(
-                    'resultCode'  => 400,
-                    'message' => '栽种失败',
+                    'resultCode'  => 500,
+                    'message' => '未达到固定周期,暂不可开地',
                 );
             }
-        }else{
-            $response = array(
-                'resultCode'  => 300,
-                'message' => '果子数量不足',
-            );
         }
         $this->ajaxReturn($response,'json');
 	}
@@ -483,13 +503,13 @@ class FarmController extends AllowController {
                     $yourfruit=$f_mygoods->where("uid='$tuid'")->find();
                     $data['fruit']=$myfruit['fruit']-$num*(1+$transaction_fee+$trade_exchange);
                     $data['voucher']=$myfruit['voucher']+$num*$trade_exchange;
-                    $datas['voucher']=$yourfruit['voucher']+$num;
+                    $datas['fruit']=$yourfruit['fruit']+$num;
                     $res1=$f_mygoods->where("uid='$uid'")->data($data)->save();//保存自己果子
-                    $res2=$f_mygoods->where("uid='$tuid'")->data($datas)->save();//保存别人券
+                    $res2=$f_mygoods->where("uid='$tuid'")->data($datas)->save();//保存别人果子
                     $arr['uid']=$uid;
                     $arr['tuid']=$tuid;
                     $arr['num']=$num*(1+$transaction_fee);//实际扣除果子
-                    $arr['realnum']=$num;//实际到账券
+                    $arr['realnum']=$num;//实际到果子
                     $arr['time']=date('Y-m-d H:i:s');
                     $res=$trade->data($arr)->add();//增加交易记录
                     $exc['uid']=$uid;
