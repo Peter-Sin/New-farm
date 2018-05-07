@@ -89,22 +89,21 @@ class FarmController extends AllowController {
 			$userinfo=0;
     		$goodsinfo=0;
 		}
+        for($i=0;$i<15;$i++){
+            $list[$i]['land']=0;
+            $list[$i]['tree']=0;
+            $list[$i]['fruit']=0;
+            $list[$i]['kd']=0;
+        }
 		$f_tree=M("f_tree");
 		$f_land=M("f_land");
 		$f_harvest=M("f_harvest");
-		$land_count=$f_land->where("uid='$uid'")->count();//土地数量
-		for($i=0;$i<15;$i++){
-			if($i<$land_count){
-				$list[$i]['land']=1;
-			}else{
-				$list[$i]['land']=0;
-			}
-			if($i==$land_count){
-                $list[$i]['kd']=1;
-            }else{
-                $list[$i]['kd']=0;
-            }
-		}
+		$land=$f_land->where("uid='$uid'")->select();//土地数量
+        foreach($land as $key=>$val){
+            $lnum=$val['lnum'];
+            $list[$lnum-1]['land']=1;
+        }
+
 		$trees=$f_tree->where("uid='$uid'")->select();//我的树s
 		foreach($trees as $key=>$val){
 			$lid=$val['lid']-1;
@@ -137,8 +136,20 @@ class FarmController extends AllowController {
 			    }
             }
 		}
-//		dump($list);
-		$this->assign("list",$list);
+		foreach($list as $key=>$val){
+		    if($val['land']==0 && $val['tree']==0){
+		        $l[]=$key;
+            }
+        }
+//        for($i=0;$i<15;$i++){
+//		    if($list[$i]['land']==0){
+//                $list[$key]['kd']=1;exit;
+//            }
+//        }
+//dump($l);
+        $pos = array_search(max($l), $l);
+//        dump($pos);
+        $this->assign("list",$list);
     	$this->assign("uinfo",$userinfo);
 		$this->assign("info",$goodsinfo);
         $this->display('indx');
