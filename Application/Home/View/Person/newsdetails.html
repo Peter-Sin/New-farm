@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>站内信列表</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/YM/css/bootstrap.min.css">
+    <script src="__PUBLIC__/YM/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/YM/js/popper.min.js"></script>
+    <script src="__PUBLIC__/YM/js/bootstrap.min.js"></script>
+    <style>
+        .nav-bar {
+            background: white;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 14px;
+            position: relative;
+            color: #666;
+            border-bottom: solid 1px rgb(214, 211, 211);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+        body{
+            width: 100%;
+        }
+
+        .back {
+            position: absolute;
+            height: 17px;
+            width: 10px;
+            left: 10px;
+            top: 8px;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        ul {
+            padding: 0 0;
+        }
+
+        .conent-box {
+            width: 96%;
+            margin-top: 32px;
+            margin: 2% 2%;
+            padding-bottom: 20px;
+        }
+
+        .conent-box h5 {
+            text-align: left;
+            margin: 0 0;
+        }
+
+        .Zhuti {
+            line-height: 30px;
+            color: #666;
+            border-bottom: 0.5px dashed gray;
+        }
+        .Zhuti p:first-child{
+            color: red;
+            margin: 0 0;
+            margin-top: 4%;
+        }
+        .Zhuti p:last-child{
+            color: black;
+            word-wrap:break-word;
+            padding: 0 8%;
+        }
+
+        .Notic {
+            width: 100%;
+            background: white;
+        }
+        .Biaoti {
+            margin-top: 5%;
+
+
+        }
+        .down{
+            text-align: center;
+            margin-top: 5%;
+            color: #666;
+        }
+        .writing{
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            text-align: center;
+        }
+        .writing input{
+            width: 68%;
+        }
+        .writing button{
+            width: 30%;
+            border: solid 0.5px #0e0e0e;
+            padding: 1% 5%;
+            background-color: #00b0ffe3;
+            color: wheat;
+        }
+    </style>
+</head>
+
+<body style="background: rgb(235, 232, 232);">
+<div class="Notic">
+    <p class="nav-bar">
+        <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 公告详情
+    </p>
+    <ul class="conent-box">
+        <h5 class="Biaoti" pid="{$info['id']}">{$info['title']}</h5>
+        <foreach name="infos" item="val">
+            <div class="Zhuti">
+                <p>{$val['name']}：</p>
+                <p>{$val['title']}</p>
+                <!--我的飞机我就我的飞/机我就我的飞机我就我飞机我就我的飞机我就我机我就我的飞机我就我的飞机我就我的飞机我就我的飞机我就-->
+            </div>
+        </foreach>
+        <!--<div class="down">-->
+        <!--上啊啊啊哈节哀啊那看-->
+        <!--</div>-->
+    </ul>
+    <div class="writing">
+        <!--<form action="__MODULE__/Person/upload" method="post">-->
+            <input type="text" name="title" classid="2" value="">
+            <!--<input type="submit" value="提交">-->
+        <button class="Button">提交</button>
+    </div>
+</div>
+</body>
+<script src="__PUBLIC__/js/OneM.js"></script>
+<script src="__PUBLIC__/js/backthree.js"></script>
+<script>
+    var back = $(".nav-bar").find(".back")
+    back.click(function () {
+        location.href = "../Person/news";
+    })
+
+    $(function () {
+        var pid = $(".Biaoti").attr("pid");
+        var cid = $("input[ name='title']").attr("classid");
+        $(".Button").click(function () {
+            var title =$("input[name='title']").val();
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Person/uploadmessage",
+                data: ({cid:cid,title:title,pid:pid}),
+                success: function (result) {
+                    if(result.resultCode==200){
+                        console.log("123333");
+                        alert("提交成功");
+                        window.location.reload();
+                    }else if(result.resultCode==300){
+                        alert("提交失败");
+                    }
+                }
+            })
+        })
+    })
+</script>
+</html>

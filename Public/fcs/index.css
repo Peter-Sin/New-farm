@@ -397,6 +397,10 @@ li {
     width: 90% auto;
     position: relative;
 }
+.Ebg{
+    /*overflow: scroll;*/
+}
+
 
 .Jiaoyi div.Jbg img.jb2,
 .Email div.Ebg img.Eb2,
@@ -482,16 +486,26 @@ li {
     color: wheat;
 }
 .Z__Q img{
-width:80%}
+width:56%}
 .B__Q img{
-	width:60%;
+	width:50%;
+    border-radius: 15px;
 }
-.two,
+.two{
+    width: 64%;
+    position: absolute;
+    top: 21%;
+    left: 19%;
+    border-radius: 5%;
+    height: 78%;
+    overflow: hidden;
+    /* border: solid 0.2px red; */
+}
 .Zwo {
     width: 64%;
     position: absolute;
-    top: 20%;
-    left: 19%;
+    top: 60%;
+    left: 16%;
     /* border: solid 0.2px red; */
 }
 
@@ -530,8 +544,9 @@ width:80%}
 
 .two li {
     width: 100%;
-    height: 90%;
+    height: 71.4%;
     overflow: scroll;
+    border-radius: 5%;
 }
 
 .Zwo li {
@@ -663,6 +678,9 @@ h6 {
 .Bwo p {
     text-align: center;
 }
+.Bwo p {
+    margin-bottom: 10%;
+}
 
 .one-img1 {
     width: 70%;
@@ -718,12 +736,17 @@ B_infor .Z_woimg1 {
     margin-top: 20%;
 }
 
-.Eclose,
 .Z_close {
     position: absolute;
-    top: 0%;
+    top: 36%;
     right: 0;
 	width:20%;
+}
+.Eclose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width:20%;
 }
 
 .one form {

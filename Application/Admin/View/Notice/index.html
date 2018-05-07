@@ -68,28 +68,28 @@ a:hover {
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb"> <a href="#" class="tip-bottom" data-original-title="回到后台">
-            <i class="icon-home"></i>后台</a> <a href="#">一元夺宝</a>  <a href="#" class="current">商品信息</a> </div>
+            <i class="icon-home"></i>后台</a> <a href="#">公告管理</a>  <a href="#" class="current">公告信息</a> </div>
     </div>
   <div class="container-fluid" style="text-align:center;">
     <div class="row-fluid" >
       <div class="span12" >
         <div class="widget-box" >
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-              <h5>夺宝商品</h5>
-              <a href="__MODULE__/Onemoney/addgoods" style="float:right"><h5 style="color:yellowgreen">添加夺宝商品</h5></a>
+              <h5>公告信息</h5>
+              <a href="__MODULE__/Notice/addnotice" style="float:right"><h5 style="color:yellowgreen">添加公告</h5></a>
           </div>
         </div>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th><span style="font:15px 微软雅黑,黑体">编号</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">商品图片</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">商品名称</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">数量</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">剩余数量</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">标题</span></th>
+                    <!--<th><span style="font:15px 微软雅黑,黑体">商品名称</span></th>-->
+                    <!--<th><span style="font:15px 微软雅黑,黑体">数量</span></th>-->
+                    <!--<th><span style="font:15px 微软雅黑,黑体">剩余数量</span></th>-->
                     <th><span style="font:15px 微软雅黑,黑体">状态</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">上线时间</span></th>
-                    <th><span style="font:15px 微软雅黑,黑体">持续时长</span></th>
+                    <th><span style="font:15px 微软雅黑,黑体">发布时间</span></th>
+                    <!--<th><span style="font:15px 微软雅黑,黑体">持续时长</span></th>-->
                     <th><span style="font:15px 微软雅黑,黑体">操作</span></th>
                 </tr>
             </thead>
@@ -97,19 +97,16 @@ a:hover {
                <foreach name="list" item="val">
                   <tr class="gradeC">
                      <td style="text-align:center">{$val.id}</td>
-                     <td style="text-align:center">
-                        <img src="__PUBLIC__/image/onemoney/{$val.image}" style="width:40px">
-                     </td>
-                     <td style="text-align:center">{$val.name}</td>
-                      <td style="text-align:center">{$val.amount}</td>
-                     <td style="text-align:center">{$val.num}</td>
+                     <td style="text-align:center">{$val.title}</td>
+                      <!--<td style="text-align:center">{$val.amount}</td>-->
+                     <!--<td style="text-align:center">{$val.num}</td>-->
                       <td style="text-align:center" class="statu" id="{$val.id}" sid="{$val.statu}">{$val.status}</td>
-                     <td style="text-align:center">{$val.uptime}</td>
-                     <td style="text-align:center">{$val.hour}小时</td>
+                     <td style="text-align:center">{$val.time}</td>
+                     <!--<td style="text-align:center">{$val.hour}小时</td>-->
                       <td class="center">
                         <div style="text-align:center;">  
-                          <a href="__MODULE__/Onemoney/editgoods?id={$val.id}">修改</a>|
-                          <a href="__MODULE__/Onemoney/goodsdelete/id/{$val.id}">删除</a>
+                          <a href="__MODULE__/Notice/editnotice?id={$val.id}">修改</a>|
+                          <a href="__MODULE__/Notice/noticedelete/id/{$val.id}">删除</a>
                         </div>
                       </td>
                   </tr>     
@@ -129,11 +126,7 @@ a:hover {
                 var sid = $(this).attr("sid");
                 var here = $(this);
                 var order = $(this).text();
-                console.log(pid);
-                console.log(sid);
-                console.log(here);
-                console.log(order);
-                $.post("__MODULE__/Onemoney/statu", {id: pid, sid: sid}, function (data) {
+                $.post("__MODULE__/Notice/statu", {id: pid, sid: sid}, function (data) {
                     if (data == 1) {
                         if (order == 'X') {
                             here.text('✓');

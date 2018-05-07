@@ -189,6 +189,7 @@ class FarmController extends AllowController {
                     $resul=$f_harvest->data($dataa)->add();//收获表
                     $datas['fruit']=$info['fruit']-$tree_price;
                     $datas['tree']=$info['tree']+1;
+                    $datas['land']=$info['land']+1;
                     $result=$f_mygoods->where("uid='$uid'")->data($datas)->save();
                     if($rl && $res && $resul && $result){
                         M()->commit();
@@ -225,22 +226,26 @@ class FarmController extends AllowController {
 		$uid=$_SESSION["uid"];
 		if($abc==1){//铲除
             $f_tree=M("f_tree");
+            $f_land=M("f_land");
             $f_oldtree=M("f_oldtree");
             $f_mygoods=M("f_mygoods");
             $lid=$_POST['num'];
             M()->startTrans();//开始事务处理
             $info=$f_tree->where("uid='$uid' AND lid='$lid'")->find();
             $res=$f_tree->where("uid='$uid' AND lid='$lid'")->delete();
+            $lres=$f_land->where("uid='$uid' AND lnum='$lid'")->delete();
             $data['oid']=$info["id"];
             $data['uid']=$info["uid"];
             $data['lid']=$info["lid"];
             $data['oldtime']=$info["time"];
             $data['time']=date("Y-m-d H:i:s");
             $result=$f_oldtree->data($data)->add();
-            $treenum=$f_mygoods->where("uid='$uid'")->getField("tree");
-            $datas['tree']=$treenum-1;
+
+            $treenum=$f_mygoods->where("uid='$uid'")->field("tree,land")->find();
+            $datas['tree']=$treenum['tree']-1;
+            $datas['land']=$treenum['land']-1;
             $res1=$f_mygoods->where("uid='$uid'")->data($datas)->save();
-            if($res && $result && $res1){
+            if($res && $lres && $result && $res1){
                 rmoveinfo($lid);
                 M()->commit();
                 $response=array(
@@ -790,7 +795,7 @@ public function fruitlist(){
                         break;
                     case '11':
                         $num=$val['num'];
-                        $list[$key]['content']='你成功兑换'.$num.'个券';
+                        $list[$key]['content']='你成功兑换'.$num.'个券,扣除'.$num.'个果子';
                         $list[$key]['time']=$val['time'];
                         break;
                     case '12':

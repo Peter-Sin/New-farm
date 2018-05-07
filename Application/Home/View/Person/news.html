@@ -21,19 +21,26 @@
             <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 站内信列表
         </p>
         <ul class="notic-box">
-            <li>
-                <span>This is content of notic</span>
-                <i>2017-05-33</i>
-            </li>
-            <li>
-                <span>This is content of notic</span>
-                <i>2017-05-33</i>
-            </li>
-            <li>
-                <span>This is content of notic</span>
-                <i>2017-05-33</i>
-            </li>
+            <foreach name="info" item="val">
+                <li>
+                    <a href="__MODULE__/Person/newsdetail?id={$val['id']}"><span>{$val['title']}</span></a>
+                    <i>{$val['time']}</i>
+                </li>
+            </foreach>
+            <!--<li>-->
+                <!--<span>This is content of notic</span>-->
+                <!--<i>2017-05-33</i>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<span>This is content of notic</span>-->
+                <!--<i>2017-05-33</i>-->
+            <!--</li>-->
         </ul>
+    </div>
+    <div class="writing">
+        <!--<form action="__MODULE__/Person/upload" method="post">-->
+            <input type="text" name="title" classid="1">
+            <button class="Button">提交</button>
     </div>
 </body>
 <script src="__PUBLIC__/js/OneM.js"></script>
@@ -41,6 +48,28 @@
     var back = $(".nav-bar").find(".back")
     back.click(function () {
         location.href = "../Index/index?num=3";
+    })
+
+    $(function () {
+        // var pid = $(".Biaoti").attr("pid");
+        var cid = $("input[ name='title']").attr("classid");
+        $(".Button").click(function () {
+            var title =$("input[name='title']").val();
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Person/uploadmessage",
+                data: ({cid: cid, title: title}),
+                success: function (result) {
+                    if(result.resultCode==200){
+                        alert("提交成功");
+                        window.location.reload();
+                    }else if(result.resultCode==300){
+                        alert("提交失败");
+                    }
+                }
+            })
+        })
     })
 </script>
 </html>

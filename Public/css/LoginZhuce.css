@@ -114,7 +114,9 @@ li {
     overflow: hidden;
     position: relative;
     width: 100%;
-    margin-top: 2.2%
+    margin-top: 2.2%;
+    border-radius: 15px;
+    background:  rgba(202, 145, 15, 0.67);
 }
 
 .Getpass form p img,
@@ -140,46 +142,52 @@ li {
 .Register form p input {
     border: none;
     font-size: 12px;
-    color: rgb(168, 167, 167);
+    color: black;
     margin-left: 2%;
     width: 70%;
-    background: rgb(143, 87, 24);
+    background:transparent;
     border-radius: 5px;
 }
 
-#Logpasss,
-#ZZhuce {
+#Logpasss{
     width: 60%;
     position: absolute;
     top: 32.5%;
     right: 0;
 }
+#ZZhuce {
+    width: 59%;
+    position: absolute;
+    top: 30%;
+    right: 23%;
+    text-align: center;
+}
 
 #Registers {
-    width: 80%;
+    width: 60%;
     position: absolute;
-    top: 22%;
-    left: 9%;
+    top: 24.6%;
+    left: 18%;
+
 }
 
 #Logpasss p {
     margin-right: 10%;
 }
-
-#ZZhuce p.vv {
-    margin-left: 10%;
+#ZZhuce p.vv label{
+    font-family:"隶书";
+    font-size: 20px
 }
-
 #ZZhuce p:nth-child(1) {
     margin-top: -1%;
 }
 
 #Logpasss p:nth-child(2) {
-    margin-top: 7%;
+    margin-top: 5%;
 }
 
 #ZZhuce p:nth-child(2) {
-    margin-top: 8%;
+    margin-top: 6%;
 }
 
 #ZZhuce p:nth-child(3) {
@@ -194,10 +202,11 @@ li {
 }
 
 #ZZhuce input {
-    width: 65%;
+    width:52%;
     background: transparent;
     border: 2px solid transparent;
     font-size: 14px;
+    background: rgba(202, 145, 15, 0.67);;
 }
 
 #Logpasss p img {
@@ -210,8 +219,7 @@ li {
 }
 
 .ZZZZe {
-    margin-left: -38%;
-    margin-top: 9%;
+    text-align: center;
 }
 
 .LLogin img {
@@ -223,7 +231,7 @@ li {
 }
 
 .getPhone {
-    background: rgb(143, 87, 24);
+    background: rgba(202, 145, 15, 0.67);
     font-size: 13px;
     padding: 1% 2%;
     color: wheat;
@@ -231,7 +239,7 @@ li {
     cursor: pointer;
     width: 83px;
     position: absolute;
-    right: 9.4%;
+    right: 1%;
     top: 2%;
 }
 
@@ -269,7 +277,7 @@ li {
 }
 
 .Register form span img {
-    width: 35%;
+    width: 40%;
 }
 
 .tishi,
@@ -295,7 +303,7 @@ li {
 }
 
 .Logimg img {
-    width: 80%;
+    width: 100%;
 }
 
 #Adrpasss {

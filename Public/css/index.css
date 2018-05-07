@@ -260,10 +260,17 @@ width:200px;
     color: #666;
 }
 .aaa{
-	margin-top:20px;
+    width: 15px;
+	margin-top:8%;
 	float:right;
-	font-size:28px;
-	margin-right:20px;
+    margin-right: 5%;
+    height: 30px;
+    background: url("../YM/imgs/yjt.png") no-repeat center;
+    background-size: 100% 100%;
+    color: red;
+}
+.aaa a{
+    color: transparent;
 }
 
 .user-list {

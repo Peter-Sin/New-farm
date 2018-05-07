@@ -11,15 +11,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PayController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/PayController.class.php">
+      <file leaf-file-name="FarmController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FarmController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1197">
-              <folding>
-                <element signature="n#style#0;n#spcn#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="-483">
+              <caret line="797" column="77" selection-start-line="797" selection-start-column="77" selection-end-line="797" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../Public/fcs/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3066">
+              <caret line="493" column="14" selection-start-line="493" selection-start-column="14" selection-end-line="493" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fruit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../Public/js/fruit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2961">
+              <caret line="141" column="45" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fruit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../View/Person/fruit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1071">
+              <caret line="51" column="28" lean-forward="true" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -33,6 +56,7 @@
       <find />
       <find>checkPhone</find>
       <find>shop</find>
+      <find>datt</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -53,10 +77,13 @@
         <option value="$PROJECT_DIR$/../View/index/index.html" />
         <option value="$USER_HOME$/Desktop/mall.sql" />
         <option value="$PROJECT_DIR$/../../../Public/js/LoginZhuce.js" />
-        <option value="$PROJECT_DIR$/FarmController.class.php" />
         <option value="$PROJECT_DIR$/../View/Person/ChangInfo.html" />
         <option value="$PROJECT_DIR$/PersonController.class.php" />
         <option value="$PROJECT_DIR$/../../../Public/css/orchard.css" />
+        <option value="$PROJECT_DIR$/../../../Public/fcs/index.css" />
+        <option value="$PROJECT_DIR$/../View/Person/fruit.html" />
+        <option value="$PROJECT_DIR$/../../../Public/js/fruit.js" />
+        <option value="$PROJECT_DIR$/FarmController.class.php" />
       </list>
     </option>
   </component>
@@ -66,12 +93,15 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
   <component name="PhpServers">
     <servers />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="205" />
-    <option name="y" value="42" />
+    <option name="x" value="171" />
+    <option name="y" value="64" />
     <option name="width" value="1536" />
     <option name="height" value="1100" />
   </component>
@@ -132,16 +162,19 @@
       <workItem from="1523715201125" duration="31000" />
       <workItem from="1523721878165" duration="2535000" />
       <workItem from="1525223626385" duration="65000" />
+      <workItem from="1525655346981" duration="1790000" />
+      <workItem from="1525657156208" duration="1793000" />
+      <workItem from="1525660463291" duration="276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29925000" />
+    <option name="totallyTimeSpent" value="33784000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="205" y="42" width="1536" height="1100" extended-state="0" />
+    <frame x="171" y="64" width="1536" height="1100" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25394738" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" side_tool="true" visible="true" weight="0.13947369" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -169,15 +202,40 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../../Public/js/fruit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2961">
+          <caret line="141" column="45" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../View/Person/fruit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="966">
+          <caret line="46" column="73" lean-forward="true" selection-start-line="46" selection-start-column="73" selection-end-line="46" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FarmController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4011">
+          <caret line="191" column="51" selection-start-line="191" selection-start-column="51" selection-end-line="191" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Public/fcs/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10353">
+          <caret line="493" column="14" lean-forward="true" selection-start-line="493" selection-start-column="14" selection-end-line="493" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PersonController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1386">
           <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Public/js/GoodsInfor.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../Public/js/LoginZhuce.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -432,13 +490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FarmController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="325" column="21" selection-start-line="325" selection-start-column="21" selection-end-line="325" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../View/Person/extend.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
@@ -474,17 +525,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Public/js/GoodsInfor.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PayController.class.php">
+    <entry file="file://$PROJECT_DIR$/../View/Person/fruit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1197">
-          <folding>
-            <element signature="n#style#0;n#spcn#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="1071">
+          <caret line="51" column="28" lean-forward="true" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Public/fcs/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3066">
+          <caret line="493" column="14" selection-start-line="493" selection-start-column="14" selection-end-line="493" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Public/js/fruit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2961">
+          <caret line="141" column="45" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FarmController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="797" column="77" selection-start-line="797" selection-start-column="77" selection-end-line="797" selection-end-column="77" />
         </state>
       </provider>
     </entry>

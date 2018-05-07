@@ -22,7 +22,6 @@ function fruittrade(a){
                     var num=result.num;
                     var transaction_fee=result.transaction_fee;
                     var trade_exchange=result.trade_exchange;
-                    console.log(trade_exchange);
                     $(".Had-num").html(num);
                     $(".transaction_fee").html(transaction_fee);
                     $(".trade_exchange").html(trade_exchange);
@@ -138,7 +137,15 @@ bussOk.click(function (e) {
             data: busData,
             success: function (result) {
                 if (result.resultCode == 200) {
-                    $("datt").append("<p>返回正确的数据</p>")
+                    // $("datt").append("<p>返回正确的数据</p>")
+                    alert("交易成功");
+                    window.location.reload();
+                }else if(result.resultCode == 300){
+                    alert("支付密码有误");
+                }else if(result.resultCode == 400){
+                    alert("获赠号码有误");
+                }else if(result.resultCode == 500){
+                    alert("果子数量不足");
                 }
             },
             error: function (err) {

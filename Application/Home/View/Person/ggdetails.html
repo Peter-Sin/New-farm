@@ -78,18 +78,24 @@
             <img class="back" src="__PUBLIC__/YM/fontimg/back2.png" alt=""> 公告详情
         </p>
         <ul class="conent-box">
-            <h5 class="Biaoti">飞机我就我的飞机我就我</h5>
-            <h6 class="B2">飞机我就我的飞机:</h6>
+            <h5 class="Biaoti">{$info['title']}</h5>
+            <!--<h6 class="B2">飞机我就我的飞机:</h6>-->
             <div class="Zhuti">
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                我的飞机我就我的飞机我就我的飞机我就我飞机我就我的飞机我就我机我就我的飞机我就我的飞机我就我的飞机我就我的飞机我就
+                <span>{$info['content']}</span>
+                <!--我的飞机我就我的飞/机我就我的飞机我就我飞机我就我的飞机我就我机我就我的飞机我就我的飞机我就我的飞机我就我的飞机我就-->
             </div>
-            <div class="down">
-                上啊啊啊哈节哀啊那看
-            </div>
+            <!--<div class="down">-->
+                <!--上啊啊啊哈节哀啊那看-->
+            <!--</div>-->
         </ul>
     </div>
 </body>
 <script src="__PUBLIC__/js/OneM.js"></script>
 <script src="__PUBLIC__/js/backthree.js"></script>
+<script>
+    var back = $(".nav-bar").find(".back")
+    back.click(function () {
+        location.href = "../Person/notice";
+    })
+</script>
 </html>

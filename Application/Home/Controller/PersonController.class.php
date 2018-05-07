@@ -214,12 +214,71 @@ class PersonController extends AllowController
 
     public function news()
     {
+        $message=M("message");
+        $info=$message->where("classid=1 AND pid=0")->order("id desc")->select();
+        $this->assign("info",$info);
         $this->display('news');
+    }
+
+    public function newsdetail(){
+        $message=M("message");
+        $user=M("user");
+        $id=$_GET["id"];
+        $info=$message->where("id='$id'")->find();
+        $infos=$message->where("pid='$id'")->order("id desc")->select();
+        foreach($infos as $key=>$val){
+            $uid=$val['uid'];
+            $infos[$key]['name']=$user->where("id='$uid'")->getField("username");
+        }
+        $this->assign("info",$info);
+        $this->assign("infos",$infos);
+        $this->display('newsdetails');
+    }
+
+    public function uploadmessage(){
+        $cid=$_POST["cid"];
+        $pid=$_POST["pid"];
+        $title=$_POST["title"];
+        $message=M("message");
+        $data['uid']=$_SESSION["uid"];
+        $data['title']=$_POST["title"];
+        $data['time']=date("Y-m-d H:i:s");
+        if($cid==1 && $pid==null){
+            $data['pid']=0;
+            $data['classid']=$cid;
+        }else{
+            $data['pid']=$pid;
+            $data['classid']=$cid;
+        }
+        $res=$message->data($data)->add();
+        if($res){
+            $response=array(
+                'resultCode'=>'200',
+                'data'=>'提交成功',
+            );
+        }else{
+            $response=array(
+                'resultCode'=>'300',
+                'data'=>'提交失败',
+            );
+        }
+        $this->ajaxReturn($response,'json');
     }
 
     public function notice()
     {
+        $notice=M("notice");
+        $list=$notice->where("statu=1")->order("id desc")->select();
+        $this->assign("list",$list);
         $this->display('notice');
+    }
+
+    public function noticedetail(){
+        $notice=M("notice");
+        $id=$_GET["id"];
+        $info=$notice->where("id='$id'")->find();
+        $this->assign("info",$info);
+        $this->display('ggdetails');
     }
 
     public function fruitt()

@@ -450,6 +450,7 @@ $(function () {
     $(".Z_close").click(function () {
         $(".AlertBox").fadeOut(50);
         $(".Getrees").fadeOut(70);
+        $(".Buss").fadeOut(50)
     })
     $(".Eclose").click(function () {
         $(".AlertBox").fadeOut(50);
@@ -541,6 +542,32 @@ $(function () {
     $(".TB-right").click(function () {
         $(".AlertBox").fadeIn(50);
         $(".Getrees").fadeIn(50);
+    })
+    $("#GetG").click(()=>  {
+        $(".AlertBox").fadeIn(50)
+        $(".Buss").fadeIn(50)
+    })
+
+    $("#Busser").click(()=>{
+        var num=$("input[name='trees']").val();
+        if(num==0){
+            alert("请输入要交易的果子数量");
+        }else{
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Farm/exchange",
+                data:({num:num}),
+                success: function (result) {
+                    if (result.resultCode == 200) {
+                        alert("兑换成功");
+                        window.location.reload();
+                    }else if(result.resultCode == 300){
+                        alert("果子数量不足");
+                    }
+                }
+            })
+        }
     })
 })
 
