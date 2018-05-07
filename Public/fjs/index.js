@@ -41,23 +41,22 @@ $(function () {
             land.eq(i).find("#land-tree-two").show();
             land.eq(i).find("#tree-one").show();
             land.eq(i).find("#tree-two").hide();
-        // }
-            // else if(a==1 && b==1 && c==3){//有地有树树死
-        //     land.eq(i).find("#land-tree-one").hide();
-        //     land.eq(i).find("#land-tree-two").show();
-        //     land.eq(i).find("#tree-one").hide();
-        //     land.eq(i).find("#tree-two").hide();
-        //     land.eq(i).find("#tree-die").show();
+        }else if(a==1 && b==1 && c==3){//有地有树树死
+            land.eq(i).find("#land-tree-one").hide();
+            land.eq(i).find("#land-tree-two").show();
+            land.eq(i).find("#tree-one").hide();
+            land.eq(i).find("#tree-two").hide();
+            land.eq(i).find("#tree-die").show();
         // }else if(a==1 && b!=1){//有地无树
         //     land.eq(i).find("#land-tree-one").hide();
         //     land.eq(i).find("#land-tree-two").show();
         //     land.eq(i).find("#tree-one").hide();
         //     land.eq(i).find("#tree-two").hide();
-        // }else if(a!=1 && d!=1){//无地 不可开垦
-        //     land.eq(i).find("#land-tree-one").show();//白土地
-        //     land.eq(i).find("#land-tree-two").hide();//黑土地
-        //     land.eq(i).find("#tree-one").hide();//无果树
-        //     land.eq(i).find("#tree-two").hide();//有果树
+        }else if(a!=1 && d!=1){//无地 不可开垦
+            land.eq(i).find("#land-tree-one").show();//白土地
+            land.eq(i).find("#land-tree-two").hide();//黑土地
+            land.eq(i).find("#tree-one").hide();//无果树
+            land.eq(i).find("#tree-two").hide();//有果树
         }else if(a!=1 && d==1){//无地 可开垦
             // console.log("可开垦");
             land.eq(i).find("#land-tree-one").show();//白土地

@@ -141,14 +141,8 @@ class FarmController extends AllowController {
 		        $l[]=$key;
             }
         }
-//        for($i=0;$i<15;$i++){
-//		    if($list[$i]['land']==0){
-//                $list[$key]['kd']=1;exit;
-//            }
-//        }
-//dump($l);
-        $pos = array_search(max($l), $l);
-//        dump($pos);
+        $a=min($l);
+		$list[$a]['kd']=1;
         $this->assign("list",$list);
     	$this->assign("uinfo",$userinfo);
 		$this->assign("info",$goodsinfo);
@@ -172,7 +166,7 @@ class FarmController extends AllowController {
 //        }
         $landcount=$f_land->where("uid='$uid'")->count();
         $landnum=$landcount+1;
-        if($lid==$landnum){
+//        if($lid==$landnum){
             $lastinfo=$f_land->where("uid='$uid'")->order("id desc")->limit(1)->select();
             $lastltime=strtotime($lastinfo[0]['time']);
             $landlife=$f_rate->where("land_num='$landnum'")->getField("cycle");
@@ -228,7 +222,7 @@ class FarmController extends AllowController {
                     'message' => '未达到固定周期,暂不可开地',
                 );
             }
-        }
+//        }
         $this->ajaxReturn($response,'json');
 	}
 
