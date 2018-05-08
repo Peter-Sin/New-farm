@@ -126,7 +126,7 @@ li {
 }
 
 .Register form p img {
-    width: 25px;
+    width: 22px;
     height: 25px;
 }
 
@@ -150,11 +150,12 @@ li {
 }
 
 #Logpasss{
-    width: 60%;
+    width: 55%;
     position: absolute;
-    top: 32.5%;
-    right: 0;
+    top: 36.5%;
+    left: 20%;
 }
+
 #ZZhuce {
     width: 59%;
     position: absolute;
@@ -162,21 +163,58 @@ li {
     right: 23%;
     text-align: center;
 }
+.orchard{
+    /*position: relative;*/
+}
+.Paypass{
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    background: transparent;
+}
+#Paypasss {
+    position: absolute;
+    top: 26%;
+    width: 60%;
+    left: 17%;
+    text-align: center;
+}
+#Paypasss p{
+    background-color: rgb(222, 168, 15);
+    margin: 5% auto;
+    padding: 2% 0;
+    border-radius: 10px;
+}
+#Paypasss .button{
+    background-color: transparent;
+    margin: 0 0;
+    text-align: center;
+    margin-left: 20%;
+
+}
+#Paypasss p input{
+    width: 60%;
+    background-color: rgb(222, 168, 15);
+    text-align: center;
+    color: blue;
+}
 
 #Registers {
     width: 60%;
     position: absolute;
-    top: 24.6%;
+    top:26%;
     left: 18%;
-
 }
 
 #Logpasss p {
-    margin-right: 10%;
+    border-radius: 15px;
+    background-color: #ef9d33;
+    border: 2px solid #138620;
 }
 #ZZhuce p.vv label{
     font-family:"隶书";
-    font-size: 20px
+    font-size: 20px;
+    color: #28ab1f;
 }
 #ZZhuce p:nth-child(1) {
     margin-top: -1%;
@@ -206,17 +244,27 @@ li {
     background: transparent;
     border: 2px solid transparent;
     font-size: 14px;
-    background: rgba(202, 145, 15, 0.67);;
+    background: rgba(202, 145, 15, 0.67);
+    border-radius: 10px;
+    padding: 0 2%;
 }
 
 #Logpasss p img {
+    width: 10%;
+    margin-left: 5%;
+}
+#Logpasss p.LLogin{
+    border: none;
+    background: transparent;
+    text-align: center;
+    margin-top: 15%;
+}
+#Logpasss p.LLogin img{
     width: 40%;
 }
 
-.LLogin {
-    margin-left: -30%;
-    margin-top: 15%;
-}
+
+
 
 .ZZZZe {
     text-align: center;
@@ -304,6 +352,7 @@ li {
 
 .Logimg img {
     width: 100%;
+    /*display: block;*/
 }
 
 #Adrpasss {

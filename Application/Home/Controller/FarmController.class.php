@@ -103,11 +103,11 @@ class FarmController extends AllowController {
             $lnum=$val['lnum'];
             $list[$lnum-1]['land']=1;
         }
-
 		$trees=$f_tree->where("uid='$uid'")->select();//我的树s
 		foreach($trees as $key=>$val){
 			$lid=$val['lid']-1;
-			$list[$lid]['tree']=1;
+            $llid=$val['lid'];
+            $list[$lid]['tree']=1;
 			$tid=$val['id'];
 			$planttime=$val['time'];
             $fruit_tree_life=$this->fruit_tree;//树木生命值
@@ -123,13 +123,25 @@ class FarmController extends AllowController {
             $twentyfourime=strtotime(date("Y-m-d",$shtime))+24*3600;//上次收获时间当天晚上24点时间戳
             $cstime=$twentyfourime+6*3600;
 			if($dietime<=time()){
-                $list[$lid]['fruit']=3;//树木生命结束
+                $list[$lid]['land']=0;
+                $list[$lid]['tree']=0;
+                $list[$lid]['fruit']=0;
+                $list[$lid]['kd']=0;
+			    $res1=$f_land->where("uid='$uid' AND lnum='$llid'")->delete();
+			    $res2=$f_tree->where("uid='$uid' AND lid='$llid'")->delete();
+//                $list[$lid]['fruit']=3;//树木生命结束
             }else{
 			    if($cstime<=time()){
 			        $list[$lid]['fruit']=1;//可收
                 }else{
 			        if($dietime<$cstime){
-                        $list[$lid]['fruit']=3;//树木生命结束
+//                        $list[$lid]['fruit']=3;//树木生命结束
+                        $list[$lid]['land']=0;
+                        $list[$lid]['tree']=0;
+                        $list[$lid]['fruit']=0;
+                        $list[$lid]['kd']=0;
+                        $res1=$f_land->where("uid='$uid' AND lnum='$llid'")->delete();
+                        $res2=$f_tree->where("uid='$uid' AND lid='$llid'")->delete();
                     }else{
                         $list[$lid]['fruit']=0;//bu可收
                     }
@@ -142,7 +154,13 @@ class FarmController extends AllowController {
             }
         }
         $a=min($l);
-		$list[$a]['kd']=1;
+        if(!empty($a)){
+            $list[$a]['kd']=1;
+        }else{
+            if($a==0){
+                $list[$a]['kd']=1;
+            }
+        }
         $this->assign("list",$list);
     	$this->assign("uinfo",$userinfo);
 		$this->assign("info",$goodsinfo);
@@ -666,6 +684,7 @@ public function fruitlist(){
                         }
                     }
 				}
+//                $this->ajaxReturn($total,'json');
                 if($total>0){
                     $a = array_search(max($times), $times);
                     $hhtime=strtotime($times[$a]['htime']);//开始生长时间

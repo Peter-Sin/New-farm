@@ -282,6 +282,12 @@ $(function () {
                             $(".AlertBox").fadeIn(50)
                             $(".Jiaoyi").fadeIn(70)
                             fruittrade(0);
+                            $(".J_lis1").hide();
+                            $(".J_lis11").show();
+                            $(".J_lis2").show();
+                            $(".J_lis22").hide();
+                            $(".J_lis3").show();
+                            $(".J_lis33").hide();
                         }else if(result.resultCode==300){
                             alert("土地数量不足，暂时无法交易");
                         }
@@ -347,6 +353,7 @@ $(function () {
                 success: function (result) {
                     if(result.resultCode==200){
                         alert("邮箱已清空");
+                        window.location.reload();
                     }else if(result.resultCode==300){
                         alert("邮箱清空失败");
                     }
@@ -463,6 +470,12 @@ $(function () {
         $(".Three").fadeOut(50);
         $(".Three").find(".three_box").empty();
         $(".TWO").find(".three_box").empty();
+        $(".J_lis1").hide();
+        $(".J_lis11").show();
+        $(".J_lis2").show();
+        $(".J_lis22").hide();
+        $(".J_lis3").show();
+        $(".J_lis33").hide();
     })
     $(".J_lis2").click(function () {
         var abc=1;
@@ -494,6 +507,12 @@ $(function () {
                         '</div>'
                     }
                     $(".TWO").find(".two_box").append(html);
+                    $(".J_lis1").show();
+                    $(".J_lis11").hide();
+                    $(".J_lis2").hide();
+                    $(".J_lis22").show();
+                    $(".J_lis3").show();
+                    $(".J_lis33").hide();
                 }
             }
         })
@@ -526,6 +545,12 @@ $(function () {
                         '</div>'
                     }
                     $(".Three").find(".three_box").append(html);
+                    $(".J_lis1").show();
+                    $(".J_lis11").hide();
+                    $(".J_lis2").show();
+                    $(".J_lis22").hide();
+                    $(".J_lis3").hide();
+                    $(".J_lis33").show();
                 }
             }
         })
