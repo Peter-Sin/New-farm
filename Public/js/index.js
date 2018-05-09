@@ -152,6 +152,23 @@ function removebus(goodsid,that){
     });
 }
 
+function getgoods(orderid,that){
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../Order/getgoods",
+        data: {oid:orderid},
+        success: function (result) {
+            if (result.resultCode == 200) {
+                that.text("已收货");
+            }
+        },
+        error: function (err) {
+            console.log(err.statusText)
+        }
+    });
+}
+
 function orderlist(a) {
     var test = window.location.host;
     $.ajax({
@@ -217,6 +234,12 @@ function orderlist(a) {
                     var that = $(this)
                     removebus(GoodId, that)
                 })
+                var getGoods = $(".coles-Get").find("span.Get-right")
+                getGoods.click(function () {
+                    var OrderId = $(this).attr("orderid")
+                    var that = $(this)
+                    getgoods(OrderId, that)
+                })
             } else if (a == 0) {
                 var html = "";
                 for (var i = 0; i < result.data.length; i++) {
@@ -277,7 +300,13 @@ function orderlist(a) {
                         '</div>' +
                         '</div>'
                 }
-                $(".get-bus").append('<div class="get-bus3">' + html + '</div>')
+                $(".get-bus").append('<div class="get-bus3">' + html + '</div>');
+                var getGoods = $(".coles-Get").find("span.Get-right");
+                getGoods.click(function () {
+                    var OrderId = $(this).attr("orderid");
+                    var that = $(this);
+                    getgoods(OrderId, that)
+                })
             }
             for (var j = 0; j < result.info.length; j++) {
                 var htmlgoods = '';
@@ -521,26 +550,28 @@ $(function () {
             $("div.give-some2").empty();
             orderlist("2");
             //确认收货
-            var GetOk = $(".coles-Get").find("span.Get-right");
-            GetOk.click(function () {
-                console.log("123qwe");
-                var oid=$(this).attr("orderid"); 
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "/Order/getgoods",
-                    data: {oid:oid},
-                    success: function (result) {
-                        if (result.resultCode == 200) {
-                            $(this).text("已收货");
-                        }
-                    },
-                    error: function (err) {
-                        console.log(err.statusText)
-                    }
-                });
-                console.log("index" + 244)
-            })
+            // var GetOk = $(".Get-right");
+            // console.log("123qa");
+
+            // $(".Get-right").click(function () {
+            //     console.log("123qwe");
+            //     var oid=$(this).attr("orderid");
+            //     $.ajax({
+            //         type: "POST",
+            //         dataType: "json",
+            //         url: "/Order/getgoods",
+            //         data: {oid:oid},
+            //         success: function (result) {
+            //             if (result.resultCode == 200) {
+            //                 $(this).text("已收货");
+            //             }
+            //         },
+            //         error: function (err) {
+            //             console.log(err.statusText)
+            //         }
+            //     });
+            //     console.log("index" + 244)
+            // })
 
             //物流代码，复制粘贴
             var Getinfors = $(".Get-left").find("button.Get-infors");
