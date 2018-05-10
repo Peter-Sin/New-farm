@@ -16,6 +16,11 @@ class GoodsController extends AllowController {
         foreach($info_img as $key=>$val){
             $info['imgs'][$key]=$val['name'];
         }
+        if($_SESSION['uid']){
+            $info['uid']=$_SESSION['uid'];
+        }else{
+            $info['uid']=0;
+        }
     	$this->assign("info",$info);
     	$this->display('GoodsInfor');
     }

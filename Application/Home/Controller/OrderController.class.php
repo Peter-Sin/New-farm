@@ -60,6 +60,12 @@ class OrderController extends AllowController {
                     case '2':
                     $list[$key]['status']="待收货";
                         break;
+                    case '3':
+                    $list[$key]['status']="已收货";
+                        break;
+                }
+                if(empty($val['express_number'])){
+                    $list[$key]['express_number']="待添加，请稍候...";
                 }
             }
             $response = array(
@@ -75,6 +81,19 @@ class OrderController extends AllowController {
             );
         }
         $this->ajaxReturn($response,'json');
+    }
+
+    public function getgoods(){
+        $order=M("order");
+        $oid=$_POST["oid"];
+        $data['step']=3;
+        $res=$order->where("id='$oid'")->data($data)->save();
+        if($res){
+            $response = array(
+                'resultCode'  => 200, 
+            );
+            $this->ajaxReturn($response,'json');
+        }
     }
 
 

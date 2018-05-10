@@ -69,6 +69,7 @@ class PersonController extends AllowController
             $data['recomcode']=$filename;
             $user->where("id='$uid'")->data($data)->save();
         }
+        dump($_SERVER['SERVER_NAME']);
         $signPackage=js_sdk();
         $this->assign('signPackage',$signPackage);
         $this->assign("url",$value);
@@ -465,8 +466,8 @@ class PersonController extends AllowController
         $data=$member->where("h_userName =$member_name")->find();
         $act ='http://'.$_SERVER['HTTP_HOST'].U('/Home/Login/register');
         $url = $act.'?t='.$data['uid'];//注册页面信息链接
-
-        $jssdkObj = new Jssdk('wx93f30672fccea4dc','ec3a8d30338a9dd7db0cf9a56a33b9e4');
+        $jssdkObj = new Jssdk('wxe94aa331e60da615','c4643b26f8ee657f9414d0d5edc1c218');
+        // 'wxe94aa331e60da615','c4643b26f8ee657f9414d0d5edc1c218'
         $res = $jssdkObj->getSignPackage();
         $appID = $res['appId'];
         $timestamp = $res['timestamp'];

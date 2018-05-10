@@ -50,7 +50,7 @@ function is_weixin(){
 
 function js_sdk(){
     require './ThinkPHP/Library/Org/Fenxiang/jssdk.class.php';
-    $jssdk = new JSSDK("wx93f30672fccea4dc", "ec3a8d30338a9dd7db0cf9a56a33b9e4");
+    $jssdk = new JSSDK('wxe94aa331e60da615','c4643b26f8ee657f9414d0d5edc1c218');
     $signPackage = $jssdk->GetSignPackage();
     return $signPackage;
 }
@@ -184,6 +184,17 @@ function lowerlevel($uid,$num,$n){
     $data['classid']=$n;//12下级   13 下下级
     $data['tuid']=$_SESSION['uid'];//偷
     $data['num']=$num;
+    $data['time']=date("Y-m-d H:i:s");
+    $res=$letter->data($data)->add();
+    return $res;
+}
+
+function addfruitnum(){
+    $letter=M("letter");
+    $data['uid']=$_SESSION['uid'];
+    $data['classid']=14;//消费满，赠果子
+    $data['tuid']=0;
+    $data['num']=300;
     $data['time']=date("Y-m-d H:i:s");
     $res=$letter->data($data)->add();
     return $res;

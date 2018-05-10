@@ -1,5 +1,6 @@
 $(function (num) {
     var test = window.location.host;
+    var uid=$(".downLis").attr("uid");
     //客服
     var kefu = $(".kefu")
     kefu.click(function () {
@@ -8,64 +9,76 @@ $(function (num) {
 
     var service = $(".service")
     service.click(function () {
-        var goodsId=$(this).parents(".downLis").attr("GoodsId")
-        $.ajax({
-            type: "POST",//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: "../Goods/focusGoods" ,//url 
-            data:({goodsId:goodsId}) ,
-            success: function (result) {
-                if (result.code == 200) {
-                    //样式改变
-                    // that.parents(".all-D-box").remove()
+        if(uid==0){
+            window.location.href="../Login/index";
+        }else{
+            var goodsId=$(this).parents(".downLis").attr("GoodsId")
+            $.ajax({
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "../Goods/focusGoods" ,//url 
+                data:({goodsId:goodsId}) ,
+                success: function (result) {
+                    if (result.code == 200) {
+                        //样式改变
+                        // that.parents(".all-D-box").remove()
+                    }
                 }
-            }
-        })
+            })
+        }
     })
 
     var buyCar = $(".buyCar")
     buyCar.click(function () {
-        window.location.href="../shopcar/shopcar"
-        console.log("购物车")
+        if(uid==0){
+            window.location.href="../Login/index";
+        }else{
+            window.location.href="../shopcar/shopcar";
+        }
     })
 
     var hideCar = $(".hideCar")
     var num = 0
     hideCar.click(function () {
         // console.log(num)
-        var goodsId=$(this).parents(".downLis").attr("GoodsId")
-        var Biao =$(this).attr("a")
-        num++
-        if (num == 1) {
-            $(".MM").append('<img class="ERROR" src="http://'+test+'/Public/YM/imgs/gb.png" alt="">')
-        aaa(num,goodsId,Biao);
-         
-         $(".ERROR").click(function () {
-        // $(".MM").empty(".LL")
-        // $(".MM").css("bottom", "-400px")
-        num = 0
-    })
-    }
+        if(uid==0){
+            window.location.href="../Login/index";
+        }else{
+            var goodsId=$(this).parents(".downLis").attr("GoodsId");
+            var Biao =$(this).attr("a");
+            num++;
+            if (num == 1) {
+                $(".MM").append('<img class="ERROR" src="http://'+test+'/Public/YM/imgs/gb.png" alt="">');
+                aaa(num,goodsId,Biao);
+                $(".ERROR").click(function () {
+                    // $(".MM").empty(".LL")
+                    // $(".MM").css("bottom", "-400px")
+                    num = 0
+                })
+            }
+        }
     })
 
     var buing = $(".buing");
     buing.click(function () {
-        var goodsId=$(this).parents(".downLis").attr("GoodsId")
-        var Biao =$(this).attr("b");
-        num++
-        if (num == 1) {
-             $(".MM").append('<img class="ERROR" src="http://'+test+'/Public/YM/imgs/gb.png" alt="">')
-         aaa(num,goodsId,Biao);
-         $(".ERROR").click(function () {
-        // $(".MM").empty(".LL")
-        // $(".MM").css("bottom", "-400px")
-        num = 0
-    })
+        if(uid==0){
+            window.location.href="../Login/index";
+        }else{
+            var goodsId=$(this).parents(".downLis").attr("GoodsId")
+            var Biao =$(this).attr("b");
+            num++
+            if (num == 1) {
+                $(".MM").append('<img class="ERROR" src="http://'+test+'/Public/YM/imgs/gb.png" alt="">')
+                aaa(num,goodsId,Biao);
+                $(".ERROR").click(function () {
+                    // $(".MM").empty(".LL")
+                    // $(".MM").css("bottom", "-400px")
+                    num = 0
+                })
+            }
         }
-    
     })
     
-
 })
 
 function aaa(num,goodsId,Biao){
@@ -308,7 +321,7 @@ function aaa(num,goodsId,Biao){
                         })
                     }
                 }else if(result.resultCode==300){
-                    alert("没有分类信息");
+                    console.log("没有分类信息");
                     var gId=$(".downLis").attr("goodsid");
                     if(Biao=="hideCar"){
                         $.ajax({

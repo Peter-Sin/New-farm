@@ -836,6 +836,11 @@ public function fruitlist(){
                         $list[$key]['content']='下下级'.$username.'收获成功，系统赠送你'.$num.'个果子';
                         $list[$key]['time']=$val['time'];
                         break;
+                    case '14':
+                        $num=$val['num'];
+                        $list[$key]['content']='你消费满330元，获赠'.$num.'个果子';
+                        $list[$key]['time']=$val['time'];
+                        break;
                 }
                 $list[$key]['id']=$val['id'];
             }

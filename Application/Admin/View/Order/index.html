@@ -116,7 +116,7 @@ a:hover {
                           <input type="number"  value="{$val.voucher}"  name="voucher" style="height:12px;width:60px">
                           <a class="editvoucher">修改</a>
                       </td>
-                      <td style="text-align:center" class="order">{$val.step}</td>
+                      <td style="text-align:center" class="step" id="{$val.id}" sid="{$val.step}">{$val.steps}</td>
                       <td style="text-align:center" class="order">{$val.username}</td>
                      <!-- <td style="text-align:center">
                         <if condition="$val.statu eq 0">
@@ -133,7 +133,7 @@ a:hover {
                       <td class="center">
                         <div style="text-align:center;">
                           <a href="__MODULE__/Order/orderaddress?ordernum={$val.ordernum}">收获地址</a>&nbsp;|
-                          <a href="__MODULE__/Order/orderclass?ordernum={$val.ordernum}">商品属性</a>&nbsp;|
+                          <a href="__MODULE__/Order/orderclass?ordernum={$val.ordernum}">订单属性</a>&nbsp;|
                           <a href="__MODULE__/Order/deleteorder?ordernum={$val.ordernum}">删除</a>
                         </div>
                       </td>
@@ -148,23 +148,31 @@ a:hover {
 </div>
 <script type="text/javascript">
    $(function(){
-         $(".statu").css("cursor","pointer");
-         $(".statu").click(function(){
-            var  abs=$(this);
-            var  gid=$(this).attr("id");
-            var  pid=$(this).attr("pid");
-            var  order=$(".order").text();
-               $.post("__MODULE__/Grants/statu",{id:gid,order:order,pid:pid},function(data){
-                  if(data == 1){
-                     var val = $(".statu").text();
-                     if(val=="审核通过"){                       
-                        $(".statu").text("待审核");
-                     }else{
-                        $(".statu").text("审核通过");
-                     }
+        $(".step").css("cursor","pointer");
+        $(".step").click(function(){
+          var  abs=$(this);
+          var  id=$(this).attr("id");
+          var  sid=$(this).attr("sid");
+          if(sid==0 || sid==3){
+            alert("该状态不可修改");
+          }else{
+            var abc=confirm("确定修改状态?");
+            if(abc){
+              $.post("__MODULE__/Order/statu",{id:id,sid:sid},function(data){
+                if(data == 1){
+                  var val = abs.text();
+                  if(val=="待发货"){ 
+                    abs.text("待收货");
+                    abs.attr("sid",2);
+                  }else if(val=="待收货"){
+                    abs.text("已收货");
+                    abs.attr("sid",3);
                   }
-               },"text");
-            });
+                }
+              },"text");
+            }           
+          }   
+        });
 
          $(".editmoney").click(function(){
              var abc=confirm("确定修改价钱?");

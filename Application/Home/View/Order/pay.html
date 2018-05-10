@@ -38,14 +38,14 @@
 <div class="pay" ordernum="{$info['ordernum']}" isstyle="{$info['istype']}">
     <div class="radio" id="wxpay">
         <label>
-            <p><input type="radio" name="demo1" id="demo1-weixin" value="option2" checked="">
+            <p><input type="radio" name="pays" id="demo1-weixin" value="2" checked="">
                 微信支付</p>
         </label>
     </div>
 
     <div class="radio" id="alipay">
         <label>
-            <p><input type="radio" name="demo1" id="demo1-alipay" value="option1"  >
+            <p><input type="radio" name="pays" id="demo1-alipay" value="1"  >
                 支付宝支付</p>
         </label>
     </div>
@@ -88,11 +88,12 @@
             return ($("#demo1-alipay").is(':checked') ? "1" : "2" );
         }
         $("#demoBtn1").click(function(){
+        var list= $('input:radio[name="pays"]:checked').val();
             $.post(
                 "../Paypay/pay",
                 {
                     // price : $("#inputprice").val(),
-                    istype : ispay,
+                    istype : list,
                     ordernum:ordernum,
 
                 },

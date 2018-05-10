@@ -88,6 +88,7 @@ a:hover {
                   <th><span style="font:15px 微软雅黑,黑体">价格</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">购物券</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">原价</span></th>
+                  <th><span style="font:15px 微软雅黑,黑体">库存</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">属性</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">状态</span></th>
                   <th><span style="font:15px 微软雅黑,黑体">默认分类</span></th>
@@ -103,6 +104,7 @@ a:hover {
                   <td style="text-align:center">{$val.price}</td>
                   <td style="text-align:center">{$val.voucher}</td>
                   <td style="text-align:center">{$val.oprice}</td>
+                  <td style="text-align:center">{$val.total}</td>
                   <td style="text-align:center">{$val.sort}</td>
                   <td style="text-align:center" class="statu" id="{$val.id}" sid="{$val.statu}">{$val.status}</td>
                   <td style="text-align:center" class="order">{$val.cname}</td>
@@ -111,8 +113,8 @@ a:hover {
                     <a href="__MODULE__/Goods/imagemanager?id={$val.id}">图片管理</a>&nbsp;|
                     <a href="__MODULE__/Goods/goodsclassify?id={$val.id}&cid=0">分类</a>&nbsp;|
                     <a href="__MODULE__/Goods/editgoods?id={$val.id}">修改</a>&nbsp;|
-                    <a href="__MODULE__/Goods/priceamount/id/{$val.id}">价格库存</a>&nbsp;|
-                    <a href="__MODULE__/Goods/goodsdelete/id/{$val.id}">删除</a>
+                    <a href="__MODULE__/Goods/priceamount?id={$val.id}">价格库存</a>&nbsp;|
+                    <a href="__MODULE__/Goods/goodsdelete?id={$val.id}">删除</a>
                   </div>
                 </td>
               </tr>     

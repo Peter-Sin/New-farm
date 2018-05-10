@@ -28,7 +28,7 @@ class IndexController extends Controller {
         $where['sort']=$_POST['classify'];
         $arr['statu']=1;
         if($_POST['classify']==0){
-            $list=$goods->limit(10)->where($arr)->select();
+            $list=$goods->limit(12)->where($arr)->select();
         }else{
             $list=$goods->where($where)->where($arr)->limit(10)->select();
         }

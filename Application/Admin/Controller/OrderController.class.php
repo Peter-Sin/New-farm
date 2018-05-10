@@ -22,11 +22,13 @@ class OrderController extends AllowController {
 	    	$cid=$val['cid'];
 	    	$uid=$val['uid'];
 	    	if($val['step']==0){
-                $list[$key]['step']="待支付";
+                $list[$key]['steps']="待支付";
             }elseif($val['step']==1){
-                $list[$key]['step']="代发货";
+                $list[$key]['steps']="待发货";
             }elseif($val['step']==2){
-                $list[$key]['step']="待收货";
+                $list[$key]['steps']="待收货";
+            }elseif($val['step']==3){
+                $list[$key]['steps']="已收货";
             }
 	    	$ginfo=$goods->where("id='$gid'")->find();
 	    	$cinfo=$classprice->where("id='$cid'")->find();
@@ -115,8 +117,11 @@ class OrderController extends AllowController {
         $order = M("order");
         $address=M("address");
         $ordernum=$_GET["ordernum"];
-        $addressid=$order->where("ordernum='$ordernum'")->getField("addrid");
+        $addr=$order->where("ordernum='$ordernum'")->field("addrid,express_number")->find();
+        $addressid=$addr['addrid'];
         $addressinfo=$address->where("id='$addressid'")->find();
+        $addressinfo['ordernum']=$ordernum;
+        $addressinfo['express']=$addr['express_number'];
         $this->assign("info",$addressinfo);
         $this->display('addressinfo');
     }
@@ -164,6 +169,35 @@ class OrderController extends AllowController {
         }
         $this->assign("list",$list);
         $this->display(orderclass);
+    }
+
+    public function express_number(){
+        $order=M("order");
+        $where['ordernum']=$_POST["ordernum"];
+        $data['express_number']=$_POST['express'];
+        $res=$order->where($where)->data($data)->save();
+        if($res){
+            $this->success("添加成功");
+        }else{
+            $this->error("添加失败");
+        }
+    }
+
+    public function statu(){
+        $id=$_POST["id"];
+        $sid=$_POST["sid"];
+        $order=M("order");
+        if($sid==1){
+            $data['step']=2;
+        }elseif($sid==2){
+            $data['step']=3;
+        }
+        $res=$order->where("id='$id'")->data($data)->save();
+        if($res){
+            $this->ajaxReturn(1);
+        }else{
+            $this->ajaxReturn(0);
+        }
     }
 
 

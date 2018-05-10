@@ -72,6 +72,7 @@ class GoodsController extends AllowController {
       $data['voucher']=$_POST['voucher'];
       $data['oprice']=$_POST['oprice'];
       $data['sort']=$_POST['sort'];
+      $data['total']=$_POST['total'];
       $data['contents']=$_POST['xiangqing'];
       $data['uptime']=date("Y-m-d H:i:s");
       $res=$goods->data($data)->add();
@@ -97,6 +98,7 @@ class GoodsController extends AllowController {
       $data['price']=$_POST['price'];
       $data['voucher']=$_POST['voucher'];
       $data['sort']=$_POST['sort'];
+      $data['total']=$_POST['total'];
       $data['oprice']=$_POST['oprice'];
       $data['contents']=$_POST["content"];
       $res=$goods->where("id='$id'")->data($data)->save();
@@ -156,9 +158,32 @@ class GoodsController extends AllowController {
 
     public function goodsdelete(){
       $goods=M("goods");
+      $goodsimg=M("goodsimg");
+      $gclassify=M("gclassify");
+      $classprice=M("classprice");
       $id=$_GET['id'];
+      $res=$goods->where("id='$id'")->delete();//删除商品信息
 
+      $info=$goodsimg->where("pid='$id'")->select();
+      foreach ($info as $key => $val) {
+        $urlimg="./Public/image/goods/".$val['name'];
+        @unlink($urlimg); 
+      }
+      $result=$goodsimg->where("pid='$pid'")->delete();//删除商品图片
 
+      $result1=$gclassify->where("pid='$id'")->delete();
+
+      $classinfo=$classprice->where("pid='$id'")->select();//删除商品分类信息
+      foreach ($classinfo as $key => $val) {
+        $urlimg="./Public/image/goods/".$val['image'];
+        @unlink($urlimg); 
+      }
+      $result2=$classprice->where("pid='$pid'")->delete();//删除商品分类图片
+      if($res){
+        $this->success("删除成功","./index");
+      }else{
+        $this->success("删除失败","./index");
+      }
     }
 
     public function goodsclassify(){

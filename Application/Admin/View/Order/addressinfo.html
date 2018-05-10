@@ -37,10 +37,18 @@
                                 <input name="land_price" readonly class="span6" type="text" value="{$info['address']}{$info['place']}">
                             </div>
                         </div>
-
-                        <!--<div class="form-actions">-->
-                            <!--<input value="保存" class="btn btn-success" type="submit"/>-->
-                        <!--</div>-->
+                    </form>
+                </div>
+                <div class="widget-content nopadding">
+                    <form class="form-horizontal" method="post" action="__MODULE__/Order/express_number" name="number_validate" id="number_validate" novalidate="novalidate">
+                        <div class="control-group">
+                            <label class="control-label">快递单号</label>
+                            <div class="controls">
+                                <input name="express" class="span3" type="text" value="{$info['express']}">
+                                <input name="ordernum" class="span3" type="hidden" value="{$info['ordernum']}">
+                                <input value="保存" class="btn btn-success" type="submit"/>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

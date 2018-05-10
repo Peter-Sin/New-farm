@@ -200,11 +200,11 @@ function orderlist(a) {
                             '<div class="coles-Get">' +
                             '<p class="Get-left">' +
                             '<span class="wuliu">物流编号:' +
-                            '<small id="Wuliu">1234567890123</small>' +
+                            '<small id="Wuliu">'+result.data[i].express_number+'</small>' +
                             '</span>' +
                             '<button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>' +
                             '</p>' +
-                            '<span class="Get-right">确认收货</span>' +
+                            '<span class="Get-right" orderid='+ result.data[i].id +'>确认收货</span>' +
                             '</div>' +
                             '</div>'
                     }
@@ -269,11 +269,11 @@ function orderlist(a) {
                         '<div class="coles-Get">' +
                         '<p class="Get-left">' +
                         '<span class="wuliu">物流编号:' +
-                        '<small id="Wuliu">1234567890123</small>' +
+                        '<small id="Wuliu">'+result.data[i].express_number+'</small>' +
                         '</span>' +
                         '<button class="Get-infors" data-clipboard-action="copy" data-clipboard-target="#Wuliu">复制</button>' +
                         '</p>' +
-                        '<span class="Get-right">确认收货</span>' +
+                        '<span class="Get-right" orderid='+result.data[i].id+'>确认收货</span>'+
                         '</div>' +
                         '</div>'
                 }
@@ -440,14 +440,12 @@ $(function () {
 
     }
 
- 
 
 
     //删除 ---- 取消订单
      Dli.click(function () {
         $(this).addClass("active").siblings().removeClass("active");
         var dins = $(this).index();
-        console.log(dins);
         if (dins == 0) {//全部
             $(".all-D").show();
             orderlist("10");
@@ -522,24 +520,26 @@ $(function () {
             $("div.give-money1").empty();
             $("div.give-some2").empty();
             orderlist("2");
-            //确认支付
+            //确认收货
             var GetOk = $(".coles-Get").find("span.Get-right");
             GetOk.click(function () {
-                // $.ajax({
-                //     type: "POST",
-                //     dataType: "json",
-                //     url: "/users/login",
-                //     data: $('#form1').serialize(),
-                //     success: function (result) {
-                //         if (result.resultCode == 200) {
-                //             $(this).parents(".all-D-box").remove()
-                //         }
-                //     },
-                //     error: function (err) {
-                //         console.log(err.statusText)
-                //     }
-                // });
-                // console.log("index" + 244)
+                console.log("123qwe");
+                var oid=$(this).attr("orderid"); 
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "/Order/getgoods",
+                    data: {oid:oid},
+                    success: function (result) {
+                        if (result.resultCode == 200) {
+                            $(this).text("已收货");
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err.statusText)
+                    }
+                });
+                console.log("index" + 244)
             })
 
             //物流代码，复制粘贴
