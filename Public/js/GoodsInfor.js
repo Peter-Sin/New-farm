@@ -321,7 +321,7 @@ function aaa(num,goodsId,Biao){
                         })
                     }
                 }else if(result.resultCode==300){
-                    console.log("没有分类信息");
+                    // console.log("没有分类信息");
                     var gId=$(".downLis").attr("goodsid");
                     if(Biao=="hideCar"){
                         $.ajax({

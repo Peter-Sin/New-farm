@@ -732,3 +732,9 @@ function loadingChange() {
        // console.log("资源加载完毕")
     }
 }
+
+
+$(()=>{
+   var aa=  $(".user-list").find("a");
+   aa.click((e)=> e.preventDefault())
+})

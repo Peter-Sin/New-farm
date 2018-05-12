@@ -314,9 +314,9 @@ $("#Paypasss").submit(function (e) {
             url: "../Person/update" ,//url
             data: $("#Paypasss").serialize(),
             success: function (result) {
-                console.log(result);//打印服务端返回的数据(调试用)
+                // console.log(result);//打印服务端返回的数据(调试用)
                 if (result.resultCode==200) {
-                    alert("SUCCESS");
+                    alert("支付密码设置成功");
                     window.location.href = "../index/index";
                 }else if(result.resultCode==300){
                     alert("新密码与旧密码一样");

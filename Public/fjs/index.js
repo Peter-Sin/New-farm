@@ -181,6 +181,7 @@ $(function () {
         // }
     // })
     $(".U-Box li").click(function () {
+
         var ins = $(this).index();
         $(this).css({
             "transform": "scale(1.2)"
@@ -229,56 +230,57 @@ $(function () {
                 }
             }))
             }else if(ins == 1){//chanchu
-                boll = "2";
-                var Lis = $(".ifC").find("li");
-                  Lis.click(function () {
-                      var landid = $(this).attr("landid");
-                      var treeid = $(this).attr("treeid");
-                      if (boll == "2") {
-                          boll = "3";
-                          if(landid==1 && treeid==1) {
-                              var num = $(this).index();
-                              var fruitid = $(this).attr("fruitid");
-                              if (fruitid == 1) {
-                                  var information = "您的果子还未收获，确定要铲除吗？";
-                              } else {
-                                  var information = "您的果子还未成熟，确定要铲除吗？";
-                              }
-                              $(".AlertBox").fadeIn(50);
-                              $(".Z_Alert").fadeIn(70);
-                              $(".Z_infor").html(information);
-                              $(".Z__Q").click(function (){
-                                  $(".AlertBox").fadeOut(50);
-                                  $(".Z_Alert").fadeOut(70);
-                                  $.ajax({
-                                      type: "POST",
-                                      dataType: "json",
-                                      url: "../Farm/xiuli",
-                                      data: ({abc:ins,num:num+1}),
-                                      success: function (result) {
-                                          if (result.resultCode == 200) {
-                                              alert("已铲除");
-                                              window.location.reload();
-                                          }else if(result.resultCode == 300){
-                                              alert("铲除失败");
-                                          }
-                                      }
-                                  })
-                              })
-                          }else{
-                              alert("没有果树可以铲除");
-                          }
-                      }
-                  })
+                // boll = "2";
+                // var Lis = $(".ifC").find("li");
+                  // Lis.click(function () {
+                    window.location.reload();
+                      // var landid = $(this).attr("landid");
+                      // var treeid = $(this).attr("treeid");
+                      // if (boll == "2") {
+                      //     boll = "3";
+                      //     if(landid==1 && treeid==1) {
+                      //         var num = $(this).index();
+                      //         var fruitid = $(this).attr("fruitid");
+                      //         if (fruitid == 1) {
+                      //             var information = "您的果子还未收获，确定要铲除吗？";
+                      //         } else {
+                      //             var information = "您的果子还未成熟，确定要铲除吗？";
+                      //         }
+                      //         $(".AlertBox").fadeIn(50);
+                      //         $(".Z_Alert").fadeIn(70);
+                      //         $(".Z_infor").html(information);
+                      //         $(".Z__Q").click(function (){
+                      //             $(".AlertBox").fadeOut(50);
+                      //             $(".Z_Alert").fadeOut(70);
+                      //             $.ajax({
+                      //                 type: "POST",
+                      //                 dataType: "json",
+                      //                 url: "../Farm/xiuli",
+                      //                 data: ({abc:ins,num:num+1}),
+                      //                 success: function (result) {
+                      //                     if (result.resultCode == 200) {
+                      //                         alert("已铲除");
+                      //                         window.location.reload();
+                      //                     }else if(result.resultCode == 300){
+                      //                         alert("铲除失败");
+                      //                     }
+                      //                 }
+                      //             })
+                      //         })
+                      //     }else{
+                      //         alert("没有果树可以铲除");
+                      //     }
+                      // }
+                  // })
 
             }else if (ins == 2) {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "../Farm/getlandnum",
-                    // data:({abc:ins}),
-                    success: function (result) {
-                        if(result.resultCode==200){
+                // $.ajax({
+                //     type: "POST",
+                //     dataType: "json",
+                //     url: "../Farm/getlandnum",
+                //     // data:({abc:ins}),
+                //     success: function (result) {
+                //         if(result.resultCode==200){
                             $(".AlertBox").fadeIn(50)
                             $(".Jiaoyi").fadeIn(70)
                             fruittrade(0);
@@ -288,11 +290,12 @@ $(function () {
                             $(".J_lis22").hide();
                             $(".J_lis3").show();
                             $(".J_lis33").hide();
-                        }else if(result.resultCode==300){
-                            alert("土地数量不足，暂时无法交易");
-                        }
-                    }
-                })
+                            $(".dnfs").show()
+                //         }else if(result.resultCode==300){
+                //             alert("土地数量不足，暂时无法交易");
+                //         }
+                //     }
+                // })
 
             }else if(ins == 3){
                 $.ajax({
@@ -312,6 +315,7 @@ $(function () {
                     }
                 })
             }else if (ins == 4) {
+                $(".dnfs").show()
                 $(".AlertBox").fadeIn(50)
                 $(".Email").fadeIn(50)
                 $.ajax({
@@ -452,15 +456,18 @@ $(function () {
     $(".Jclose").click(function () {
         $(".AlertBox").fadeOut(50);
         $(".Jiaoyi").fadeOut(70);
+        $(".dnfs").hide();
     })
     $(".Z_close").click(function () {
         $(".AlertBox").fadeOut(50);
         $(".Getrees").fadeOut(70);
-        $(".Buss").fadeOut(50)
+        $(".Buss").fadeOut(50);
+        $(".dnfs").hide();
     })
     $(".Eclose").click(function () {
         $(".AlertBox").fadeOut(50);
         $(".Email").fadeOut(70);
+        $(".dnfs").hide();
     })
     $(".J_lis1").click(function () {
         $(".jb2").attr("src", "/Public/img/alert/jiaoyi/j1.png");
@@ -501,7 +508,7 @@ $(function () {
                             '<span>'+result.num[i].num+'</span></p>' +
                             '<p><span>身份：</span><span>转让者</span></p>' +
                             '<p><span>ID：</span><span>'+result.num[i].vipid+'</span></p>' +
-                            '<p><span>昵称：</span><span>'+result.num[i].username+'</span></p>'
+                            '<p class="klkl"><span>昵称：</span><span>'+result.num[i].username+'</span></p>'
                             // '<p><span>更新时间：</span><span>2015-12-88 21:45:79</span></p>' +
                             // '<p><span>订单状态：</span><span style="color:rgb(15, 238, 15)">交易已经完成</span></p>'+
                         '</div>'
@@ -566,16 +573,18 @@ $(function () {
     $(".TB-right").click(function () {
         $(".AlertBox").fadeIn(50);
         $(".Getrees").fadeIn(50);
+        $(".dnfs").show();
     })
     $("#GetG").click(()=>  {
         $(".AlertBox").fadeIn(50)
-        $(".Buss").fadeIn(50)
+        $(".Buss").fadeIn(50);
+        $(".dnfs").show();
     })
 
     $("#Busser").click(()=>{
         var num=$("input[name='trees']").val();
         if(num==0){
-            alert("请输入要交易的果子数量");
+            alert("请输入要兑换的果子数量");
         }else{
             $.ajax({
                 type: "POST",

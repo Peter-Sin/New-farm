@@ -27,12 +27,12 @@ class PersonController extends AllowController
         $id = $_SESSION["uid"];
         $info = $user->where("id='$id'")->find();
         $info['faceimg']="/Public/image/userimage/".$info['faceimg'];
-        $goodsinfo = $f_mygoods->where("uid='$id'")->field("fruit,voucher,tree")->find();
-        $tree_price=$this->tree_price;
-        if(!$goodsinfo['referee']){
+        $goodsinfo = $f_mygoods->where("uid='$id'")->field("fruit,voucher,land")->find();
+        $land_price=$this->land_price;
+        if(empty($info['referee'])){
             $info['referee']="暂无";
         }
-        $info['landprice']=$goodsinfo['tree']*$tree_price;
+        $info['landprice']=$goodsinfo['land']*$land_price;
         $info['fruitnum'] = $goodsinfo['fruit'];
         $info['vouchernum'] = $goodsinfo['voucher'];
         $this->ajaxReturn($info, 'json');
@@ -69,8 +69,8 @@ class PersonController extends AllowController
             $data['recomcode']=$filename;
             $user->where("id='$uid'")->data($data)->save();
         }
-        dump($_SERVER['SERVER_NAME']);
         $signPackage=js_sdk();
+        dump($signPackage);
         $this->assign('signPackage',$signPackage);
         $this->assign("url",$value);
         $this->assign('info',$info);

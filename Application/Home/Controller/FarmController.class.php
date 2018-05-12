@@ -153,13 +153,9 @@ class FarmController extends AllowController {
 		        $l[]=$key;
             }
         }
-        $a=min($l);
-        if(!empty($a)){
+        if(!empty($l)){
+            $a=min($l);
             $list[$a]['kd']=1;
-        }else{
-            if($a==0){
-                $list[$a]['kd']=1;
-            }
         }
         $this->assign("list",$list);
     	$this->assign("uinfo",$userinfo);
@@ -194,7 +190,8 @@ class FarmController extends AllowController {
                     $f_tree=M('f_tree');
                     $f_harvest=M("f_harvest");
                     $land_count=$f_land->where("uid='$uid'")->count();
-                    $rate=$f_rate->where("land_num='$land_count'")->getField('rate');//当前拆分率
+                    $land_countt=$land_count+1;
+                    $rate=$f_rate->where("land_num='$land_countt'")->getField('rate');//当前拆分率
                     M()->startTrans();//开始事务处理
                     $ldata['uid']=$uid;
                     $ldata['time']=date("Y-m-d H:i:s");
@@ -582,7 +579,7 @@ class FarmController extends AllowController {
     	$f_mygoods=M("f_mygoods");
     	$f_exchange=M("f_exchange");
         $uid=$_SESSION['uid'];
-        $info=$f_mygoods->where($where)->field('fruit,voucher')->find();
+        $info=$f_mygoods->where("uid='$uid'")->field('fruit,voucher')->find();
     	$num=$_POST['num'];
         $lowest=$this->lowest();
         if($lowest){
@@ -790,7 +787,7 @@ public function fruitlist(){
                         $num=$val['num'];
                         $tuid=$val['tuid'];
                         $username=$user->where("id='$tuid'")->getField("username");
-                        $list[$key]['content']='你与'.$username.'交易成功，到账'.$num.'个券';
+                        $list[$key]['content']='你与'.$username.'交易成功，到账'.$num.'个果子';
                         $list[$key]['time']=$val['time'];
                         break;
                     case '7':

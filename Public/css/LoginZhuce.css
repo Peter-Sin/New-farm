@@ -67,6 +67,7 @@ li {
 
 .bbbg {
     width: 100%;
+    /*margin-top: -32px;*/
 }
 
 .Looo {
@@ -75,6 +76,8 @@ li {
     top: 0;
 }
 
+
+    
 .Getpass,
 .Paypass,
 .Adrpass {
@@ -85,7 +88,7 @@ li {
 .Setpass,
 .Register {
     margin-top: 40%;
-    margin-bottom: 50%;
+    /*margin-bottom: 50%;/*/
     position: relative;
 }
 
@@ -216,6 +219,9 @@ li {
     font-size: 20px;
     color: #28ab1f;
 }
+#ZZhuce p.vv label:nth-child(3){
+    font-size: 18px;
+}
 #ZZhuce p:nth-child(1) {
     margin-top: -1%;
 }
@@ -310,12 +316,17 @@ li {
     width: 94%;
     margin-left: 2%;
     margin-top: 15%;
-    padding: 2% 0;
     font-size: 14px;
+
+
+    cursor: pointer;
+    background-color: rgb(135, 208, 34);
     color: white;
-    border-radius: 5px;
-    border: none;
-    background: rgb(64, 189, 247);
+    border-radius: 7px;
+    box-shadow: 1px -2px 3px rgb(68, 72, 68) inset;
+    border: solid 1px rgb(3, 251, 157);
+    padding: 4% 10%;
+    line-height: 100%;
 }
 
 .Register form button {

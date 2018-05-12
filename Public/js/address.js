@@ -275,36 +275,40 @@ $(function () {
         var ccc=$(this).attr("ccc");
         var money=$(".money").html();
         var voucher=$(".voucher").html();
-        var datas=[];
-        var order=[];
-        // order.addrid=addrid;
-        // order.ccc=ccc;
-        // order.money=money;
-        // order.voucher=voucher;
-        // console.log(order);
-        for (var i=0;i<ding.length;i++) {
-            datas[i]={};
-            datas[i].g=ding[i].getAttribute("gid");
-            datas[i].c=ding[i].getAttribute("cid");
-            datas[i].n=ding[i].getAttribute("num");
-        }
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "../Order/addorder",
-            data: ({datas:datas,addrid:addrid,ccc:ccc,money:money,voucher:voucher}),
-            success: function (result) {
-                if (result.resultCode == 200) {
-                    alert("订单提交成功");
-                    window.location.href="../Order/dopay?ordernum="+result.ordernum;
-                }else{
-                    alert("订单提交失败");
-                }
-            },
-            error: function (err) {
-                console.log(err.statusText)
+        if(addrid){
+             var datas=[];
+            var order=[];
+            // order.addrid=addrid;
+            // order.ccc=ccc;
+            // order.money=money;
+            // order.voucher=voucher;
+            // console.log(order);
+            for (var i=0;i<ding.length;i++) {
+                datas[i]={};
+                datas[i].g=ding[i].getAttribute("gid");
+                datas[i].c=ding[i].getAttribute("cid");
+                datas[i].n=ding[i].getAttribute("num");
             }
-        });
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Order/addorder",
+                data: ({datas:datas,addrid:addrid,ccc:ccc,money:money,voucher:voucher}),
+                success: function (result) {
+                    if (result.resultCode == 200) {
+                        alert("订单提交成功");
+                        window.location.href="../Order/dopay?ordernum="+result.ordernum;
+                    }else{
+                        alert("订单提交失败");
+                    }
+                },
+                error: function (err) {
+                    console.log(err.statusText)
+                }
+            });
+        }else{
+            alert("请选择你的收货地址");
+        } 
     })
 })
 //默认地址选择

@@ -39,20 +39,15 @@ li {
     position: fixed;
     width: 100%;
     z-index: 99;
+    text-align: center;
 }
 
 .In-Top p {
-    float: left;
+    /*float: left;*/
     margin: 2% 0;
   
 }
 
-.In-Top p:nth-child(1) {
-    margin-left: 35%;
-}
-.In-Top p:nth-child(2) {
-    margin-left:28%;
-}
 
 .In-Top p img {
     width: 49%;
@@ -244,6 +239,7 @@ footer {
 
 .user-infor img {
     width: 20%;
+    height: 100px;
     float: left;
     padding: 8px 0;
 }

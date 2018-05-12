@@ -50,7 +50,7 @@ function is_weixin(){
 
 function js_sdk(){
     require './ThinkPHP/Library/Org/Fenxiang/jssdk.class.php';
-    $jssdk = new JSSDK('wxe94aa331e60da615','c4643b26f8ee657f9414d0d5edc1c218');
+    $jssdk = new JSSDK('wxe94aa331e60da615','62ceb56ac7196579c95e05bce4015128');
     $signPackage = $jssdk->GetSignPackage();
     return $signPackage;
 }

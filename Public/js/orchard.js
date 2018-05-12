@@ -67,15 +67,24 @@ function fruitlist(a){
                 var fid=$(".treesInfo").attr("fid");
                 var num=$(".treesInfo").attr("num");
                 var gettree=$(".gettree");
-                    gettree.click(function(){
-                    var trees= gettrees(fid,num,gettree);
-                    // console.log(trees);
-                    // if(trees.resultCode==200){
-                    //     $(".gettrees").css(style="background:yellow");
-                    // alert("111223");
-                    // }
+                gettree.click(function(){
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "../Farm/getlandnum",
+                        success: function (result) {
+                            if(result.resultCode==200){
+                                var trees= gettrees(fid,num,gettree);
+                                // console.log(trees);
+                                // if(trees.resultCode==200){
+                                //     $(".gettrees").css(style="background:yellow");
+                                // alert("111223");
+                            }else if(result.resultCode==300){
+                                alert("土地数量不足，暂时无法偷取");
+                            }
+                        }
+                    })
                 })
-    
             } 
         },
         error: function (err) {
@@ -206,7 +215,6 @@ bussOk.click(function (e) {
 //分享二维码
 var Fengxiang = $(".Fengxiang")
 Fengxiang.click(function () {
-    console.log("qwe");
     var test = window.location.host;
     var imgUrl=$(".Weichat").attr("src");
     var link=$(".Weichat").attr("aaa");
