@@ -83,7 +83,7 @@ class LoginController extends Controller {
 				$data['password']=md5($_POST['password']);
 				$data['referee']=$_POST['Tphone'];
 				$data['vipid']=$this->vipid();
-                $data['paypass']='';
+                $data['paypass']='e10adc3949ba59abbe56e057f20f883e';
                 $data['statu']=0;
                 $data['shopcar_num']=0;
 				$data['faceimg']='defaultfaceimg.png';
@@ -136,6 +136,73 @@ class LoginController extends Controller {
 
     public function getpass(){
         $this->display('getpass');
+    }
+
+    public function gettelcodes(){
+        $user=M("user");
+        $phone=$_POST['tel'];
+        $telcode=mt_rand(100000,999999);
+        $info=$user->where("telphone='$phone'")->find();
+        if($info){
+            $result=tel_code($phone,$telcode);
+            if($result['code']==000000){
+                cookie('getcode',$telcode,'expire=300&prefix=think_');
+                $response=array(
+                    'resultCode'=>200,
+                    'content'=>"短信发送成功",
+                );
+            }else{
+                $response=array(
+                    'resultCode'=>300,
+                    'content'=>"短信发送失败",
+                );
+            }
+        }else{
+            $response=array(
+                    'resultCode'=>400,
+                    'content'=>"该手机号未注册",
+                ); 
+        }
+    $this->ajaxReturn($response,'json');
+    }
+
+    public function getpasswords(){
+        $user=M("user");
+        $phone=$_POST["phone"];
+        $yanzheng=$_POST["yanzheng"];
+        $data['password']=md5($_POST["password"]);
+        // $passwordtwo=$_POST["passwordtwo"];
+        $code=$_COOKIE['think_getcode'];
+        $info=$user->where("telphone='$phone'")->find();
+
+        if($info){
+            if($code==$_POST['yanzheng']){
+                $res=$user->where("telphone='$phone'")->data($data)->save();
+                if($res){
+                    $response=array(
+                        'resultCode'=>200,
+                        'content'=>"修改成功",
+                    );  
+                }else{
+                    $response=array(
+                        'resultCode'=>500,
+                        'content'=>"修改失败",
+                    );  
+                }
+            }else{
+                $response=array(
+                    'resultCode'=>400,
+                    'content'=>"验证码有误",
+                );  
+            }
+        }else{
+          $response=array(
+                'resultCode'=>300,
+                'content'=>"该手机号未注册",
+            );  
+        }
+        
+$this->ajaxReturn($response,"json");
     }
 
     public function logout()

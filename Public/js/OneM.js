@@ -80,41 +80,44 @@ $(function () {
             if(NUM==0){
                 alert("果子数不能为0");
             }else{
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "../Onemoney/lootgoods",
-                    data: ({amount: NUM,pid:pid}),
-                    success: function (result) {
-                        if (result.resultCode== 200 ) {
-                            alert("参与成功");
-                            $(".OneMoney").find(".O-alert").remove();
-                            $(".yinum"+a).html(result.num);
-                            $(".yinum"+a).parents(".Duo-div").find(".numa").html(result.anum);
-                            if(result.num>=result.total){
-                                $(".yinum"+a).parents(".Duo-div").siblings(".Oget").remove();
-                                $(".yinum"+a).parents(".Duo-div").siblings(".Odtime").remove();
-                                $(".yinum"+a).parents(".Duo-div").siblings(".Ogetasdf").show();
-                                $(".yinum"+a).parents(".Duo-div").siblings(".Onegetasdf").show();
-                            }
-                        }else if(result.resultCode == 300){
-                            $(".OneMoney").find(".O-alert").remove();
-                            alert("抢购数量超出");
-                        }else if(result.resultCode == 400){
-                            $(".OneMoney").find(".O-alert").remove();
-                            alert("参与失败");
-                        }else if(result.resultCode == 500){
-                            $(".OneMoney").find(".O-alert").remove();
-                            alert("果子数不能为0");
-                        }else if(result.resultCode == 600){
-                            $(".OneMoney").find(".O-alert").remove();
-                            alert("果子数不能小于0");
-                        }
-                    },
-                    error: function (err) {
-                        console.log(err.statusText);
-                    }
-                });
+                window.location.href='../Order/dopayone?pid='+pid+'&num='+NUM;
+                // $.ajax({
+                //     type: "POST",
+                //     dataType: "json",
+                //     url: "../Onemoney/lootgoods",
+                //     data: ({amount: NUM,pid:pid}),
+                //     success: function (result) {
+                //         if (result.resultCode== 200 ) {
+                //             alert("参与成功");
+                //             
+                //             
+                //             $(".OneMoney").find(".O-alert").remove();
+                //             $(".yinum"+a).html(result.num);
+                //             $(".yinum"+a).parents(".Duo-div").find(".numa").html(result.anum);
+                //             if(result.num>=result.total){
+                //                 $(".yinum"+a).parents(".Duo-div").siblings(".Oget").remove();
+                //                 $(".yinum"+a).parents(".Duo-div").siblings(".Odtime").remove();
+                //                 $(".yinum"+a).parents(".Duo-div").siblings(".Ogetasdf").show();
+                //                 $(".yinum"+a).parents(".Duo-div").siblings(".Onegetasdf").show();
+                //             }
+                //         }else if(result.resultCode == 300){
+                //             $(".OneMoney").find(".O-alert").remove();
+                //             alert("抢购数量超出");
+                //         }else if(result.resultCode == 400){
+                //             $(".OneMoney").find(".O-alert").remove();
+                //             alert("参与失败");
+                //         }else if(result.resultCode == 500){
+                //             $(".OneMoney").find(".O-alert").remove();
+                //             alert("果子数不能为0");
+                //         }else if(result.resultCode == 600){
+                //             $(".OneMoney").find(".O-alert").remove();
+                //             alert("果子数不能小于0");
+                //         }
+                //     },
+                //     error: function (err) {
+                //         console.log(err.statusText);
+                //     }
+                // });
             }
         }
     })

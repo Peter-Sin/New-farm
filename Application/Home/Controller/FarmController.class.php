@@ -467,9 +467,9 @@ class FarmController extends AllowController {
 				);
 			}
 		}elseif($a==1){
-			$info=$trade->where("tuid='$uid'")->select();
+			$info=$trade->where("tuid='$uid'")->order("id desc")->select();
 			foreach($info as $key=>$val){
-				$id=$val['tuid'];
+				$id=$val['uid'];
 				$userinfo=$user->where("id='$id'")->find();
 				$info[$key]['vipid']=$userinfo['vipid'];
 				$info[$key]['username']=$userinfo['username'];
@@ -481,7 +481,7 @@ class FarmController extends AllowController {
 				);
 			}
 		}elseif($a==2){
-			$info=$trade->where("uid='$uid'")->select();
+			$info=$trade->where("uid='$uid'")->order("id desc")->select();
 			foreach($info as $key=>$val){
 				$info[$key]['unum']=$val['num']-$val['realnum'];
 				$id=$val['tuid'];
@@ -520,45 +520,52 @@ class FarmController extends AllowController {
             $telphone=$_POST['userId'];
             $info=$user->where("telphone='$telphone'")->find();
             if($info){
-                M()->startTrans();//开始事务处理
-                $tuid=$info['id'];
-                $pass=md5($_POST['pass']);//支付密码
-                $userinfo=$user->where("id='$uid' AND paypass='$pass'")->find();
-                if($userinfo){
-                    $yourfruit=$f_mygoods->where("uid='$tuid'")->find();
-                    $data['fruit']=$myfruit['fruit']-$num*(1+$transaction_fee+$trade_exchange);
-                    $data['voucher']=$myfruit['voucher']+$num*$trade_exchange;
-                    $datas['fruit']=$yourfruit['fruit']+$num;
-                    $res1=$f_mygoods->where("uid='$uid'")->data($data)->save();//保存自己果子
-                    $res2=$f_mygoods->where("uid='$tuid'")->data($datas)->save();//保存别人果子
-                    $arr['uid']=$uid;
-                    $arr['tuid']=$tuid;
-                    $arr['num']=$num*(1+$transaction_fee);//实际扣除果子
-                    $arr['realnum']=$num;//实际到果子
-                    $arr['time']=date('Y-m-d H:i:s');
-                    $res=$trade->data($arr)->add();//增加交易记录
-                    $exc['uid']=$uid;
-                    $exc['num']=$num*$trade_exchange;
-                    $exc['time']=date('Y-m-d H:i:s');
-                    $result=$exchange->data($exc)->add();//增加兑换记录
-                    if($res && $res1 && $res2 && $result){
-                        tradinginfo($tuid,$num*(1+$transaction_fee));
-                        beitradinginfo($tuid,$num);
-                        exchangeinfo($num*$trade_exchange);
-                        M()->commit();
-                        $response = array(
-                            'resultCode'  => 200,
-                            'message' => 'success for request',
-                        );
-                    }else{
-                        M()->rollback();
-                    }
-                }else{
+                if($info['id']==$uid){
                     $response = array(
-                        'resultCode'  => 300,
-                        'message' => '支付密码有误',
+                        'resultCode'  => 600,
+                        'message' => '获赠人不能为自己',
                     );
-                }
+                }else{
+                   M()->startTrans();//开始事务处理
+                    $tuid=$info['id'];
+                    $pass=md5($_POST['pass']);//支付密码
+                    $userinfo=$user->where("id='$uid' AND paypass='$pass'")->find();
+                    if($userinfo){
+                        $yourfruit=$f_mygoods->where("uid='$tuid'")->find();
+                        $data['fruit']=$myfruit['fruit']-$num*(1+$transaction_fee+$trade_exchange);
+                        $data['voucher']=$myfruit['voucher']+$num*$trade_exchange;
+                        $datas['fruit']=$yourfruit['fruit']+$num;
+                        $res1=$f_mygoods->where("uid='$uid'")->data($data)->save();//保存自己果子
+                        $res2=$f_mygoods->where("uid='$tuid'")->data($datas)->save();//保存别人果子
+                        $arr['uid']=$uid;
+                        $arr['tuid']=$tuid;
+                        $arr['num']=$num*(1+$transaction_fee);//实际扣除果子
+                        $arr['realnum']=$num;//实际到果子
+                        $arr['time']=date('Y-m-d H:i:s');
+                        $res=$trade->data($arr)->add();//增加交易记录
+                        $exc['uid']=$uid;
+                        $exc['num']=$num*$trade_exchange;
+                        $exc['time']=date('Y-m-d H:i:s');
+                        $result=$exchange->data($exc)->add();//增加兑换记录
+                        if($res && $res1 && $res2 && $result){
+                            tradinginfo($tuid,$num*(1+$transaction_fee));
+                            beitradinginfo($tuid,$num);
+                            exchangeinfo($num*$trade_exchange);
+                            M()->commit();
+                            $response = array(
+                                'resultCode'  => 200,
+                                'message' => 'success for request',
+                            );
+                        }else{
+                            M()->rollback();
+                        }
+                    }else{
+                        $response = array(
+                            'resultCode'  => 300,
+                            'message' => '支付密码有误',
+                        );
+                    } 
+                } 
             }else{
                 $response = array(
                     'resultCode'  => 400,

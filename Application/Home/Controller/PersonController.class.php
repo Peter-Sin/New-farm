@@ -32,7 +32,7 @@ class PersonController extends AllowController
         if(empty($info['referee'])){
             $info['referee']="暂无";
         }
-        $info['landprice']=$goodsinfo['land']*$land_price;
+        $info['landprice']=$land_price;
         $info['fruitnum'] = $goodsinfo['fruit'];
         $info['vouchernum'] = $goodsinfo['voucher'];
         $this->ajaxReturn($info, 'json');
@@ -70,7 +70,6 @@ class PersonController extends AllowController
             $user->where("id='$uid'")->data($data)->save();
         }
         $signPackage=js_sdk();
-        dump($signPackage);
         $this->assign('signPackage',$signPackage);
         $this->assign("url",$value);
         $this->assign('info',$info);
@@ -284,17 +283,17 @@ class PersonController extends AllowController
 
     public function fruitt()
     {
-        $f_land=M("f_land");
-        $uid=$_SESSION["uid"];
-        $landnum=$f_land->where("uid='$uid'")->count();
-        if($landnum>=5) {
-            $this->display('fruit');
-        }else{
-            echo "<script>
-                    alert('土地数量不足，暂时无法交易');
-                    window.location.href = \"../Index/index?num=3\";
-                    </script>";
-        }
+        // $f_land=M("f_land");
+        // $uid=$_SESSION["uid"];
+        // $landnum=$f_land->where("uid='$uid'")->count();
+        $this->display('fruit');
+        
+        // }else{
+        //     echo "<script>
+        //             alert('土地数量不足，暂时无法交易');
+        //             window.location.href = \"../Index/index?num=3\";
+        //             </script>";
+        // }
     }
 
 
@@ -335,24 +334,31 @@ class PersonController extends AllowController
                     'data'=>'新密码与旧密码一样',
                 );
             }else{
-                $data['paypass'] = md5($_POST['password']);
-                $res = $user->where($where)->data($data)->save();
-                if ($res) {
-                    $response=array(
-                        'resultCode'=>'200',
-                        'data'=>'密码设置成功',
-                    );
-                } else {
-                    $response=array(
-                        'resultCode'=>'400',
-                        'data'=>'密码设置失败',
-                    );
+                if(strlen($_POST['password'])==6){
+                   $data['paypass'] = md5($_POST['password']);
+                    $res = $user->where($where)->data($data)->save();
+                    if ($res) {
+                        $response=array(
+                            'resultCode'=>'200',
+                            'data'=>'密码设置成功',
+                        );
+                    } else {
+                        $response=array(
+                            'resultCode'=>'400',
+                            'data'=>'密码设置失败',
+                        );
+                    } 
+                }else{
+                   $response=array(
+                        'resultCode'=>'600',
+                        'data'=>'支付密码为6位',
+                    ); 
                 }
             }
         }else{
             $response=array(
                 'resultCode'=>'500',
-                'data'=>'密码输入有误',
+                'data'=>'登录密码输入有误',
             );
         }
         $this->ajaxReturn($response,'json');

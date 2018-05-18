@@ -110,10 +110,9 @@ li {
     margin-left: 9%;
 }
 
-.downLis .kefu,
-.downLis .service {
+.downLis .kefu{
     float: left;
-    width: 15%;
+    width: 23%;
     font-size: 13px;
     color: rgb(168, 164, 164);
     line-height: 60px;
@@ -126,7 +125,7 @@ li {
 
 .downLis .buyCar {
     float: left;
-    width: 16%;
+    width: 23%;
     font-size: 13px;
     color: rgb(168, 164, 164);
     line-height: 60px;

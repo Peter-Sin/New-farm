@@ -1,0 +1,45 @@
+<extend name="Layout/menu"/>
+<block name="content">
+
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <div id="breadcrumb"> <a href="#" class="tip-bottom" data-original-title="回到后台"><i class="icon-home"></i> 消息管理</a> <a href="#" class="tip-bottom">编辑消息</a> <a href="#" class="current">消息回复</a> </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>消息回复</h5>
+          <a href="__URL__/index" style="float:right"><h5>返回上一级</h5></a>
+        </div>
+        <div class="widget-content nopadding">
+          <form action ="__MODULE__/News/upreplyinfo" method="post" class="form-horizontal" enctype="multipart/form-data" >
+          	
+          	<div class="control-group">
+              <label class="control-label">原消息</label>
+              <div class="controls controls-row">
+                <input type="text" class="span9" readonly value="{$info['title']}">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">消息内容</label>
+              <div class="controls controls-row">
+                <input type="text" class="span9" name="name" value="">
+                <input type="hidden" class="span9" name="id" readonly value="{$info['id']}">
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" style="margin:0px 0px 0px 200px">确定</button>
+               <button type="reset" class="btn btn-success" style="margin:0px 0px 0px 30px">重置</button>
+         </div> 
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+</block>

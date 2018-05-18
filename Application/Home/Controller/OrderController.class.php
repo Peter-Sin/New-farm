@@ -268,20 +268,48 @@ class OrderController extends AllowController {
 
     public function dopay(){
         $order=M("order");
+        $f_mygoods=M("f_mygoods");
         $ordernum=$_GET['ordernum'];
         $info=$order->where("ordernum='$ordernum'")->field("ordernum,uptime,money,voucher,statu")->find();
-        if($info){
-            if($info['statu']==1){
-                echo "<script> alert('该订单已支付');location.href = \"../Index/index\";</script>";
+        $uid=$_SESSION["uid"];
+        $myvoucher=$f_mygoods->where("uid='$uid'")->getfield("voucher");
+        if($myvoucher<$info['voucher']){
+            echo "<script> alert('购物券数量不足');location.href = \"../Index/index\";</script>";
+        }else{
+            if($info){
+                if($info['statu']==1){
+                    echo "<script> alert('该订单已支付');location.href = \"../Index/index\";</script>";
+                }else{
+                    $istype=is_weixin();
+                    $info['istype']=$istype;
+                    $this->assign("info",$info);
+                    $this->display("pay");
+                }
+            }else{
+                echo "<script> alert('订单信息不存在');location.href = \"../Index/index\";</script>";
+            }
+        }
+    }
+
+
+    public function dopayone(){
+        $onemoney=M("onemoney");
+        $num=$_GET['num'];
+        $pid=$_GET['pid'];
+        $infos=$onemoney->where("id='$pid'")->field("amount,number")->find();
+        if($infos){
+            if($infos['amount']-$infos['number']<$num){
+                echo "<script> alert('抢购数量超出,请重新选择');location.href = \"../Onemoney/onemoney\";</script>";
             }else{
                 $istype=is_weixin();
                 $info['istype']=$istype;
+                $info['num']=$num;
+                $info['pid']=$pid;
                 $this->assign("info",$info);
-                $this->display("pay");
+                $this->display("payone");
             }
         }else{
-            echo "<script> alert('订单信息不存在');location.href = \"../Index/index\";</script>";
+            echo "<script> alert('夺宝信息有误,请重新选择');location.href = \"../Onemoney/onemoney\";</script>";
         }
-
     }
 }

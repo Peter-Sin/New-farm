@@ -2,7 +2,8 @@
 
 namespace Home\Controller;
 use Think\Controller;
-class IndexController extends Controller {
+class IndexController extends AllowController {
+
     public function index(){
         $user=M("user");
         $setting=M("setting");
@@ -15,6 +16,8 @@ class IndexController extends Controller {
             $num=1;
         }
         $mallname=$setting->where("id=1")->getField("farm_name");
+        // $a=password_hash('123456',PASSWORD_DEFAULT);
+        // var_dump($a);
         $this->assign("mallname",$mallname);
         $this->assign("num",$num);
         $this->assign("uid",$uid);

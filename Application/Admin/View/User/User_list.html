@@ -16,7 +16,7 @@
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
               <h5>用户数量:{$tot}</h5>
-              <a href=""><span class="label label-info">Featured</span></a>
+              <a href="__MODULE__/User/useradd"><span class="label label-info">添加用户</span></a>
             </div>
             <form action="__MODULE__/User/userList" method="get">
               <div class="widget-content nopadding">
@@ -38,11 +38,11 @@
                   <th>会员昵称</th>
                   <th>用户性别</th>
                   <th>真实姓名</th>
-                  <th>用户电话</th>
                   <th>推荐人号码</th>
                   <th>会员电话</th>
                   <th>支付账号</th>
                   <th>注册时间</th>
+                  <th>状态</th>
                   <th>操作</th>
                 </tr>
                 </thead>
@@ -54,12 +54,15 @@
                     <td>{$val.username}</td>
                     <td>{$val.sex}</td>
                     <td>{$val.realname}</td>
-                    <td>{$val.telphone}</td>
                     <td>{$val.referee}</td>
                     <td>{$val.telphone}</td>
                     <td>{$val.alipay}</td>
                     <td>{$val.registime}</td>
                     <td class="jinyong" id="{$val.id}" sid="{$val.statu}">{$val.status}</a></td>
+                    <td>
+                        <a href="__MODULE__/User/edituser?id={$val.id}">修改</a>|
+                        <a href="__MODULE__/User/deleteuser?id={$val.id}">删除</a>
+                    </td>
                   </tr>
                 </foreach>
                 </tbody>
@@ -79,10 +82,10 @@
   var sid = $(this).attr("sid");
   var here = $(this);
   var order = $(this).text();
-  console.log(pid);
-  console.log(sid);
-  console.log(here);
-  console.log(order);
+  // console.log(pid);
+  // console.log(sid);
+  // console.log(here);
+  // console.log(order);
   $.post("__MODULE__/User/disable", {id: pid, sid: sid}, function (data) {
   if (data == 1) {
   if (order == '禁用') {

@@ -21,8 +21,8 @@ class PaypayController extends Controller
         $orderid = $ordernum;    //每次有任何参数变化，订单号就变一个吧。
         $uid = "6dc7af43978a4029302c7e5b";//"此处填写PaysApi的uid";
         $token = "9206745c4f3e1e4acad7ad93d1b88033";//"此处填写PaysApi的Token";
-        $return_url = 'http://http://www.jdtruss.cn/index.php/home/Paypay/payreturn';
-        $notify_url = 'http://http://www.jdtruss.cn/index.php/home/Paypay/paynotify';
+        $return_url = 'http://fnpc1.top/index.php/home/Paypay/payreturn';
+        $notify_url = 'http://fnpc1.top/index.php/home/Paypay/paynotify';
         $key = md5($goodsname . $istype . $notify_url . $orderid . $orderuid . $price . $return_url . $token . $uid);
 //经常遇到有研发问为啥key值返回错误，大多数原因：1.参数的排列顺序不对；2.上面的参数少传了，但是这里的key值又带进去计算了，导致服务端key算出来和你的不一样。
         $returndata['goodsname'] = $goodsname;
@@ -34,7 +34,7 @@ class PaypayController extends Controller
         $returndata['price'] = $price;
         $returndata['return_url'] = $return_url;
         $returndata['uid'] = $uid;
-        $url="http://http://www.jdtruss.cn/index.php/home/Paypay/index";
+        $url="http://fnpc1.top/index.php/home/Paypay/index";
         echo $this->jsonSuccess("OK", $returndata, $url);
     }
 
@@ -69,7 +69,7 @@ class PaypayController extends Controller
         $key = $_POST["key"];
 
         $data['paysapi_id'] = $_POST["paysapi_id"];
-        $data['orderid'] = $_POST["orderid"];
+        // $data['orderid'] = $_POST["orderid"];
         $data['price'] = $_POST["price"];
         $data['pay_money'] = $_POST["realprice"];
         $data['orderuid'] = $_POST["orderuid"];
@@ -80,28 +80,32 @@ class PaypayController extends Controller
         if ($temps != $key) {
             return $this->jsonError("key值不匹配");
         } else {
-            M()->startTrans();
+            // M()->startTrans();
             $data['pay_time'] = date("Y-m-d H:i:s");
+            $data['statu']=1;
+            $data['step']=1;
             $ordernum=$_POST["orderid"];
             $order = M("order");
             $res=$order->where("ordernum='$ordernum'")->data($data)->save();//保存订单
 
             $voucher=$order->where("ordernum='$ordernum'")->getField("voucher");
-            $mygoods=M("mygoods");
+            $mygoods=M("f_mygoods");
             $uid=$_SESSION["uid"];
             $result=$mygoods->where("uid='$uid'")->setDec('voucher',$voucher);//扣除购物券
+            
+            
             $totalmoney=$mygoods->where("uid='$uid'")->getfield("totalmoney");
             $addfruit=M("addfruit");
             $addfruitnum=$addfruit->where("uid='$uid'")->sum('num');
             if($addfruitnum<300){
                 if($totalmoney<330){
-                    $result1=$mygoods->where("uid='$uid'")->setinc('totalmoney',$_POST["realprice"]);//购物累计金额
+                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',$_POST["realprice"]);//购物累计金额
                     $totalmoney1=$mygoods->where("uid='$uid'")->getfield("totalmoney");
                     if($totalmoney1>=330){
-                        $result2=$mygoods->where("uid='$uid'")->setinc('fruit',300);//果子加300
+                        $result2=$mygoods->where("uid='$uid'")->setInc('fruit',300);//果子加300
                     }
                 }else{
-                    $result1=$mygoods->where("uid='$uid'")->setinc('totalmoney',$_POST["realprice"]);//购物累计金额
+                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',$_POST["realprice"]);//购物累计金额
                 }
             }
             

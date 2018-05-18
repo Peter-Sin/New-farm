@@ -241,20 +241,25 @@
     })
     $(".Tijiao").click(function(){
         var number=$("#number").val();//兑换果子数
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "../Farm/exchange",
-            data: ({num: number}),
-            success: function (result) {
-                if (result.resultCode == 200) {
-                    alert("兑换成功");
-                    window.location.href = "../Index/index?num=3";
-                } else if (result.resultCode == 300) {
-                    alert("果子数量不足");
-                }
-            },
-        })
+        console.log(number);
+        if(number<=0){
+            alert("兑换数量必须大于0");
+        }else{
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Farm/exchange",
+                data: ({num: number}),
+                success: function (result) {
+                    if (result.resultCode == 200) {
+                        alert("兑换成功");
+                        window.location.href = "../Index/index?num=3";
+                    } else if (result.resultCode == 300) {
+                        alert("果子数量不足");
+                    }
+                },
+            })
+        }
     })
 </script>
 

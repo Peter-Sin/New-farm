@@ -22,6 +22,8 @@ class UserController extends AllowController {
                 $list[$key]['sex']='男';
             }elseif($val['sex']==2){
                 $list[$key]['sex']='女';
+            }else{
+              $list[$key]['sex']='保密';
             }
             if($val['statu']==1){
                 $list[$key]['status']='解禁';
@@ -196,4 +198,142 @@ class UserController extends AllowController {
             $this->ajaxReturn(0);
         }
     }
+
+    public function useradd(){
+      $this->display("useradd");
+    }
+
+    public function updateuser(){
+      $user=M("user");
+      $data['username']=$_POST["user"];
+      $tel=$_POST["tel"];
+      $data['telphone']=$tel;
+      if($_POST["sex"]==1){
+          $data['sex']=1;
+      }elseif($_POST["sex"]==2){
+          $data['sex']=2;
+      }else{
+          $data['sex']=3;
+      }
+      $data['realname']=$_POST["realname"];
+      $data['referee']=$_POST["referee"];
+      $data['password']=md5($_POST["password"]);
+      $data['time']=date("Y-m-d H:i:s");
+      $repassword=md5($_POST["repassword"]);
+      $data['paypass']='e10adc3949ba59abbe56e057f20f883e';
+      $data['statu']=0;
+      $data['shopcar_num']=0;
+      $data['vipid']=$this->vipid();
+      $data['faceimg']='defaultfaceimg.png';
+      $data['registime']=date("Y-m-d H:i:s");
+      if(empty($tel)){
+        echo '<script>alert("手机号不能为空");window.location="./useradd";</script>';
+      }else{
+        $info=$user->where("telphone='$tel'")->find();
+      if($info){
+        echo '<script>alert("该手机号已注册");window.location="./useradd";</script>';
+      }else{
+        if(strlen($_POST["password"])>8 && strlen($_POST["password"])<12){
+          if($data['password']==$repassword){
+            M()->startTrans();//开始事务处理
+            $res=$user->data($data)->add();
+            $arr['uid']=$res;
+            $arr['lownum']=0;//默认最低0果子
+            $arr['content']="默认";
+            $lowest=M("f_lowest");
+            $res1=$lowest->data($arr)->add();
+            $think['uid']=$res;
+            $think['fruit']=0;
+            $think['voucher']=0;
+            $think['tree']=0;
+            $think['land']=0;
+            $mygoods=M("f_mygoods");
+            $res2=$mygoods->data($think)->add();
+            if($res && $res1 && $res2){
+              M()->commit();
+              echo '<script>alert("添加成功");window.location="./userlist";</script>';   
+            }else{
+              M()->rollback();
+            }
+          }else{
+              echo '<script>alert("两次密码不一致");window.location="./useradd";</script>';
+          }
+        }else{
+          echo '<script>alert("密码长度为8到12位");window.location="./useradd";</script>';
+        }
+      }
+    }
+  }
+
+  private function vipid(){
+    $mod=M("user");
+    $vipid=mt_rand(100000,999999);
+    $info=$mod->where("vipid='$vipid'")->find();
+    if(!$info){
+      return $vipid;
+    }else{
+      return $this->vipid();
+    }
+  }
+
+  public function edituser(){
+    $user=M("user");
+    $uid=$_GET["id"];
+    $info=$user->where("id='$uid'")->find();
+    $this->assign("info",$info);
+    $this->display("useredit");
+  }
+
+  public function uploaduser(){
+      $user=M("user");
+      $id=$_POST["id"];
+      $data['username']=$_POST["user"];
+      $data['referee']=$_POST["referee"];
+      $data['password']=md5($_POST["password"]);
+      if($_POST["sex"]=="1"){
+        $data['sex']=1;
+      }elseif($_POST["sex"]=="2"){
+        $data['sex']=2;
+      }else{
+        $data['sex']=3;
+      }
+      $data['realname']=$_POST["realname"];
+      $data['paypass']=md5($_POST["paypass"]);
+      $res=$user->where("id='$id'")->data($data)->save();
+      if($res){
+        echo '<script>alert("修改成功");window.location="./userlist";</script>';
+      }else{
+        echo '<script>alert("修改失败");window.location="./userlist";</script>';
+      }
+  }
+
+  public function deleteuser(){
+    $user=M("user");
+    $ouser=M("ouser");
+    $id=$_GET["id"];
+    $info=$user->where("id='$id'")->find();
+    M()->startTrans();//开始事务处理
+    $data["oid"]=$info["id"];
+    $data["username"]=$info["username"];
+    $data["telphone"]=$info["telphone"];
+    $data["vipid"]=$info["vipid"];
+    $data["realname"]=$info["realname"];
+    $data["sex"]=$info["sex"];
+    $data["alipay"]=$info["alipay"];
+    $data["referee"]=$info["referee"];
+    $data["registime"]=$info["registime"];
+    $data["faceimg"]=$info["faceimg"];
+    $data["recomcode"]=$info["recomcode"];
+    $data["time"]=date("Y-m-d H:i:s");
+    $result=$ouser->data($data)->add();
+    $res=$user->where("id='$id'")->delete();
+    if($res && $result){
+      M()->commit();
+      echo '<script>alert("删除成功");window.location="./userlist";</script>';
+    }else{
+      M()->rollback();
+      echo '<script>alert("删除失败");window.location="./userlist";</script>';
+    }
+  }
+      
 }

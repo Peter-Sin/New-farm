@@ -141,7 +141,13 @@ class FarmController extends AllowController
             $where['username'] = array("like", "%{$_GET['title']}%");
         }
         $mod=M("addfruit");
-        $sou = $mod->where($where)->count();
+        // $sou = $mod->where($where)->count();
+        $sou=M()
+            ->table("user u,addfruit f")
+            ->field("u.username,u.telphone,f.*")
+            ->where("u.telphone=f.telphone")
+            ->where($where)
+            ->count();
         $pan = new \Think\Page($sou, 15);
         $pan->setConfig("prev", "上一页");
         $pan->setConfig("next", "下一页");
@@ -151,6 +157,7 @@ class FarmController extends AllowController
             ->where("u.telphone=f.telphone")
             ->where($where)
             ->order("id desc")
+            ->limit($pan->firstRow,$pan->listRows)
             ->select();
         $this->assign("list",$list);
         $this->assign("pageinfo", $pan->show());
@@ -211,6 +218,11 @@ class FarmController extends AllowController
                 $response['resultCode1']=300;
                 $response['message1']='推荐人果子赠送失败';
             }
+        }else{
+            $response=array(
+                    'resultCode'  => 500,
+                    'message' => '用户号码有误',
+                );
         }
         $this->ajaxReturn($response,'json');
     }

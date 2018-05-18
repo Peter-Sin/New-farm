@@ -30,11 +30,11 @@ function fruittrade(a){
                     for(var i=0;i<result.num.length;i++){
                             html+='<li>'+
                             '<div class="trees orders">'+
-                                '<p>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间</p>'+
-                                '<p>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量</p>'+
-                                '<p>身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份</p>'+
-                                '<p>会&nbsp;员&nbsp;uid</p>'+
-                                '<p>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</p>'+
+                                '<p>交易时间</p>'+
+                                '<p>获得数量</p>'+
+                                '<p>我的身份</p>'+
+                                '<p>对方UID</p>'+
+                                '<p>对方昵称</p>'+
                                 '<p>更新时间</p>'+
                                 '<p>订单状态</p>'+
                             '</div>'+
@@ -56,20 +56,20 @@ function fruittrade(a){
                     for(var i=0;i<result.num.length;i++){
                             html+='<li>'+
                             '<div class="trees">'+
-                                '<p>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间</p>'+
-                                '<p>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量</p>'+
-                                '<p>手&nbsp;&nbsp;续&nbsp;&nbsp;费</p>'+
+                                '<p>交易时间</p>'+
+                                // '<p>交易数量</p>'+
+                                '<p>手续费</p>'+
                                 '<p>积分滞留</p>'+
                                 '<p>交易数量</p>'+
-                                '<p>身&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份</p>'+
-                                '<p>会&nbsp;员&nbsp;uid</p>'+
-                                '<p>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</p>'+
-                                '<p>更新时间</p>'+
+                                '<p>我的身份</p>'+
+                                '<p>对方UID</p>'+
+                                '<p>对方昵称</p>'+
+                                // '<p>更新时间</p>'+
                                 '<p>订单状态</p>'+
                             '</div>'+
                             '<div class="loseinfor rembers">'+
                                 '<p>'+result.num[i].time+'</p>'+
-                                '<p>'+result.num[i].num+'</p>'+
+                                // '<p>'+result.num[i].realnum+'</p>'+
                                 '<p>'+result.num[i].unum+'</p>'+
                                 '<p>'+result.num[i].unum+'</p>'+
                                 '<p>'+result.num[i].realnum+'</p>'+
@@ -77,7 +77,7 @@ function fruittrade(a){
                                 
                                 '<p>'+result.num[i].vipid+'</p>'+
                                 '<p>'+result.num[i].username+'</p>'+
-                                '<p>'+result.num[i].num+'</p>'+
+                                // '<p>'+result.num[i].time+'</p>'+
                                 
                                 '<p>交易成功</p>'+
                             '</div>'+
@@ -129,6 +129,16 @@ bussOk.click(function (e) {
         setTimeout(function () {
             $(".Infor").hide()
         }, 2000)
+    }else if(busData.somefruit<0){
+        alert("果子数量不能小于0");
+        setTimeout(function () {
+            $(".Infor").hide()
+        }, 2000)
+    }else if(busData.somefruit==0){
+        alert("果子数量不能为0");
+        setTimeout(function () {
+            $(".Infor").hide()
+        }, 2000)
     }else{
         $.ajax({
             type: "POST",
@@ -146,6 +156,8 @@ bussOk.click(function (e) {
                     alert("获赠号码有误");
                 }else if(result.resultCode == 500){
                     alert("果子数量不足");
+                }else if(result.resultCode == 600){
+                    alert("获赠人不能为自己");
                 }
             },
             error: function (err) {

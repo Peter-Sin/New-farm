@@ -8,7 +8,6 @@
     <title>Index</title>
     <link rel="stylesheet" href="__PUBLIC__/fcs/index.css">
     <script src="__PUBLIC__/fjs/jquery.min.js"></script>
-    <link rel="stylesheet" href="__PUBLIC__/fcs/index.css">
 </head>
 
 <body style="overflow-y:hidden;">
@@ -29,11 +28,11 @@
             <img src="__PUBLIC__/img/anmition/z.jpg" alt="">
         </div>
     </div>
-    <div class="Home">
-        <div class="BG">
-            <img src="__PUBLIC__/img/ff.png" alt="">
+    <div class="Home" style="overflow-y:hidden;">
+        <div class="BG" >
+            <img src="__PUBLIC__/img/ff.png" alt="" style="overflow-y:hidden;">
         </div>
-        <div class="BOX">
+        <div class="BOX" style="overflow-y:hidden;">
             <div class="B-top">
                 <!--<img src="__PUBLIC__/img/1.png" alt="">-->
                 <div class="Top-Box">
@@ -47,7 +46,7 @@
                                <p class ="uc-box">
 							    <span class="uc">
 								{$info['fruit']}
-								  <img class="GetG" src="__PUBLIC__/img/t4.png" alt="">
+								  <!-- <img class="GetG" src="__PUBLIC__/img/t4.png" alt=""> -->
 								</span>
 								</p>
 								<p class ="uo-box"><span class="uo">
@@ -144,7 +143,7 @@
                         <input name="giveId" type="text" placeholder="获赠号码">
                         <br>
                         <label for="">转增数量：</label>
-                        <input name="giveNum" type="text" placeholder="转增数量">
+                        <input name="giveNum" type="number" placeholder="转增数量">
                         <br>
                         <label for="">支付密码：</label>
                         <input name="Paypass" type="password" placeholder="支付密码">
@@ -162,7 +161,9 @@
                     </form>
                     <div class="oneTR">
                         <p style="color: #106142 ;padding: 6%">
-                            如果出售100个果子q，则扣除10个手续费，本次将锁定出售的果子，无法再让其他人购买。请确认您与接收方联系并达成买卖意愿，否则由此造成的交易后果自己承担。
+                            <!-- 如果出售100个果子q，则扣除10个手续费，本次将锁定出售的果子，无法再让其他人购买。 -->
+
+                        果子交易将扣除交易数10%手续费，并自动兑换10%的果子数量。请确认您与接收方联系并达成买卖意愿，否则由此造成的交易后果自己承担。
                         </p>
                         <p>
                             <button class="oneOk">确认交易</button>
@@ -239,7 +240,7 @@
                             <p>
                                 <label for="">请输入要兑换的果子数</label>
                             </p>
-                            <input name="trees" type="text" placeholder="0">
+                            <input name="trees" type="number" placeholder="0">
                             <!--<p>-->
                                 <!--<label for="">您即将获得的代金券为</label>-->
                             <!--</p>-->

@@ -111,6 +111,16 @@ $(".oneOk").click(function(){
         setTimeout(function () {
             $(".Infor").hide()
         }, 2000)
+    }else if(busData.somefruit<0){
+        alert("果子数量不能小于0");
+        setTimeout(function () {
+            $(".Infor").hide()
+        }, 2000)
+    }else if(busData.somefruit==0){
+        alert("果子数量不能为0");
+        setTimeout(function () {
+            $(".Infor").hide()
+        }, 2000)
     }else{
         $.ajax({
             type: "POST",
@@ -129,7 +139,11 @@ $(".oneOk").click(function(){
                 }else if(result.resultCode == 300){
                     alert("支付密码有误");
                 }else if(result.resultCode == 400){
-                    alert("获赠人id有误");
+                    alert("获赠号码有误");
+                }else if(result.resultCode == 500){
+                    alert("果子数量不足");
+                }else if(result.resultCode == 600){
+                    alert("获赠人不能为自己");
                 }
             },
             error: function (err) {
@@ -468,6 +482,7 @@ $(function () {
         $(".AlertBox").fadeOut(50);
         $(".Email").fadeOut(70);
         $(".dnfs").hide();
+        $(".letter").empty();
     })
     $(".J_lis1").click(function () {
         $(".jb2").attr("src", "/Public/img/alert/jiaoyi/j1.png");
@@ -584,7 +599,9 @@ $(function () {
     $("#Busser").click(()=>{
         var num=$("input[name='trees']").val();
         if(num==0){
-            alert("请输入要兑换的果子数量");
+            alert("兑换数量不能为0");
+        }else if(num<0){
+            alert("兑换数量不能小于0");
         }else{
             $.ajax({
                 type: "POST",

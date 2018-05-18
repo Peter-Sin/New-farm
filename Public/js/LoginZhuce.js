@@ -226,43 +226,48 @@ $(".btn-setpass").click(function (e) {
         pass: $("input[name='pass'] ").val(),
         qpass: $("input[name='qpass'] ").val(),
     }
-    console.log(data);
     if(data.phone=="" || !data.phone){
-        $(".Setishi").show()
-        $(".Setishi").html("请输入旧密码")
-        setTimeout(function () {
-            $(".Setishi").hide()
-        }, 2000)
+        // $(".Setishi").show()
+        // $(".Setishi").html("请输入旧密码")
+        // setTimeout(function () {
+        //     $(".Setishi").hide()
+        // }, 2000)
+        alert("请输入旧密码");
     }else if(data.pass=="" || !data.pass){
-        $(".Setishi").show()
-        $(".Setishi").html("密码不能为空")
-        setTimeout(function () {
-            $(".Setishi").hide()
-        }, 2000)
+        // $(".Setishi").show()
+        // $(".Setishi").html("密码不能为空")
+        // setTimeout(function () {
+        //     $(".Setishi").hide()
+        // }, 2000)
+        alert("密码不能为空");
     }else if(data.phone==data.pass){
-        $(".Setishi").show()
-        $(".Setishi").html("新密码不能与旧密码相同");
-        setTimeout(function () {
-            $(".Setishi").hide()
-        }, 2000)
+        // $(".Setishi").show()
+        // $(".Setishi").html("新密码不能与旧密码相同");
+        // setTimeout(function () {
+        //     $(".Setishi").hide()
+        // }, 2000)
+        alert("新密码不能与旧密码相同");
     }else if(data.pass.length<8 || data.pass.length>12){
-        $(".Setishi").show()
-        $(".Setishi").html("密码不能少于8 大于12位");
-        setTimeout(function () {
-            $(".Setishi").hide()
-        }, 2000)
+        // $(".Setishi").show()
+        // $(".Setishi").html("密码不能少于8 大于12位");
+        // setTimeout(function () {
+        //     $(".Setishi").hide()
+        // }, 2000)
+        alert("密码不能少于8 大于12位");
     }else if(!reg.test(data.pass)){
-        $(".Setishi").show()
-        $(".Setishi").html("密码只能由数字、字母组成");
-        setTimeout(function () {
-            $(".Setishi").hide()
-        }, 2000)
+        // $(".Setishi").show()
+        // $(".Setishi").html("密码只能由数字、字母组成");
+        // setTimeout(function () {
+        //     $(".Setishi").hide()
+        // }, 2000)
+        alert("密码只能由数字、字母组成");
     }else if(data.pass != data.qpass) {
-        $(".Setishi").show()
-        $(".Setishi").html("两次密码不一致")
-        setTimeout(function () {
-            $(".Setishi").hide()
-        }, 2000)
+        // $(".Setishi").show()
+        // $(".Setishi").html("两次密码不一致")
+        // setTimeout(function () {
+        //     $(".Setishi").hide()
+        // }, 2000)
+        alert("两次密码不一致");
     }else {
         $.ajax({
             type: "POST",
@@ -287,7 +292,7 @@ $(".btn-setpass").click(function (e) {
     }
 })
 //设置支付密码
-$("#Paypasss").submit(function (e) {
+$(".paypass").click(function (e) {
     e.preventDefault()
     var data = {
         pass: $("input[name='pass'] ").val(),
@@ -295,17 +300,20 @@ $("#Paypasss").submit(function (e) {
         passwordtwo: $("input[name='passwordtwo'] ").val(),
     }
     if( data.password.length != 6){
-        $(".Payishi").show()
-        $(".Payishi").html("请输入6位数的支付密码")
-        setTimeout(function () {
-            $(".Payishi").hide()
-        }, 2000)
+        // console.log("1");
+        alert("请输入6位数的支付密码");
+        // $(".Payishi").show()
+        // $(".Payishi").html("请输入6位数的支付密码")
+        // setTimeout(function () {
+        //     $(".Payishi").hide()
+        // }, 2000)
     }else if(data.password != data.passwordtwo){
-        $(".Payishi").show()
-        $(".Payishi").html("两次密码不一致")
-        setTimeout(function () {
-            $(".Payishi").hide()
-        }, 2000)
+        alert("两次密码不一致");
+        // $(".Payishi").show()
+        // $(".Payishi").html("两次密码不一致")
+        // setTimeout(function () {
+        //     $(".Payishi").hide()
+        // }, 2000)
     }else{
         $.ajax({
             //几个参数需要注意一下
@@ -321,7 +329,11 @@ $("#Paypasss").submit(function (e) {
                 }else if(result.resultCode==300){
                     alert("新密码与旧密码一样");
                 }else if(result.resultCode==400){
+                    alert("密码设置失败");
+                }else if(result.resultCode==500){
                     alert("登录密码输入有误");
+                }else if(result.resultCode==600){
+                    alert("支付密码为6位");
                 }
                 ;
             },

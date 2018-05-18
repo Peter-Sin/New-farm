@@ -4,7 +4,11 @@ $(function (num) {
     //客服
     var kefu = $(".kefu")
     kefu.click(function () {
-        console.log("你的客服")
+        if(uid==0){
+            window.location.href="../Login/index";
+        }else{
+            window.location.href="../person/online";
+        }
     })
 
     var service = $(".service")

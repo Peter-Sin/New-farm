@@ -97,7 +97,6 @@
           $.each(data, function() {
               d[this.name] = this.value;
           });
-          console.log(d.telphone);
           if(d.telphone){
               $.ajax({
                   type: "POST",
@@ -105,14 +104,20 @@
                   url: "../Farm/uploadaddfruit",
                   data: d,
                   success: function (result) {
-                      if (result.resultCode == 200 && result.resultCode1==200) {
+                      if(result.resultCode == 500){
+                        alert("用户号码有误");
+                      }else if(result.resultCode == 200 && result.resultCode1==200) {
                           alert("用户与推荐人充值成功");
+                          window.location.href="../Farm/addfruit";
                       }else if(result.resultCode == 300 && result.resultCode1==200){
                           alert("用户充值失败，推荐人充值成功");
+                          window.location.href="../Farm/addfruit";
                       }else if(result.resultCode == 200 && result.resultCode1==300){
                           alert("用户充值成功，推荐人充值失败");
+                          window.location.href="../Farm/addfruit";
                       }else if(result.resultCode == 300 && result.resultCode1==300) {
                           alert("用户与推荐人充值失败");
+                          window.location.href="../Farm/addfruit";
                       }
                   }
               })
