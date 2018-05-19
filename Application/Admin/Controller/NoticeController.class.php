@@ -41,9 +41,9 @@ class NoticeController extends AllowController
         $data["statu"]=0;
         $res=$notice->data($data)->add();
         if($res){
-            $this->success("添加成功","./index");
+            echo '<script>alert("添加成功");window.location="./index";</script>';
         }else{
-            $this->error("添加失败");
+            echo '<script>alert("添加失败");window.location="./addnotice";</script>';
         }
 
     }
@@ -65,9 +65,9 @@ class NoticeController extends AllowController
         $data["statu"]=0;
         $res=$notice->where("id='$id'")->data($data)->save();
         if($res){
-            $this->success("修改成功","./index");
+            echo '<script>alert("修改成功");window.location="./index";</script>';
         }else{
-            $this->error("修改失败");
+            echo '<script>alert("修改失败");window.location="./index";</script>';
         }
     }
 
@@ -76,9 +76,9 @@ class NoticeController extends AllowController
         $id=$_GET["id"];
         $res=$notice->where("id='$id'")->delete();
         if($res){
-            $this->success("删除成功");
+            echo '<script>alert("删除成功");window.location="./index";</script>';
         }else{
-            $this->error("删除失败");
+            echo '<script>alert("删除失败");window.location="./index";</script>';
         }
     }
 

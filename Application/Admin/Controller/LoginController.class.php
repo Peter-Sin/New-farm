@@ -46,11 +46,9 @@ class LoginController extends Controller{
     		$_SESSION['admin']['is_login'] = 2;
             $_SESSION['admin']['statu']=$statu;
             $_SESSION['admin']['uid']=$id;
-
-    		$this->success('登录成功',U('Index/index'));
+            echo '<script>alert("登录成功");window.location="../Index/index";</script>';
     	}else{
-            // echo $user->getLastSql();exit;
-    		$this->error('登录失败',U('Login/index'));
+            echo '<script>alert("登录失败");window.location="../Login/index";</script>';
     	}
     }
 
@@ -63,7 +61,6 @@ class LoginController extends Controller{
     	$_SESSION = array();
     	//删除服务器端的session文件
     	session_destroy();
-        // dump($_SESSION);
-    	$this->success('退出成功',U('Login/index'));
+       echo '<script>alert("退出成功");window.location="./index";</script>';
     }
 }

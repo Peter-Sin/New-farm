@@ -37,9 +37,9 @@ class OnlineController extends AllowController
         $data['time']=date("Y-m-d H:i:s");
         $res=$online->data($data)->add();
         if($res){
-            $this->success("添加成功",'./index');
+            echo '<script>alert("添加成功");window.location="./index";</script>';
         }else{
-            $this->success("添加失败",'./index');
+            echo '<script>alert("添加失败");window.location="./index";</script>';
         }
     }
 
@@ -50,9 +50,9 @@ class OnlineController extends AllowController
         $data['name']=$_POST['name'];
         $res=$online->where("id='$id'")->data($data)->save();
         if($res){
-            $this->success("修改成功",'./index');
+            echo '<script>alert("修改成功");window.location="./index";</script>';
         }else{
-            $this->success("修改失败",'./index');
+            echo '<script>alert("修改失败");window.location="./index";</script>';
         }
     }
 
@@ -69,9 +69,9 @@ class OnlineController extends AllowController
         $id=$_GET['id'];
         $res=$online->where("id='$id'")->delete();
         if($res){
-            $this->success("删除成功",'./index');
+            echo '<script>alert("删除成功");window.location="./index";</script>';
         }else{
-            $this->success("删除失败",'./index');
+            echo '<script>alert("删除失败");window.location="./index";</script>';
         }
     }
 

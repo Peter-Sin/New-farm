@@ -41,7 +41,7 @@ class OnemoneyController extends AllowController {
       if(!$info){
           $this->error("请选择图片",U("Onemoney/addgoods"));exit;
         }else{
-        $goods=M("onemoney");
+        $onemoney=M("onemoney");
         $data['name']=$_POST['name'];
         $data['amount']=$_POST['amount'];
         $data['uptime']=$_POST['uptime'];
@@ -49,7 +49,9 @@ class OnemoneyController extends AllowController {
         $data['image']=$info['img']['savename'];
         $res=$onemoney->data($data)->add();
         if($res){
-          $this->success("添加成功");
+          $this->success("添加成功","./index");
+        }else{
+          $this->success("添加失败");
         }
       }
     }
@@ -73,7 +75,9 @@ class OnemoneyController extends AllowController {
         $upload->autoSub=false;
         $info=$upload->upload();
         if(!$info){
-            $this->error("请选择图片",U("Onemoney/editgoods"));exit;
+          // echo '<script>alert("请选择图片");window.location="./editgoods";</script>';
+            $this->error("请选择图片",U("Onemoney/editgoods"));
+            exit;
           }else{
           $data['image']=$info['img']['savename'];
           $urlimg="./Public/image/onemoney/".$_POST['oldimg'];
@@ -95,7 +99,12 @@ class OnemoneyController extends AllowController {
       }
       $res=$goods->where("id='$id'")->data($data)->save();
       if($res){
-        $this->success("修改成功");
+        // echo '<script>alert("修改成功");window.location="./index";</script>';
+        $this->success("修改成功","./index");
+      }else{
+         // echo '<script>alert("修改失败");</script>';
+         // header('location:./editgoods?id='.$id);
+         $this->success("修改失败");
       }
     }
 
@@ -107,7 +116,9 @@ class OnemoneyController extends AllowController {
       @unlink($urlimg); 
       $res=$goods->where("id='$id'")->delete();
       if($res){
-        $this->success("删除成功");
+        echo '<script>alert("删除成功");window.location="./index";</script>';
+      }else{
+        echo '<script>alert("删除成功");window.location="./index";</script>';
       }
     }
 
@@ -173,6 +184,7 @@ class OnemoneyController extends AllowController {
     public function updatewiner(){
       $winer=M("winer");
       $where['id']=$_POST['id'];
+      $id=$_POST['pid'];
       $data['pid']=$_POST['pid'];
       $data['winer']=$_POST['winer'];
       $data['number']=$_POST['number'];
@@ -185,6 +197,7 @@ class OnemoneyController extends AllowController {
     public function uploadwiner(){
       $winer=M("winer");
       $data['pid']=$_POST['pid'];
+      $id=$_POST['pid'];
       $data['winer']=$_POST['winer'];
       $data['number']=$_POST['number'];
       $res=$winer->data($data)->add();

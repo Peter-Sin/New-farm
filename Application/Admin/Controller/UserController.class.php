@@ -6,7 +6,7 @@ class UserController extends AllowController {
     public function userList(){
         $where=array();
         if (!empty($_GET['username'])){
-           $where['username']=array("like","%{$_GET['username']}%"); 
+           $where['telphone']=array("like","%{$_GET['username']}%"); 
         }
          //实例化
         $user = M('User');
@@ -30,13 +30,12 @@ class UserController extends AllowController {
             }else{
                 $list[$key]['status']='禁用';
             }
-
         }
         //配置分页
         $this->assign("tot",$tot);
         $this->assign("pageinfo",$page->show());
         $this->assign("list",$list);
-       $this->display("User_list");
+        $this->display("User_list");
     }
 
 
@@ -87,7 +86,8 @@ class UserController extends AllowController {
       $repassword=$_POST['repassword'];
       if(!($password==$repassword)){
         //如果不一致，退出到添加页面
-        $this->error("两次输入的密码不一致",U("User/userManagerAdd"));
+        // $this->error("两次输入的密码不一致",U("User/userManagerAdd"));
+        echo '<script>alert("两次输入的密码不一致");window.location="./userManagerAdd";</script>'; 
         exit;
       }
       //动态添加管理员信息，密码自动MD5
@@ -98,7 +98,8 @@ class UserController extends AllowController {
       if(!$User->add()){
         $this->getError();
       }else{
-        $this->success("添加成功",U("User/userManager"));
+        echo '<script>alert("添加成功");window.location="./userManager";</script>';
+        // $this->success("添加成功",U("User/userManager"));
       };     
     }
 //删除管理员
@@ -109,9 +110,9 @@ class UserController extends AllowController {
       $data['id']=$_GET['id'];
       $res=$mod->data($data)->delete();
       if($res){
-        $this->success("删除成功",U("User/userManager"));
+        echo '<script>alert("删除成功");window.location="./userManager";</script>';
       }else{
-        $this->error("删除失败");
+        echo '<script>alert("删除失败");window.location="./userManager";</script>';
       }
     }
 
@@ -135,9 +136,12 @@ class UserController extends AllowController {
       $data['username']=$_POST['username'];
       $vo=$mod->where("id=$id")->save($data);
       if($vo){
-        $this->success("修改成功",U("User/userinfo"));
+        // $this->success("修改成功",U("User/userinfo"));
+        echo '<script>alert("修改成功");window.location="./userinfo";</script>';
       }else{
-        $this->error("修改失败");
+        // $this->error("修改失败");
+        echo '<script>alert("修改失败");</script>';
+        header('location:./edit?id='.$id);
       }
     }
 
@@ -167,18 +171,23 @@ class UserController extends AllowController {
         $repassword=$_POST['repassword'];  
         $password=$_POST['password'];
         if(!($password==$repassword)){
-          $this->error("两次输入的密码不一致");exit;
+          echo '<script>alert("两次输入的密码不一致");</script>';
+          // $this->error("两次输入的密码不一致");
+          exit;
         }else{
           $data['password']=md5($password);
           $info=$mod->where("id=$id")->save($data);
           if($info){
-            $this->success("修改成功",U("User/userinfo"));exit;
+            echo '<script>alert("修改成功");window.location="./userinfo";</script>';
+            // $this->success("修改成功",U("User/userinfo"));exit;
           }else{
-            $this->error("修改失败");
+            echo '<script>alert("修改失败");</script>';
+            // $this->error("修改失败");
           }
         }
       }else{
-        $this->error("密码输入错误");exit;
+        echo '<script>alert("密码输入错误");</script>';
+        // $this->error("密码输入错误");exit;
       }
     }
 
@@ -205,9 +214,14 @@ class UserController extends AllowController {
 
     public function updateuser(){
       $user=M("user");
-      $data['username']=$_POST["user"];
       $tel=$_POST["tel"];
       $data['telphone']=$tel;
+      if($_POST["user"]){
+        $data['username']=$_POST["user"];
+      }else{
+        $data['username']=$tel;
+      }
+
       if($_POST["sex"]==1){
           $data['sex']=1;
       }elseif($_POST["sex"]==2){
@@ -226,39 +240,46 @@ class UserController extends AllowController {
       $data['vipid']=$this->vipid();
       $data['faceimg']='defaultfaceimg.png';
       $data['registime']=date("Y-m-d H:i:s");
+      $g = "/^1[34578]\d{9}$/"; 
+      $n=preg_match($g,$tel);
       if(empty($tel)){
         echo '<script>alert("手机号不能为空");window.location="./useradd";</script>';
+      }elseif(empty($n)){
+        echo '<script>alert("手机号格式有误");window.location="./useradd";</script>';
+      }elseif($tel==$_POST["referee"]){
+        echo '<script>alert("推荐人不能为用户自己");window.location="./useradd";</script>';
       }else{
         $info=$user->where("telphone='$tel'")->find();
-      if($info){
-        echo '<script>alert("该手机号已注册");window.location="./useradd";</script>';
-      }else{
-        if(strlen($_POST["password"])>8 && strlen($_POST["password"])<12){
-          if($data['password']==$repassword){
-            M()->startTrans();//开始事务处理
-            $res=$user->data($data)->add();
-            $arr['uid']=$res;
-            $arr['lownum']=0;//默认最低0果子
-            $arr['content']="默认";
-            $lowest=M("f_lowest");
-            $res1=$lowest->data($arr)->add();
-            $think['uid']=$res;
-            $think['fruit']=0;
-            $think['voucher']=0;
-            $think['tree']=0;
-            $think['land']=0;
-            $mygoods=M("f_mygoods");
-            $res2=$mygoods->data($think)->add();
-            if($res && $res1 && $res2){
-              M()->commit();
-              echo '<script>alert("添加成功");window.location="./userlist";</script>';   
+        if($info){
+          echo '<script>alert("该手机号已注册");window.location="./useradd";</script>';
+        }else{
+          if(strlen($_POST["password"])>=8 && strlen($_POST["password"])<=12){
+            if($data['password']==$repassword){
+              M()->startTrans();//开始事务处理
+              $res=$user->data($data)->add();
+              $arr['uid']=$res;
+              $arr['lownum']=0;//默认最低0果子
+              $arr['content']="默认";
+              $lowest=M("f_lowest");
+              $res1=$lowest->data($arr)->add();
+              $think['uid']=$res;
+              $think['fruit']=0;
+              $think['voucher']=0;
+              $think['tree']=0;
+              $think['land']=0;
+              $think['totalmoney']=0;
+              $mygoods=M("f_mygoods");
+              $res2=$mygoods->data($think)->add();
+              if($res && $res1 && $res2){
+                M()->commit();
+                echo '<script>alert("添加成功");window.location="./userlist";</script>';   
+              }else{
+                M()->rollback();
+              }
             }else{
-              M()->rollback();
+              echo '<script>alert("两次密码不一致");window.location="./useradd";</script>';
             }
           }else{
-              echo '<script>alert("两次密码不一致");window.location="./useradd";</script>';
-          }
-        }else{
           echo '<script>alert("密码长度为8到12位");window.location="./useradd";</script>';
         }
       }

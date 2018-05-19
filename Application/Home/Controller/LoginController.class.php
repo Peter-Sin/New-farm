@@ -57,6 +57,7 @@ class LoginController extends Controller {
             );
         }else{
             $telcode=mt_rand(100000,999999);
+            $telcodeid="";
             $result=tel_code($phone,$telcode);
             if($result['code']==000000){
                 cookie('code',$telcode,'expire=300&prefix=think_');
@@ -98,6 +99,7 @@ class LoginController extends Controller {
                 $think['voucher']=0;
                 $think['tree']=0;
                 $think['land']=0;
+                $think['totalmoney']=0;
                 $res2=$mygoods->data($think)->add();
 				if($sql && $res1 && $res2){
                     M()->commit();

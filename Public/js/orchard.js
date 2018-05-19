@@ -75,10 +75,6 @@ function fruitlist(a){
                         success: function (result) {
                             if(result.resultCode==200){
                                 var trees= gettrees(fid,num,gettree);
-                                // console.log(trees);
-                                // if(trees.resultCode==200){
-                                //     $(".gettrees").css(style="background:yellow");
-                                // alert("111223");
                             }else if(result.resultCode==300){
                                 alert("土地数量不足，暂时无法偷取");
                             }
@@ -95,20 +91,21 @@ function fruitlist(a){
 fruitlist("互偷模块");
 
 function gettrees(fid,num,gettree){
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "../Farm/steal",
-        data:({tuid:fid,num:num}),
-        success: function (result) {
-            if(result.resultCode==200){
-                gettree.css({background:'rgb(192, 184, 184)'});
-                gettree.unbind();
-                gettree.html("已偷取");
+    if(confirm("你确认偷取")){
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "../Farm/steal",
+            data:({tuid:fid,num:num}),
+            success: function (result) {
+                if(result.resultCode==200){
+                    gettree.css({background:'rgb(192, 184, 184)'});
+                    gettree.unbind();
+                    gettree.html("已偷取");
+                }
             }
-        }
-    })
-
+        }) 
+    }
 }
 
 //feirnd 点击选择

@@ -33,11 +33,11 @@ $(function () {
     })
     function addprize(a,b,c,d,f,e){
         if(e==1){
-            totalprice=parseInt(c)+parseInt(a)*parseInt(f);
-            numvoucher=parseInt(d)+parseInt(b)*parseInt(f);
+            totalprice=Number(c)+Number(a)*Number(f);
+            numvoucher=Number(d)+Number(b)*Number(f);
         }else if(e==2){
-            totalprice=parseInt(c)-parseInt(a)*parseInt(f);
-            numvoucher=parseInt(d)-parseInt(b)*parseInt(f);
+            totalprice=Number(c)-Number(a)*Number(f);
+            numvoucher=Number(d)-Number(b)*Number(f);
         }
         $("#maimaip").html(totalprice);
         $("#daijinquan").html(numvoucher);
@@ -64,12 +64,12 @@ $(function () {
             var gnum=$(".Onlie >ul >li").find(".gnum");
             var totalprice=0;
             for (var i=0;i<prize.length;i++) {
-                totalprice+=parseInt(prize[i].innerText)*parseInt(gnum[i].innerText);
+                totalprice+=Number(prize[i].innerText)*Number(gnum[i].innerText);
             }
             var voucher =$(".Onlie >ul >li").find(".voucher");
             var numvoucher=0;
             for (var i=0;i<voucher.length;i++) {
-                numvoucher+=parseInt(voucher[i].innerText)*parseInt(gnum[i].innerText);
+                numvoucher+=Number(voucher[i].innerText)*Number(gnum[i].innerText);
             }
             $("#maimaip").html(totalprice);
             $("#daijinquan").html(numvoucher);
@@ -92,8 +92,8 @@ $(function () {
         var here=$(this);
         var choose=$(this).parents(".div-nums").siblings(".checkbox").attr("a");
         if(choose=='on'){
-            var totalprice=parseInt($("#maimaip").html())-parseInt(price.html());
-            var numvoucher=parseInt($("#daijinquan").html())-parseInt(voucher.html());
+            var totalprice=Number($("#maimaip").html())-Number(price.html());
+            var numvoucher=Number($("#daijinquan").html())-Number(voucher.html());
         }
         num--;
         if(num<1){
@@ -116,8 +116,8 @@ $(function () {
         var here=$(this);
         var choose=$(this).parents(".div-nums").siblings(".checkbox").attr("a");
         if(choose=='on'){
-            var totalprice = parseInt($("#maimaip").html()) + parseInt(price.html());
-            var numvoucher = parseInt($("#daijinquan").html()) + parseInt(voucher.html());
+            var totalprice = Number($("#maimaip").html()) + Number(price.html());
+            var numvoucher = Number($("#daijinquan").html()) + Number(voucher.html());
         }
         num++;
         if(num>total){

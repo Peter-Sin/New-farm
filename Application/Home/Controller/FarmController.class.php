@@ -548,9 +548,9 @@ class FarmController extends AllowController {
                         $exc['time']=date('Y-m-d H:i:s');
                         $result=$exchange->data($exc)->add();//增加兑换记录
                         if($res && $res1 && $res2 && $result){
-                            tradinginfo($tuid,$num*(1+$transaction_fee));
+                            tradinginfo($tuid,$num*(1+$transaction_fee+$trade_exchange));
                             beitradinginfo($tuid,$num);
-                            exchangeinfo($num*$trade_exchange);
+                            // exchangeinfo($num*$trade_exchange);
                             M()->commit();
                             $response = array(
                                 'resultCode'  => 200,
@@ -622,8 +622,6 @@ class FarmController extends AllowController {
             );
             $this->ajaxReturn($response,'json');
         }
-
-
 	}
 	
 //铲除

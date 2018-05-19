@@ -121,7 +121,7 @@ $(".oneOk").click(function(){
         setTimeout(function () {
             $(".Infor").hide()
         }, 2000)
-    }else{
+    }else if(confirm("你确认进行交易")){
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -312,22 +312,24 @@ $(function () {
                 // })
 
             }else if(ins == 3){
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "../Farm/xiuli",
-                    data:({abc:ins}),
-                    success: function (result) {
-                        if(result.resultCode==200){
-                            alert("已收获");
-                            window.location.reload();
-                        }else if(result.resultCode==300){
-                            alert("暂无可收获果子");
-                        }else if(result.resultCode==400){
-                            alert("收获失败");
+                if(confirm("你确认收货果子")){
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "../Farm/xiuli",
+                        data:({abc:ins}),
+                        success: function (result) {
+                            if(result.resultCode==200){
+                                alert("已收获");
+                                window.location.reload();
+                            }else if(result.resultCode==300){
+                                alert("暂无可收获果子");
+                            }else if(result.resultCode==400){
+                                alert("收获失败");
+                            }
                         }
-                    }
-                })
+                    }) 
+                }
             }else if (ins == 4) {
                 $(".dnfs").show()
                 $(".AlertBox").fadeIn(50)
@@ -602,7 +604,7 @@ $(function () {
             alert("兑换数量不能为0");
         }else if(num<0){
             alert("兑换数量不能小于0");
-        }else{
+        }else if(confirm("你确认兑换果子")){
             $.ajax({
                 type: "POST",
                 dataType: "json",

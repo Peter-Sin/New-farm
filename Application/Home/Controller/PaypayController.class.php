@@ -88,25 +88,48 @@ class PaypayController extends Controller
             $order = M("order");
             $res=$order->where("ordernum='$ordernum'")->data($data)->save();//保存订单
 
+            M()->startTrans();
             $voucher=$order->where("ordernum='$ordernum'")->getField("voucher");
             $mygoods=M("f_mygoods");
-            $uid=$_SESSION["uid"];
+            $uid=$order->where("ordernum='$ordernum'")->getField("uid");
             $result=$mygoods->where("uid='$uid'")->setDec('voucher',$voucher);//扣除购物券
             
             
             $totalmoney=$mygoods->where("uid='$uid'")->getfield("totalmoney");
             $addfruit=M("addfruit");
-            $addfruitnum=$addfruit->where("uid='$uid'")->sum('num');
+            $user=M("user");
+            $telphone=$user->where("id='$uid'")->getfield("telphone");
+            $addfruitlist=$addfruit->where("telphone='$telphone'")->select();
+            $addfruitnum=0;
+            foreach($addfruitlist as $key=>$val){
+                $addfruitnum+=$val['num'];
+            }
+            $g=0;
             if($addfruitnum<300){
                 if($totalmoney<330){
-                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',$_POST["realprice"]);//购物累计金额
+                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',$realprice);//购物累计金额
+                    if($result1){
+                        $g=1;
+                    }else{
+                        $g=0;
+                    }
                     $totalmoney1=$mygoods->where("uid='$uid'")->getfield("totalmoney");
                     if($totalmoney1>=330){
                         $result2=$mygoods->where("uid='$uid'")->setInc('fruit',300);//果子加300
+                        if($result1 && $result2){
+                            $g=1;
+                        }else{
+                            $g=0;
+                        }
                     }
                 }else{
-                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',$_POST["realprice"]);//购物累计金额
+                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',$realprice);//购物累计金额
+                    if($result1){
+                        $g=1;
+                    }
                 }
+            }else{
+                $g=1;
             }
             
             //减库存
@@ -133,20 +156,112 @@ class PaypayController extends Controller
                         $j++;
                     }
                 }
-            }
-            if($i==$j && $res && $result && $result1){
+            }           
+            if($i==$j && $result && $g){
                  M()->commit();
+                 $b['sester']=1;
+                 $order->where("ordernum='$ordernum'")->data($b)->save();
             }else{
                 M()->rollback();
+                 $b['sester']=$uid.'&'.$telphone.'&'.$addfruitnum.'&'.$i.'&'.$j.'&'.$result.'&'.$g.'&'.$voucher;
+                 $order->where("ordernum='$ordernum'")->data($b)->save();
             }
         }
+    }
+
+
+    public function test(){
+        $ordernum='4d10332eae8a16e765d9d0c599d7e334';
+         M()->startTrans();
+        $order=M("order");
+        $voucher=$order->where("ordernum='$ordernum'")->getField("voucher");
+            $mygoods=M("f_mygoods");
+            $uid=$_SESSION["uid"];
+            $result=$mygoods->where("uid='$uid'")->setDec('voucher',$voucher);//扣除购物券
+            
+            
+            $totalmoney=$mygoods->where("uid='$uid'")->getfield("totalmoney");
+            $addfruit=M("addfruit");
+            $user=M("user");
+            $telphone=$user->where("id='$uid'")->getfield("telphone");
+            $addfruitlist=$addfruit->where("telphone='$telphone'")->select();
+            $addfruitnum=0;
+            foreach($addfruitlist as $key=>$val){
+                $addfruitnum+=$val['num'];
+            }
+            $g=0;
+            if($addfruitnum<300){
+                if($totalmoney<330){
+                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',10);//购物累计金额
+                    if($result1){
+                        $g=1;
+                    }
+                    $totalmoney1=$mygoods->where("uid='$uid'")->getfield("totalmoney");
+                    if($totalmoney1>=330){
+                        $result2=$mygoods->where("uid='$uid'")->setInc('fruit',300);//果子加300
+                        if($result1 && $result2){
+                            $g=1;
+                        }else{
+                            $g=0;
+                        }
+                    }
+
+                }else{
+                    $result1=$mygoods->where("uid='$uid'")->setInc('totalmoney',10);//购物累计金额
+                    if($result1){
+                        $g=1;
+                    }
+                }
+            }else{
+                $g=1;
+            }
+            
+            //减库存
+            $orderinfo=M("orderinfo");
+            $list=$orderinfo->where("ordernum='$ordernum'")->select();
+            $goods=M("goods");
+            $classprice=M("classprice");
+            $i=0;$j=0;
+            foreach($list as $key=>$val){
+                $pid=$val['pid'];
+                $cid=$val['cid'];
+                $goodsnum=$val['num'];
+                if($cid){
+                    $i++;
+                    $res1=$classprice->where("pid='$pid' ANd id='$cid'")->setDec("amount",$goodsnum);//减库存
+                    $res2=$goods->where("id='$pid'")->setDec("total",$goodsnum);
+                    if($res1 && $res2){
+                        $j++;
+                    }
+                }else{
+                    $i++;
+                    $res2=$goods->where("id='$pid'")->setDec("total",$goodsnum);
+                    if($res2){
+                        $j++;
+                    }
+                }
+            }           
+            if($i==$j && $result && $g){
+                 M()->commit();
+                 echo '<script>alert("success");</script>';
+            }else{
+                M()->rollback();
+                 echo '<script>alert("fail");</script>';
+            }
     }
 
 
     public function payreturn()
     {
         $orderid = $_GET["orderid"];
+
 //此处在您数据库中查询：此笔订单号是否已经异步通知给您付款成功了。如成功了，就给他返回一个支付成功的展示。
-        echo "恭喜，支付成功!，订单号：" . $orderid;
+        // echo "恭喜，支付成功!，订单号：" . $orderid;
+        $str="<a href=\"../Index/index\">点击返回商城首页</a>";
+        // echo $str;
+        $info['orderid']=$orderid;
+        $info['str']=$str;
+        $this->assign("info",$info);
+        $this->display("./Order/payok");
     }
 }

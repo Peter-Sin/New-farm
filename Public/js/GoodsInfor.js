@@ -145,12 +145,6 @@ function aaa(num,goodsId,Biao){
                                 MoRenP.eq(i).addClass("active")
                             }
                         }
-                        // for (var i = 0; i < result.data2[1].length; i++) {
-                        //     var MoRenP = $(".GG .OO").find("p")
-                        //     if (result.data.C_two == MoRenP.eq(i).attr("cid")) {
-                        //         MoRenP.eq(i).addClass("active")
-                        //     }
-                        // }
                         classifyPrice(result.data.C_one, result.data.C_two, 1, result.data.id);
 
 
@@ -162,24 +156,10 @@ function aaa(num,goodsId,Biao){
                             var a = $(this).attr("cid");
                             var b = 0;
                             var c = $(".NN").children(".HJ").find("span").text();
-                            // console.log(a);
-                            // console.log(c);
-                            // console.log($(".NN").children(".HJ").find("span").text());
                             classifyPrice(a, b, c, goodsId);
-                            // var num = result.data2[1].length;
-                            // classone(a, goodsId, num);
                         })
 
 
-                        // var Gui = $(".GG .OO").find("p");
-                        // Gui.click(function () {
-                        //     $(this).addClass("active").siblings().removeClass("active");
-                        //     var goodsId = $(this).parents(".LL").attr("GoodsId");
-                        //     var a = $(this).parents(".GG").siblings(".PP").children(".OO").find("p.active").attr("cid");
-                        //     var b = $(this).attr("cid");
-                        //     var c = $(this).parents(".ff").siblings(".NN").children(".HJ").find("span").text();
-                        //     classifyPrice(a, b, c, goodsId);
-                        // })
                         var numbee = $(".HJ").find("span").text();
                         $(".Jian").click(function () {
                             if (numbee > 1) {
@@ -253,7 +233,6 @@ function aaa(num,goodsId,Biao){
                         for (var i = 0; i < result.data2[1].length; i++) {
                             html1 += '<p Cid="' + result.data2[1][i].id + '">' + result.data2[1][i].name + '</p>';
                         }
-                        // $(".ff").append(html0)
                         $(".PP").find(".OO").append(html);
                         $(".GG").find(".OO").append(html1);
 
@@ -336,7 +315,8 @@ function aaa(num,goodsId,Biao){
                             data:({cid:0,pid:goodsId,num:1}) ,
                             success: function (result) {
                                 if(result.resultCode==200){
-                                    window.location.href="../Shopcar/shopcar";
+                                    alert("添加成功");
+                                    // window.location.href="../Shopcar/shopcar";
                                 }
                             }
                         })
@@ -385,21 +365,7 @@ function aaa(num,goodsId,Biao){
                             datas[0].ccc=ccc;
                             datas =JSON.stringify(datas);
                             window.location.href="../Order/dingOk?datas="+datas;
-
-                            // $.ajax({
-                            //     //几个参数需要注意一下
-                            //     type: "POST",//方法类型
-                            //     dataType: "json",//预期服务器返回的数据类型
-                            //     url: "../Order/addorder" ,//url 
-                            //     data:({cid:cid,pid:goodsId}) ,
-                            //     success: function (result) {
-                            //         if(result.resultCode==200){
-                            //             window.location.href="http://www.test.com/index.php/Home/Order/dingOk";
-                            //         }
-                            //     }
-                            // })
                         }
-                        // console.log("确定"+biao,a,b,c,goodsId);
                     })
 
                 $(".ERROR").click(function () {

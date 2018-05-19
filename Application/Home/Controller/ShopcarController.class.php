@@ -61,7 +61,7 @@ class ShopcarController extends AllowController {
             }
         }
         if($list){
-//            dump($list);;
+           // dump($list);
             $this->assign("list",$list);
             $this->display('shopcar');
         }else{

@@ -32,7 +32,7 @@ function fruittrade(a){
                             '<div class="trees orders">'+
                                 '<p>交易时间</p>'+
                                 '<p>获得数量</p>'+
-                                '<p>我的身份</p>'+
+                                '<p>身份</p>'+
                                 '<p>对方UID</p>'+
                                 '<p>对方昵称</p>'+
                                 '<p>更新时间</p>'+
@@ -41,7 +41,7 @@ function fruittrade(a){
                             '<div class="treesInfos ordersInfos">'+
                                 '<p>'+result.num[i].time+'</p>'+
                                 '<p>'+result.num[i].realnum+'</p>'+
-                                '<p>被转让者</p>'+
+                                '<p>转让者</p>'+
                                 '<p>'+result.num[i].vipid+'</p>'+
                                 '<p>'+result.num[i].username+'</p>'+
                                 '<p>'+result.num[i].time+'</p>'+
@@ -61,7 +61,7 @@ function fruittrade(a){
                                 '<p>手续费</p>'+
                                 '<p>积分滞留</p>'+
                                 '<p>交易数量</p>'+
-                                '<p>我的身份</p>'+
+                                '<p>身份</p>'+
                                 '<p>对方UID</p>'+
                                 '<p>对方昵称</p>'+
                                 // '<p>更新时间</p>'+
@@ -73,7 +73,7 @@ function fruittrade(a){
                                 '<p>'+result.num[i].unum+'</p>'+
                                 '<p>'+result.num[i].unum+'</p>'+
                                 '<p>'+result.num[i].realnum+'</p>'+
-                                '<p>转让者</p>'+
+                                '<p>被转让者</p>'+
                                 
                                 '<p>'+result.num[i].vipid+'</p>'+
                                 '<p>'+result.num[i].username+'</p>'+
@@ -139,7 +139,7 @@ bussOk.click(function (e) {
         setTimeout(function () {
             $(".Infor").hide()
         }, 2000)
-    }else{
+    }else if(confirm("你确认进行交易")){
         $.ajax({
             type: "POST",
             dataType: "json",

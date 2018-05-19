@@ -98,6 +98,7 @@
               d[this.name] = this.value;
           });
           if(d.telphone){
+            if(confirm("你确认充值")){
               $.ajax({
                   type: "POST",
                   dataType: "json",
@@ -118,9 +119,34 @@
                       }else if(result.resultCode == 300 && result.resultCode1==300) {
                           alert("用户与推荐人充值失败");
                           window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 200 && result.resultCode1==700) {
+                          alert("用户充值成功");
+                          window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 200 && result.resultCode1==600) {
+                          alert("用户充值成功");
+                          window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 300 && result.resultCode1==600) {
+                          alert("用户充值失败");
+                          window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 300 && result.resultCode1==700) {
+                          alert("用户充值失败");
+                          window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 400 && result.resultCode1==700) {
+                          alert("请输入要充值数量");
+                          window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 400 && result.resultCode1==600) {
+                          alert("请输入要充值数量");
+                          window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 400 && result.resultCode1==300) {
+                          alert("推荐人充值失败");
+                          window.location.href="../Farm/addfruit";
+                      }else if(result.resultCode == 400 && result.resultCode1==200) {
+                          alert("推荐人充值成功");
+                          window.location.href="../Farm/addfruit";
                       }
                   }
               })
+            }   
           }else{
               alert("用户号码不能为空");
           }

@@ -67,7 +67,9 @@ $(".btn_regist").click(() => {
         alert("手机号码不能为空");
     }else if (!DataJson.checkPhone(data.phone) || data.phone.length != 11) {
         alert("手机号码格式不正确");
-    } else{
+    }else if(data.password.length<8 || data.password.length>12){
+        alert("密码不能少于8 大于12位");
+    }else{
         if(data.password==data.passwordtwo){
             $.ajax({
                 type: "POST",

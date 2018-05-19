@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PaysApi支付</title>
+    <style type="text/css">
+        .choosepay{
+            text-align: center;
+            font-size: 40px;
+            margin:10% 5%;
+        }
+        .radio{
+            margin:15% 5%;
+            width:30%;
+            font-size: 35px;
+            display:none;
+        }
+        #demoBtn1{
+            margin:5% 30%;
+            width:30%;
+            height:20%;
+            background: orange;
+            font-size: 35px;
+            padding: 3%;
+        }
+        #demo1-weixin{
+            font-size: 30px;
+        }
+        .youhui{
+            font-size: 30px;
+            margin: 0 5%;
+        }
+
+    </style>
+</head>
+<body>
+<form>
+    <div class="choosepay">支付成功</div>
+<div class="pay">
+    <div class="radio" id="wxpay">
+        <label>
+            <p><input type="radio" name="pays" id="demo1-weixin" value="2" checked="">
+                恭喜，支付成功!，订单号：" . $orderid;</p>
+        </label>
+    </div>
+</div>
+    <span class="youhui">恭喜，支付成功!，订单号：{$info['orderid']}</span>
+    <!-- <span class="youhui">优惠券：{$info['voucher']}</span> -->
+    <button type="button" id="demoBtn1">{$info['str']}</button>
+</form>
+
+
+
+</body>
+</html>

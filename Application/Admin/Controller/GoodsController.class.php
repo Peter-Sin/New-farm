@@ -77,9 +77,9 @@ class GoodsController extends AllowController {
       $data['uptime']=date("Y-m-d H:i:s");
       $res=$goods->data($data)->add();
       if($res){
-          $this->success("添加成功",'./index');
+          echo '<script>alert("添加成功");window.location="./index";</script>';
       }else{
-          $this->success("添加失败");
+          echo '<script>alert("添加失败");window.location="./index";</script>';
       }
     }
 
@@ -103,7 +103,9 @@ class GoodsController extends AllowController {
       $data['contents']=$_POST["content"];
       $res=$goods->where("id='$id'")->data($data)->save();
       if($res){
-        $this->success("修改成功");
+        echo '<script>alert("修改成功");window.location="./index";</script>';
+      }else{
+        echo '<script>alert("修改失败");window.location="./index";</script>';
       }
     }
 
@@ -139,6 +141,8 @@ class GoodsController extends AllowController {
           $res=$goodsimg->data($data)->add();
           if($res){
             $this->success("添加成功");
+          }else{
+            $this->error("添加失败");
           }
       }
     }
@@ -180,9 +184,9 @@ class GoodsController extends AllowController {
       }
       $result2=$classprice->where("pid='$pid'")->delete();//删除商品分类图片
       if($res){
-        $this->success("删除成功","./index");
+        echo '<script>alert("删除成功");window.location="./index";</script>';
       }else{
-        $this->success("删除失败","./index");
+        echo '<script>alert("删除失败");window.location="./index";</script>';
       }
     }
 
@@ -216,12 +220,16 @@ class GoodsController extends AllowController {
 
     public function uploadclassify(){
       $gclassify=M("gclassify");
-      $data['pid']=$_POST['goodsid'];
+      $goodsid=$_POST['goodsid'];
+      $data['pid']=$goodsid;
       $data['fid']=$_POST['pid'];
+      $pid=$_POST['pid'];
       $data['path']=$_POST['path'];
       $data['name']=$_POST['name'];
       $res=$gclassify->data($data)->add();
       if($res){
+        // echo '<script>alert("添加成功");</script>';
+        // header('location:./goodsclassify?id='.$goodsid.'&cid='.$pid);
         $this->success("添加成功");
       }else{
         $this->error("添加失败");
@@ -232,6 +240,7 @@ class GoodsController extends AllowController {
       $gclassify=M("gclassify");
       $id=$_GET['id'];
       $info=$gclassify->where("fid='$id'")->select();
+      $pid=$info[0]["pid"];
       if($info){
         $res=$gclassify->where("fid='$id'")->delete();
       }
@@ -277,15 +286,16 @@ class GoodsController extends AllowController {
                   $li[$i]['cone']=$val['id'];
                   $li[$i]['ctwo']=$v['id'];
                   $li[$i]['pid']=$id;
-                  $i++;
                   $where['C_one']=$val['id'];
                   $where['C_two']=$v['id'];
                   $where['pid']=$id;
-                  $list=$classprice->where($where)->find();
-                  $li[$i]['price']=$list['price'];
-                  $li[$i]['voucher']=$list['voucher'];
-                  $li[$i]['num']=$list['amount'];
+                  $lists=$classprice->where($where)->find();
+                  $li[$i]['price']=$lists['price'];
+                  $li[$i]['voucher']=$lists['voucher'];
+                  $li[$i]['num']=$lists['amount'];
+                  $i++; 
               }
+             
           }
       }
       $this->assign("li",$li);

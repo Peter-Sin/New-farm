@@ -105,10 +105,10 @@ class OrderController extends AllowController {
 	    $result=$orderinfo->where("ordernum='$ordernum'")->delete();
 	    if($res && $result){
 	        M()->commit();
-	        $this->success("删除成功",'./index');
+            echo '<script>alert("删除成功");window.location="./index";</script>';
         }else{
 	        M()->rollback();
-            $this->success("删除失败",'./index');
+            echo '<script>alert("删除失败");window.location="./index";</script>';
         }
     }
 
@@ -168,7 +168,7 @@ class OrderController extends AllowController {
             $list[$key]['num']=$num;
         }
         $this->assign("list",$list);
-        $this->display(orderclass);
+        $this->display('orderclass');
     }
 
     public function express_number(){
@@ -177,6 +177,8 @@ class OrderController extends AllowController {
         $data['express_number']=$_POST['express'];
         $res=$order->where($where)->data($data)->save();
         if($res){
+            // echo '<script>alert("添加成功");</script>';
+            // header('location:./orderaddress?ordernum='.$ordernum);
             $this->success("添加成功");
         }else{
             $this->error("添加失败");

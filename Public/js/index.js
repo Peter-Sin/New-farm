@@ -69,30 +69,10 @@ function indexs(a) {
                 '</li>'
             } 
 
-            // $(function () {
-            //     // $(".adre").hide()
-            //     var imgdefereds = [];
-            //     $('img').each(function () {
-            //         var dfd = $.Deferred();
-            //         $(this).bind('load', function () {
-            //             dfd.resolve();
-            //         }).bind('error', function () {
-            //             alert("图片加载错误")
-            //         })
-            //         if (this.complete) setTimeout(function () {
-            //             dfd.resolve();
-            //         }, 1000);
-            //         imgdefereds.push(dfd);
-            //     })
-            //     $.when.apply(null, imgdefereds).done(function () {
-            //        alert("1")
-                    
-            //     });
-            // })
 
             $("#shoppingnum").html(result.shopcar_num)   
             $(".goods").empty();
-            $(".goods").append(html)
+            $(".goods").append(html);
             var adds = $(".goods").find("img.adds")
             adds.click(function () {
                 var GoodId=$(this).siblings("a").attr("GoodId");
@@ -119,7 +99,7 @@ function indexs(a) {
                             }
                         },
                         error: function (err) {
-                            console.log(err.statusText)
+                            console.log(err.statusText);
                         }
                     });
                 }else{
@@ -231,15 +211,15 @@ function orderlist(a) {
                 $(".all-D").append('<div class="all-D0">' + html + '</div>');
                 var removeBus = $(".coles-D").find("span.removeBus")
                 removeBus.click(function () {
-                    var GoodId = $(this).attr("GoodId")
-                    var that = $(this)
-                    removebus(GoodId, that)
+                    var GoodId = $(this).attr("GoodId");
+                    var that = $(this);
+                    removebus(GoodId, that);
                 })
                 var getGoods = $(".coles-Get").find("span.Get-right")
                 getGoods.click(function () {
                     var OrderId = $(this).attr("orderid")
-                    var that = $(this)
-                    getgoods(OrderId, that)
+                    var that = $(this);
+                    getgoods(OrderId, that);
                 })
             } else if (a == 0) {
                 var html = "";
@@ -257,12 +237,12 @@ function orderlist(a) {
                         '</p>' +
                         '</div>'
                 }
-                $(".give-money").append('<div class="give-money1">' + html + '</div>')
-                var removeBus = $(".coles-D").find("span.removeBus")
+                $(".give-money").append('<div class="give-money1">' + html + '</div>');
+                var removeBus = $(".coles-D").find("span.removeBus");
                 removeBus.click(function () {
-                    var GoodId = $(this).attr("GoodId")
-                    var that = $(this)
-                    removebus(GoodId, that)
+                    var GoodId = $(this).attr("GoodId");
+                    var that = $(this);
+                    removebus(GoodId, that);
                 })
             } else if (a == 1) {
                 var html = "";
@@ -455,7 +435,6 @@ $(function () {
                 type: "POST",
                 dataType: "json",
                 url: "./order/orderlist",
-                // data: $('#form1').serialize(),
                 success: function (result) {
                     if (result.resultCode == 200) {
                         $(this).parents(".all-D-box").remove()
@@ -497,40 +476,12 @@ $(function () {
             var removeBus = $(".coles-D").find("span.removeBus");
             removeBus.click(function () {
             	$(this).parents(".all-D-box").remove();
-                // $.ajax({
-                //     type: "POST",
-                //     dataType: "json",
-                //     url: "/users/logins",
-                //     // data: $('#form1').serialize(),
-                //     success: function (result) {
-                //         console.log(result);
-                //         if (result.resultCode == 200) {
-                //             $(this).parents(".all-D-box").remove()
-                //         }
-                //     },
-                //     error: function (err) {
-                //         console.log(err.statusText)
-                //     }
-                // });
-
+                
             })
             //付款
             var myPay = $(".coles-D").find("span.myPay");
             myPay.click(function () {
-                // $.ajax({
-                //     type: "POST",
-                //     dataType: "json",
-                //     url: "/users/login",
-                //     data: $('#form1').serialize(),
-                //     success: function (result) {
-                //         if (result.resultCode == 200) {
-                //             $(this).parents(".all-D-box").remove()
-                //         }
-                //     },
-                //     error: function (err) {
-                //         console.log(err.statusText)
-                //     }
-                // });
+
             })
         } else if (dins == 2) {//代发货
             $(".all-D").hide();
@@ -550,29 +501,6 @@ $(function () {
             $("div.give-money1").empty();
             $("div.give-some2").empty();
             orderlist("2");
-            //确认收货
-            // var GetOk = $(".Get-right");
-            // console.log("123qa");
-
-            // $(".Get-right").click(function () {
-            //     console.log("123qwe");
-            //     var oid=$(this).attr("orderid");
-            //     $.ajax({
-            //         type: "POST",
-            //         dataType: "json",
-            //         url: "/Order/getgoods",
-            //         data: {oid:oid},
-            //         success: function (result) {
-            //             if (result.resultCode == 200) {
-            //                 $(this).text("已收货");
-            //             }
-            //         },
-            //         error: function (err) {
-            //             console.log(err.statusText)
-            //         }
-            //     });
-            //     console.log("index" + 244)
-            // })
 
             //物流代码，复制粘贴
             var Getinfors = $(".Get-left").find("button.Get-infors");
@@ -598,20 +526,6 @@ $(function () {
                     biangao
                 }
                 console.log(data.biangao)
-                // $.ajax({
-                //     type: "POST",
-                //     dataType: "json",
-                //     url: "/users/login",
-                //     data: $('#form1').serialize(),
-                //     success: function (result) {
-                //         if (result.resultCode == 200) {
-
-                //         }
-                //     },
-                //     error: function (err) {
-                //         console.log(err.statusText)
-                //     }
-                // });
             })
 
         }
@@ -619,38 +533,6 @@ $(function () {
 
 
 })
-//添加购物车
-// function ADD(adds) {
-//     // body...
-//      console.log("123123123123")
-// }
-// $(function () {
-//     var shopcar = $(".shopping").find("img")
-//     shopcar.click(function () {
-//         console.log("123123123123123");
-
-        // $.ajax({
-        //     type: "POST",
-        //     dataType: "json",
-        //     url: "/users/login",
-        //     data: $('#form1').serialize(),
-        //     success: function (result) {
-        //         if (result.resultCode == 200) {
-        // 添加成功时的弹窗
-        // $(".in-tishi").fadeIn(500)
-        // 1.5秒之后弹窗消失
-        // setTimeout(function () {
-        //     $(".in-tishi").fadeOut(500)
-        // }, 1500)
-        //         }
-        //     },
-        //     error: function (err) {
-        //         console.log(err.statusText)
-        //     }
-        // });
-
-    // })
-// })
 //前往购物车
 $(function () {
     var goshop = $(".shopping").find("img");
@@ -661,47 +543,12 @@ $(function () {
         }else{
             window.location.href="../Login/index";
         }
-        // console.log("123")
-        // $.ajax({
-        //     type: "POST",
-        //     dataType: "json",
-        //     url: "/",
-        //     data: $('#form1').serialize(),
-        //     success: function (result) {
-        //         if (result.resultCode == 200) {
-                  
-        //         }
-        //     },
-        //     error: function (err) {
-        //         console.log(err.statusText)
-        //     }
-        // });
     })
 })
 
 $("#forms").submit(function (e) {
     console.log("qwe")
     e.preventDefault()
-    // var emails = $("#email").val()
-    // var pass = $("#pwd").val()
-    // var data = {
-    //     emails,
-    //     pass
-    // }
-    // $.ajax({
-    //     type: "POST",
-    //     dataType: "json",
-    //     url: "/users/login",
-    //     data: $('#form1').serialize(),
-    //     success: function (result) {
-    //         if (result.resultCode == 200) {
-    //           
-    //         }
-    //     },
-    //     error: function (err) {
-    //         console.log(err.statusText)
-    //     }
-    // });
 })
 
 $(".logout").click(function () {
@@ -709,7 +556,6 @@ $(".logout").click(function () {
             type: "POST",
             dataType: "json",
             url: "../Login/logout",
-            // data: $('#form1').serialize(),
             success: function (result) {
                 if (result.resultCode == 200) {
                     alert("退出成功");
