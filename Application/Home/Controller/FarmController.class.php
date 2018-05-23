@@ -186,7 +186,7 @@ class FarmController extends AllowController {
             $landlife=$f_rate->where("land_num='$landnum'")->getField("cycle");
             $numtime=$landlife*24*3600;
             if($lastltime+$numtime<=time()){
-                if($info['fruit']>=$tree_price){
+                if($info['fruit']>=$land_price){
                     $f_tree=M('f_tree');
                     $f_harvest=M("f_harvest");
                     $land_count=$f_land->where("uid='$uid'")->count();
@@ -207,7 +207,7 @@ class FarmController extends AllowController {
                     $dataa['amount']=0;
                     $dataa['time']=date("Y-m-d H:i:s");
                     $resul=$f_harvest->data($dataa)->add();//收获表
-                    $datas['fruit']=$info['fruit']-$tree_price;
+                    $datas['fruit']=$info['fruit']-$land_price;
                     $datas['tree']=$info['tree']+1;
                     $datas['land']=$info['land']+1;
                     $result=$f_mygoods->where("uid='$uid'")->data($datas)->save();
@@ -700,7 +700,7 @@ public function fruitlist(){
 			}
 		break;
 		case "偷取记录":
-			$list=$f_steal->where("uid='$uid'")->select();
+			$list=$f_steal->where("uid='$uid'")->order("id desc")->select();
 			foreach($list as $key =>$val){
 				$tuid=$val['tuid'];
 				$info=$user->where("id='$tuid'")->find();
@@ -709,7 +709,7 @@ public function fruitlist(){
 			}
 		break;
 		case "被偷记录":
-			$list=$f_steal->where("tuid='$uid'")->select();
+			$list=$f_steal->where("tuid='$uid'")->order("id desc")->select();
 			foreach($list as $key =>$val){
 				$uid=$val['uid'];
 				$info=$user->where("id='$uid'")->find();
@@ -733,23 +733,28 @@ public function fruitlist(){
 		$data['tuid']=$tuid;
 		$data['num']=$num;
 		$data['time']=date("Y-m-d H:i:s");
-        M()->startTrans();//开始事务处理
-		$res=$steal->data($data)->add();
-        $myinfo=$mygoods->where("uid='$uid'")->getField('fruit');
-        $arr['fruit']=$myinfo+$num;
-        $res1=$mygoods->where("uid='$uid'")->data($arr)->save();
-        if($res && $res1){
-            stealinfo($tuid,$num);
-            beistealinfo($tuid,$num);
-			M()->commit();
-			$response=array(
-				'resultCode'=>"200",
-                'num'=>$num,
-			);
-			$this->ajaxReturn($response,'json');
-		}else{
-			M()->rollback();
-		}
+        // $stealinfo=$steal->where("uid='$uid' AND tuid='$tuid'")->order("id desc")->limit(1)->select();
+        // $nowtime=time();
+        // $stealtime=$stealinfo[0]["time"];
+        // if($nowtime-$stealtime>10){
+            M()->startTrans();//开始事务处理
+            $res=$steal->data($data)->add();
+            $myinfo=$mygoods->where("uid='$uid'")->getField('fruit');
+            $arr['fruit']=$myinfo+$num;
+            $res1=$mygoods->where("uid='$uid'")->data($arr)->save();
+            if($res && $res1){
+                stealinfo($tuid,$num);
+                beistealinfo($tuid,$num);
+                M()->commit();
+                $response=array(
+                    'resultCode'=>"200",
+                    'num'=>$num,
+                );
+                $this->ajaxReturn($response,'json');
+            }else{
+                M()->rollback();
+            }
+        // }   
 	}
 
 	//邮箱
@@ -889,6 +894,27 @@ public function fruitlist(){
                 'data'=>'清空失败',
             );
         }
+        $this->ajaxReturn($response,'json');
+    }
+
+    public function rateinfo(){
+        $rate=M("f_rate");
+        $info=$rate->field("min(land_num) as min, max(land_num) as max,rate")->group("rate")->select();
+        foreach($info as $key=>$val){
+            if($val['min']==$val['max']){
+            $info[$key]['land']=$val['min'];
+
+            }else{
+                $info[$key]['land']=$val['min'].'-'.$val['max'];
+            }
+            $info[$key]['rate']=($val['rate']*100).'%';
+            $info[$key]['num']=300*$val['rate'];
+        }
+       
+         $response=array(
+                'resultCode'=>'200',
+                'data'=>$info,
+            );
         $this->ajaxReturn($response,'json');
     }
 

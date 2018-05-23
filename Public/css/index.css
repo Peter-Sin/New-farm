@@ -13,9 +13,11 @@ body {
 }
 
 .index{
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
-
+.goods li:last-child{
+    margin-bottom: 70px;
+}
 h1,
 h2,
 h3,

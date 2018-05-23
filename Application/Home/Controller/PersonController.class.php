@@ -376,13 +376,14 @@ class PersonController extends AllowController
             $userinfo['sex'] = '男';
         } elseif ($userinfo['sex'] == 2) {
             $userinfo['sex'] = '女';
+        }else{
+            $userinfo['sex'] = '保密';
         }
         $this->assign('userinfo', $userinfo);
         $this->display('ChangInfo');
     }
 
     public function uploadchangeinfo(){
-
         $user = M("user");
         if($_FILES['Beau']['size']) {
             $upload = new \Think\Upload();
@@ -407,13 +408,16 @@ class PersonController extends AllowController
         $data['alipay'] = $_POST['Payphone'];
         if ($_POST['sex'] == "男") {
             $data['sex'] = 1;
-        } else {
+        } elseif($_POST['sex'] == "女") {
             $data['sex'] = 2;
+        }else{
+            $data['sex'] = 3;
         }
         $res = $user->where("id='$uid'")->data($data)->save();
         if ($res) {
-            echo "<script>alert('修改成功');</script>";
-            Header('Location:../Person/changeinfo');
+            echo '<script>alert("修改成功");window.location="./changeinfo";</script>';
+        }else{
+            echo '<script>alert("修改失败");window.location="./changeinfo";</script>';
         }
     }
 

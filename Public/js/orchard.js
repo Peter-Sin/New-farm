@@ -10,7 +10,7 @@ threelis.click(function () {
 })
 
 
-
+var test = window.location.host;
 function fruitlist(a){
     $.ajax({
         type: "POST",
@@ -23,7 +23,7 @@ function fruitlist(a){
                 for(var i=0;i<result.length;i++){
                     if(a=="互偷模块"){
                         html += '<li>'+
-                        '<img class="trees" src="http://www.test.com/public/YM/orcharImg/gs_img.png" alt="">'+
+                        '<img class="trees" src="http://'+test+'/public/YM/orcharImg/gs_img.png" alt="">'+
                         '<div class="treesInfo" fid="'+result[i].fid+'" num="'+result[i].count+'">'+
                             '<p>昵称:'+result[i].username+'会员编号:'+result[i].vipid+'</p>'+
                             '<p>产出果实:'+result[i].count+'颗</p>'+
@@ -68,18 +68,20 @@ function fruitlist(a){
                 var num=$(".treesInfo").attr("num");
                 var gettree=$(".gettree");
                 gettree.click(function(){
-                    $.ajax({
-                        type: "POST",
-                        dataType: "json",
-                        url: "../Farm/getlandnum",
-                        success: function (result) {
-                            if(result.resultCode==200){
-                                var trees= gettrees(fid,num,gettree);
-                            }else if(result.resultCode==300){
-                                alert("土地数量不足，暂时无法偷取");
+                    if(confirm("你确认偷取")){
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "../Farm/getlandnum",
+                            success: function (result) {
+                                if(result.resultCode==200){
+                                    var trees= gettrees(fid,num,gettree);
+                                }else if(result.resultCode==300){
+                                    alert("土地数量不足，暂时无法偷取");
+                                }
                             }
-                        }
-                    })
+                        })
+                    }
                 })
             } 
         },
@@ -91,21 +93,19 @@ function fruitlist(a){
 fruitlist("互偷模块");
 
 function gettrees(fid,num,gettree){
-    if(confirm("你确认偷取")){
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "../Farm/steal",
-            data:({tuid:fid,num:num}),
-            success: function (result) {
-                if(result.resultCode==200){
-                    gettree.css({background:'rgb(192, 184, 184)'});
-                    gettree.unbind();
-                    gettree.html("已偷取");
-                }
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../Farm/steal",
+        data:({tuid:fid,num:num}),
+        success: function (result) {
+            if(result.resultCode==200){
+                gettree.css({background:'rgb(192, 184, 184)'});
+                gettree.unbind();
+                gettree.html("已偷取");
             }
-        }) 
-    }
+        }
+    }) 
 }
 
 //feirnd 点击选择

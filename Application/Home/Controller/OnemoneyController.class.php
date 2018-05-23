@@ -9,7 +9,7 @@ class OnemoneyController extends AllowController {
         $list=$onemoney->where("uptime<=NOW() AND DATE_ADD(uptime, INTERVAL hour HOUR)>=NOW() AND amount>number")->where($arr)->select();
         foreach($list as $key=>$val){
             $cen=3600*$val['hour']+strtotime($val['uptime']);
-            $list[$key]['endtime']=date("Y-m-d H:i:s",$cen);
+            $list[$key]['endtime']=date("Y/m/d H:i:s",$cen);
             $pid=$val['id'];
             $uid=$_SESSION["uid"];
             $anum=$lootgoods->where("pid='$pid' AND uid='$uid'")->Field("SUM(amount) as count")->find();
@@ -19,6 +19,7 @@ class OnemoneyController extends AllowController {
                 $list[$key]['anum']=0;
             }
         }
+        // dump($list);
         $this->assign("list",$list);
         $this->display("onemoney");
     }
@@ -146,7 +147,7 @@ class OnemoneyController extends AllowController {
             ->select();
         foreach($list as $key=>$val){
             $cen=3600*$val['hour']+strtotime($val['uptime']);
-            $list[$key]['endtime']=date("Y-m-d H:i:s",$cen);
+            $list[$key]['endtime']=date("Y/m/d H:i:s",$cen);
             $list[$key]['union']=time()-$cen;
             $list[$key]['num']=$val['amount']-$val['number'];
             if($list[$key]['union']>0 || $list[$key]['num']<=0){

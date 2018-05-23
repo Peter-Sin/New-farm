@@ -588,9 +588,31 @@ $(function () {
     })
 
     $(".TB-right").click(function () {
-        $(".AlertBox").fadeIn(50);
-        $(".Getrees").fadeIn(50);
-        $(".dnfs").show();
+        $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "../Farm/rateinfo",
+                // data:({num:num}),
+                success: function (result) {
+                    if (result.resultCode == 200) {
+
+                        console.log(result.data)
+                        var arrss = result.data
+                        for(var i=0;i<arrss.length;i++){
+                            $(".G_infor p").eq(i).text(arrss[i].land+"块地")
+                            $(".G_infor2 p").eq(i).text("利率"+arrss[i].rate)
+                            $(".G_infor3 p").eq(i).text("产"+arrss[i].num)
+                        }
+
+                        $(".AlertBox").fadeIn(50);
+                        $(".Getrees").fadeIn(50);
+                        $(".dnfs").show();
+                    }else if(result.resultCode == 300){
+                        // alert("果子数量不足");
+                    }
+                }
+            })
+       
     })
     $("#GetG").click(()=>  {
         $(".AlertBox").fadeIn(50)

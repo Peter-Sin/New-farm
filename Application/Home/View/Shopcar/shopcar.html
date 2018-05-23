@@ -21,7 +21,9 @@
             <foreach name="list" item="val">
                 <li class="shopcarlist" lia="off" cid="{$val.cid}">
                     <p class="checkbox" a="off" cid="{$val.cid}" GoodId="{$val.pid}" GoodsNum="{$val.amount}"></p>
+                   <div class="img_dbox" style=" float: left;width: 20%;">
                     <img class="gg" src="__PUBLIC__/image/goods/{$val.image}" alt="">
+                    </div>
                     <div class="div-nums">
                         <p style="margin:0 0 5% 0;">
                             <span>{$val.pname}</span>

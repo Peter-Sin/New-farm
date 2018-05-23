@@ -1,6 +1,8 @@
 
 //一元夺宝
 $(function () {
+    var NowTime = new Date();
+        
     var test = window.location.host;
     var Oget = $(".Duobao").find("button.Oget")
     Oget.click(function () {
@@ -12,7 +14,16 @@ $(function () {
             url: "../Onemoney/onclicknum",
             data: ({pid:pid}),
             success: function (result) {
-                console.log(result);
+                
+                // var oldtime = result.data1.uptime;
+                //     var y = oldtime.substring(0,4)
+                //     var m = oldtime.substring(6,7)
+                //     m = m < 10 ? '0' + m : m;
+                //     var d = oldtime.substring(8,oldtime.length)
+                //     d = d < 10 ? ('0' + d) : d;
+                //     var overtime = y+"/"+m+"/"+d
+                // console.log();
+
                 var html="";
                 html='<div  class="O-alert">' +
                     ' <img class="closes" src="http://'+test+'/Public/YM/imgs/gb.png" alt="">' +

@@ -50,7 +50,9 @@ li {
     cursor: pointer;
     padding: 2px;
 }
-
+.btn-setpass{
+    width: 52% !important;
+}
 .backs {
     position: absolute;
     height: 17px;
@@ -187,7 +189,7 @@ li {
 #Paypasss p{
     background-color: #ef9d33;
     margin: 5% auto;
-    padding: 2% 0;
+    /*padding: 2% 0;*/
     border-radius: 10px;
      border: 2px solid #138620;
 }

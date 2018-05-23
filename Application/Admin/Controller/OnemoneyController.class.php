@@ -46,6 +46,7 @@ class OnemoneyController extends AllowController {
         $data['amount']=$_POST['amount'];
         $data['uptime']=$_POST['uptime'];
         $data['hour']=$_POST['hour'];
+        $data['number']=0;
         $data['image']=$info['img']['savename'];
         $res=$onemoney->data($data)->add();
         if($res){

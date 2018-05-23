@@ -272,7 +272,7 @@ li {
 .Onlie-box li a {
     text-decoration: none;
     color: black;
-    margin-left: 5%;
+    /*margin-left: 5%;*/
     font-size: 14px;
 }
 
@@ -302,9 +302,9 @@ li {
     margin-right: 2%;
 }
 
-.Onlie ul li img.gg {
-    float: left;
-    width: 20%;
+.Onlie ul li img.gg{
+    
+    width: 100%;
 }
 
 .Onlie ul li div {
