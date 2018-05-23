@@ -1,12 +1,12 @@
 <?php
 
-function tel_code($phone,$telcode){
+function tel_code($phone,$telcode,$codeid){
 	require './ThinkPHP/Library/Org/Com/Ucpaas.class.php';
-	$options['accountsid']='3ccc20c6d78534e8c5c75fbf895325e8';
-	$options['token']='499b97ad795b3de8eaf8f15d2be2f518';
+	$options['accountsid']='3f0f66642e22f15327b1e9d335c5b8d9';
+	$options['token']='003cb0f199e00f76be04ee18023db66d';
 	$ucpass = new \Ucpaas($options);
-	$appid = "b494f497719a4823a0fe65a42d5ca087";	//应用的ID，可在开发者控制台内的短信产品下查看
-	$templateid = "308830";    //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模板ID
+	$appid = "8b9d102f0ec74abfade219918463c5b7";	//应用的ID，可在开发者控制台内的短信产品下查看
+	$templateid = $codeid;    //可在后台短信产品→选择接入的应用→短信模板-模板ID，查看该模板ID
 	$param = $telcode; //多个参数使用英文逗号隔开（如：param=“a,b,c”），如为参数则留空
 	$mobile = $phone;
 	$uid = "123";

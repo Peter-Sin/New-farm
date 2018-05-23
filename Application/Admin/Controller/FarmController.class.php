@@ -36,11 +36,12 @@ class FarmController extends AllowController
             $uid=$val['id'];
             $info=$mod->where("uid='$uid'")->find();
 
-            $lownum=$f_lowest->where("uid='$uid'")->getField("lownum");
-            if($lownum){
-                $list[$key]['lowest']=$lownum;
+            
+            $lowest=$f_lowest->where("uid='$uid'")->getField("lownum");
+            if($lowest==''){
+                $list[$key]['lowest']='NAN';
             }else{
-                $list[$key]['lowest']=300;
+                $list[$key]['lowest']=$lowest;
             }
             $list[$key]['fruit']=$info["fruit"];
             $list[$key]['voucher']=$info["voucher"];

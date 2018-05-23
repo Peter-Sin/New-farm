@@ -76,9 +76,9 @@ class NoticeController extends AllowController
         $id=$_GET["id"];
         $res=$notice->where("id='$id'")->delete();
         if($res){
-            echo '<script>alert("删除成功");window.location="./index";</script>';
+            echo '<script>alert("删除成功");window.location="./index";</script>';exit;
         }else{
-            echo '<script>alert("删除失败");window.location="./index";</script>';
+            echo '<script>alert("删除失败");window.location="./index";</script>';exit;
         }
     }
 

@@ -4,6 +4,7 @@ use Think\Controller;
 class PersonController extends AllowController
 {
     public function _initialize(){
+        Parent::_initialize();
         $setting=M("setting");
         $info=$setting->where("id='1'")->find();
         $this->fruit_tree=$info['fruit_tree'];//果树生命周期
@@ -96,6 +97,7 @@ class PersonController extends AllowController
     public function friendlist()
     {
         $user = M("user");
+        $land=M("f_land");
         $abc = $_POST['abc'];
         $uid = $_SESSION["uid"];
         $info = $user->where("id='$uid'")->find();
@@ -104,6 +106,8 @@ class PersonController extends AllowController
             $friendone = $user->where("referee='$telphone'")->select();
             foreach ($friendone as $key => $val) {
                 $friends[$key]['username'] = $val['username'];
+                $uid=$val['id'];
+                $friends[$key]['num']=$land->where("uid='$uid'")->count();
             }
         } elseif ($abc == 1) {
             $friendone = $user->where("referee='$telphone'")->select();
@@ -113,6 +117,8 @@ class PersonController extends AllowController
                 $friendstwo = $user->where("referee='$telone'")->select();
                 foreach ($friendstwo as $k => $v) {
                     $friends[$i]['username'] = $v['username'];
+                    $uid=$v['id'];
+                    $friends[$i]['num']=$land->where("uid='$uid'")->count();
                     $i++;
                 }
             }
@@ -127,6 +133,8 @@ class PersonController extends AllowController
                     $friendsthree = $user->where("referee='$teltwo'")->select();
                     foreach ($friendsthree as $kk => $vv) {
                         $friends[$i]['username'] = $vv['username'];
+                        $uid=$vv['id'];
+                        $friends[$i]['num']=$land->where("uid='$uid'")->count();
                         $i++;
                     }
                 }

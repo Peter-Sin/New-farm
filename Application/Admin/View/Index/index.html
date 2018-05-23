@@ -1,18 +1,24 @@
 <extend name="Layout/menu"/>
 <block name="content">
-
-<!--main-container-part-->
 <div id="content">
-<!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb">
+      <a href="#" class="tip-bottom" data-original-title="回到后台">
+        <i class="icon-home"></i>后台
+      </a>
+      <a href="#" class="current">欢迎访问</a>
+    </div>
+  </div>
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">
           <div class="widget-content">
             <div class="error_ex">
+              <br> <br> <br> <br><br> <br> <br> <br>
               <h2>欢迎来到{$name}</h2>
               <br> <br> <br> <br> <br> <br> <br> <br>
-              <!-- <h3>{$name}，属于你的自由空间</h3> <br> <br> <br> <br> <br> <br> -->
+              <br> <br> <br> <br><br> <br> <br> <br>
               <p>胜讯网络科技工作组 出品 2018</p>
           </div>
         </div>
@@ -20,14 +26,13 @@
     </div>
   </div>
 </div>
-<!--End-breadcrumbs-->
 
 <div class="row-fluid">
   <div id="footer" class="span12"></div>
 </div>
 
 <!--end-Footer-part-->
-
+<!-- 
 
 <script type="text/javascript">
 
@@ -46,5 +51,5 @@
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
-</script>
+</script> -->
 </block>

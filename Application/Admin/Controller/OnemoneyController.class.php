@@ -192,6 +192,8 @@ class OnemoneyController extends AllowController {
       $res=$winer->where($where)->data($data)->save();
       if($res){
         $this->success("修改成功");
+      }else{
+        $this->success("修改失败");
       }
     }
 

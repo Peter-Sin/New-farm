@@ -21,32 +21,23 @@ class LoginController extends Controller{
 
     //验证码校验 用户登录验证
     public function login(){
-    	//验证码校验
-    	// $verify = new \Think\Verify();
-    	// $fcode = $_POST['fcode'];
-    	// if(!$verify->check($fcode,'')){
-    	// 	$this->error('验证码输入有误',U('Login/index'));
-    	// }
-
-    	//用户登录验证
     	//实例化
     	$manager= M('manager');
     	//获取用户名
     	$where['username'] = $_POST['username'];
-    	$where['text'] = md5($_POST['password']);
-
+    	$where['password'] = md5($_POST['password']);
         //执行查询
         $sql=$manager->where($where)->select();
         $statu=$sql[0]['statu'];
         $id=$sql[0]['id'];
-    	
+    	$username=$sql[0]['username'];
     	if($sql){
     		//将数据成功放入到session里边
     		$_SESSION['admin']['admin_name'] = $username;
     		$_SESSION['admin']['is_login'] = 2;
             $_SESSION['admin']['statu']=$statu;
             $_SESSION['admin']['uid']=$id;
-            echo '<script>alert("登录成功");window.location="../Index/index";</script>';
+            echo '<script>window.location="../Index/index";</script>';
     	}else{
             echo '<script>alert("登录失败");window.location="../Login/index";</script>';
     	}
@@ -55,12 +46,16 @@ class LoginController extends Controller{
     //退出功能
     public function logout(){
     	//先删除客户端的cookie
-        // dump($_SESSION);
-    	setcookie(session_name(),'',time()-1,'/');
+    	// setcookie(session_name(),'',time()-1,'/');
     	//清除数组
-    	$_SESSION = array();
+    	// $_SESSION = array();
+            // $_SESSION['admin']['admin_name'] = $username;
+            // $_SESSION['admin']['is_login'] = 2;
+            // $_SESSION['admin']['statu']=$statu;
+            // $_SESSION['admin']['uid']=$id;// 
+            unset($_SESSION['admin']);
     	//删除服务器端的session文件
-    	session_destroy();
+    	// session_destroy();
        echo '<script>alert("退出成功");window.location="./index";</script>';
     }
 }

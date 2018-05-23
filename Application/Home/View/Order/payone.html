@@ -127,10 +127,13 @@
                             alert("参与失败");
                         }else if(result.resultCode == 500){
                             $(".OneMoney").find(".O-alert").remove();
-                            alert("果子数不能为0");
+                            alert("抢购数量不能为0");
                         }else if(result.resultCode == 600){
                             $(".OneMoney").find(".O-alert").remove();
-                            alert("果子数不能小于0");
+                            alert("抢购数量不能小于0");
+                        }else if(result.resultCode == 700){
+                            $(".OneMoney").find(".O-alert").remove();
+                            alert("代金券不足");
                         }
                     },
                     error: function (err) {

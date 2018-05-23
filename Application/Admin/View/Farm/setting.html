@@ -26,15 +26,15 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">果树生命值</label>
-            <div class="controls">
-              <input name="fruit_tree" class="span3" type="text" value="{$info['fruit_tree']}">天
-            </div>
-          </div>
-          <div class="control-group">
             <label class="control-label">土地价值</label>
             <div class="controls">
               <input name="land_price" class="span3" type="text" value="{$info['land_price']}">/块
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">果树生命周期</label>
+            <div class="controls">
+              <input name="fruit_tree" class="span3" type="text" value="{$info['fruit_tree']}">天
             </div>
           </div>
          <!--  <div class="control-group">
@@ -44,25 +44,25 @@
             </div>
           </div> -->
           <div class="control-group">
-            <label class="control-label">转让手续费(百分比)</label>
+            <label class="control-label">最低控制参数</label>
             <div class="controls">
-              <input name="transaction_fee" class="span3" type="text" value="{$info['transaction_fee']}">%
+              <input name="trading_limits" class="span3" type="text" value="{$info['trading_limits']}">个
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">转账限额(百分比)</label>
-            <div class="controls">
-              <input name="trading_limits" class="span3" type="text" value="{$info['trading_limits']}">%
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">用户偷取(百分比)</label>
+            <label class="control-label">偷取果子(百分比)</label>
             <div class="controls">
               <input name="user_steal" class="span3" type="text" value="{$info['user_steal']}">%
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">滞留积分(百分比)</label>
+            <label class="control-label">交易手续费(百分比)</label>
+            <div class="controls">
+              <input name="transaction_fee" class="span3" type="text" value="{$info['transaction_fee']}">%
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">交易滞留积分(百分比)</label>
             <div class="controls">
               <input name="trade_exchange" class="span3" type="text" value="{$info['trade_exchange']}">%
             </div>

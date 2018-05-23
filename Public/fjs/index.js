@@ -334,13 +334,19 @@ $(function () {
                 $(".dnfs").show()
                 $(".AlertBox").fadeIn(50)
                 $(".Email").fadeIn(50)
+                var startTime = new Date().getTime();
                 $.ajax({
                     type: "POST",
                     dataType: "json",
                     url: "../Farm/letter",
-                    data:({abc:ins}),
+                    // data:({abc:ins}),
                     success: function (result) {
+                            var endTime1  = new Date().getTime();
+                            var b = endTime1 - startTime;
+                            // console.log(startTime);
+                            console.log(b);
                         if(result.resultCode==200){
+                            
                             var html="";
                             var information=result.data;
                             for(var key in information){
@@ -350,9 +356,14 @@ $(function () {
                                     '</p>'
                             }
                             $(".letter").append(html);
+                            var endTime2  = new Date().getTime();
+                        var a = endTime2 - startTime;
+                        console.log(startTime);
+                        console.log(a);
                         }
                     }
                 })
+
             }
     })
 })

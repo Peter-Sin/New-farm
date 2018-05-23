@@ -63,58 +63,70 @@ class OnemoneyController extends AllowController {
             $this->ajaxReturn($response,'json');
         }elseif($amount>0){
             if($onelist['amount']-$onelist['number']>=$amount){
-                // $info=$lootgoods->where($data)->find();
-                M()->startTrans();
-                // if($info){
-                //     $where['amount']=$info['amount']+$_POST['amount'];
-                //     $anum=$where['amount'];
-                //     $where['loot_time']=date("Y-m-d H:i:s");
-                //     $res=$lootgoods->where($data)->data($where)->save();//夺宝数据库   修改
-                // }else{
-                    $data['amount']=$_POST['amount'];
-                    $anum=$data['amount'];
-                    $data['loot_time']=date("Y-m-d H:i:s");
-                    $res=$lootgoods->data($data)->add();//夺宝数据库   添加
-                // }
                 $f_mygoods=M("f_mygoods");
-                $uid=$_SESSION['uid'];
-                $res1=$f_mygoods->where("uid='$uid'")->setDec("voucher",$amount);
-                if($res && $res1){
-                    $pid=$_POST["pid"];
-                    $list=$onemoney->where("id='$pid'")->find();
-                    $t['number']=$list['number']+$_POST['amount'];
-                    $m=$onemoney->where("id='$pid'")->data($t)->save();//夺宝商品数据库
+                $uid=$_SESSION["uid"];
+                $infosv=$f_mygoods->where("uid='$uid'")->getfield("voucher");
+                if($infosv>=$amount){
+                    // $info=$lootgoods->where($data)->find();
+                    M()->startTrans();
+                    // if($info){
+                    //     $where['amount']=$info['amount']+$_POST['amount'];
+                    //     $anum=$where['amount'];
+                    //     $where['loot_time']=date("Y-m-d H:i:s");
+                    //     $res=$lootgoods->where($data)->data($where)->save();//夺宝数据库   修改
+                    // }else{
+                        $data['amount']=$_POST['amount'];
+                        $anum=$data['amount'];
+                        $data['loot_time']=date("Y-m-d H:i:s");
+                        $res=$lootgoods->data($data)->add();//夺宝数据库   添加
+                    // }
+                    
+                    $uid=$_SESSION['uid'];
+                    $res1=$f_mygoods->where("uid='$uid'")->setDec("voucher",$amount);
+                    if($res && $res1){
+                        $pid=$_POST["pid"];
+                        $list=$onemoney->where("id='$pid'")->find();
+                        $t['number']=$list['number']+$_POST['amount'];
+                        $m=$onemoney->where("id='$pid'")->data($t)->save();//夺宝商品数据库
 
-                    $data1['paysapi_id'] = 1;
-                    $data1['orderid'] = 1;
-                    $data1['price'] = $_POST['amount'];
-                    $data1['pay_money'] = $_POST['amount'];
-                    $data1['orderuid'] = 1;
-                    $data1['key'] = 1;
-                    $data1['pay_time'] = date("Y-m-d H:i:s");
-                    // $orderuid=$_POST["orderuid"];
-                    // $array=explode('&', $orderuid);
-                    $uid=$_POST["uid"];
-                    $pid=$_POST["pid"];
-                    $m1=$lootgoods->where($data)->data($data1)->save();
-                    if($m && $m1){
-                        M()->commit();
-                        $response = array(
-                            'resultCode'  => 200,
-                            'message' => '参与成功',
-                            'num'=>$t['number'],
-                            'total'=>$list['amount'],
-                            'anum'=>$anum,
-                        );
-                    }else{
-                        M()->rollback();
-                        $response = array(
-                            'resultCode'  => 400,
-                            'message' => '参与失败',
-                        );
+                        $data1['paysapi_id'] = 1;
+                        $data1['orderid'] = 1;
+                        $data1['price'] = $_POST['amount'];
+                        $data1['pay_money'] = $_POST['amount'];
+                        $data1['orderuid'] = 1;
+                        $data1['key'] = 1;
+                        $data1['pay_time'] = date("Y-m-d H:i:s");
+                        // $orderuid=$_POST["orderuid"];
+                        // $array=explode('&', $orderuid);
+                        $uid=$_POST["uid"];
+                        $pid=$_POST["pid"];
+                        $m1=$lootgoods->where($data)->data($data1)->save();
+                        if($m && $m1){
+                            M()->commit();
+                            $response = array(
+                                'resultCode'  => 200,
+                                'message' => '参与成功',
+                                'num'=>$t['number'],
+                                'total'=>$list['amount'],
+                                'anum'=>$anum,
+                            );
+                        }else{
+                            M()->rollback();
+                            $response = array(
+                                'resultCode'  => 400,
+                                'message' => '参与失败',
+                            );
+                        }
+                        $this->ajaxReturn($response,'json');
                     }
+                }else{
+                    $response = array(
+                        'resultCode'  => 700,
+                        'message' => '购物券不足',
+                    );
                     $this->ajaxReturn($response,'json');
                 }
+                
             }else{
                 $response = array(
                     'resultCode'  => 300,

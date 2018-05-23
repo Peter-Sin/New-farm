@@ -60,6 +60,12 @@ $(".getPhone").click(function () {
                     setTimeout(function () {
                         $(".tishi").hide()
                     }, 2000)
+                }else if(result.resultCode == 400){
+                    $(".tishi").show()
+                    $(".tishi").html("短信发送失败")
+                    setTimeout(function () {
+                        $(".tishi").hide()
+                    }, 2000)
                 }
             },
             error: function (err) {
@@ -68,6 +74,8 @@ $(".getPhone").click(function () {
         });
     }
 })
+
+
 
 
 //注册
@@ -175,7 +183,7 @@ $(".btn_regist").click(function () {
 //找回密码
 $("#Getpasss").submit(function (e) {
     e.preventDefault()
-    console.log("get my pass")
+    // console.log("get my pass")
     var data = {
         phone: $("input[name='phone'] ").val(),
         yanzheng: $("input[name='yanzheng'] ").val(),

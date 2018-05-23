@@ -57,13 +57,20 @@ class LoginController extends Controller {
             );
         }else{
             $telcode=mt_rand(100000,999999);
-            $telcodeid="";
-            $result=tel_code($phone,$telcode);
+            $codeid="323227";
+            $result=tel_code($phone,$telcode,$codeid);
             if($result['code']==000000){
                 cookie('code',$telcode,'expire=300&prefix=think_');
                 $response=array(
                     'resultCode'=>200,
-                    'content'=>"短信发送成功"
+                    'code'=>$result['code'],
+                    'content'=>"短信发送成功",
+                );
+            }else{
+                $response=array(
+                    'resultCode'=>400,
+                    'code'=>$result['code'],
+                    'content'=>"短信发送失败",
                 );
             }
         }
@@ -139,14 +146,15 @@ class LoginController extends Controller {
     public function getpass(){
         $this->display('getpass');
     }
-
+    //找回密码
     public function gettelcodes(){
         $user=M("user");
         $phone=$_POST['tel'];
         $telcode=mt_rand(100000,999999);
         $info=$user->where("telphone='$phone'")->find();
         if($info){
-            $result=tel_code($phone,$telcode);
+            $codeid='323228';
+            $result=tel_code($phone,$telcode,$codeid);
             if($result['code']==000000){
                 cookie('getcode',$telcode,'expire=300&prefix=think_');
                 $response=array(
@@ -212,8 +220,10 @@ $this->ajaxReturn($response,"json");
         if ($_SESSION['is_login'] == 2) {
             $_SESSION['uid'] = null;
             $_SESSION['is_login'] = null;
+            unset($_SESSION['uid']);
+            unset($_SESSION['is_login']);
         }
-        if(!($_SESSION['is_login']==2)){
+        if(empty($_SESSION['is_login'])){
             $response=array(
                 'resultCode'=>'200',
             );

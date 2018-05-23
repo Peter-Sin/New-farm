@@ -301,12 +301,12 @@ class OrderController extends AllowController {
             if($infos['amount']-$infos['number']<$num){
                 echo "<script> alert('抢购数量超出,请重新选择');location.href = \"../Onemoney/onemoney\";</script>";
             }else{
-                $istype=is_weixin();
-                $info['istype']=$istype;
-                $info['num']=$num;
-                $info['pid']=$pid;
-                $this->assign("info",$info);
-                $this->display("payone");
+                    $istype=is_weixin();
+                    $info['istype']=$istype;
+                    $info['num']=$num;
+                    $info['pid']=$pid;
+                    $this->assign("info",$info);
+                    $this->display("payone");
             }
         }else{
             echo "<script> alert('夺宝信息有误,请重新选择');location.href = \"../Onemoney/onemoney\";</script>";

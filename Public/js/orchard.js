@@ -133,17 +133,17 @@ function friendlist(a){
                     if(a==0){
                         html+= '<li>'+
                             '<p>'+result.friends[i].username+'</p>'+
-                            '<p>1层</p>'+
+                            '<p>'+result.friends[i].num+'</p>'+
                             '</li>'
                     }else if(a==1){
                         html+= '<li>'+
                             '<p>'+result.friends[i].username+'</p>'+
-                            '<p>2层</p>'+
+                            '<p>'+result.friends[i].num+'</p>'+
                             '</li>'
                     }else if(a==2){
                         html+= '<li>'+
                             '<p>'+result.friends[i].username+'</p>'+
-                            '<p>3层</p>'+
+                            '<p>'+result.friends[i].num+'</p>'+
                             '</li>'
                     }
                 }

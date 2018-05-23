@@ -3,6 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 class FarmController extends AllowController {
     public function _initialize(){
+        Parent::_initialize();
         $setting=M("setting");
         $info=$setting->where("id='1'")->find();
         $this->fruit_tree=$info['fruit_tree'];//果树生命周期
@@ -167,77 +168,79 @@ class FarmController extends AllowController {
     public function planting(){
         $uid=$_SESSION['uid'];
         $tree_price=$this->tree_price;
+        $land_price=$this->land_price;
     	$f_mygoods=M('f_mygoods');
         $f_land=M("f_land");
         $f_rate=M("f_rate");
         $lid=$_POST['abc'];
         $info=$f_mygoods->where("uid='$uid'")->find();
-//        $lowest=$this->lowest();
-//        if($lowest){
-//            $trading_limits=$lowest;
-//        }else{
-//            $trading_limits=$this->trading_limits;
-//        }
+       $lowest=$this->lowest();
+       if($lowest>0){
+           $trading_limits=$lowest;
+       }else{
+           $trading_limits=$this->trading_limits;
+       }
         $landcount=$f_land->where("uid='$uid'")->count();
         $landnum=$landcount+1;
-//        if($lid==$landnum){
-            $lastinfo=$f_land->where("uid='$uid'")->order("id desc")->limit(1)->select();
-            $lastltime=strtotime($lastinfo[0]['time']);
-            $landlife=$f_rate->where("land_num='$landnum'")->getField("cycle");
-            $numtime=$landlife*24*3600;
-            if($lastltime+$numtime<=time()){
-                if($info['fruit']>=$land_price){
-                    $f_tree=M('f_tree');
-                    $f_harvest=M("f_harvest");
-                    $land_count=$f_land->where("uid='$uid'")->count();
-                    $land_countt=$land_count+1;
-                    $rate=$f_rate->where("land_num='$land_countt'")->getField('rate');//当前拆分率
-                    M()->startTrans();//开始事务处理
-                    $ldata['uid']=$uid;
-                    $ldata['time']=date("Y-m-d H:i:s");
-                    $ldata['lnum']=$lid;
-                    $rl=$f_land->data($ldata)->add();
-                    $data['uid']=$uid;
-                    $data['lid']=$lid;
-                    $data['time']=date("Y-m-d H:i:s");
-                    $res=$f_tree->data($data)->add();//树表
-                    $dataa['uid']=$uid;
-                    $dataa['treeid']=$res;
-                    $dataa['rate']=$rate;
-                    $dataa['amount']=0;
-                    $dataa['time']=date("Y-m-d H:i:s");
-                    $resul=$f_harvest->data($dataa)->add();//收获表
-                    $datas['fruit']=$info['fruit']-$land_price;
-                    $datas['tree']=$info['tree']+1;
-                    $datas['land']=$info['land']+1;
-                    $result=$f_mygoods->where("uid='$uid'")->data($datas)->save();
-                    if($rl && $res && $resul && $result){
-                        M()->commit();
-                        plantinfo($lid);
-                        $response = array(
-                            'resultCode'  => 200,
-                            'message' => 'success for request',
-                        );
-                    }else{
-                        M()->rollback();
-                        $response = array(
-                            'resultCode'  => 400,
-                            'message' => '栽种失败',
-                        );
-                    }
-                }else{
+        $lastinfo=$f_land->where("uid='$uid'")->order("id desc")->limit(1)->select();
+        $lastltime=strtotime($lastinfo[0]['time']);
+        $landlife=$f_rate->where("land_num='$landnum'")->getField("cycle");
+        $numtime=$landlife*24*3600;
+        if($lastltime+$numtime<=time()){
+            if($info['fruit']-$land_price>=$trading_limits){
+                $f_tree=M('f_tree');
+                $f_harvest=M("f_harvest");
+                $land_count=$f_land->where("uid='$uid'")->count();
+                $land_countt=$land_count+1;
+                $rate=$f_rate->where("land_num='$land_countt'")->getField('rate');//当前拆分率
+                M()->startTrans();//开始事务处理
+                $ldata['uid']=$uid;
+                $ldata['time']=date("Y-m-d H:i:s");
+                $ldata['lnum']=$lid;
+                $rl=$f_land->data($ldata)->add();
+                $data['uid']=$uid;
+                $data['lid']=$lid;
+                $data['time']=date("Y-m-d H:i:s");
+                $res=$f_tree->data($data)->add();//树表
+                $dataa['uid']=$uid;
+                $dataa['treeid']=$res;
+                $dataa['rate']=$rate;
+                $dataa['amount']=0;
+                $dataa['time']=date("Y-m-d H:i:s");
+                $resul=$f_harvest->data($dataa)->add();//收获表
+                $datas['fruit']=$info['fruit']-$land_price;
+                $datas['tree']=$info['tree']+1;
+                $datas['land']=$info['land']+1;
+                $result=$f_mygoods->where("uid='$uid'")->data($datas)->save();
+                if($rl && $res && $resul && $result){
+                    M()->commit();
+                    plantinfo($lid);
                     $response = array(
-                        'resultCode'  => 300,
-                        'message' => '果子数量不足',
+                        'resultCode'  => 200,
+                        'a'=>$land_price,
+                        'b'=>$info['fruit'],
+                        'c'=>$datas['fruit'],
+                        'message' => 'success for request',
+                    );
+                }else{
+                    M()->rollback();
+                    $response = array(
+                        'resultCode'  => 400,
+                        'message' => '栽种失败',
                     );
                 }
             }else{
                 $response = array(
-                    'resultCode'  => 500,
-                    'message' => '未达到固定周期,暂不可开地',
+                    'resultCode'  => 300,
+                    'message' => '果子数量不足',
                 );
             }
-//        }
+        }else{
+            $response = array(
+                'resultCode'  => 500,
+                'message' => '未达到固定周期,暂不可开地',
+            );
+        }
         $this->ajaxReturn($response,'json');
 	}
 
@@ -504,7 +507,7 @@ class FarmController extends AllowController {
         $uid=$_SESSION['uid'];
         $f_mygoods=M("f_mygoods");
         $lowest=$this->lowest();
-        if($lowest){
+        if($lowest>0){
             $trading_limits=$lowest;
         }else{
             $trading_limits=$this->trading_limits;
@@ -589,7 +592,7 @@ class FarmController extends AllowController {
         $info=$f_mygoods->where("uid='$uid'")->field('fruit,voucher')->find();
     	$num=$_POST['num'];
         $lowest=$this->lowest();
-        if($lowest){
+        if($lowest>0){
             $trading_limits=$lowest;
         }else{
             $trading_limits=$this->trading_limits;
@@ -758,16 +761,19 @@ public function fruitlist(){
 	}
 
 	//邮箱
-    public function letter(){
+   public function letter(){
+        $a=microtime();
         $letter=M("letter");
         $user=M("user");
+        $b=microtime();
         $uid=$_SESSION["uid"];
-        $info=$letter->where("uid=$uid")->order("time desc")->select();
+        $info=$letter->where("uid='$uid'")->order("id desc")->select();
+        $c=microtime();
         if($info){
             foreach ($info as $key=>$val){
                 $classid=$val['classid'];
                 switch($classid){
-                    case 1 :
+                    case '1' :
                         $list[$key]['content']="你已注册成功，欢迎访问商城";
                         $list[$key]['time']=$val['time'];
                         break;
@@ -851,9 +857,13 @@ public function fruitlist(){
                 }
                 $list[$key]['id']=$val['id'];
             }
+            $d=microtime();
             $response=array(
                 'resultCode'=>'200',
                 'data'=>$list,
+                'z'=>$b-$a,
+                'x'=>$c-$b,
+                'v'=>$d-$c,
             );
             $this->ajaxReturn($response,'json');
         }
